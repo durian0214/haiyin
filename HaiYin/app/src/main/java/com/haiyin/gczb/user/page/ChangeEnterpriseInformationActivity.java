@@ -211,7 +211,7 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
                 dataList.add(salesList.get(i).getName());
             }
             ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                    this, android.R.layout.simple_spinner_item,
+                    this, R.layout.item_sp,
                     dataList);
             spSalesman.setAdapter(adapter);
         } else if (code == ApiConfig.INDUSTRY) {
@@ -223,7 +223,7 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
                 dataList.add(industryList.get(i).getName());
             }
             ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                    this, android.R.layout.simple_spinner_item,
+                    this, R.layout.item_sp,
                     dataList);
             spIndustry.setAdapter(adapter);
         }else if(code ==ApiConfig.GET_DETAIL_INFO){
@@ -315,23 +315,29 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
                         } else {
                             UploadHelper.getInstance().upImagePri(mContext, new UploadHelper.OssUpCallback() {
                                 @Override
-                                public void successImg(String img_url) {
-                                    if (position == 1) {
-                                        GlideUtil.loaderCornersImg(mContext, imgBusinessLicense, UploadHelper.getPriUrl(img_url));
-                                        imgBusinessLicenseUrl = img_url;
-                                    } else if (position == 2) {
-                                        GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsPositive, UploadHelper.getPriUrl(img_url));
-                                        imgUploadDocumentsPositiveUrl = img_url;
-                                    } else if (position == 3) {
-                                        GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsBacl, UploadHelper.getPriUrl(img_url));
-                                        imgUploadDocumentsBaclUrl = img_url;
-                                    } else if (position == 4) {
-                                        GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsPositive, UploadHelper.getPriUrl(img_url));
-                                        imgCollectionUploadDocumentsPositiveUrl = img_url;
-                                    } else if (position == 5) {
-                                        GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsBck, UploadHelper.getPriUrl(img_url));
-                                        imgCollectionUploadDocumentsBckUrl = img_url;
-                                    }
+                                public void successImg(final String img_url) {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            if (position == 1) {
+                                                GlideUtil.loaderImg(mContext, imgBusinessLicense, UploadHelper.getPriUrl(img_url));
+                                                imgBusinessLicenseUrl = img_url;
+                                            } else if (position == 2) {
+                                                GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsPositive, UploadHelper.getPriUrl(img_url));
+                                                imgUploadDocumentsPositiveUrl = img_url;
+                                            } else if (position == 3) {
+                                                GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsBacl, UploadHelper.getPriUrl(img_url));
+                                                imgUploadDocumentsBaclUrl = img_url;
+                                            } else if (position == 4) {
+                                                GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsPositive, UploadHelper.getPriUrl(img_url));
+                                                imgCollectionUploadDocumentsPositiveUrl = img_url;
+                                            } else if (position == 5) {
+                                                GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsBck, UploadHelper.getPriUrl(img_url));
+                                                imgCollectionUploadDocumentsBckUrl = img_url;
+                                            }
+                                        }
+                                    });
+
                                 }
 
                                 @Override
