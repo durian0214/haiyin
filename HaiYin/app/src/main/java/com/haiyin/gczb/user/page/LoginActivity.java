@@ -24,7 +24,7 @@ import io.reactivex.functions.Consumer;
  * Created
  * by durian
  * 2019/1/4.
- * 登录 哈哈哈哈哈哈
+ * 登录 哈哈嘿嘿
  */
 public class LoginActivity extends BaseActivity implements BaseView {
     private LoginPresenter loginPresenter;
