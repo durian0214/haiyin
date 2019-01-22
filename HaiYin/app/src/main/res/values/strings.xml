@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">海因</string>
+    <string name="title_home">首页</string>
+    <string name="title_demand_hall">需求大厅</string>
+    <string name="title_order">订单</string>
+    <string name="title_my">我的</string>
+
+    <!--权限-->
+    <string name="rationale_camera">该功能需要访问您的相机</string>
+    <string name="rationale_write">该功能需要访问您的存储权限</string>
+</resources>

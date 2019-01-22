@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">RVAdapterLib</string>
+    <string name="error_message">网络错误,请稍后重试</string>
+    <string name="empty_message">暂时还没有数据</string>
+
+    <string name="encode_qrcode">生成二维码</string>
+    <string name="dencode_qrcode">扫描二维码</string>
+    <string name="code_text">请输入生成二维码的文本信息</string>
+    <string name="qrcodetext">这里显示扫描结果</string>
+
+    <!--baserRecyclerViewAdapterHelper-->
+    <string name="brvah_loading">正在加载中...</string>
+    <string name="brvah_load_failed">加载失败，请点我重试</string>
+    <string name="brvah_load_end">没有更多数据</string>
+</resources>

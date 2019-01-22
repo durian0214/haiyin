@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_base" />
+
+    <LinearLayout
+        android:id="@+id/ll_add_account_new"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+       >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="90dp"
+            android:background="@mipmap/add_card_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
+            android:text="还没有本部账号，请添加本部账号"
+            android:textColor="@color/color_444444" />
+
+        <Button
+            android:id="@+id/btn_add_account"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="43dp"
+            android:layout_marginRight="43dp"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/shape_button"
+            android:gravity="center"
+            android:text="+添加本部账号"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_14" />
+    </LinearLayout>
+
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/srl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlDisableContentWhenLoading="false"
+        app:srlDisableContentWhenRefresh="false"
+        app:srlEnableHeaderTranslationContent="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_add_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+</LinearLayout>

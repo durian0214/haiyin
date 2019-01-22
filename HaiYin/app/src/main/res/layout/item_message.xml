@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingBottom="20dp"
+    android:paddingLeft="10dp"
+    android:id="@+id/rl_item_message"
+    android:paddingRight="10dp"
+    android:paddingTop="20dp">
+
+    <TextView
+        android:id="@+id/tv_item_message_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:lines="1"
+        android:text="2018.12.20"
+        android:textColor="#999999"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/tv_item_message_context"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+android:layout_marginTop="15dp"
+        android:layout_below="@id/tv_item_message_title"
+        android:lines="1"
+        android:text="海量配色方案,自由下载,提供色彩搭配和..."
+        android:textColor="@color/color_666666"
+        android:textSize="@dimen/sp_12" />
+    <TextView
+        android:id="@+id/tv_item_message_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:text="搭配-最全的配色"
+        android:textColor="@color/color_444444"
+        android:textSize="@dimen/size_16sp" />
+</RelativeLayout>

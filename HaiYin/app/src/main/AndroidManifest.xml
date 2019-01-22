@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.haiyin.gczb">
+
+
+    <!-- Required  一些系统要求的权限，如访问网络等-->
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.support.FILE_PROVIDER_PATHS" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <!--相机权限-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!--oss-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+    <!--活体识别-->
+    <!-- 使用音视频录制的权限 -->
+    <uses-permission android:name="android.permission.RECORD_VIDEO" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <!-- 监听来电 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <!--定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+
+    <application
+        android:name=".base.BaseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.haiyin.gczb.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <!-- 需求详情 -->
+        <activity
+            android:name=".demandHall.page.DemandDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <!-- 人脸识别 -->
+        <activity
+            android:name=".demandHall.page.FaceRecognitionActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <!-- 输入身份 -->
+        <activity
+            android:name=".demandHall.page.InputIdCardActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <!-- 消息 -->
+        <activity
+            android:name=".home.page.MessageActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <!-- 消息列表 -->
+        <activity
+            android:name=".home.page.MessageListActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 新闻详情 -->
+        <activity
+            android:name=".home.page.NewsDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 新闻资讯 -->
+        <activity
+            android:name=".home.page.NewsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 搜索 -->
+        <activity
+            android:name=".home.page.SearchActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 城市选择 -->
+        <activity
+            android:name=".home.page.CityActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 合同详情 -->
+        <activity
+            android:name=".my.page.ContractDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 搜索结果 -->
+        <activity
+            android:name=".home.page.SearchResultsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 添加用户 -->
+        <activity
+            android:name=".my.page.AddAccountActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 添加本部账号 -->
+        <activity
+            android:name=".my.page.AddAccountListsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 添加银行卡 -->
+        <activity
+            android:name=".my.page.AddCardActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 企业票据 -->
+        <activity
+            android:name=".my.page.MyPagerEnterpriseActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 业务员信息 -->
+        <activity
+            android:name=".user.page.SalesmanInformationActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 企业票据项目 -->
+        <activity
+            android:name=".my.page.MyPagerProjectActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 个体户票据项目 -->
+        <activity
+            android:name=".my.page.MyPagerPersonalProjectActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 添加银行卡 -->
+        <activity
+            android:name=".my.page.AddCardListsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 修改交易密码 -->
+        <activity
+            android:name=".my.page.ChangePayPasswordActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 合作方案 -->
+        <activity
+            android:name=".my.page.CooperationPlanActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 我的合同 -->
+        <activity
+            android:name=".my.page.MyContractActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 我的合同项目 -->
+        <activity
+            android:name=".my.page.MyContractProjectActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 我的票据 -->
+        <activity
+            android:name=".my.page.MyPagerActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 完税证明 -->
+        <activity
+            android:name=".my.page.PaymentCertificateActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 项目结算 -->
+        <activity
+            android:name=".my.page.ProjectSettlementActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 服务信息 -->
+        <activity
+            android:name=".my.page.ServiceInformationActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 进度查询 -->
+        <activity
+            android:name=".my.page.ProgressQueryActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 设置 -->
+        <activity
+            android:name=".my.page.SetActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 设置交易密码 -->
+        <activity
+            android:name=".my.page.SetPayPasswordActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 订单详情 -->
+        <activity
+            android:name=".order.page.OrderDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 选择用户类型 -->
+        <activity
+            android:name=".user.page.ChooseUserTypeActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 企业用户信息 -->
+        <activity
+            android:name=".user.page.EnterpriseInformationActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 登录 -->
+        <activity
+            android:name=".user.page.LoginActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 用户信息 -->
+        <activity
+            android:name=".user.page.PersonalInformationActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 客户信息 -->
+        <activity
+            android:name=".user.page.SubmitStatusActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 用户资料修改 -->
+        <activity
+            android:name=".user.page.ChangeEnterpriseInformationActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 上传凭证 -->
+        <activity
+            android:name=".order.page.UploadDocumentsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- web-->
+        <activity
+            android:name=".home.page.WebActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 成功界面-->
+        <activity
+            android:name=".user.page.SubmitSucceedActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 图片剪辑-->
+        <activity
+            android:name=".utils.pic.CropActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+
+        <!-- 活体识别-->
+        <activity
+            android:name="com.tencent.authsdk.activity.MainSdkActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/SDKAppTheme"></activity>
+        <activity
+            android:name="com.tencent.authsdk.activity.IdcardOcrActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SDKAppTheme" />
+        <activity
+            android:name="com.tencent.authsdk.activity.IdcardOcrResultActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SDKAppTheme" />
+        <activity
+            android:name="com.tencent.authsdk.activity.CameraActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SDKAppTheme" />
+        <activity
+            android:name="com.tencent.authsdk.activity.AlbumActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SDKAppTheme" />
+        <activity
+            android:name="com.tencent.authsdk.activity.CropImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SDKAppTheme"></activity>
+        <activity
+            android:name="com.tencent.authsdk.activity.IdentityDetectActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SDKAppTheme" />
+        <activity
+            android:name="com.tencent.authsdk.activity.RecordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SDKAppTheme" />
+        <activity
+            android:name="com.tencent.authsdk.activity.LiveDetectActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SDKAppTheme" />
+        <activity
+            android:name="com.tencent.authsdk.activity.DetectResultActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SDKAppTheme" />
+        <activity
+            android:name="com.tencent.authsdk.activity.PhoneVerityActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SDKAppTheme" />
+
+    </application>
+</manifest>

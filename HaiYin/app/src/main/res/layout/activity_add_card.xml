@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_base" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tv_add_card_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:hint="公司名称"
+            android:textColor="@color/color_444444"
+            android:textSize="@dimen/size_14sp" />
+
+        <EditText
+            android:id="@+id/edt_add_card_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_add_card_name_label"
+            android:background="@color/white"
+            android:gravity="right"
+            android:hint="请输入公司名称"
+            android:inputType="number"
+            android:lines="1"
+            android:textColor="@color/color_444444"
+            android:textSize="@dimen/size_14sp" />
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:background="#E5E5E5" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tv_add_card_taxpayers_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:hint="纳税人识别号"
+            android:textColor="@color/color_444444"
+            android:textSize="@dimen/size_14sp" />
+
+        <EditText
+            android:id="@+id/edt_add_card_taxpayers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_add_card_taxpayers_label"
+            android:background="@color/white"
+            android:gravity="right"
+            android:hint="请输入纳税人识别号"
+            android:inputType="number"
+            android:lines="1"
+            android:textColor="@color/color_444444"
+            android:textSize="@dimen/size_14sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:background="#E5E5E5" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tv_add_card_address_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:hint="开户行地址"
+            android:textColor="@color/color_444444"
+            android:textSize="@dimen/size_14sp" />
+
+        <EditText
+            android:id="@+id/edt_add_card_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_add_card_address_label"
+            android:background="@color/white"
+            android:gravity="right"
+            android:hint="请输入开户行地址"
+            android:inputType="number"
+            android:lines="1"
+            android:textColor="@color/color_444444"
+            android:textSize="@dimen/size_14sp" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:background="#E5E5E5" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tv_add_card_phone_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:hint="电话"
+            android:textColor="@color/color_444444"
+            android:textSize="@dimen/size_14sp" />
+
+        <EditText
+            android:id="@+id/edt_add_card_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_add_card_phone_label"
+            android:background="@color/white"
+            android:gravity="right"
+            android:hint="请输入电话"
+            android:inputType="number"
+            android:lines="1"
+            android:textColor="@color/color_444444"
+            android:textSize="@dimen/size_14sp" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#F5F5F5" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tv_add_card_account_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:hint="开户行账号"
+            android:textColor="@color/color_444444"
+            android:textSize="@dimen/size_14sp" />
+
+        <EditText
+            android:id="@+id/edt_add_card_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_add_card_account_label"
+            android:background="@color/white"
+            android:gravity="right"
+            android:hint="请输入开户行账号"
+            android:inputType="number"
+            android:lines="1"
+            android:textColor="@color/color_444444"
+            android:textSize="@dimen/size_14sp" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:background="#E5E5E5" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tv_add_card_bank_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:hint="开户行名称"
+            android:textColor="@color/color_444444"
+            android:textSize="@dimen/size_14sp" />
+
+        <EditText
+            android:id="@+id/edt_add_card_bank_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_add_card_bank_name_label"
+            android:background="@color/white"
+            android:gravity="right"
+            android:hint="请输入开户行名称"
+            android:inputType="number"
+            android:lines="1"
+            android:textColor="@color/color_444444"
+            android:textSize="@dimen/size_14sp" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#F5F5F5" />
+
+    <Button
+            android:id="@+id/btn_add_card"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="43dp"
+            android:layout_marginRight="43dp"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/shape_button"
+            android:gravity="center"
+            android:text="确认"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_14" />
+
+</LinearLayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_base" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:id="@+id/img_submit_status"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="centerCrop"
+        android:background="@mipmap/face_recognition_failure"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="抢单失败请重试"
+        android:layout_marginTop="30dp"
+        android:id="@+id/tv_submit_status"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#999999"
+        android:textSize="@dimen/sp_14"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/shape_button"
+        android:gravity="center"
+        android:id="@+id/btn_submit_status"
+        android:text="重试"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_14"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_button_white"
+        android:gravity="center"
+        android:id="@+id/btn_submit_status_back"
+        android:text="返回需求大厅"
+        android:textColor="@color/color_00C1B6"
+        android:textSize="@dimen/sp_14"
+        />
+</LinearLayout>

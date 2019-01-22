@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_color"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+   >
+
+    <TextView
+        android:id="@+id/tv_item_cumulative_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:text="本月结算记录"
+        android:background="#F5F5F5"
+        android:padding="15dp"
+        android:textColor="@color/color_444444"
+        android:textSize="@dimen/sp_14" />
+
+    <com.haiyin.gczb.utils.view.MyRecyclerView
+        android:id="@+id/rv_item_cumulative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:descendantFocusability="blocksDescendants"
+        android:focusableInTouchMode="false" />
+
+</LinearLayout>

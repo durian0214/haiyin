@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_base" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tv_input_id_code_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:hint="姓名"
+            android:textColor="@color/color_444444"
+            android:textSize="@dimen/size_14sp" />
+
+        <EditText
+            android:id="@+id/edt_input_id_code_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_enterprise_information_position_label"
+            android:background="@color/white"
+            android:gravity="right"
+            android:hint="请输入姓名"
+            android:lines="1"
+            android:textColor="@color/color_444444"
+            android:textSize="@dimen/size_14sp" />
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#F5F5F5" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tv_input_id_code_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:hint="身份证号"
+            android:textColor="@color/color_444444"
+            android:textSize="@dimen/size_14sp" />
+
+        <EditText
+            android:id="@+id/edt_input_id_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_input_id_code_label"
+            android:background="@color/white"
+            android:gravity="right"
+            android:hint="请输入身份证号"
+            android:lines="1"
+            android:maxLength="18"
+            android:textColor="@color/color_444444"
+            android:textSize="@dimen/size_14sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#F5F5F5" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btn_input_id_card"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/shape_button"
+            android:gravity="center"
+            android:text="确认"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_14" />
+
+    </RelativeLayout>
+</LinearLayout>

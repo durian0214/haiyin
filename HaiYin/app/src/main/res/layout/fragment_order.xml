@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tl="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rl_base_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="15dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:text="订单"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_18sp" />
+
+        <ImageView
+            android:id="@+id/img_order_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F0F1F4" />
+
+    <!-- 切换的控件 -->
+    <com.flyco.tablayout.CommonTabLayout
+        android:id="@+id/ctl_order"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/white"
+        app:tl_indicator_color="#00C1B6"
+        app:tl_indicator_height="1dp"
+        app:tl_indicator_width="20dp"
+        app:tl_textSelectColor="#00C1B6"
+        app:tl_textUnselectColor="#999999"
+        tl:tl_iconVisible="false"
+        tl:tl_textsize="16sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#F5F5F5" />
+    <!-- 切换的控件 -->
+    <com.flyco.tablayout.CommonTabLayout
+        android:id="@+id/ctl_order_project"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/white"
+        app:tl_indicator_color="#F54150"
+        app:tl_indicator_height="1dp"
+        app:tl_indicator_width="20dp"
+        app:tl_textSelectColor="#F54150"
+        app:tl_textUnselectColor="@color/color_444444"
+        tl:tl_iconVisible="false"
+        tl:tl_textsize="16sp" />
+    <!-- 切换的控件 -->
+    <com.flyco.tablayout.CommonTabLayout
+        android:id="@+id/ctl_order_status"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/white"
+        app:tl_indicator_color="#F54150"
+        app:tl_indicator_height="1dp"
+        app:tl_indicator_width="20dp"
+        app:tl_textSelectColor="#F54150"
+        app:tl_textUnselectColor="@color/color_444444"
+        tl:tl_iconVisible="false"
+        tl:tl_textsize="16sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#F5F5F5" />
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nsv_category_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_color"
+            android:fillViewport="true">
+
+            <com.haiyin.gczb.utils.view.MyRecyclerView
+                android:id="@+id/rv_order"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white" />
+        </android.support.v4.widget.NestedScrollView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</LinearLayout>

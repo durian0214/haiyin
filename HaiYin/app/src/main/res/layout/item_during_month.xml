@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_color"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:id="@+id/ll_item_payment_detail"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/tv_item_payment_detail_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:lines="1"
+        android:text="租金"
+        android:textColor="@color/color_444444"
+        android:textSize="@dimen/sp_14" />
+
+    <TextView
+        android:id="@+id/tv_item_payment_detail_type"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:lines="1"
+        android:text="+230000.00"
+        android:textColor="#FF651B"
+        android:textSize="@dimen/sp_14" />
+
+    <TextView
+        android:id="@+id/tv_item_payment_detail_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:lines="1"
+        android:text="2018.12.12"
+        android:textColor="#999999"
+        android:textSize="@dimen/size_10sp" />
+</LinearLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_base" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="15dp">
+
+        <EditText
+            android:id="@+id/edt_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@id/tv_search"
+            android:background="@drawable/shape_edt"
+            android:drawableLeft="@mipmap/search"
+            android:gravity="left"
+            android:hint="请输入要搜索的内容"
+            android:lines="1"
+            android:padding="10dp"
+            android:textColor="@color/color_444444"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/tv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="搜索" />
+
+    </RelativeLayout>
+
+
+    <com.haiyin.gczb.utils.view.MyRecyclerView
+        android:id="@+id/rv_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:descendantFocusability="blocksDescendants"
+        android:focusableInTouchMode="false" />
+
+</LinearLayout>

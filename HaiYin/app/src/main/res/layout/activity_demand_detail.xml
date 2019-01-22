@@ -1,0 +1,178 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/activity_base" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/nsv_category_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/demand_detail_banner"
+                android:scaleType="centerCrop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5" />
+
+            <TextView
+                android:id="@+id/tv_demand_detail_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="项目名称：爱心捐赠大会"
+                android:textColor="@color/color_444444"
+                android:textSize="@dimen/sp_14" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+            <TextView
+                android:id="@+id/tv_demand_detail_describe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="项目描述：接待员10 、道具项目小组"
+                android:textColor="@color/color_444444"
+                android:textSize="@dimen/sp_14" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+            <TextView
+                android:id="@+id/tv_demand_detail_start_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="开工时间：2018.12.12"
+                android:textColor="@color/color_444444"
+                android:textSize="@dimen/sp_14" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+            <TextView
+                android:id="@+id/tv_demand_detail_end_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="完工时间：2018.12.17"
+                android:textColor="@color/color_444444"
+                android:textSize="@dimen/sp_14" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5" />
+
+            <TextView
+                android:id="@+id/tv_demand_detail_project_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="项目金额：￥180000"
+                android:textColor="@color/color_444444"
+                android:textSize="@dimen/sp_14" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+            <TextView
+                android:id="@+id/tv_demand_detail_industry_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="行业类型：展会"
+                android:textColor="@color/color_444444"
+                android:textSize="@dimen/sp_14" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+            <TextView
+                android:id="@+id/tv_demand_detail_industry_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="项目位置：北京市朝阳区高碑店民俗大街六洲大厦"
+                android:textColor="@color/color_444444"
+                android:textSize="@dimen/sp_14" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_button"
+                android:gravity="center"
+                android:id="@+id/btn_demand_detail_grab_single"
+                android:text="我要抢单"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_14"
+                />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/shape_button_white"
+                android:gravity="center"
+                android:id="@+id/btn_demand_detail_grab_single_code"
+                android:text="编码抢单"
+                android:textColor="#00C1B6"
+                android:textSize="@dimen/sp_14"
+                />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/shape_dialog">
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_444444"
+            android:id="@+id/tv_dialog_title"
+            android:padding="20dp"
+            android:gravity="center"
+            android:textSize="@dimen/size_16sp"
+            android:text="填写您的编码"/>
+    <com.jungly.gridpasswordview.GridPasswordView
+        android:id="@+id/pswView"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        app:gpvGridColor="#ffffff"
+        app:gpvLineColor="#999999"
+        app:gpvLineWidth="1dp"
+        app:gpvPasswordType="textVisiblePassword"
+        app:gpvPasswordLength="6"
+        android:layout_margin="15dp"
+        app:gpvTextColor="@color/color_444444"
+        app:gpvTextSize="25sp" />
+
+
+    <Button
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/shape_button"
+        android:gravity="center"
+        android:id="@+id/btn_dialog"
+        android:layout_gravity="center_horizontal"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_14"
+        />
+
+
+
+</LinearLayout>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:gravity="center"
+        android:textSize="@dimen/size_18sp"
+        android:textColor="@color/black"
+        android:text="需求大厅"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/tv_base_title"
+        android:background="#F0F1F4"/>
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlDisableContentWhenRefresh="true"
+        app:srlEnableHeaderTranslationContent="false">
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nsv_category_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_color"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <com.haiyin.gczb.utils.view.MyRecyclerView
+                    android:id="@+id/rv_demand_hall"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:descendantFocusability="blocksDescendants"
+                    android:focusableInTouchMode="false" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</LinearLayout>
