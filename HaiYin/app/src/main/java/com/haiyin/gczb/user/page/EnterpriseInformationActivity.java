@@ -172,7 +172,7 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
             registPresenter.regist(phone,
                     code,
                     imgIconUrl,
-                    edtName.getText().toString(),
+                    name,
                     spPosition.getSelectedItemPosition(),
                     roleType,
                     null,
@@ -192,19 +192,17 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
 
 
         } else {
-
-
             registPresenter.regist(contactPhone,
                     code,
                     imgIconUrl,
                     contactName,
                     spPosition.getSelectedItemPosition(),
                     roleType,
-                    null,
+                    salesList.get(spPosition.getSelectedItemPosition()).getSalesId(),
                     type,
                     name,
                     contact,
-                    null,
+                    industryList.get(spIndustry.getSelectedItemPosition()).getIndustryId(),
                     imgBusinessLicenseUrl,
                     collectionCodeid,
                     imgUploadDocumentsPositiveUrl,
@@ -237,7 +235,7 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
                 dataList.add(salesList.get(i).getName());
             }
             ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                    this, android.R.layout.simple_spinner_item,
+                    this, R.layout.item_sp,
                     dataList);
             spSalesman.setAdapter(adapter);
         } else if (code == ApiConfig.INDUSTRY) {
@@ -249,7 +247,7 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
                 dataList.add(industryList.get(i).getName());
             }
             ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                    this, android.R.layout.simple_spinner_item,
+                    this, R.layout.item_sp,
                     dataList);
             spIndustry.setAdapter(adapter);
         }

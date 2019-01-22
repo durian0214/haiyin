@@ -55,8 +55,8 @@ public class UploadHelper {
 
 
     private static UploadHelper instance;
-    private static final String pri_host = "http://pri.oss.jiuniok.com";
-    private static final String pub_host = "http://pub.oss.jiuniok.com";
+    private static final String pri_host = "http://pri.oss.jiuniok.com/";
+    private static final String pub_host = "http://pub.oss.jiuniok.com/";
 
     private static final String P_ENDPOINT = "http://oss-cn-beijing.aliyuncs.com";//主机地址（OSS文档中有提到）
 

@@ -272,6 +272,8 @@
                     android:lines="1"
                     android:entries="@array/member"
                     android:textColor="@color/color_444444"
+                    android:gravity="right"
+
                     android:textSize="@dimen/size_14sp"
                     android:background="@color/white"
                     android:layout_alignParentRight="true"
