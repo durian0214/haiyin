@@ -24,7 +24,7 @@ import io.reactivex.functions.Consumer;
  * Created
  * by durian
  * 2019/1/4.
- * 登录
+ * 登录 哈哈哈哈哈哈
  */
 public class LoginActivity extends BaseActivity implements BaseView {
     private LoginPresenter loginPresenter;
@@ -72,7 +72,7 @@ public class LoginActivity extends BaseActivity implements BaseView {
         loginPresenter = new LoginPresenter(this);
         //企业
         edtAccount.setText("13000000001");
-        edtPassword.setText("30985");
+        edtPassword.setText("03930");
         //个体户
 //        edtAccount.setText("13000000003");
 //        edtPassword.setText("51835");
