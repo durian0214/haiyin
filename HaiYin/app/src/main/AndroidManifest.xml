@@ -215,6 +215,27 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 找团队 -->
+        <activity
+            android:name=".sendPackage.page.LookTeamActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 劳务公司 -->
+        <activity
+            android:name=".sendPackage.page.LaborCompanyActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 合作方案 -->
+        <activity
+            android:name=".sendPackage.page.SendPackageActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 我的合同 -->
         <activity
             android:name=".my.page.MyContractActivity"

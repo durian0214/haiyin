@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/activity_base" />
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/nsv_category_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/img_labor_company"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="10dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_labor_company_name_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="项目名称"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <EditText
+                    android:id="@+id/edt_labor_company_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_labor_company_name_label"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入项目名称"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_labor_company_detail_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="项目描述"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <EditText
+                    android:id="@+id/edt_labor_company_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_labor_company_detail_label"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入项目描述"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_labor_company_starttime_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="开工时间"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <TextView
+                    android:id="@+id/tv_labor_company_starttime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_labor_company_starttime_label"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入开工时间"
+                    android:lines="1"
+
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_labor_company_endtime_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="完工时间"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <TextView
+                    android:id="@+id/tv_labor_company_endtime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_labor_company_endtime_label"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入完工时间"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_labor_company_price_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="项目金额"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <EditText
+                    android:id="@+id/edt_labor_company_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_labor_company_price_label"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入项目金额"
+                    android:inputType="number"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_labor_company_industry_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="行业"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <Spinner
+                    android:id="@+id/sp_labor_company_industry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/white"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_labor_company_pay_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="支付方式"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <Spinner
+                    android:id="@+id/sp_labor_company_pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/white"
+                    android:entries="@array/pay"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_labor_company_address_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="项目位置"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <EditText
+                    android:id="@+id/edt_labor_company_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_labor_company_address_label"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入项目位置"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#F5F5F5"
+                android:gravity="center"
+                android:padding="7dp"
+                android:text="如已有熟人接活，请输入抢单编码，避免订单被他人抢走"
+                android:textColor="@color/color_00C1B6"
+                android:textSize="@dimen/sp_12" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_labor_company_code_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="生成编码"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <Button
+                    android:id="@+id/btn_labor_company_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:text="生成效验码"
+                    android:textColor="@color/color_00C1B6"
+                    android:textSize="@dimen/sp_14" />
+
+                <TextView
+                    android:id="@+id/tv_labor_company_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/btn_labor_company_code"
+                    android:layout_toRightOf="@id/tv_labor_company_code_label"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入编码"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="生成合同"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <Button
+                    android:id="@+id/btn_labor_company_help_fill_in"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:text="业务员帮忙填写"
+                    android:textColor="@color/color_00C1B6"
+                    android:textSize="@dimen/sp_14" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="框架合同"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <TextView
+                    android:id="@+id/tv_labor_company_framework_contract"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="添加图片"
+                    android:textColor="#0094F2"
+                    android:textSize="@dimen/size_14sp" />
+            </LinearLayout>
+
+            <com.haiyin.gczb.utils.view.MyGridView
+                android:id="@+id/gl_labor_company_framework_contract"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:columnWidth="10dp"
+                android:gravity="center_vertical"
+                android:numColumns="3"
+                android:textSize="@dimen/size_10sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="订单合同"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <TextView
+                    android:id="@+id/tv_labor_company_order_contract"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="添加图片"
+                    android:textColor="#0094F2"
+                    android:textSize="@dimen/size_14sp" />
+            </LinearLayout>
+
+            <com.haiyin.gczb.utils.view.MyGridView
+                android:id="@+id/gl_labor_company_order_contract"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:columnWidth="10dp"
+                android:gravity="center_vertical"
+                android:numColumns="3"
+                android:textSize="@dimen/size_10sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="项目结算"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <TextView
+                    android:id="@+id/tv_labor_company_project_settlement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="添加图片"
+                    android:textColor="#0094F2"
+                    android:textSize="@dimen/size_14sp" />
+            </LinearLayout>
+
+            <com.haiyin.gczb.utils.view.MyGridView
+                android:id="@+id/gl_labor_company_project_settlement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:columnWidth="10dp"
+                android:gravity="center_vertical"
+                android:numColumns="3"
+                android:textSize="@dimen/size_10sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+            <Button
+                android:id="@+id/btn_labor_company"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="15dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_button"
+                android:gravity="center"
+                android:text="提交审核"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_14" />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

@@ -37,10 +37,12 @@ public class UploadHelper {
     public static String companyCorporation = "company/corporation/" + MyUtils.getNowTime() + MyUtils.getRandomnum() + ".jpg";
     //    收款人身份证扫描件	haiyin-private	客户端	company/payee/${unix timestamp}${rand}.jpg
     public static String companyPayee = "company/payee/" + MyUtils.getNowTime() + MyUtils.getRandomnum() + ".jpg";
-
-//    框架合同图片	haiyin-private	客户端	project/frame/${userid}/${unix timestamp}${rand}.jpg
-//    订单合同图片	haiyin-private	客户端	project/contract/${userid}/${unix timestamp}${rand}.jpg
-//    项目结算单图片	haiyin-private	客户端	project/settlement/${userid}/${unix timestamp}${rand}.jpg
+    //    框架合同图片	haiyin-private	客户端	project/frame/${userid}/${unix timestamp}${rand}.jpg
+    public static String projectFrame = "project/frame/" + MyUtils.getNowTime() + MyUtils.getRandomnum() + ".jpg";
+    //    订单合同图片	haiyin-private	客户端	project/contract/${userid}/${unix timestamp}${rand}.jpg
+    public static String projectContract = "project/contract/" + MyUtils.getNowTime() + MyUtils.getRandomnum() + ".jpg";
+    //    项目结算单图片	haiyin-private	客户端	project/settlement/${userid}/${unix timestamp}${rand}.jpg
+    public static String projectSettlement = "project/settlement/" + MyUtils.getNowTime() + MyUtils.getRandomnum() + ".jpg";
 
 //    法人身份证正面照片	haiyin-private	客户端	company/corporation/${unix timestamp}${rand}.jpg
 //    法人身份证反面照片	haiyin-private	客户端	company/corporation/${unix timestamp}${rand}.jpg

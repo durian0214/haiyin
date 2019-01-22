@@ -19,6 +19,7 @@ import com.haiyin.gczb.base.BaseActivity;
 import com.haiyin.gczb.home.HomeFragment;
 import com.haiyin.gczb.my.MyFragment;
 import com.haiyin.gczb.order.OrderFragment;
+import com.haiyin.gczb.sendPackage.page.SendPackageActivity;
 import com.haiyin.gczb.user.page.LoginActivity;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.view.BottomNavigationViewHelper;
@@ -57,7 +58,9 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.imgb_main_add)
     public void add() {
-        MyUtils.showShort("add");
+        if (UserUtils.isLoginToLogin()) {
+            intentJump(this, SendPackageActivity.class, null);
+        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

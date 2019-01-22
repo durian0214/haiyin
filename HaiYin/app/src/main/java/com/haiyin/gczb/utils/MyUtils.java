@@ -17,6 +17,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Created
@@ -115,6 +116,22 @@ public class MyUtils {
 
         return strRand;
     }
+    /**
+     * 数字与大写字母混编字符串
+     * @return
+     */
+    public static String getNumLargeLetter(){
+        StringBuffer buffer = new StringBuffer();
+        Random random = new Random();
+        for(int i=0; i<6;i++){
+            if(random.nextInt(2) % 2 == 0){//字母
+                buffer.append((char) (random.nextInt(27) + 'A'));
+            }else{//数字
+                buffer.append(random.nextInt(10));
+            }
+        }
+        return buffer.toString();
+    }
 
     /**
      * 相机弹出框监听
@@ -167,4 +184,7 @@ public class MyUtils {
         }
         return data;
     }
+
+
+
 }

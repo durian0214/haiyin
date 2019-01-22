@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/activity_base" />
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/nsv_category_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:layout_width="match_parent"
+                android:id="@+id/img_look_team"
+                android:layout_marginTop="10dp"
+                android:layout_height="150dp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_look_team_name_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="项目名称"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <EditText
+                    android:id="@+id/edt_look_team_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_look_team_name_label"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入项目名称"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_look_team_detail_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="项目描述"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <EditText
+                    android:id="@+id/edt_look_team_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_look_team_detail_label"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入项目描述"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_look_team_starttime_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="开工时间"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <TextView
+                    android:id="@+id/tv_look_team_starttime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_look_team_starttime_label"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入开工时间"
+                    android:lines="1"
+
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_look_team_endtime_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="完工时间"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <TextView
+                    android:id="@+id/tv_look_team_endtime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_look_team_endtime_label"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入完工时间"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_look_team_price_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="项目金额"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp"  />
+
+                <EditText
+                    android:id="@+id/edt_look_team_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_look_team_price_label"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入项目金额"
+                    android:inputType="number"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_look_team_industry_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="行业"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+                <Spinner
+                    android:id="@+id/sp_look_team_industry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp"
+                    android:background="@color/white"
+                    android:layout_alignParentRight="true"
+                    />
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_look_team_pay_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="支付方式"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <Spinner
+                    android:id="@+id/sp_look_team_pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp"
+                    android:entries="@array/pay"
+                    android:background="@color/white"
+                    android:layout_alignParentRight="true"
+                    />
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_look_team_address_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="项目位置"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <EditText
+                    android:id="@+id/edt_look_team_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_look_team_address_label"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入项目位置"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="7dp"
+                android:gravity="center"
+                android:text="如已有熟人接活，请输入抢单编码，避免订单被他人抢走"
+                android:textSize="@dimen/sp_12"
+                android:textColor="@color/color_00C1B6"
+                android:background="#F5F5F5" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_look_team_code_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="生成编码"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:text="生成效验码"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/btn_look_team_code"
+                    android:background="@null"
+                    android:textColor="@color/color_00C1B6"
+                    android:textSize="@dimen/sp_14"/>
+                <TextView
+                    android:id="@+id/tv_look_team_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_look_team_code_label"
+                    android:background="@color/white"
+                    android:layout_toLeftOf="@id/btn_look_team_code"
+                    android:gravity="right"
+                    android:layout_centerVertical="true"
+                    android:hint="请输入编码"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5" />
+
+
+            <Button
+                android:id="@+id/btn_look_team"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="15dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_button"
+                android:gravity="center"
+                android:text="提交审核"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_14" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/sp_12"
+                android:id="@+id/cb_look_team"
+                android:layout_marginBottom="15dp"
+                android:textColor="@color/color_666666"
+                android:text="同意协议"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

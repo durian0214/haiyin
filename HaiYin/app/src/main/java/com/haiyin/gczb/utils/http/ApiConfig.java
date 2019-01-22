@@ -41,7 +41,7 @@ public class ApiConfig {
     public final static int SALES = 0xffffff19;
     public final static int INDUSTRY = 0xffffff20;
     public final static int MODIFY_INFO = 0xffffff21;
-    public final static int GET_LAST_VERSION_CODE = 0xffffff22;
+    public final static int PUBLISH_PROJECT = 0xffffff22;
     public final static int REFUSE_AGREEMENT_CODE = 0xffffff23;
     public final static int AGREE_AGREEMENT_CODE = 0xffffff24;
     public final static int GET_MESSAGE_LISTS_CODE = 0xffffff25;

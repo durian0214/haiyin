@@ -156,5 +156,9 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST("app/company/modifyInfo")
     Observable<ResponseBody> modifyInfo (@Field("data") String data);
+    //项目发布
+    @FormUrlEncoded
+    @POST("app/company/publishProject")
+    Observable<ResponseBody> publishProject (@Field("data") String data);
 
 }

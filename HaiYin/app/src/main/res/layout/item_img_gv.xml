@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="100dp">
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/img_item_img_gv"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            app:riv_corner_radius="5dp"
+          />
+
+
+        <Button
+            android:id="@+id/btn_item_img_gv"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="5dp"
+            android:layout_alignParentRight="true"
+            android:background="@mipmap/close" />
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

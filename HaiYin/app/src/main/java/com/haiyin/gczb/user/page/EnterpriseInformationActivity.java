@@ -169,13 +169,21 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
         String bankName = edtBankName.getText().toString();
         String collectionCodeid = edtCollectionCodeid.getText().toString();
         if (type) {
-            registPresenter.regist(phone,
+            if(contactPhone.isEmpty()||
+                    imgIconUrl==null||
+                    contactName.isEmpty()||
+                    spPosition.getSelectedItemPosition()==0||
+                    spSalesman.getSelectedItemPosition()==0){
+                MyUtils.showShort("请完善资料");
+return;
+            }
+            registPresenter.regist(contactPhone,
                     code,
                     imgIconUrl,
-                    name,
+                    contactName,
                     spPosition.getSelectedItemPosition(),
                     roleType,
-                    null,
+                    salesList.get(spSalesman.getSelectedItemPosition()).getSalesId(),
                     type,
                     null,
                     null,
@@ -192,6 +200,28 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
 
 
         } else {
+            if(contactPhone.isEmpty()||
+                    imgIconUrl==null||
+                    contactName.isEmpty()||
+                    spPosition.getSelectedItemPosition()==0||
+                    spSalesman.getSelectedItemPosition()==0||
+                    name.isEmpty()||
+                    contact.isEmpty()||
+                    spIndustry.getSelectedItemPosition()==0||
+                    imgBusinessLicenseUrl==null||
+                    collectionCodeid.isEmpty()||
+                    imgUploadDocumentsPositiveUrl==null||
+                    imgUploadDocumentsBaclUrl==null||
+                    collectionName.isEmpty()||
+                    bankCode.isEmpty()||
+                    bankName.isEmpty()||
+                    imgCollectionUploadDocumentsPositiveUrl==null||
+                    imgCollectionUploadDocumentsBckUrl==null
+                    ){
+                MyUtils.showShort("请完善资料");
+                return;
+            }
+
             registPresenter.regist(contactPhone,
                     code,
                     imgIconUrl,
@@ -271,6 +301,7 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
         phone = b.getString("phone");
         code = b.getString("code");
         roleType = b.getInt("roleType");
+        edtContact.setText(phone);
         setTitle("");
         setTvRight("业务员帮忙填写", new View.OnClickListener() {
             @Override
@@ -313,16 +344,20 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
                         } else if (position == 5) {
                             objectKey = UploadHelper.companyPayee;
                         }
-
-
                         if (position == 0) {
 
                             UploadHelper.getInstance().upImagePub(mContext, new UploadHelper.OssUpCallback() {
                                 @Override
-                                public void successImg(String img_url) {
-                                    LogUtil.e(img_url);
-                                    GlideUtil.loaderCornersImg(mContext, imgIcon, img_url);
-                                    imgIconUrl = img_url;
+                                public void successImg(final String img_url) {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            LogUtil.e(img_url);
+                                            GlideUtil.loaderCornersImg(mContext, imgIcon, img_url);
+                                            imgIconUrl = img_url;
+                                        }
+                                    });
+
                                 }
 
                                 @Override
@@ -338,23 +373,29 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
                         } else {
                             UploadHelper.getInstance().upImagePri(mContext, new UploadHelper.OssUpCallback() {
                                 @Override
-                                public void successImg(String img_url) {
-                                    if (position == 1) {
-                                        GlideUtil.loaderCornersImg(mContext, imgBusinessLicense, UploadHelper.getPriUrl(img_url));
-                                        imgBusinessLicenseUrl = img_url;
-                                    } else if (position == 2) {
-                                        GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsPositive, UploadHelper.getPriUrl(img_url));
-                                        imgUploadDocumentsPositiveUrl = img_url;
-                                    } else if (position == 3) {
-                                        GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsBacl, UploadHelper.getPriUrl(img_url));
-                                        imgUploadDocumentsBaclUrl = img_url;
-                                    } else if (position == 4) {
-                                        GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsPositive, UploadHelper.getPriUrl(img_url));
-                                        imgCollectionUploadDocumentsPositiveUrl = img_url;
-                                    } else if (position == 5) {
-                                        GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsBck, UploadHelper.getPriUrl(img_url));
-                                        imgCollectionUploadDocumentsBckUrl = img_url;
-                                    }
+                                public void successImg(final String img_url) {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            if (position == 1) {
+                                                GlideUtil.loaderCornersImg(mContext, imgBusinessLicense, UploadHelper.getPriUrl(img_url));
+                                                imgBusinessLicenseUrl = img_url;
+                                            } else if (position == 2) {
+                                                GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsPositive, UploadHelper.getPriUrl(img_url));
+                                                imgUploadDocumentsPositiveUrl = img_url;
+                                            } else if (position == 3) {
+                                                GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsBacl, UploadHelper.getPriUrl(img_url));
+                                                imgUploadDocumentsBaclUrl = img_url;
+                                            } else if (position == 4) {
+                                                GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsPositive, UploadHelper.getPriUrl(img_url));
+                                                imgCollectionUploadDocumentsPositiveUrl = img_url;
+                                            } else if (position == 5) {
+                                                GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsBck, UploadHelper.getPriUrl(img_url));
+                                                imgCollectionUploadDocumentsBckUrl = img_url;
+                                            }
+                                        }
+                                    });
+
                                 }
 
                                 @Override
