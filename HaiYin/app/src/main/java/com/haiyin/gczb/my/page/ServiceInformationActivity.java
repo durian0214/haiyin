@@ -62,6 +62,7 @@ public class ServiceInformationActivity  extends BaseActivity implements BaseVie
         serviceInformationPresenter = new ServiceInformationPresenter(this);
         setTitle("服务信息");
         rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        rv.setLayoutManager(MyUtils.getVManager(this));
         myContractAdapter = new ServiceInformationAdapter(R.layout.item_order_contract);
         rv.setAdapter(myContractAdapter);
         initRefreshLayout();

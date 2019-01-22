@@ -69,6 +69,7 @@ public class MyPagerEnterpriseActivity extends BaseActivity implements BaseView 
          title = getIntent().getBundleExtra("bundle").getString("title");
         myPagerEnterprisePresenter = new MyPagerEnterprisePresenter(this);
         setTitle(title);
+        rv.setLayoutManager(MyUtils.getVManager(this));
         rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         myPagerEnterpriseAdapter = new MyPagerEnterpriseAdapter(R.layout.item_order_contract);
         rv.setAdapter(myPagerEnterpriseAdapter);

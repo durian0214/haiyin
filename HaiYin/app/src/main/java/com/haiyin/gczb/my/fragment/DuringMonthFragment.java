@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.durian.lib.base.BaseView;
 import com.haiyin.gczb.base.BaseFragment;
+import com.haiyin.gczb.my.entity.ProjectCooperateEntity;
 import com.haiyin.gczb.my.presenter.ProgressQueryPresenter;
 import com.haiyin.gczb.utils.Arith;
 import com.haiyin.gczb.utils.MyUtils;
@@ -98,18 +99,20 @@ public class DuringMonthFragment extends BaseFragment implements BaseView{
 
     @Override
     public void success(int code, Object data) {
-//        MyContractCompanysEntity entity = (MyContractCompanysEntity) data;
-//        if (srl != null && srl.isRefreshing()) {
-//            srl.finishRefresh(200);
-//        }
-//        if (srl != null && srl.isLoading()) {
-//            srl.finishLoadmore(200);
-//        }
-//        if (entity.getData().size()< pageNum) {
-//            //关闭加载更多
-//            srl.setLoadmoreFinished(true);
-//        }
-//        myContractAdapter.addData(entity.getData());
+
+        ProjectCooperateEntity entity = (ProjectCooperateEntity) data;
+        tvPrice.setText(Arith.div_text(entity.getData().getTotalAmount(),100)+"元");
+        if (srl != null && srl.isRefreshing()) {
+            srl.finishRefresh(200);
+        }
+        if (srl != null && srl.isLoading()) {
+            srl.finishLoadmore(200);
+        }
+        if (entity.getData().getDataList().size()< pageNum) {
+            //关闭加载更多
+            srl.setLoadmoreFinished(true);
+        }
+        mAdapter.addData(entity.getData().getDataList());
     }
 
     @Override

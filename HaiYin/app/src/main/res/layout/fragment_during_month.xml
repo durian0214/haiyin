@@ -40,13 +40,20 @@
         app:srlDisableContentWhenLoading="false"
         app:srlDisableContentWhenRefresh="false"
         app:srlEnableHeaderTranslationContent="false">
-
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nsv_category_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_color"
+            android:fillViewport="true">
         <com.haiyin.gczb.utils.view.MyRecyclerView
             android:id="@+id/rv_during_month"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
             android:descendantFocusability="blocksDescendants"
-            android:focusableInTouchMode="false" />
+            android:focusableInTouchMode="false"
+             />
+        </android.support.v4.widget.NestedScrollView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>

@@ -2,10 +2,15 @@ package com.haiyin.gczb.my.fragment;
 
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.durian.lib.base.BaseView;
 import com.haiyin.gczb.base.BaseFragment;
+import com.haiyin.gczb.my.entity.ProjectCooperateEntity;
+import com.haiyin.gczb.my.presenter.ProgressQueryPresenter;
+import com.haiyin.gczb.utils.Arith;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.view.MyRecyclerView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -25,9 +30,10 @@ import com.haiyin.gczb.utils.view.MyRecyclerView;
  * by durian
  * 2019/1/7.
  */
-public class CumulativeFragment extends BaseFragment {
+public class CumulativeFragment extends BaseFragment implements BaseView{
+     ProgressQueryPresenter progressQueryPresenter;
     @BindView(R.id.rv_cumulative)
-    MyRecyclerView rv;
+    RecyclerView rv;
     @BindView(R.id.tv_cumulative_title)
     TextView tvTitle;
     @BindView(R.id.tv_cumulative_price)
@@ -51,10 +57,12 @@ public class CumulativeFragment extends BaseFragment {
 
     @Override
     protected void init(View view) {
+        progressQueryPresenter = new ProgressQueryPresenter(this);
         rv.setLayoutManager(MyUtils.getVManager(getActivity()));
         rv.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 
-        mAdapter = new CumulativeAdapter(R.layout.item_cumulative);
+//        mAdapter = new CumulativeAdapter(R.layout.item_cumulative);
+        mAdapter = new CumulativeAdapter(R.layout.item_during_month);
         rv.setAdapter(mAdapter);
         initRefreshLayout();
 
@@ -66,6 +74,11 @@ public class CumulativeFragment extends BaseFragment {
     }
 
     private void getData() {
+        if(type==1){
+            progressQueryPresenter.projectCooperate(page,pageNum,2);
+        }else if(type==2){
+            progressQueryPresenter.projectClearing(page,pageNum,2);
+        }
     }
     private void initRefreshLayout() {
         srl.setOnRefreshListener(new OnRefreshListener() {
@@ -85,5 +98,28 @@ public class CumulativeFragment extends BaseFragment {
                 getData();
             }
         });
+    }
+    @Override
+    public void success(int code, Object data) {
+
+        ProjectCooperateEntity entity = (ProjectCooperateEntity) data;
+        tvPrice.setText(Arith.div_text(entity.getData().getTotalAmount(),100)+"元");
+        if (srl != null && srl.isRefreshing()) {
+            srl.finishRefresh(200);
+        }
+        if (srl != null && srl.isLoading()) {
+            srl.finishLoadmore(200);
+        }
+        if (entity.getData().getDataList().size()< pageNum) {
+            //关闭加载更多
+            srl.setLoadmoreFinished(true);
+        }
+        mAdapter.addData(entity.getData().getDataList());
+    }
+
+
+    @Override
+    public void netError(String msg) {
+        MyUtils.showShort(msg);
     }
 }

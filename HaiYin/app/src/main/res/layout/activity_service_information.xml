@@ -16,7 +16,7 @@
         app:srlDisableContentWhenRefresh="false"
         app:srlEnableHeaderTranslationContent="false">
 
-        <android.support.v7.widget.RecyclerView
+        <com.haiyin.gczb.utils.view.MyRecyclerView
             android:id="@+id/rv_service_information"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

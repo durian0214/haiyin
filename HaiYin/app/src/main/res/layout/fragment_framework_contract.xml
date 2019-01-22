@@ -15,8 +15,7 @@
         <com.haiyin.gczb.utils.view.MyRecyclerView
             android:layout_width="match_parent"
             android:background="@color/white"
-            android:descendantFocusability="blocksDescendants"
-            android:focusableInTouchMode="false"
+
             android:id="@+id/rv_framework_contract"
             android:layout_height="match_parent"/>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>

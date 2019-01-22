@@ -1,7 +1,11 @@
 package com.haiyin.gczb.home.page;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 
+import com.flyco.tablayout.SlidingTabLayout;
 import com.haiyin.gczb.home.fragment.NewsFragment;
 import com.haiyin.gczb.home.fragment.ProjectFragment;
 import com.flyco.tablayout.CommonTabLayout;
@@ -15,6 +19,7 @@ import com.haiyin.gczb.base.BaseActivity;
 import com.haiyin.gczb.home.entity.SearchResultsEntity;
 import com.haiyin.gczb.home.fragment.NewsFragment;
 import com.haiyin.gczb.home.fragment.ProjectFragment;
+import com.haiyin.gczb.my.page.CooperationPlanActivity;
 import com.haiyin.gczb.order.entity.TabEntity;
 
 /**
@@ -24,11 +29,11 @@ import com.haiyin.gczb.order.entity.TabEntity;
  */
 public class SearchResultsActivity  extends BaseActivity{
     @BindView(R.id.ctl_cooperation_plan)
-    CommonTabLayout ctl;
-
+    SlidingTabLayout ctl;
+    @BindView(R.id.vp_cooperation_plan)
+    ViewPager vp;
     private ArrayList<Fragment> mFragments = new ArrayList<>();
     private final String[] mTitles = {"新闻列表", "众包列表"};
-    private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
 
 
 
@@ -45,10 +50,29 @@ public class SearchResultsActivity  extends BaseActivity{
         setTitle("搜索结果");
         mFragments.add( NewsFragment.getInstance(str));
         mFragments.add( ProjectFragment.getInstance(str));
-        for (int i = 0; i < mTitles.length; i++) {
-            mTabEntities.add(new TabEntity(mTitles[i], 0, 0));
-        }
-        ctl .setTabData(mTabEntities, this, R.id.vp_cooperation_plan, mFragments);
+        vp.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
+        ctl.setViewPager(vp, mTitles, this, mFragments);
+        vp.setCurrentItem(0);
 
+    }
+    private class MyPagerAdapter extends FragmentPagerAdapter {
+        public MyPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragments.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mTitles[position];
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragments.get(position);
+        }
     }
 }

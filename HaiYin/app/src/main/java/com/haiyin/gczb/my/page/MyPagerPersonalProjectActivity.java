@@ -70,6 +70,7 @@ public class MyPagerPersonalProjectActivity extends BaseActivity implements Base
        String title = getIntent().getBundleExtra("bundle").getString("title");
         myPagerPersonalProjectPresenter = new MyPagerPersonalProjectPresenter(this);
         setTitle(title);
+        rv.setLayoutManager(MyUtils.getVManager(this));
         rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         myPagerPersonalProjectAdapter = new MyPagerPersonalProjectAdapter(R.layout.item_demand_hall);
         rv.setAdapter(myPagerPersonalProjectAdapter);

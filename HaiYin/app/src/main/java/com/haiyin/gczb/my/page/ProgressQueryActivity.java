@@ -17,11 +17,14 @@ public class ProgressQueryActivity extends BaseActivity {
     @OnClick(R.id.rl_progress_query_cooperation_plan)
     public void   toCooperationPlan(){
         Bundle b = new Bundle();
-        intentJump(this,CooperationPlanActivity.class,null);
+        b.putInt("type",1);
+        intentJump(this,CooperationPlanActivity.class,b);
     }
     @OnClick(R.id.rl_progress_query_project_settlement)
     public void   toProjectSettlement(){
-        intentJump(this,ProjectSettlementActivity.class,null);
+        Bundle b = new Bundle();
+        b.putInt("type",2);
+        intentJump(this,ProjectSettlementActivity.class,b);
     }
     @OnClick(R.id.rl_progress_query_payment_certificate)
     public void  toPaymentCertificate(){

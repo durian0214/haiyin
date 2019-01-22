@@ -18,6 +18,7 @@ import com.durian.lib.glide.GlideUtil;
 import com.durian.lib.utils.LogUtil;
 import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseActivity;
+import com.haiyin.gczb.my.entity.UserEntity;
 import com.haiyin.gczb.my.presenter.UserPresenter;
 import com.haiyin.gczb.user.entity.IndustryEntity;
 import com.haiyin.gczb.user.entity.SalesEntity;
@@ -225,6 +226,15 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
                     this, android.R.layout.simple_spinner_item,
                     dataList);
             spIndustry.setAdapter(adapter);
+        }else if(code ==ApiConfig.GET_DETAIL_INFO){
+            UserEntity entity = (UserEntity) data;
+            GlideUtil.loaderCornersImg(this,imgIcon,entity.getData().getHeadImg());
+            edtName.setText(entity.getData().getCompanyName());
+            edtContact.setText(entity.getData().getCompanyPhone());
+            edtContactName.setText(entity.getData().getContactsName());
+            edtContactPhone.setText(entity.getData().getContactsPhone());
+            GlideUtil.loaderCornersImg(this,imgBusinessLicense,UploadHelper.getPriUrl(entity.getData().getBusinessLicensePic()));
+
         }
     }
 
@@ -240,11 +250,13 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
 
     @Override
     public void initView() {
+        userPresenter = new UserPresenter(this);
         registPresenter = new RegistPresenter(this);
         getDataPresenter = new GetDataPresenter(this);
         setTitle("");
         getDataPresenter.sales();
         getDataPresenter.industry();
+        userPresenter.getDetailInfo();
     }
 
     public void pic(final int position) {
