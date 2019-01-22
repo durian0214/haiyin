@@ -193,6 +193,7 @@ public class HomeFragment extends BaseFragment implements BaseView {
 
     @Override
     public void success(int code, Object data) {
+        srl.finishRefresh(200);
         if (code == ApiConfig.MESSAGE_COUNT) {
             MessageCountEntity entity = (MessageCountEntity) data;
         } else if (code == ApiConfig.GET_PICS) {
@@ -251,6 +252,6 @@ public class HomeFragment extends BaseFragment implements BaseView {
 
             }
         });
-        srl.setLoadmoreFinished(true);
+
     }
 }

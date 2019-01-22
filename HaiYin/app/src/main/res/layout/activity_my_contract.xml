@@ -25,6 +25,7 @@
             android:background="@color/white"
             android:descendantFocusability="blocksDescendants"
             android:focusableInTouchMode="false"
+            android:nestedScrollingEnabled="false"
             android:id="@+id/rv_my_contract"
             android:layout_height="match_parent"/>
         </android.support.v4.widget.NestedScrollView>

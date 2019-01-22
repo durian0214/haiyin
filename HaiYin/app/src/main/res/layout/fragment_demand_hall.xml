@@ -42,6 +42,7 @@
                     android:id="@+id/rv_demand_hall"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:nestedScrollingEnabled="false"
                     android:background="@color/white"
                     android:descendantFocusability="blocksDescendants"
                     android:focusableInTouchMode="false" />
