@@ -11,6 +11,8 @@ import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseFragment;
 import com.haiyin.gczb.home.page.MessageActivity;
 import com.haiyin.gczb.my.entity.UserEntity;
+import com.haiyin.gczb.my.page.AddAccountListsActivity;
+import com.haiyin.gczb.my.page.AddEnterpriseListsActivity;
 import com.haiyin.gczb.my.page.MyContractActivity;
 import com.haiyin.gczb.my.page.MyPagerActivity;
 import com.haiyin.gczb.my.page.ProgressQueryActivity;
@@ -131,11 +133,18 @@ public class MyFragment extends BaseFragment implements BaseView {
     @OnClick(R.id.tv_my_add_enterprise)
     public void toAddEnterprise() {
         //添加下级企业
+        Intent mIntent = new Intent(getActivity(), AddEnterpriseListsActivity.class);
+        startActivity(mIntent);
+
     }
 
     @OnClick(R.id.tv_my_add_account)
     public void toAddAccount() {
         //添加本部账号
+
+        Intent mIntent = new Intent(getActivity(), AddAccountListsActivity.class);
+        startActivity(mIntent);
+
     }
 
 

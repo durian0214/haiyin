@@ -9,7 +9,7 @@
     <include layout="@layout/activity_base" />
 
     <LinearLayout
-        android:id="@+id/ll_add_account_new"
+        android:id="@+id/ll_add_enterprise_new"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
@@ -30,11 +30,11 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="20dp"
-            android:text="还没有本部账号，请添加本部账号"
+            android:text="还没有下级企业，请添加下级企业"
             android:textColor="@color/color_444444" />
 
         <Button
-            android:id="@+id/btn_add_account"
+            android:id="@+id/btn_add_enterprise"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="43dp"
@@ -42,7 +42,7 @@
             android:layout_marginTop="70dp"
             android:background="@drawable/shape_button"
             android:gravity="center"
-            android:text="+添加本部账号"
+            android:text="+添加下级企业"
             android:textColor="@color/white"
             android:textSize="@dimen/sp_14" />
     </LinearLayout>
@@ -68,7 +68,7 @@
             android:orientation="vertical">
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_add_account"
+                android:id="@+id/rv_add_enterprise"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

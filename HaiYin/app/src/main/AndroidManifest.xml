@@ -145,6 +145,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 添加下级企业 -->
+        <activity
+            android:name=".my.page.AddEnterpriseListsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 添加用户 -->
         <activity
             android:name=".my.page.AddAccountActivity"

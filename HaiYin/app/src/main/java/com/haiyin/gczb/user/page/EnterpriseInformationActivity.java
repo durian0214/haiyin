@@ -298,11 +298,15 @@ return;
     public void initView() {
         registPresenter = new RegistPresenter(this);
         getDataPresenter = new GetDataPresenter(this);
-        Bundle b = getIntent().getBundleExtra("bundle");
-        phone = b.getString("phone");
-        code = b.getString("code");
-        roleType = b.getInt("roleType");
-        edtContact.setText(phone);
+        try {
+            Bundle b = getIntent().getBundleExtra("bundle");
+            phone = b.getString("phone");
+            code = b.getString("code");
+            roleType = b.getInt("roleType");
+            edtContact.setText(phone);
+        }catch (NullPointerException e){
+
+        }
         setTitle("");
         setTvRight("业务员帮忙填写", new View.OnClickListener() {
             @Override

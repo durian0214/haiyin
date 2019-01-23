@@ -27,10 +27,15 @@ public class SendCodePresenter extends BasePresenter<BaseView> {
         attachView(view);
     }
 
-
-    public void sendCode(String mobile) {
+    /**
+     * 发送短信验证码
+     * @param mobile
+     * @param dataType 发送验证码类型：1=登录验证码 2=其他身份验证码
+     */
+    public void sendCode(String mobile ,int dataType) {
         Map<String, Object> params = new HashMap<>();
         params.put("mobile", mobile);
+        params.put("dataType", dataType);
 
         Observable<ResponseBody>
                 observable = HttpMethods.getInstance().getHttpApi().sendCode(MyUtils.encryptString(params));

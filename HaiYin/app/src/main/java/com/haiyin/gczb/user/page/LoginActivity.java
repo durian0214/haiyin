@@ -41,7 +41,7 @@ public class LoginActivity extends BaseActivity implements BaseView {
 
     @OnClick(R.id.tv_login_send)
     public void sendCode() {
-        sendCodePresenter.sendCode(edtAccount.getText().toString());
+        sendCodePresenter.sendCode(edtAccount.getText().toString(),1);
     }
 
     @Override

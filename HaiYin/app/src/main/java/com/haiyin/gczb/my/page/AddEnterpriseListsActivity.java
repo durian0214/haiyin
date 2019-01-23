@@ -5,10 +5,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.haiyin.gczb.my.entity.AccountEntity;
-import com.haiyin.gczb.my.presenter.AccountPresenter;
-import com.haiyin.gczb.utils.MyUtils;
 import com.durian.lib.base.BaseView;
+import com.haiyin.gczb.R;
+import com.haiyin.gczb.base.BaseActivity;
+import com.haiyin.gczb.my.adapter.AccountAdapter;
+import com.haiyin.gczb.my.adapter.EnterpriseAdapter;
+import com.haiyin.gczb.my.entity.AccountEntity;
+import com.haiyin.gczb.my.entity.EnterpriseEntity;
+import com.haiyin.gczb.my.presenter.AccountPresenter;
+import com.haiyin.gczb.my.presenter.EnterprisePresenter;
+import com.haiyin.gczb.user.page.EnterpriseInformationActivity;
+import com.haiyin.gczb.utils.MyUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
@@ -17,46 +24,41 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import com.haiyin.gczb.R;
-import com.haiyin.gczb.base.BaseActivity;
-import com.haiyin.gczb.my.adapter.AccountAdapter;
-import com.haiyin.gczb.utils.MyUtils;
-
 /**
  * Created
  * by durian
- * 2019/1/9.
+ * 2019/1/23.
  */
-public class AddAccountListsActivity extends BaseActivity implements BaseView {
-    AccountPresenter accountPresenter;
-    @BindView(R.id.rv_add_account)
+public class AddEnterpriseListsActivity   extends BaseActivity implements BaseView {
+    EnterprisePresenter enterprisePresenter;
+    @BindView(R.id.rv_add_enterprise)
     RecyclerView rv;
-    private AccountAdapter mAdapter;
+    private EnterpriseAdapter mAdapter;
     @BindView(R.id.srl)
     SmartRefreshLayout srl;
-    @BindView(R.id.ll_add_account_new)
+    @BindView(R.id.ll_add_enterprise_new)
     LinearLayout ll;
-    @OnClick(R.id.btn_add_account)
-    public void addAccount(){
-        intentJump(this,AddAccountActivity.class,null);
+    @OnClick(R.id.btn_add_enterprise)
+    public void addEnterprise(){
+        intentJump(this,EnterpriseInformationActivity.class,null);
     }
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_add_account_lists;
+        return R.layout.activity_add_enterprise_lists;
     }
     @Override
     public void initView() {
-        setTitle("添加本部账号");
+        setTitle("添加下级企业");
         setTvRight("添加", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intentJump(mContext,AddAccountActivity.class,null);
+                intentJump(mContext,EnterpriseInformationActivity.class,null);
             }
         });
-        accountPresenter = new AccountPresenter(this);
+        enterprisePresenter = new EnterprisePresenter(this);
         rv.setLayoutManager(MyUtils.getVManager(this));
         rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        mAdapter = new AccountAdapter(R.layout.item_account);
+        mAdapter = new EnterpriseAdapter(R.layout.item_order_contract);
         rv.setAdapter(mAdapter);
         rv.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
 
@@ -65,7 +67,7 @@ public class AddAccountListsActivity extends BaseActivity implements BaseView {
     }
 
     private void getData() {
-        accountPresenter.accountList();
+        enterprisePresenter.subCompanys();
     }
 
     private void initRefreshLayout() {
@@ -87,7 +89,7 @@ public class AddAccountListsActivity extends BaseActivity implements BaseView {
 
     @Override
     public void success(int code, Object data) {
-        AccountEntity entity = (AccountEntity) data;
+        EnterpriseEntity entity = (EnterpriseEntity) data;
         if (srl != null && srl.isRefreshing()) {
             srl.finishRefresh(200);
         }
