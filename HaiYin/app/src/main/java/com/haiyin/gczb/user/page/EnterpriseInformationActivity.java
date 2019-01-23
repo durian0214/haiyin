@@ -16,7 +16,10 @@ import android.widget.Toast;
 import com.durian.lib.glide.GlideUtil;
 import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseActivity;
+import com.haiyin.gczb.base.BaseEntity;
+import com.haiyin.gczb.my.presenter.EnterprisePresenter;
 import com.haiyin.gczb.user.entity.IndustryEntity;
+import com.haiyin.gczb.user.entity.RegistEntity;
 import com.haiyin.gczb.user.entity.SalesEntity;
 import com.haiyin.gczb.user.presenter.GetDataPresenter;
 import com.haiyin.gczb.user.presenter.RegistPresenter;
@@ -52,6 +55,7 @@ import butterknife.OnClick;
 public class EnterpriseInformationActivity extends BaseActivity implements BaseView {
     RegistPresenter registPresenter;
     GetDataPresenter getDataPresenter;
+    EnterprisePresenter enterprisePresenter;
     //头像
     @BindView(R.id.img_enterprise_information_icon)
     RoundedImageView imgIcon;
@@ -149,7 +153,7 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
     String phone;
     String code;
     int roleType;
-
+    int doType;//1:注册 2:添加
 
     private List<SalesEntity.DataBean> salesList;
     private List<IndustryEntity.DataBean> industryList;
@@ -157,7 +161,57 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
     //提交
     @OnClick(R.id.btn_enterprise_information)
     public void toSend() {
-        sendData(false);
+        if (doType == 1) {
+            sendData(false);
+        } else if (doType == 2) {
+            String name = edtName.getText().toString();
+            String contact = edtContact.getText().toString();
+            String contactName = edtContactName.getText().toString();
+            String contactPhone = edtContactPhone.getText().toString();
+            String collectionName = edtCollectionName.getText().toString();
+            String bankCode = edtBankCode.getText().toString();
+            String bankName = edtBankName.getText().toString();
+            String collectionCodeid = edtCollectionCodeid.getText().toString();
+            if (contactPhone.isEmpty() ||
+                    imgIconUrl == null ||
+                    contactName.isEmpty() ||
+                    spPosition.getSelectedItemPosition() == 0 ||
+                    spSalesman.getSelectedItemPosition() == 0 ||
+                    name.isEmpty() ||
+                    contact.isEmpty() ||
+                    spIndustry.getSelectedItemPosition() == 0 ||
+                    imgBusinessLicenseUrl == null ||
+                    collectionCodeid.isEmpty() ||
+                    imgUploadDocumentsPositiveUrl == null ||
+                    imgUploadDocumentsBaclUrl == null ||
+                    collectionName.isEmpty() ||
+                    bankCode.isEmpty() ||
+                    bankName.isEmpty() ||
+                    imgCollectionUploadDocumentsPositiveUrl == null ||
+                    imgCollectionUploadDocumentsBckUrl == null
+                    ) {
+                MyUtils.showShort("请完善资料");
+                return;
+            }
+            enterprisePresenter.addSubCompany(contactPhone,
+                    imgIconUrl,
+                    contactName,
+                    spPosition.getSelectedItemPosition(),
+                    salesList.get(spPosition.getSelectedItemPosition() - 1).getSalesId(),
+                    name,
+                    contact,
+                    industryList.get(spIndustry.getSelectedItemPosition() - 1).getIndustryId(),
+                    imgBusinessLicenseUrl,
+                    collectionCodeid,
+                    imgUploadDocumentsPositiveUrl,
+                    imgUploadDocumentsBaclUrl,
+                    collectionName,
+                    bankCode,
+                    bankName,
+                    imgCollectionUploadDocumentsPositiveUrl,
+                    imgCollectionUploadDocumentsBckUrl);
+        }
+
     }
 
     public void sendData(boolean type) {
@@ -170,13 +224,13 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
         String bankName = edtBankName.getText().toString();
         String collectionCodeid = edtCollectionCodeid.getText().toString();
         if (type) {
-            if(contactPhone.isEmpty()||
-                    imgIconUrl==null||
-                    contactName.isEmpty()||
-                    spPosition.getSelectedItemPosition()==0||
-                    spSalesman.getSelectedItemPosition()==0){
+            if (contactPhone.isEmpty() ||
+                    imgIconUrl == null ||
+                    contactName.isEmpty() ||
+                    spPosition.getSelectedItemPosition() == 0 ||
+                    spSalesman.getSelectedItemPosition() == 0) {
                 MyUtils.showShort("请完善资料");
-return;
+                return;
             }
             registPresenter.regist(contactPhone,
                     code,
@@ -198,27 +252,25 @@ return;
                     null,
                     null,
                     null);
-
-
         } else {
-            if(contactPhone.isEmpty()||
-                    imgIconUrl==null||
-                    contactName.isEmpty()||
-                    spPosition.getSelectedItemPosition()==0||
-                    spSalesman.getSelectedItemPosition()==0||
-                    name.isEmpty()||
-                    contact.isEmpty()||
-                    spIndustry.getSelectedItemPosition()==0||
-                    imgBusinessLicenseUrl==null||
-                    collectionCodeid.isEmpty()||
-                    imgUploadDocumentsPositiveUrl==null||
-                    imgUploadDocumentsBaclUrl==null||
-                    collectionName.isEmpty()||
-                    bankCode.isEmpty()||
-                    bankName.isEmpty()||
-                    imgCollectionUploadDocumentsPositiveUrl==null||
-                    imgCollectionUploadDocumentsBckUrl==null
-                    ){
+            if (contactPhone.isEmpty() ||
+                    imgIconUrl == null ||
+                    contactName.isEmpty() ||
+                    spPosition.getSelectedItemPosition() == 0 ||
+                    spSalesman.getSelectedItemPosition() == 0 ||
+                    name.isEmpty() ||
+                    contact.isEmpty() ||
+                    spIndustry.getSelectedItemPosition() == 0 ||
+                    imgBusinessLicenseUrl == null ||
+                    collectionCodeid.isEmpty() ||
+                    imgUploadDocumentsPositiveUrl == null ||
+                    imgUploadDocumentsBaclUrl == null ||
+                    collectionName.isEmpty() ||
+                    bankCode.isEmpty() ||
+                    bankName.isEmpty() ||
+                    imgCollectionUploadDocumentsPositiveUrl == null ||
+                    imgCollectionUploadDocumentsBckUrl == null
+                    ) {
                 MyUtils.showShort("请完善资料");
                 return;
             }
@@ -229,11 +281,11 @@ return;
                     contactName,
                     spPosition.getSelectedItemPosition(),
                     roleType,
-                    salesList.get(spPosition.getSelectedItemPosition()-1).getSalesId(),
+                    salesList.get(spPosition.getSelectedItemPosition() - 1).getSalesId(),
                     type,
                     name,
                     contact,
-                    industryList.get(spIndustry.getSelectedItemPosition()-1).getIndustryId(),
+                    industryList.get(spIndustry.getSelectedItemPosition() - 1).getIndustryId(),
                     imgBusinessLicenseUrl,
                     collectionCodeid,
                     imgUploadDocumentsPositiveUrl,
@@ -281,6 +333,17 @@ return;
                     this, R.layout.item_sp,
                     dataList);
             spIndustry.setAdapter(adapter);
+        }else if(code == ApiConfig.REGIST){
+            //注册成功
+            RegistEntity entity = (RegistEntity) data;
+            MyUtils.showShort(entity.getEm());
+            this.finish();
+        }
+        else if(code == ApiConfig.ADD_SUB_COMPANY){
+            //添加成功
+            BaseEntity entity = (BaseEntity) data;
+            MyUtils.showShort(entity.getEm());
+            this.finish();
         }
     }
 
@@ -298,22 +361,29 @@ return;
     public void initView() {
         registPresenter = new RegistPresenter(this);
         getDataPresenter = new GetDataPresenter(this);
+        enterprisePresenter = new EnterprisePresenter(this);
         try {
+            doType = 1;
             Bundle b = getIntent().getBundleExtra("bundle");
             phone = b.getString("phone");
             code = b.getString("code");
             roleType = b.getInt("roleType");
             edtContact.setText(phone);
-        }catch (NullPointerException e){
+            setTvRight("业务员帮忙填写", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    sendData(true);
+                }
+            });
+        } catch (NullPointerException e) {
+            doType = 2;
 
         }
         setTitle("");
-        setTvRight("业务员帮忙填写", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendData(true);
-            }
-        });
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this, R.layout.item_sp,
+                getResources().getStringArray(R.array.member));
+        spPosition.setAdapter(adapter);
         getDataPresenter.sales();
         getDataPresenter.industry();
     }

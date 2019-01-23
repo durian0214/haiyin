@@ -6,6 +6,7 @@ import com.durian.lib.base.BaseView;
 import com.haiyin.gczb.base.BaseEntity;
 import com.haiyin.gczb.my.entity.AccountEntity;
 import com.haiyin.gczb.my.entity.EnterpriseEntity;
+import com.haiyin.gczb.user.entity.RegistEntity;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.http.ApiConfig;
 import com.haiyin.gczb.utils.http.HttpMethods;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import io.reactivex.Observable;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import okhttp3.ResponseBody;
 
@@ -30,7 +32,7 @@ public class EnterprisePresenter extends BasePresenter<BaseView> {
     }
 
     /**
-     *  企业下级企业列表
+     * 企业下级企业列表
      */
     public void subCompanys() {
         Map<String, Object> params = new HashMap<>();
@@ -54,23 +56,61 @@ public class EnterprisePresenter extends BasePresenter<BaseView> {
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 
+
     /**
-     * 企业本部账号添加
-     * @param name
-     * @param phone
+     * 企业下级企业添加
+     * @param mobile             手机号
+     * @param headImg            头像
+     * @param name               名称
+     * @param memberPosition     职位： 1=法人, 2=负责人, 3=财务, 4=人事
+     * @param salesId            业务员ID
+     * @param companyName        公司名称
+     * @param companyPhone       公司联系方式
+     * @param industryId         行业id
+     * @param businessLicensePic 营业执照
+     * @param idCardNo           收款人身份证号
+     * @param corpCardFront      证件照正面
+     * @param corpCardBack       证件照反面
+     * @param finaName           收款人
+     * @param cardNo             银行卡号
+     * @param bankName           开户银行
+     * @param finaCardFront      收款人身份证扫描件正面
+     * @param finaCardBack       收款人身份证扫描件反面
      */
-    public void addAccount(String name,String phone) {
+
+    public void addSubCompany(@NonNull String mobile, @NonNull String headImg
+            , @NonNull String name, @NonNull int memberPosition,  String salesId
+            , String companyName, String companyPhone, String industryId
+            , String businessLicensePic, String idCardNo, String corpCardFront, String corpCardBack, String finaName
+            , String cardNo, String bankName, String finaCardFront, String finaCardBack) {
         Map<String, Object> params = new HashMap<>();
-        params.put("name",name);
-        params.put("phone",phone);
+        params.put("mobile", mobile);
+        params.put("headImg", headImg);
+        params.put("name", name);
+        params.put("memberPosition", memberPosition);
+        params.put("salesId", salesId);
+        params.put("companyName", companyName);
+        params.put("companyPhone", companyPhone);
+        params.put("industryId", industryId);
+        params.put("businessLicensePic", businessLicensePic);
+        params.put("idCardNo", idCardNo);
+        params.put("cardNo", cardNo);
+        params.put("bankName", bankName);
+        params.put("finaCardFront", finaCardFront);
+        params.put("corpCardFront", corpCardFront);
+        params.put("finaCardBack", finaCardBack);
+        params.put("corpCardBack", corpCardBack);
+        params.put("finaName", finaName);
+
+
         Observable<ResponseBody>
-                observable = HttpMethods.getInstance().getHttpApi().addAccount(MyUtils.encryptString(params));
+                observable = HttpMethods.getInstance().getHttpApi().addSubCompany(MyUtils.encryptString(params));
 
         DisposableObserver<ResponseBody> subscriber = new OnSuccessAndFaultSub(new OnSuccessAndFaultListener() {
             @Override
             public void onSuccess(String result) {
                 BaseEntity entity = JSON.parseObject(result, BaseEntity.class);
-                myView.success(ApiConfig.ADD_ACCOUNT, entity);
+                myView.success(ApiConfig.ADD_SUB_COMPANY, entity);
             }
 
             @Override
@@ -81,4 +121,5 @@ public class EnterprisePresenter extends BasePresenter<BaseView> {
         });
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
+
 }

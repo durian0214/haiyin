@@ -167,6 +167,7 @@
                     android:hint="请输入公司联系方式"
                     android:inputType="number"
                     android:lines="1"
+                    android:maxLength="11"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />
             </RelativeLayout>
@@ -239,6 +240,8 @@
                     android:background="@color/white"
                     android:gravity="right"
                     android:hint="请输入联系人电话"
+                    android:inputType="number"
+                    android:maxLength="11"
                     android:lines="1"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />
@@ -270,10 +273,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:lines="1"
-                    android:entries="@array/member"
                     android:textColor="@color/color_444444"
                     android:gravity="right"
-
                     android:textSize="@dimen/size_14sp"
                     android:background="@color/white"
                     android:layout_alignParentRight="true"
@@ -377,6 +378,7 @@
                     android:layout_toRightOf="@id/tv_enterprise_information_bank_code_label"
                     android:background="@color/white"
                     android:gravity="right"
+                    android:inputType="number"
                     android:hint="请输入银行卡号"
                     android:lines="1"
                     android:textColor="@color/color_444444"
@@ -444,6 +446,7 @@
                     android:gravity="right"
                     android:hint="请输入收款人身份证号"
                     android:lines="1"
+                    android:digits="0123456789xX"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />
             </RelativeLayout>

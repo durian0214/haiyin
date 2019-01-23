@@ -46,7 +46,7 @@ public class ApiConfig {
     public final static int ACCOUNT_LIST = 0xffffff24;
     public final static int ADD_ACCOUNT = 0xffffff25;
     public final static int SUB_COMPANYS= 0xffffff26;
-    public final static int GET_MESSAGE_DETAIL_CODE = 0xffffff27;
+    public final static int ADD_SUB_COMPANY = 0xffffff27;
     public final static int PATIENT_REGISTER_CONFIRM_CODE = 0xffffff28;
     public final static int BALANCE_PAYMENT_CODE = 0xffffff29;
     public final static int CARD_RECHARGE_CONFIRM_CODE = 0xffffff30;

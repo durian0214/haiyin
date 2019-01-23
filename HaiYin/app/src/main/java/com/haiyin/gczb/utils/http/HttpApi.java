@@ -172,5 +172,9 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST("app/company/subCompanys")
     Observable<ResponseBody> subCompanys (@Field("data") String data);
+    //企业下级企业添加
+    @FormUrlEncoded
+    @POST("app/company/addSubCompany")
+    Observable<ResponseBody> addSubCompany (@Field("data") String data);
 
 }
