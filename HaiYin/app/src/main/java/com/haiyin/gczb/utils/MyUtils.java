@@ -125,7 +125,7 @@ public class MyUtils {
         Random random = new Random();
         for(int i=0; i<6;i++){
             if(random.nextInt(2) % 2 == 0){//字母
-                buffer.append((char) (random.nextInt(27) + 'A'));
+                buffer.append((char) (random.nextInt(26) + 'A'));
             }else{//数字
                 buffer.append(random.nextInt(10));
             }

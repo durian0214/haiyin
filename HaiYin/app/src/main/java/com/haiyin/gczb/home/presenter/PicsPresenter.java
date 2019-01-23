@@ -54,5 +54,30 @@ public class PicsPresenter extends BasePresenter<BaseView> {
         });
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
+    /**
+     * 配置图片位置
+     *
+     */
+    public void getIcon() {
+        Map<String, Object> params = new HashMap<>();
+        params.put("picType", 3);
+        Observable<ResponseBody>
+                observable = HttpMethods.getInstance().getHttpApi().basePics(MyUtils.encryptString(params));
+
+        DisposableObserver<ResponseBody> subscriber = new OnSuccessAndFaultSub(new OnSuccessAndFaultListener() {
+            @Override
+            public void onSuccess(String result) {
+                GetPicsEntity entity = JSON.parseObject(result, GetPicsEntity.class);
+                myView.success(ApiConfig.GET_ICON, entity);
+            }
+
+            @Override
+            public void onFault(String errorMsg) {
+                //失败
+                myView.netError(errorMsg);
+            }
+        });
+        HttpMethods.getInstance().toSubscribe(observable, subscriber);
+    }
 
 }

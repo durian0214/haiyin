@@ -1,8 +1,11 @@
 package com.haiyin.gczb.my.adapter;
 
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.durian.lib.baserRecyclerViewAdapterHelper.BaseQuickAdapter;
 import com.durian.lib.baserRecyclerViewAdapterHelper.BaseViewHolder;
@@ -29,9 +32,28 @@ public class MyPagerProjectAdapter extends BaseQuickAdapter<MyPagerProjectEntity
         helper.setText(R.id.tv_item_demand_hall_time,"项目工期"+item.getDays()+"天");
         helper.setText(R.id.tv_item_demand_hall_classification,item.getSummary());
         helper.setText(R.id.tv_item_demand_hall_address,item.getCityName());
-        helper.addOnClickListener(R.id.ll_item_demand_hall);
-        Button  b = helper.getView(R.id.rl_item_demand_hall_status);
-       b .setVisibility(View.VISIBLE);
+        helper.addOnClickListener(R.id.btn_item_demand_hall_status);
+        RelativeLayout rl = helper.getView(R.id.rl_item_demand_hall_status);
+        rl .setVisibility(View.VISIBLE);
+
+        TextView tv =  helper.getView(R.id.tv_item_demand_hall_status);
+        Button btn = helper.getView(R.id.btn_item_demand_hall_status);
+        if(item.getProjectStatus()==6){
+            //待开发票
+            btn.setText("申请开票");
+            btn.setVisibility(View.VISIBLE);
+            tv.setVisibility(View.GONE);
+
+        }else if(item.getProjectStatus()==7){
+            //申请开票中
+            btn.setVisibility(View.GONE);
+            tv.setVisibility(View.VISIBLE);
+        }else if(item.getProjectStatus()==8){
+            //已开票完成
+            btn.setText("查看发票");
+            btn.setVisibility(View.VISIBLE);
+            tv.setVisibility(View.GONE);
+        }
 
     }
 }

@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.haiyin.gczb.home.adapter.HomeNewAdapter;
+import com.haiyin.gczb.home.adapter.IconAdapter;
 import com.haiyin.gczb.home.page.CityActivity;
 import com.haiyin.gczb.home.page.NewsActivity;
 import com.haiyin.gczb.home.page.NewsDetailActivity;
@@ -17,6 +20,7 @@ import com.haiyin.gczb.user.page.EnterpriseInformationActivity;
 import com.haiyin.gczb.utils.Constant;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.http.ApiConfig;
+import com.haiyin.gczb.utils.view.MyGridView;
 import com.haiyin.gczb.utils.view.MyRecyclerView;
 import com.durian.lib.banner.BannerView;
 import com.durian.lib.base.BaseView;
@@ -28,10 +32,13 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
 import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseFragment;
 import com.haiyin.gczb.demandHall.adapter.DemandHanllAdapter;
@@ -75,6 +82,8 @@ public class HomeFragment extends BaseFragment implements BaseView {
     BannerView banner;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout srl;
+    @BindView(R.id.gv_home)
+    MyGridView gv;
     MessagePresenter messagePresenter;
     NewsPresenter newsPresenter;
     PicsPresenter picsPresenter;
@@ -85,12 +94,10 @@ public class HomeFragment extends BaseFragment implements BaseView {
 
     @OnClick(R.id.imgb_home_message)
     public void toMessage() {
-        if(UserUtils.isLoginToLogin()){
+        if (UserUtils.isLoginToLogin()) {
             Intent mIntent = new Intent(getActivity(), MessageActivity.class);
             startActivity(mIntent);
         }
-//            Intent mIntent = new Intent(getActivity(), EnterpriseInformationActivity.class);
-//            startActivity(mIntent);
 
     }
 
@@ -186,6 +193,7 @@ public class HomeFragment extends BaseFragment implements BaseView {
             messagePresenter.getMessageCount();
         }
         picsPresenter.getPics(2);
+        picsPresenter.getIcon();
         newsPresenter.getNewsList(1, 2);
         projectPresenter.getProjectList(Constant.cityId, 1, 3);
     }
@@ -233,6 +241,11 @@ public class HomeFragment extends BaseFragment implements BaseView {
         } else if (code == ApiConfig.PROJECT_LIST) {
             ProjectListEntity entity = (ProjectListEntity) data;
             demandHanllAdapter.addData(entity.getData());
+        } else if (code == ApiConfig.GET_ICON) {
+            GetPicsEntity entity = (GetPicsEntity) data;
+            IconAdapter iconAdapter = new IconAdapter(getActivity(), R.layout.item_home_gv, entity.getData());
+            gv.setAdapter(iconAdapter);
+
         }
     }
 

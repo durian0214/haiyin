@@ -1,6 +1,7 @@
 package com.haiyin.gczb.demandHall.page;
 
 import android.content.Intent;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.haiyin.gczb.base.BaseActivity;
@@ -55,13 +56,17 @@ public class DemandDetailActivity extends BaseActivity implements BaseView {
     TextView tvIndustryAddress;
     String id;
 
+    //项目状态： 1 = 待完善,业务员可以完善信息, 2=待编辑,劳务 公司的由后台发布, 3=已发布, 可以抢单,
+    // 4=待打款,发包方可以申请打款, 5=打款待审核,企业点击打款，并且上传完凭证后的状态,
+    // 6=待开票, 7=申请开票中, 8=已开票完成
+    private int status;
+
     @OnClick(R.id.btn_demand_detail_grab_single)
     public void toGrabSingle() {
         //抢单
         projectPresenter.signProjectCheck("2", id, null);
 
     }
-
     @OnClick(R.id.btn_demand_detail_grab_single_code)
     public void toGrabSingleCode() {
         //编码抢单
@@ -79,6 +84,10 @@ public class DemandDetailActivity extends BaseActivity implements BaseView {
             tvProjectAmount.setText("项目金额：￥" + entity.getData().getAmount());
             tvIndustryType.setText("行业类型：" + entity.getData().getIndustryName());
             tvIndustryAddress.setText("项目位置：" + entity.getData().getAddress());
+            status=entity.getData().getProjectStatus();
+            if(status==3){
+
+            }
         } else if (code == ApiConfig.SIGN_PROJECT_CHECK) {
             faceIdPresenter.getBiztoken(id);
         } else if (code == ApiConfig.GET_BIZTOKEN) {

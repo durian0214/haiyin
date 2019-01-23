@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class MyPagerProjectEntity extends BaseEntity {
 
+
     private List<DataBean> data;
 
     public List<DataBean> getData() {
@@ -30,6 +31,7 @@ public class MyPagerProjectEntity extends BaseEntity {
          * summary : 简介
          * days : 6
          * address : 详细地址
+         * projectStatus : 6  [项目状态 6=待开票, 7=申请开票中,8=已开票完成]
          * invoiceFileCompany : 发票文件地址
          */
 
@@ -40,6 +42,7 @@ public class MyPagerProjectEntity extends BaseEntity {
         private String summary;
         private int days;
         private String address;
+        private int projectStatus;
         private String invoiceFileCompany;
 
         public String getProjectId() {
@@ -96,6 +99,14 @@ public class MyPagerProjectEntity extends BaseEntity {
 
         public void setAddress(String address) {
             this.address = address;
+        }
+
+        public int getProjectStatus() {
+            return projectStatus;
+        }
+
+        public void setProjectStatus(int projectStatus) {
+            this.projectStatus = projectStatus;
         }
 
         public String getInvoiceFileCompany() {

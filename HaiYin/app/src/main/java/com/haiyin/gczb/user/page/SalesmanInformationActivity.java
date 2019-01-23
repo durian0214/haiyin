@@ -21,6 +21,7 @@ import com.haiyin.gczb.user.presenter.RegistPresenter;
 import com.haiyin.gczb.utils.ImageDisposeUtil;
 import com.haiyin.gczb.utils.MyPermissions;
 import com.haiyin.gczb.utils.MyUtils;
+import com.haiyin.gczb.utils.ObjectKeyUtils;
 import com.haiyin.gczb.utils.UploadHelper;
 import com.haiyin.gczb.utils.dialog.PopupUtil;
 import com.haiyin.gczb.utils.pic.CropActivity;
@@ -179,7 +180,7 @@ public class SalesmanInformationActivity extends BaseActivity implements BaseVie
                             public void inProgress(long progress, long zong) {
 
                             }
-                        }, UploadHelper.avatars, ImageDisposeUtil.Bitmap2Bytes(bitmap));
+                        }, ObjectKeyUtils.getIntance().getAvatars(), ImageDisposeUtil.Bitmap2Bytes(bitmap));
                     }
                 };
             } else {

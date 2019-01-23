@@ -29,6 +29,7 @@ import com.haiyin.gczb.utils.Constant;
 import com.haiyin.gczb.utils.ImageDisposeUtil;
 import com.haiyin.gczb.utils.MyPermissions;
 import com.haiyin.gczb.utils.MyUtils;
+import com.haiyin.gczb.utils.ObjectKeyUtils;
 import com.haiyin.gczb.utils.UploadHelper;
 import com.haiyin.gczb.utils.dialog.PopupUtil;
 import com.haiyin.gczb.utils.http.ApiConfig;
@@ -110,7 +111,7 @@ public class LookTeamActivity extends BaseActivity implements BaseView {
             return;
         }
         sendPackagePresenter.publishProject(2,
-                imgUrl, title, summary, beginTime, endTime, Arith.mul(Integer.valueOf(price), 100), industryList.get(spIndustry.getSelectedItemPosition()).getIndustryId()
+                imgUrl, title, summary, beginTime, endTime, Arith.mul(Integer.valueOf(price), 100), industryList.get(spIndustry.getSelectedItemPosition()-1).getIndustryId()
                 , spPay.getSelectedItemPosition(), Constant.cityName, address, code, false, null, null, null
         );
     }
@@ -175,7 +176,7 @@ public class LookTeamActivity extends BaseActivity implements BaseView {
 
                         String objectKey = "";
 
-                        objectKey = UploadHelper.projects;
+                        objectKey = ObjectKeyUtils.getIntance().getProjects();
 
 
                         UploadHelper.getInstance().upImagePub(mContext, new UploadHelper.OssUpCallback() {

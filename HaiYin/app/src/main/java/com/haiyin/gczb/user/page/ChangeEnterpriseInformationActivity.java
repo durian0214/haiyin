@@ -27,6 +27,7 @@ import com.haiyin.gczb.user.presenter.RegistPresenter;
 import com.haiyin.gczb.utils.ImageDisposeUtil;
 import com.haiyin.gczb.utils.MyPermissions;
 import com.haiyin.gczb.utils.MyUtils;
+import com.haiyin.gczb.utils.ObjectKeyUtils;
 import com.haiyin.gczb.utils.UploadHelper;
 import com.haiyin.gczb.utils.dialog.PopupUtil;
 import com.haiyin.gczb.utils.http.ApiConfig;
@@ -278,17 +279,17 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
 
                         String objectKey = "";
                         if (position == 0) {
-                            objectKey = UploadHelper.avatars;
+                            objectKey = ObjectKeyUtils.getIntance().getAvatars();
                         } else if (position == 1) {
-                            objectKey = UploadHelper.companysLicense;
+                            objectKey = ObjectKeyUtils.getIntance().getCompanysLicense();
                         } else if (position == 2) {
-                            objectKey = UploadHelper.companyCorporation;
+                            objectKey = ObjectKeyUtils.getIntance().getCompanyCorporation();
                         } else if (position == 3) {
-                            objectKey = UploadHelper.companyCorporation;
+                            objectKey = ObjectKeyUtils.getIntance().getCompanyCorporation();
                         } else if (position == 4) {
-                            objectKey = UploadHelper.companyPayee;
+                            objectKey = ObjectKeyUtils.getIntance().getCompanyPayee();
                         } else if (position == 5) {
-                            objectKey = UploadHelper.companyPayee;
+                            objectKey = ObjectKeyUtils.getIntance().getCompanyPayee();
                         }
 
 

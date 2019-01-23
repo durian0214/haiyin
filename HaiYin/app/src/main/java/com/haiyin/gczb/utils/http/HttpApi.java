@@ -160,5 +160,13 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST("app/company/publishProject")
     Observable<ResponseBody> publishProject (@Field("data") String data);
+    //企业本部账号列表
+    @FormUrlEncoded
+    @POST("app/company/accountList")
+    Observable<ResponseBody> accountList (@Field("data") String data);
+    //企业本部账号添加
+    @FormUrlEncoded
+    @POST("app/company/addAccount")
+    Observable<ResponseBody> addAccount (@Field("data") String data);
 
 }

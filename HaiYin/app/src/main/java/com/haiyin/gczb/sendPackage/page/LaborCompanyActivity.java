@@ -9,7 +9,6 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -21,7 +20,7 @@ import com.durian.lib.glide.GlideUtil;
 import com.durian.lib.utils.LogUtil;
 import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseActivity;
-import com.haiyin.gczb.sendPackage.ImgsAdapter;
+import com.haiyin.gczb.sendPackage.adapter.ImgsAdapter;
 import com.haiyin.gczb.sendPackage.presenter.SendPackagePresenter;
 import com.haiyin.gczb.user.entity.IndustryEntity;
 import com.haiyin.gczb.user.presenter.GetDataPresenter;
@@ -30,6 +29,7 @@ import com.haiyin.gczb.utils.Constant;
 import com.haiyin.gczb.utils.ImageDisposeUtil;
 import com.haiyin.gczb.utils.MyPermissions;
 import com.haiyin.gczb.utils.MyUtils;
+import com.haiyin.gczb.utils.ObjectKeyUtils;
 import com.haiyin.gczb.utils.UploadHelper;
 import com.haiyin.gczb.utils.dialog.PopupUtil;
 import com.haiyin.gczb.utils.http.ApiConfig;
@@ -132,7 +132,7 @@ public class LaborCompanyActivity extends BaseActivity implements BaseView {
                 StringBuffer sb = new StringBuffer();
                 for (int i = 0; i < framworkContractUrls.size(); i++) {
                     sb.append(framworkContractUrls.get(i));
-                    if (framworkContractUrls.size() != i) {
+                    if (framworkContractUrls.size() != i-1) {
                         sb.append(",");
                     }
                 }
@@ -142,7 +142,7 @@ public class LaborCompanyActivity extends BaseActivity implements BaseView {
                 StringBuffer sb = new StringBuffer();
                 for (int i = 0; i < orderContractUrls.size(); i++) {
                     sb.append(orderContractUrls.get(i));
-                    if (orderContractUrls.size() != i) {
+                    if (orderContractUrls.size() != i-1) {
                         sb.append(",");
                     }
                 }
@@ -152,7 +152,7 @@ public class LaborCompanyActivity extends BaseActivity implements BaseView {
                 StringBuffer sb = new StringBuffer();
                 for (int i = 0; i < projectSettlementUrls.size(); i++) {
                     sb.append(projectSettlementUrls.get(i));
-                    if (projectSettlementUrls.size() != i) {
+                    if (projectSettlementUrls.size() != i-1) {
                         sb.append(",");
                     }
                 }
@@ -172,8 +172,21 @@ public class LaborCompanyActivity extends BaseActivity implements BaseView {
             }
         }
         sendPackagePresenter.publishProject(1,
-                imgUrl, title, summary, beginTime, endTime, Arith.mul(Integer.valueOf(price), 100), industryList.get(spIndustry.getSelectedItemPosition()).getIndustryId()
-                , spPay.getSelectedItemPosition(), Constant.cityName, address, code, b, framFiles, contractFiles, clearingFiles
+                imgUrl,
+                title,
+                summary,
+                beginTime,
+                endTime,
+                Arith.mul(Integer.valueOf(price), 100),
+                industryList.get(spIndustry.getSelectedItemPosition()-1).getIndustryId()
+                , spPay.getSelectedItemPosition(),
+                Constant.cityName,
+                address,
+                code,
+                b,
+                framFiles,
+                contractFiles,
+                clearingFiles
         );
     }
 
@@ -240,11 +253,11 @@ public class LaborCompanyActivity extends BaseActivity implements BaseView {
 
                         String objectKey = "";
                         if (position == 0) {
-                            objectKey = UploadHelper.projectFrame;
+                            objectKey = ObjectKeyUtils.getIntance().getProjectFrame();
                         } else if (position == 1) {
-                            objectKey = UploadHelper.projectContract;
+                            objectKey = ObjectKeyUtils.getIntance().getProjectContract();
                         } else if (position == 2) {
-                            objectKey = UploadHelper.projectSettlement;
+                            objectKey = ObjectKeyUtils.getIntance().getProjectSettlement();
                         }
                         UploadHelper.getInstance().upImagePri(mContext, new UploadHelper.OssUpCallback() {
                             @Override
@@ -324,9 +337,7 @@ public class LaborCompanyActivity extends BaseActivity implements BaseView {
                     @Override
                     public void onPictureSelected(Uri fileUri, Bitmap bitmap) {
 
-                        String objectKey = "";
-
-                        objectKey = UploadHelper.projects;
+                        String objectKey = ObjectKeyUtils.getIntance().getProjects();
 
 
                         UploadHelper.getInstance().upImagePub(mContext, new UploadHelper.OssUpCallback() {
@@ -371,7 +382,7 @@ public class LaborCompanyActivity extends BaseActivity implements BaseView {
             this.finish();
         } else if (code == ApiConfig.INDUSTRY) {
             IndustryEntity entity = (IndustryEntity) data;
-            industryList = entity.getData();
+            industryList =entity.getData();
             List<String> dataList = new ArrayList<>();
             dataList.add("选择行业");
             for (int i = 0; i < industryList.size(); i++) {

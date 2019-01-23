@@ -8,12 +8,14 @@ import com.durian.lib.base.BaseView;
 import com.durian.lib.baserRecyclerViewAdapterHelper.BaseQuickAdapter;
 import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseActivity;
+import com.haiyin.gczb.demandHall.page.DemandDetailActivity;
 import com.haiyin.gczb.my.adapter.MyContractProjectAdapter;
 import com.haiyin.gczb.my.adapter.MyPagerProjectAdapter;
 import com.haiyin.gczb.my.entity.GetMyContractProjectsEntity;
 import com.haiyin.gczb.my.entity.MyPagerProjectEntity;
 import com.haiyin.gczb.my.presenter.MyContractPresenter;
 import com.haiyin.gczb.my.presenter.MyPagerEnterprisePresenter;
+import com.haiyin.gczb.order.page.OrderDetailActivity;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.view.MyRecyclerView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -39,6 +41,7 @@ public class MyPagerProjectActivity extends BaseActivity implements BaseView {
     private int pageNum = 20;
     private String id;
     private int type;
+
     @Override
     public void success(int code, Object data) {
         MyPagerProjectEntity entity = (MyPagerProjectEntity) data;
@@ -69,7 +72,7 @@ public class MyPagerProjectActivity extends BaseActivity implements BaseView {
     public void initView() {
         id = getIntent().getBundleExtra("bundle").getString("id");
         type = getIntent().getBundleExtra("bundle").getInt("type");
-       String title = getIntent().getBundleExtra("bundle").getString("title");
+        String title = getIntent().getBundleExtra("bundle").getString("title");
         myPagerEnterprisePresenter = new MyPagerEnterprisePresenter(this);
         setTitle(title);
         rv.setLayoutManager(MyUtils.getVManager(this));
@@ -80,9 +83,15 @@ public class MyPagerProjectActivity extends BaseActivity implements BaseView {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 MyPagerProjectEntity.DataBean bean = (MyPagerProjectEntity.DataBean) adapter.getData().get(position);
-                Bundle bundle = new Bundle();
-                bundle.putString("id", bean.getProjectId());
-                intentJump(mContext, ContractDetailActivity.class, bundle);
+                if (bean.getProjectStatus() == 6) {
+                    //申请开票
+                    Bundle bundle = new Bundle();
+                    bundle.putString("id", bean.getProjectId());
+                    intentJump(mContext, OrderDetailActivity.class, bundle);
+                } else if (bean.getProjectStatus() == 8) {
+                    //查看发票
+                }
+
             }
         });
         initRefreshLayout();
@@ -90,7 +99,7 @@ public class MyPagerProjectActivity extends BaseActivity implements BaseView {
     }
 
     private void getData() {
-        myPagerEnterprisePresenter.invoiceCompanyProjects(page, pageNum,type,id);
+        myPagerEnterprisePresenter.invoiceCompanyProjects(page, pageNum, type, id);
     }
 
     private void initRefreshLayout() {
