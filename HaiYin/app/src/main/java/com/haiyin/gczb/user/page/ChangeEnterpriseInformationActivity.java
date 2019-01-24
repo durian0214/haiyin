@@ -18,6 +18,7 @@ import com.durian.lib.glide.GlideUtil;
 import com.durian.lib.utils.LogUtil;
 import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseActivity;
+import com.haiyin.gczb.base.BaseEntity;
 import com.haiyin.gczb.my.entity.UserEntity;
 import com.haiyin.gczb.my.presenter.UserPresenter;
 import com.haiyin.gczb.user.entity.IndustryEntity;
@@ -149,10 +150,6 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
     }
 
 
-    String phone;
-    String code;
-    int roleType;
-
 
     private List<SalesEntity.DataBean> salesList;
     private List<IndustryEntity.DataBean> industryList;
@@ -173,7 +170,7 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
         String bankName = edtBankName.getText().toString();
         String collectionCodeid = edtCollectionCodeid.getText().toString();
 
-            registPresenter.modifyInfo(
+        userPresenter.modifyInfo(
                     imgIconUrl,
                     contactName,
                     spPosition.getSelectedItemPosition(),
@@ -236,6 +233,10 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
             edtContactPhone.setText(entity.getData().getContactsPhone());
             GlideUtil.loaderCornersImg(this,imgBusinessLicense,UploadHelper.getPriUrl(entity.getData().getBusinessLicensePic()));
 
+        }else if(code ==ApiConfig.MODIFY_INFO){
+            BaseEntity entity = (BaseEntity) data;
+            MyUtils.showShort(entity.getEm());
+            this.finish();
         }
     }
 

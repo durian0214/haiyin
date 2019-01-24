@@ -52,4 +52,9 @@ public class ObjectKeyUtils  {
     public String getProjectSettlement() {
         return  "project/settlement/" + MyUtils.getNowTime() + MyUtils.getRandomnum() + ".jpg";
     }
+    //    销售身份证正面照片	haiyin-private	客户端	sales/${unix timestamp}${rand}.jpg
+    public String getSales() {
+        return  "sales/" + MyUtils.getNowTime() + MyUtils.getRandomnum() + ".jpg";
+    }
+
 }

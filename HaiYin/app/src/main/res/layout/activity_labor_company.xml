@@ -212,7 +212,42 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:background="#F5F5F5" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
 
+                <TextView
+                    android:id="@+id/tv_look_team_company_name_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="填写劳务公司名称"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp"  />
+
+                <EditText
+                    android:id="@+id/edt_look_team_company_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_look_team_company_name_label"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入劳务公司名称"
+                    android:inputType="number"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

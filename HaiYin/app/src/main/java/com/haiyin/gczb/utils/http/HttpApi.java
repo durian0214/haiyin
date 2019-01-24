@@ -100,6 +100,10 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST("app/company/detailInfo")
     Observable<ResponseBody> getDetailInfo (@Field("data") String data);
+    //业务员个人资料详情
+    @FormUrlEncoded
+    @POST("/app/sales/detailInfo")
+    Observable<ResponseBody> salesDetailInfo (@Field("data") String data);
     //企业合同列表
     @FormUrlEncoded
     @POST("app/company/myContractCompanys")
@@ -136,10 +140,14 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST("app/company/invoiceCompanyProjects")
     Observable<ResponseBody> invoiceCompanyProjects (@Field("data") String data);
-    //个体户收款数据
+    //个体户项目列表
     @FormUrlEncoded
     @POST("app/company/entityProjects")
     Observable<ResponseBody> entityProjects (@Field("data") String data);
+    //个体户收款数据
+    @FormUrlEncoded
+    @POST("app/company/entityReceivedPays")
+    Observable<ResponseBody> entityReceivedPays (@Field("data") String data);
     //业务员个人资料修改
     @FormUrlEncoded
     @POST("app/sales/modifyInfo")
@@ -156,6 +164,7 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST("app/company/modifyInfo")
     Observable<ResponseBody> modifyInfo (@Field("data") String data);
+
     //项目发布
     @FormUrlEncoded
     @POST("app/company/publishProject")
@@ -176,5 +185,9 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST("app/company/addSubCompany")
     Observable<ResponseBody> addSubCompany (@Field("data") String data);
+    //企业下级企业添加
+    @FormUrlEncoded
+    @POST("app/company/entityContracts")
+    Observable<ResponseBody> entityContracts (@Field("data") String data);
 
 }

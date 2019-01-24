@@ -77,7 +77,6 @@ public class MyPagerEnterpriseActivity extends BaseActivity implements BaseView 
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 MyPagerEnterpriseEntity.DataBean bean = (MyPagerEnterpriseEntity.DataBean) adapter.getData().get(position);
-
                 Bundle bundle = new Bundle();
                 bundle.putString("id",bean.getCompanyId());
                 bundle.putInt("type",type);

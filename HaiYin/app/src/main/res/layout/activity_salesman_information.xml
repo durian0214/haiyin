@@ -167,7 +167,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:background="@color/white"
-                    android:entries="@array/member"
                     android:lines="1"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />

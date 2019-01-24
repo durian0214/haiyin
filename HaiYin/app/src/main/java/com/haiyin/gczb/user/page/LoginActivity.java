@@ -71,11 +71,14 @@ public class LoginActivity extends BaseActivity implements BaseView {
         sendCodePresenter = new SendCodePresenter(this);
         loginPresenter = new LoginPresenter(this);
         //企业
-        edtAccount.setText("13000000001");
-        edtPassword.setText("03930");
+//        edtAccount.setText("13000000001");
+//        edtPassword.setText("03930");
         //个体户
 //        edtAccount.setText("13000000003");
 //        edtPassword.setText("51835");
+        //业务员
+        edtAccount.setText("18310692518");
+        edtPassword.setText("32477");
         RxBus.getInstance().subscribe(RegisterUserEvent.class, new Consumer<RegisterUserEvent>() {
             @Override
             public void accept(RegisterUserEvent event) {

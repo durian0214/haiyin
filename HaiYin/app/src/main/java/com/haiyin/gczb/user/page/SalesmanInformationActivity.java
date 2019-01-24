@@ -15,15 +15,22 @@ import android.widget.Toast;
 
 import com.durian.lib.base.BaseView;
 import com.durian.lib.glide.GlideUtil;
+import com.durian.lib.utils.LogUtil;
 import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseActivity;
+import com.haiyin.gczb.base.BaseEntity;
+import com.haiyin.gczb.my.entity.UserEntity;
+import com.haiyin.gczb.my.presenter.UserPresenter;
+import com.haiyin.gczb.user.presenter.GetDataPresenter;
 import com.haiyin.gczb.user.presenter.RegistPresenter;
+import com.haiyin.gczb.user.presenter.SalesPresenter;
 import com.haiyin.gczb.utils.ImageDisposeUtil;
 import com.haiyin.gczb.utils.MyPermissions;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.ObjectKeyUtils;
 import com.haiyin.gczb.utils.UploadHelper;
 import com.haiyin.gczb.utils.dialog.PopupUtil;
+import com.haiyin.gczb.utils.http.ApiConfig;
 import com.haiyin.gczb.utils.pic.CropActivity;
 import com.haiyin.gczb.utils.pic.OnPictureSelectedListener;
 import com.kevin.crop.UCrop;
@@ -42,13 +49,12 @@ import butterknife.OnClick;
  * 2019/1/4.
  */
 public class SalesmanInformationActivity extends BaseActivity implements BaseView {
-    String phone;
-    String code;
-    int roleType;
-    String imgUrl;
-    private RegistPresenter registPresenter;
+    String imgIconUrl;
+    String imgUploadDocumentsPositiveUrl;
+    String imgUploadDocumentsBaclUrl;
+    SalesPresenter salesPresenter;
     @BindView(R.id.img_salesman_information_icon)
-    RoundedImageView img;
+    RoundedImageView imgIcon;
     //职位
     @BindView(R.id.sp_salesman_information_position)
     Spinner sp;
@@ -67,7 +73,6 @@ public class SalesmanInformationActivity extends BaseActivity implements BaseVie
     //开户行
     @BindView(R.id.edt_salesman_information_bank_name)
     TextView tvBankName;
-
     //上传证件
     @BindView(R.id.img_salesman_information_upload_documents_positive)
     RoundedImageView imgPositive;
@@ -76,43 +81,28 @@ public class SalesmanInformationActivity extends BaseActivity implements BaseVie
 
     @OnClick(R.id.img_salesman_information_icon)
     public void toIcon() {
-        pic();
+        pic(0);
+    }
+    @OnClick(R.id.img_salesman_information_upload_documents_positive)
+    public void toCollectionUploadDocumentsPositiveUrl() {
+        pic(1);
+    }
+    @OnClick(R.id.img_salesman_information_upload_documents_back)
+    public void toCollectionUploadDocumentsBckUrl() {
+        pic(2);
     }
 
     @OnClick(R.id.btn_salesman_information_submit)
     public void toSubmit() {
-        if(edtName.getText().toString().isEmpty()){
-            MyUtils.showShort("请输入姓名");
-            return;
-        }
-        if(imgUrl==null){
-            MyUtils.showShort("请选择头像");
-            return;
-        }
-        if(sp.getSelectedItemPosition()==0){
-            MyUtils.showShort("请选择职位");
-            return;
-        }
-        registPresenter.regist(phone,
-                code,
-                imgUrl,
-                edtName.getText().toString(),
-                sp.getSelectedItemPosition(),
-                roleType,
-                null,
-                false,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null);
+        String name = edtName.getText().toString();
+        String phone = tvPhone.getText().toString();
+        String address = tvAddress.getText().toString();
+        String code = tvCode.getText().toString();
+        String bankName = tvBankName.getText().toString();
+//         imgIconUrl;
+//         imgUploadDocumentsPositiveUrl;
+//         imgUploadDocumentsBaclUrl;
+//        salesPresenter.salesModifyInfo();
     }
 
     /**
@@ -125,7 +115,19 @@ public class SalesmanInformationActivity extends BaseActivity implements BaseVie
 
     @Override
     public void success(int code, Object data) {
-
+        if(code == ApiConfig.SALES_DETAIL_INFO){
+//            UserEntity entity = (UserEntity) data;
+//            GlideUtil.loaderCornersImg(this,imgIcon,entity.getData().getHeadImg());
+//            edtName.setText(entity.getData().getCompanyName());
+//            edtContact.setText(entity.getData().getCompanyPhone());
+//            edtContactName.setText(entity.getData().getContactsName());
+//            edtContactPhone.setText(entity.getData().getContactsPhone());
+//            GlideUtil.loaderCornersImg(this,imgBusinessLicense,UploadHelper.getPriUrl(entity.getData().getBusinessLicensePic()));
+        }else if(code ==ApiConfig.SALES_MODIFY_INFO){
+            BaseEntity entity = (BaseEntity) data;
+            MyUtils.showShort(entity.getEm());
+            this.finish();
+        }
     }
 
     @Override
@@ -140,11 +142,12 @@ public class SalesmanInformationActivity extends BaseActivity implements BaseVie
 
     @Override
     public void initView() {
-        registPresenter = new RegistPresenter(this);
+        salesPresenter = new SalesPresenter(this);
         setTitle("个人信息");
+        salesPresenter.salesDetailInfo();
     }
 
-    public void pic() {
+    public void pic(final int position) {
         if (MyPermissions.isOpenWrite(this)) {
             if (MyPermissions.isOpenCamera(this)) {
                 final String imgName = "cropImage" + MyUtils.getNowTime() + ".jpeg";
@@ -156,31 +159,73 @@ public class SalesmanInformationActivity extends BaseActivity implements BaseVie
                         MyUtils.photoUtil(mContext, position, mTempPhotoPath);
                     }
                 });
+
                 mOnPictureSelectedListener = new OnPictureSelectedListener() {
                     @Override
                     public void onPictureSelected(Uri fileUri, Bitmap bitmap) {
-                        UploadHelper.getInstance().upImagePub(mContext, new UploadHelper.OssUpCallback() {
-                            @Override
-                            public void successImg(final String img_url) {
-                                imgUrl =img_url;
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        GlideUtil.loaderImg(mContext,img,img_url);
-                                    }
-                                });
-                            }
 
-                            @Override
-                            public void successVideo(String video_url) {
+                        String objectKey = "";
+                        if (position == 0) {
+                            objectKey = ObjectKeyUtils.getIntance().getAvatars();
+                        }  else if (position == 1) {
+                            objectKey = ObjectKeyUtils.getIntance().getSales();
+                        } else if (position == 2) {
+                            objectKey = ObjectKeyUtils.getIntance().getSales();
+                        }
 
-                            }
 
-                            @Override
-                            public void inProgress(long progress, long zong) {
+                        if (position == 0) {
 
-                            }
-                        }, ObjectKeyUtils.getIntance().getAvatars(), ImageDisposeUtil.Bitmap2Bytes(bitmap));
+                            UploadHelper.getInstance().upImagePub(mContext, new UploadHelper.OssUpCallback() {
+                                @Override
+                                public void successImg(String img_url) {
+                                    LogUtil.e(img_url);
+                                    GlideUtil.loaderCornersImg(mContext, imgIcon, img_url);
+                                    imgIconUrl = img_url;
+                                }
+
+                                @Override
+                                public void successVideo(String video_url) {
+
+                                }
+
+                                @Override
+                                public void inProgress(long progress, long zong) {
+
+                                }
+                            }, objectKey, ImageDisposeUtil.Bitmap2Bytes(bitmap));
+                        } else {
+                            UploadHelper.getInstance().upImagePri(mContext, new UploadHelper.OssUpCallback() {
+                                @Override
+                                public void successImg(final String img_url) {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                           if (position == 1) {
+                                                GlideUtil.loaderCornersImg(mContext, imgPositive, UploadHelper.getPriUrl(img_url));
+                                                imgUploadDocumentsPositiveUrl = img_url;
+                                            } else if (position == 2) {
+                                                GlideUtil.loaderCornersImg(mContext, imgBack, UploadHelper.getPriUrl(img_url));
+                                                imgUploadDocumentsBaclUrl = img_url;
+                                            }
+                                        }
+                                    });
+
+                                }
+
+                                @Override
+                                public void successVideo(String video_url) {
+
+                                }
+
+                                @Override
+                                public void inProgress(long progress, long zong) {
+
+                                }
+                            }, objectKey, ImageDisposeUtil.Bitmap2Bytes(bitmap));
+                        }
+
+
                     }
                 };
             } else {
@@ -190,6 +235,7 @@ public class SalesmanInformationActivity extends BaseActivity implements BaseVie
             MyPermissions.setWritePermissions(this);
         }
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

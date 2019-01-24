@@ -145,6 +145,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 个体户合同 -->
+        <activity
+            android:name=".my.page.IndividualMyContractProjectActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 添加下级企业 -->
         <activity
             android:name=".my.page.AddEnterpriseListsActivity"

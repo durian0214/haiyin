@@ -29,7 +29,6 @@ public class WebActivity extends BaseActivity {
         setTitle(title);
         setWeb(web).loadUrl(url);
     }
-
     /**
      * 设置webView
      *

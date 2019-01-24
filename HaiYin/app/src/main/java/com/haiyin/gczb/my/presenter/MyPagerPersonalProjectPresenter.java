@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.durian.lib.base.BasePresenter;
 import com.durian.lib.base.BaseView;
 import com.haiyin.gczb.my.entity.MyPagerEnterpriseEntity;
+import com.haiyin.gczb.my.entity.MyPagerPersonalProjectEntity;
 import com.haiyin.gczb.my.entity.MyPagerProjectEntity;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.http.ApiConfig;
@@ -39,15 +40,15 @@ public class MyPagerPersonalProjectPresenter  extends BasePresenter<BaseView> {
         Map<String, Object> params = new HashMap<>();
         params.put("pageNo  ", pageNo);
         params.put("pageSize", pageSize);
-        params.put("dataType", type);
+        params.put("projectType", type);
         Observable<ResponseBody>
                 observable = HttpMethods.getInstance().getHttpApi().entityProjects(MyUtils.encryptString(params));
 
         DisposableObserver<ResponseBody> subscriber = new OnSuccessAndFaultSub(new OnSuccessAndFaultListener() {
             @Override
             public void onSuccess(String result) {
-                MyPagerProjectEntity entity = JSON.parseObject(result, MyPagerProjectEntity.class);
-                myView.success(ApiConfig.INVOICE_COMPANY_PROJECTS, entity);
+                MyPagerPersonalProjectEntity entity = JSON.parseObject(result, MyPagerPersonalProjectEntity.class);
+                myView.success(ApiConfig.ENTITY_PROJECTS, entity);
             }
 
             @Override

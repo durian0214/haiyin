@@ -13,6 +13,7 @@ import com.haiyin.gczb.home.page.MessageActivity;
 import com.haiyin.gczb.my.entity.UserEntity;
 import com.haiyin.gczb.my.page.AddAccountListsActivity;
 import com.haiyin.gczb.my.page.AddEnterpriseListsActivity;
+import com.haiyin.gczb.my.page.IndividualMyContractProjectActivity;
 import com.haiyin.gczb.my.page.MyContractActivity;
 import com.haiyin.gczb.my.page.MyPagerActivity;
 import com.haiyin.gczb.my.page.ProgressQueryActivity;
@@ -94,8 +95,16 @@ public class MyFragment extends BaseFragment implements BaseView {
     @OnClick(R.id.tv_my_contract)
     public void toContract() {
         //合同
-        Intent mIntent = new Intent(getActivity(), MyContractActivity.class);
-        startActivity(mIntent);
+        if(Constant.userType==1){
+            //企业
+            Intent mIntent = new Intent(getActivity(), MyContractActivity.class);
+            startActivity(mIntent);
+        }else if(Constant.userType==2){
+            //个体户
+            Intent mIntent = new Intent(getActivity(), IndividualMyContractProjectActivity.class);
+            startActivity(mIntent);
+        }
+
     }
 
     @OnClick(R.id.tv_my_wallet)
@@ -128,6 +137,9 @@ public class MyFragment extends BaseFragment implements BaseView {
     @OnClick(R.id.tv_my_perfect_information)
     public void toPerfectInformation() {
         //完善个人资料
+        Intent mIntent = new Intent(getActivity(),   SalesmanInformationActivity.class);
+        startActivity(mIntent);
+
     }
 
     @OnClick(R.id.tv_my_add_enterprise)
@@ -141,10 +153,8 @@ public class MyFragment extends BaseFragment implements BaseView {
     @OnClick(R.id.tv_my_add_account)
     public void toAddAccount() {
         //添加本部账号
-
         Intent mIntent = new Intent(getActivity(), AddAccountListsActivity.class);
         startActivity(mIntent);
-
     }
 
 

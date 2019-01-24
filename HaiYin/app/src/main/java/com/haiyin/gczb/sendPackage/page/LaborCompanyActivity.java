@@ -70,6 +70,8 @@ public class LaborCompanyActivity extends BaseActivity implements BaseView {
     TextView tvEndTime;
     @BindView(R.id.edt_labor_company_price)
     EditText edtPrice;
+    @BindView(R.id.edt_look_team_company_name)
+    EditText edtCompanyName;
     @BindView(R.id.sp_labor_company_industry)
     Spinner spIndustry;
     @BindView(R.id.sp_labor_company_pay)
@@ -117,17 +119,18 @@ public class LaborCompanyActivity extends BaseActivity implements BaseView {
         String framFiles = null;
         String contractFiles = null;
         String clearingFiles = null;
-        if (b) {
-            if (title.isEmpty() || summary.isEmpty()
-                    || beginTime.isEmpty()
-                    || endTime.isEmpty()
-                    || price.isEmpty()
-                    || address.isEmpty()
-                    || imgUrl == null) {
-                MyUtils.showShort("完善信息");
-                return;
-            }
-        } else {
+        String companyName =edtCompanyName.getText().toString();
+        if (title.isEmpty() || summary.isEmpty()
+                || beginTime.isEmpty()
+                || endTime.isEmpty()
+                || price.isEmpty()
+                || address.isEmpty()
+                || imgUrl == null
+                ||companyName.isEmpty()) {
+            MyUtils.showShort("完善信息");
+            return;
+        }
+        if (!b) {
             if (framworkContractUrls.size() != 0) {
                 StringBuffer sb = new StringBuffer();
                 for (int i = 0; i < framworkContractUrls.size(); i++) {
@@ -158,13 +161,7 @@ public class LaborCompanyActivity extends BaseActivity implements BaseView {
                 }
                 clearingFiles = sb.toString();
             }
-            if (title.isEmpty() || summary.isEmpty()
-                    || beginTime.isEmpty()
-                    || endTime.isEmpty()
-                    || price.isEmpty()
-                    || address.isEmpty()
-                    || imgUrl == null
-                    || framFiles == null
+            if (framFiles == null
                     || contractFiles == null
                     || clearingFiles == null) {
                 MyUtils.showShort("完善信息");
@@ -186,7 +183,8 @@ public class LaborCompanyActivity extends BaseActivity implements BaseView {
                 b,
                 framFiles,
                 contractFiles,
-                clearingFiles
+                clearingFiles,
+                companyName
         );
     }
 
