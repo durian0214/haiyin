@@ -14,6 +14,7 @@ import com.haiyin.gczb.my.entity.MyPagerPersonalProjectEntity;
 import com.haiyin.gczb.my.entity.MyPagerProjectEntity;
 import com.haiyin.gczb.my.presenter.MyPagerEnterprisePresenter;
 import com.haiyin.gczb.my.presenter.MyPagerPersonalProjectPresenter;
+import com.haiyin.gczb.order.page.OrderDetailActivity;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.view.MyRecyclerView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -78,9 +79,14 @@ public class MyPagerPersonalProjectActivity extends BaseActivity implements Base
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 MyPagerPersonalProjectEntity.DataBean bean = (MyPagerPersonalProjectEntity.DataBean) adapter.getData().get(position);
-                Bundle bundle = new Bundle();
-                bundle.putString("id", bean.getProjectId());
-                intentJump(mContext, ContractDetailActivity.class, bundle);
+                if (bean.getProjectStatus() == 6) {
+                    //申请开票
+                    Bundle bundle = new Bundle();
+                    bundle.putString("id", bean.getProjectId());
+                    intentJump(mContext, OrderDetailActivity.class, bundle);
+                } else if (bean.getProjectStatus() == 8) {
+                    //查看发票
+                }
             }
         });
         initRefreshLayout();

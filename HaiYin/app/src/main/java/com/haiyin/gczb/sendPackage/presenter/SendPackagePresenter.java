@@ -63,12 +63,15 @@ public class SendPackagePresenter extends BasePresenter<BaseView> {
                                boolean isSalesPerfect,
                                String frameFiles,
                                String contractFiles,
-                               String clearingFiles
-
+                               String clearingFiles,
+                            String labourCompany
 
     ) {
         Map<String, Object> params = new HashMap<>();
         params.put("needType", needType);
+        if(needType==1){
+           params.put("labourCompany",labourCompany) ;
+        }
         params.put("projectPic", projectPic);
         params.put("title", title);
         params.put("summary", summary);

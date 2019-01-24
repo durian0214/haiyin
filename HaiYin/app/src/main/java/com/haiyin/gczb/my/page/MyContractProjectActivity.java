@@ -36,6 +36,7 @@ public class MyContractProjectActivity extends BaseActivity implements BaseView 
     private int pageNum = 20;
     private String id;
 
+
     @Override
     public void success(int code, Object data) {
         GetMyContractProjectsEntity entity = (GetMyContractProjectsEntity) data;
@@ -65,6 +66,8 @@ public class MyContractProjectActivity extends BaseActivity implements BaseView 
     @Override
     public void initView() {
         id = getIntent().getBundleExtra("bundle").getString("id");
+
+
         myContractPresenter = new MyContractPresenter(this);
         setTitle("我的合同");
         rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
@@ -84,7 +87,7 @@ public class MyContractProjectActivity extends BaseActivity implements BaseView 
     }
 
     private void getData() {
-        myContractPresenter.myContractProjects(page, pageNum,id);
+        myContractPresenter.myContractProjects(page, pageNum, id);
     }
 
     private void initRefreshLayout() {

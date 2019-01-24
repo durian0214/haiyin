@@ -41,7 +41,7 @@ public class MyPagerPersonalProjectEntity extends BaseEntity {
         private String summary;
         private int days;
         private String address;
-        private String projectStatus;
+        private int projectStatus;
         private String invoiceFileEntity;
 
         public String getProjectId() {
@@ -100,11 +100,11 @@ public class MyPagerPersonalProjectEntity extends BaseEntity {
             this.address = address;
         }
 
-        public String getProjectStatus() {
+        public int getProjectStatus() {
             return projectStatus;
         }
 
-        public void setProjectStatus(String projectStatus) {
+        public void setProjectStatus(int projectStatus) {
             this.projectStatus = projectStatus;
         }
 

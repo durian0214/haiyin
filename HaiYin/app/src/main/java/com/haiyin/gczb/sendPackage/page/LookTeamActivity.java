@@ -101,18 +101,32 @@ public class LookTeamActivity extends BaseActivity implements BaseView {
                 || endTime.isEmpty()
                 || price.isEmpty()
                 || address.isEmpty()
-                ||imgUrl==null) {
+                || imgUrl == null) {
             MyUtils.showShort("完善信息");
             return;
         }
 
-        if(!cb.isChecked()){
+        if (!cb.isChecked()) {
             MyUtils.showShort("同意协议");
             return;
         }
         sendPackagePresenter.publishProject(2,
-                imgUrl, title, summary, beginTime, endTime, Arith.mul(Integer.valueOf(price), 100), industryList.get(spIndustry.getSelectedItemPosition()-1).getIndustryId()
-                , spPay.getSelectedItemPosition(), Constant.cityName, address, code, false, null, null, null
+                imgUrl,
+                title,
+                summary,
+                beginTime,
+                endTime,
+                Arith.mul(Integer.valueOf(price), 100),
+                industryList.get(spIndustry.getSelectedItemPosition() - 1).getIndustryId(),
+                spPay.getSelectedItemPosition(),
+                Constant.cityName,
+                address,
+                code,
+                false,
+                null,
+                null,
+                null,
+                null
         );
     }
 
