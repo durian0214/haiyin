@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/activity_base" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/nsv_category_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rl_improve_customer_information_icon"
+                android:padding="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="头像"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <ImageView
+                    android:id="@+id/img_improve_customer_information_to"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@mipmap/to" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/img_improve_customer_information_icon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:layout_toLeftOf="@id/img_improve_customer_information_to"
+                    app:riv_oval="true" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_improve_customer_information_name_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="公司名称"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <EditText
+                    android:id="@+id/edt_improve_customer_information_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_improve_customer_information_name_label"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入公司名称"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_improve_customer_information_contact_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="公司联系方式"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <EditText
+                    android:id="@+id/edt_improve_customer_information_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_improve_customer_information_contact_label"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入公司联系方式"
+                    android:inputType="number"
+                    android:lines="1"
+                    android:maxLength="11"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_improve_customer_information_contact_name_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="联系人姓名"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <EditText
+                    android:id="@+id/edt_improve_customer_information_contact_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_improve_customer_information_contact_name_label"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入联系人姓名"
+                    android:lines="1"
+
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_improve_customer_information_contact_phone_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="联系人电话"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <EditText
+                    android:id="@+id/edt_improve_customer_information_contact_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_improve_customer_information_contact_phone_label"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入联系人电话"
+                    android:inputType="number"
+                    android:maxLength="11"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_improve_customer_information_position_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:hint="职位"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <Spinner
+                    android:id="@+id/sp_improve_customer_information_position"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:gravity="right"
+                    android:textSize="@dimen/size_14sp"
+                    android:background="@color/white"
+                    android:layout_alignParentRight="true"
+                    />
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_improve_customer_information_industry_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="行业"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+                <Spinner
+                    android:id="@+id/sp_improve_customer_information_industry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp"
+                    android:background="@color/white"
+                    android:layout_alignParentRight="true"
+                    />
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_improve_customer_information_collection_name_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="收款人姓名"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <EditText
+                    android:id="@+id/edt_improve_customer_information_collection_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_improve_customer_information_collection_name_label"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入收款人姓名"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_improve_customer_information_bank_code_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="银行卡号"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <EditText
+                    android:id="@+id/edt_improve_customer_information_bank_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_improve_customer_information_bank_code_label"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:inputType="number"
+                    android:hint="请输入银行卡号"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#F5F5F5" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_improve_customer_information_bank_name_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="开户行信息"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <EditText
+                    android:id="@+id/edt_improve_customer_information_bank_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_improve_customer_information_bank_name_label"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入开户行信息"
+                    android:lines="1"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_improve_customer_information_collection_codeid_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="收款人身份证号"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <EditText
+                    android:id="@+id/edt_improve_customer_information_collection_codeid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_improve_customer_information_collection_codeid_label"
+                    android:background="@color/white"
+                    android:gravity="right"
+                    android:hint="请输入收款人身份证号"
+                    android:lines="1"
+                    android:digits="0123456789xX"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/size_14sp" />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:padding="15dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_improve_customer_information_business_license_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="营业执照"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+                
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:layout_width="match_parent"
+                        android:id="@+id/img_improve_customer_information_business_license"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@id/tv_improve_customer_information_business_license_label"
+                        android:layout_height="150dp" />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:padding="15dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_improve_customer_information_upload_documents_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="上传证件"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:layout_width="match_parent"
+                    android:id="@+id/img_improve_customer_information_upload_documents_positive"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/tv_improve_customer_information_upload_documents_label"
+                    android:layout_height="150dp" />
+
+                <TextView
+                    android:id="@+id/tv_improve_customer_information_upload_documents_positive_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="上传身份证照片正面"
+                    android:layout_below="@id/img_improve_customer_information_upload_documents_positive"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/sp_12" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:layout_width="match_parent"
+                    android:id="@+id/img_improve_customer_information_upload_documents_back"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/tv_improve_customer_information_upload_documents_positive_label"
+                    android:layout_height="150dp" />
+
+                <TextView
+                    android:id="@+id/tv_improve_customer_information_upload_documents_back_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="上传身份证照片反面"
+                    android:layout_below="@id/img_improve_customer_information_upload_documents_back"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/sp_12" />
+            </RelativeLayout>
+                 <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:padding="15dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_improve_customer_information_collection_upload_documents_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="收款人身份证扫描件"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/size_14sp" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:layout_width="match_parent"
+                    android:id="@+id/img_improve_customer_information_collection_upload_documents_positive"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/tv_improve_customer_information_collection_upload_documents_label"
+                    android:layout_height="150dp" />
+
+                <TextView
+                    android:id="@+id/tv_improve_customer_information_collection_upload_documents_positive_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="上传身份证照片正面"
+                    android:layout_below="@id/img_improve_customer_information_collection_upload_documents_positive"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/sp_12" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:layout_width="match_parent"
+                    android:id="@+id/img_improve_customer_information_collection_upload_documents_back"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/tv_improve_customer_information_collection_upload_documents_positive_label"
+                    android:layout_height="150dp" />
+
+                <TextView
+                    android:id="@+id/tv_improve_customer_information_collection_upload_documents_back_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="上传身份证照片反面"
+                    android:layout_below="@id/img_improve_customer_information_collection_upload_documents_back"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/sp_12" />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5" />
+
+            <Button
+                android:id="@+id/btn_improve_customer_information"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="15dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_button"
+                android:gravity="center"
+                android:text="提交审核"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_14" />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

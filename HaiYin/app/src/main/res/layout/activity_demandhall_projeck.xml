@@ -11,7 +11,7 @@
 
     <!-- 切换的控件 -->
     <com.flyco.tablayout.SlidingTabLayout
-        android:id="@+id/ctl_customer"
+        android:id="@+id/ctl_demandhall_project"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:background="@color/white"
@@ -25,7 +25,7 @@
         tl:tl_textsize="16sp" />
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/vp_customer"
+        android:id="@+id/vp_demandhall_project"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </LinearLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/srl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlDisableContentWhenLoading="false"
+        app:srlDisableContentWhenRefresh="false"
+        app:srlEnableHeaderTranslationContent="false">
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nsv_category_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_color"
+            android:fillViewport="true">
+        <com.haiyin.gczb.utils.view.MyRecyclerView
+            android:id="@+id/rv_customer_project"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:nestedScrollingEnabled="false"
+            android:descendantFocusability="blocksDescendants"
+            android:focusableInTouchMode="false"
+             />
+        </android.support.v4.widget.NestedScrollView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</LinearLayout>

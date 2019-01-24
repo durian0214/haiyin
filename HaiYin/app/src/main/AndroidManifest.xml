@@ -237,6 +237,34 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 业务项目列表 -->
+        <activity
+            android:name=".my.page.DemandHallPojectActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 待上传合同项目 -->
+        <activity
+            android:name=".my.page.PushProjectActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 业务员完善信息 -->
+        <activity
+            android:name=".user.page.ImproveCustomerInformationActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 公司众包列表 -->
+        <activity
+            android:name=".my.page.CustomerListsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 个体户票据项目 -->
         <activity
             android:name=".my.page.MyPagerPersonalProjectActivity"

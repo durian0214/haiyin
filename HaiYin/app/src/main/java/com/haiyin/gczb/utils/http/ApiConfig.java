@@ -52,4 +52,7 @@ public class ApiConfig {
     public final static int SALES_MODIFY_INFO = 0xffffff30;
     public final static int SALES_DETAIL_INFO=0xffffff31 ;
     public final static int SALES_COMPANY_LIST = 0xffffff32 ;
+    public final static int SALES_COMPANY_DETAIL = 0xffffff32 ;
+    public final static int SALES_EDIT_COMPANY = 0xffffff32 ;
+    public final static int SALES_COMPANY_PROJECTS = 0xffffff32 ;
 }

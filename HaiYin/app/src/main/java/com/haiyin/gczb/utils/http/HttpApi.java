@@ -193,5 +193,17 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST("app/sales/companyList")
     Observable<ResponseBody> salescompanyList (@Field("data") String data);
+    //业务员客户信息详情
+    @FormUrlEncoded
+    @POST("app/sales/companyDetail")
+    Observable<ResponseBody> salescompanyDetail (@Field("data") String data);
+    //业务员客户信息完善
+    @FormUrlEncoded
+    @POST("app/sales/editCompany")
+    Observable<ResponseBody> saleseditCompany (@Field("data") String data);
+    //业务员客户项目列表
+    @FormUrlEncoded
+    @POST("app/sales/companyProjects")
+    Observable<ResponseBody> salescompanyProjects (@Field("data") String data);
 
 }

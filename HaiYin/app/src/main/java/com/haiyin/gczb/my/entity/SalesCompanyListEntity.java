@@ -36,7 +36,7 @@ public class SalesCompanyListEntity extends BaseEntity {
         private String contactsName;
         private String companyName;
         private String createDate;
-        private String status;
+        private int status;
 
         public String getContactsPhone() {
             return contactsPhone;
@@ -78,11 +78,11 @@ public class SalesCompanyListEntity extends BaseEntity {
             this.createDate = createDate;
         }
 
-        public String getStatus() {
+        public int getStatus() {
             return status;
         }
 
-        public void setStatus(String status) {
+        public void setStatus(int status) {
             this.status = status;
         }
     }
