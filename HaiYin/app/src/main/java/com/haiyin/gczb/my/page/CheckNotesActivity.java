@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import com.durian.lib.glide.GlideUtil;
 import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseActivity;
+import com.haiyin.gczb.utils.UploadHelper;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -20,7 +21,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 public class CheckNotesActivity extends BaseActivity {
 
     private final int RC_WRITE_PERM = 120;
-    String mImageUrl = "http://pub.oss.jiuniok.com/201901/dododoc1d0tub9hkv416vhb0vrekbpra/dododoc1d0tub9hkv416vhb0vrekbpra.jpeg";
+    String mImageUrl ;
 
     @OnClick(R.id.btn_checknotes_download)
     public void toDownload() {
@@ -46,6 +47,7 @@ public class CheckNotesActivity extends BaseActivity {
     @Override
     public void initView() {
         setTitle("查看票据");
+        mImageUrl = UploadHelper.getPriUrl(getIntent().getBundleExtra("bundle").getString("url"));
         GlideUtil.loaderImg(this, ivChecknotesImg, mImageUrl);
 
     }
