@@ -51,5 +51,5 @@ public class ApiConfig {
     public final static int ENTITY_CONTRACTS = 0xffffff29;
     public final static int SALES_MODIFY_INFO = 0xffffff30;
     public final static int SALES_DETAIL_INFO=0xffffff31 ;
-    public final static int APPLY_CODE = 0xffffff32 ;
+    public final static int SALES_COMPANY_LIST = 0xffffff32 ;
 }

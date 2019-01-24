@@ -189,5 +189,9 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST("app/company/entityContracts")
     Observable<ResponseBody> entityContracts (@Field("data") String data);
+    //业务员客户列表
+    @FormUrlEncoded
+    @POST("app/sales/companyList")
+    Observable<ResponseBody> salescompanyList (@Field("data") String data);
 
 }

@@ -9,8 +9,7 @@ import com.durian.lib.base.BaseView;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseActivity;
-import com.haiyin.gczb.my.fragment.CumulativeFragment;
-import com.haiyin.gczb.my.fragment.DuringMonthFragment;
+import com.haiyin.gczb.my.fragment.CustomerFragment;
 
 import java.util.ArrayList;
 
@@ -19,18 +18,15 @@ import butterknife.BindView;
 /**
  * Created
  * by durian
- * 2019/1/7.
+ * 2019/1/24.
  */
-public class CooperationPlanActivity extends BaseActivity implements BaseView {
-    @BindView(R.id.ctl_cooperation_plan)
+public class CustomerActivity extends BaseActivity implements BaseView {
+    @BindView(R.id.ctl_customer)
     SlidingTabLayout ctl;
-    @BindView(R.id.vp_cooperation_plan)
+    @BindView(R.id.vp_customer)
     ViewPager vp;
     private ArrayList<Fragment> mFragments = new ArrayList<>();
-    private final String[] mTitles = {"当月金额", "累计金额"};
-
-
-    private int type;
+    private final String[] mTitles = {"待完善客户信息", "已完善客户信息"};
 
     @Override
     public void success(int code, Object data) {
@@ -49,10 +45,9 @@ public class CooperationPlanActivity extends BaseActivity implements BaseView {
 
     @Override
     public void initView() {
-        type = getIntent().getBundleExtra("bundle").getInt("type");
-        setTitle("合作方案");
-        mFragments.add(DuringMonthFragment.getInstance(type));
-        mFragments.add(CumulativeFragment.getInstance(type));
+        setTitle("客户列表");
+        mFragments.add(CustomerFragment.getInstance(2));
+        mFragments.add(CustomerFragment.getInstance(3));
         vp.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
         ctl.setViewPager(vp, mTitles, this, mFragments);
         vp.setCurrentItem(0);

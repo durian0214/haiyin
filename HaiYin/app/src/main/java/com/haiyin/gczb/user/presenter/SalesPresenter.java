@@ -71,15 +71,25 @@ public class SalesPresenter   extends BasePresenter<BaseView> {
             , String name, String address
             , String cardNo, String bankName, String cardFrontPic, String cardBackPic) {
         Map<String, Object> params = new HashMap<>();
+        if(mobile!=null)
         params.put("mobile", mobile);
+        if(code!=null)
         params.put("code", code);
+        if(salesPosition==0)
         params.put("salesPosition", salesPosition);
+        if(headImg!=null)
         params.put("headImg", headImg);
+        if(name!=null)
         params.put("name", name);
+        if(address!=null)
         params.put("address", address);
+        if(cardNo!=null)
         params.put("cardNo", cardNo);
+        if(bankName!=null)
         params.put("bankName", bankName);
+        if(cardFrontPic!=null)
         params.put("cardFrontPic", cardFrontPic);
+        if(cardBackPic!=null)
         params.put("cardBackPic", cardBackPic);
 
         Observable<ResponseBody>
