@@ -2,21 +2,22 @@ package com.haiyin.gczb.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.DividerItemDecoration;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.haiyin.gczb.MainActivity;
 import com.haiyin.gczb.home.adapter.HomeNewAdapter;
 import com.haiyin.gczb.home.adapter.IconAdapter;
+import com.haiyin.gczb.home.entity.GetCityEntity;
 import com.haiyin.gczb.home.page.CityActivity;
 import com.haiyin.gczb.home.page.NewsActivity;
 import com.haiyin.gczb.home.page.NewsDetailActivity;
-import com.haiyin.gczb.user.page.EnterpriseInformationActivity;
+import com.haiyin.gczb.home.presenter.CityPresenter;
 import com.haiyin.gczb.utils.Constant;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.http.ApiConfig;
@@ -32,9 +33,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -45,25 +44,17 @@ import com.haiyin.gczb.demandHall.adapter.DemandHanllAdapter;
 import com.haiyin.gczb.demandHall.entity.ProjectListEntity;
 import com.haiyin.gczb.demandHall.page.DemandDetailActivity;
 import com.haiyin.gczb.demandHall.presenter.ProjectPresenter;
-import com.haiyin.gczb.home.adapter.HomeNewAdapter;
 import com.haiyin.gczb.home.entity.GetPicsEntity;
 import com.haiyin.gczb.home.entity.MessageCountEntity;
 import com.haiyin.gczb.home.entity.NewsListEntity;
-import com.haiyin.gczb.home.page.CityActivity;
 import com.haiyin.gczb.home.page.MessageActivity;
-import com.haiyin.gczb.home.page.NewsActivity;
-import com.haiyin.gczb.home.page.NewsDetailActivity;
 import com.haiyin.gczb.home.page.SearchActivity;
 import com.haiyin.gczb.home.page.WebActivity;
 import com.haiyin.gczb.home.presenter.MessagePresenter;
 import com.haiyin.gczb.home.presenter.NewsPresenter;
 import com.haiyin.gczb.home.presenter.PicsPresenter;
-import com.haiyin.gczb.user.page.EnterpriseInformationActivity;
-import com.haiyin.gczb.utils.Constant;
-import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.UserUtils;
-import com.haiyin.gczb.utils.http.ApiConfig;
-import com.haiyin.gczb.utils.view.MyRecyclerView;
+
 
 /**
  * Created
@@ -71,6 +62,7 @@ import com.haiyin.gczb.utils.view.MyRecyclerView;
  * 2018/12/20.
  */
 public class HomeFragment extends BaseFragment implements BaseView {
+    private CityPresenter cityPresenter;
     private HomeNewAdapter homeNewAdapter;
     private DemandHanllAdapter demandHanllAdapter;
 
@@ -105,6 +97,7 @@ public class HomeFragment extends BaseFragment implements BaseView {
     public void toPositioning() {
         Intent mIntent = new Intent(getActivity(), CityActivity.class);
         startActivity(mIntent);
+
     }
 
     @OnClick(R.id.tv_home_search)
@@ -117,6 +110,7 @@ public class HomeFragment extends BaseFragment implements BaseView {
     public void toCrowdsourcingMore() {
 //        Intent mIntent = new Intent(getActivity(), RepairActivity.class);
 //        startActivity(mIntent);
+        MainActivity.getInstance().selDemand();
 
     }
 
@@ -135,6 +129,7 @@ public class HomeFragment extends BaseFragment implements BaseView {
 
     @Override
     protected void init(View view) {
+        cityPresenter = new CityPresenter(this);
         messagePresenter = new MessagePresenter(this);
         picsPresenter = new PicsPresenter(this);
         newsPresenter = new NewsPresenter(this);
@@ -196,6 +191,7 @@ public class HomeFragment extends BaseFragment implements BaseView {
         picsPresenter.getIcon();
         newsPresenter.getNewsList(1, 2);
         projectPresenter.getProjectList(Constant.cityId, 1, 3);
+        cityPresenter.getCity();
     }
 
 
@@ -245,6 +241,8 @@ public class HomeFragment extends BaseFragment implements BaseView {
             GetPicsEntity entity = (GetPicsEntity) data;
             IconAdapter iconAdapter = new IconAdapter(getActivity(), R.layout.item_home_gv, entity.getData());
             gv.setAdapter(iconAdapter);
+
+        }else if (code == ApiConfig.GET_CITY) {//城市
 
         }
     }

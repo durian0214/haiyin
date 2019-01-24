@@ -35,8 +35,9 @@ public class MyPagerEnterpriseActivity extends BaseActivity implements BaseView 
     private int page = 1;
     private int pageNum = 20;
     // 1=未开票 2=已开票
-    private int type ;
+    private int type;
     private String title;
+
     @Override
     public void success(int code, Object data) {
         MyPagerEnterpriseEntity entity = (MyPagerEnterpriseEntity) data;
@@ -46,7 +47,7 @@ public class MyPagerEnterpriseActivity extends BaseActivity implements BaseView 
         if (srl != null && srl.isLoading()) {
             srl.finishLoadmore(200);
         }
-        if (entity.getData().size()< pageNum) {
+        if (entity.getData().size() < pageNum) {
             //关闭加载更多
             srl.setLoadmoreFinished(true);
         }
@@ -65,8 +66,8 @@ public class MyPagerEnterpriseActivity extends BaseActivity implements BaseView 
 
     @Override
     public void initView() {
-        type  = getIntent().getBundleExtra("bundle").getInt("type");
-         title = getIntent().getBundleExtra("bundle").getString("title");
+        type = getIntent().getBundleExtra("bundle").getInt("type");
+        title = getIntent().getBundleExtra("bundle").getString("title");
         myPagerEnterprisePresenter = new MyPagerEnterprisePresenter(this);
         setTitle(title);
         rv.setLayoutManager(MyUtils.getVManager(this));
@@ -79,10 +80,10 @@ public class MyPagerEnterpriseActivity extends BaseActivity implements BaseView 
                 MyPagerEnterpriseEntity.DataBean bean = (MyPagerEnterpriseEntity.DataBean) adapter.getData().get(position);
 
                 Bundle bundle = new Bundle();
-                bundle.putString("id",bean.getCompanyId());
-                bundle.putInt("type",type);
-                bundle.putString("title",title);
-                intentJump(mContext,MyPagerProjectActivity.class,bundle);
+                bundle.putString("id", bean.getCompanyId());
+                bundle.putInt("type", type);
+                bundle.putString("title", title);
+                intentJump(mContext, MyPagerProjectActivity.class, bundle);
             }
         });
         initRefreshLayout();
@@ -90,8 +91,9 @@ public class MyPagerEnterpriseActivity extends BaseActivity implements BaseView 
     }
 
     private void getData() {
-        myPagerEnterprisePresenter.invoiceCompanys(page,pageNum,type);
+        myPagerEnterprisePresenter.invoiceCompanys(page, pageNum, type);
     }
+
     private void initRefreshLayout() {
         srl.setOnRefreshListener(new OnRefreshListener() {
             @Override

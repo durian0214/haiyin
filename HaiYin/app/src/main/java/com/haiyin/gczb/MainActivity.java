@@ -9,6 +9,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -34,7 +35,6 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseActivity;
 import com.haiyin.gczb.demandHall.DemandHallFragment;
 import com.haiyin.gczb.home.HomeFragment;
@@ -49,6 +49,7 @@ import com.haiyin.gczb.utils.view.BottomNavigationViewHelper;
 import io.reactivex.functions.Consumer;
 
 public class MainActivity extends BaseActivity {
+    private static MainActivity instance;
     private HomeFragment homeFragment;
     private MyFragment myFragment;
     private DemandHallFragment demandHallFragment;
@@ -129,12 +130,20 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setTheme(R.style.CustomTheme);
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
     }
 
     @Override
     public void initView() {
+
+        instance = this;
         isShowTitle(false);
         RxBus.getInstance().subscribe(LoginOutEvent.class, new Consumer<LoginOutEvent>() {
             @Override
@@ -250,4 +259,14 @@ public class MainActivity extends BaseActivity {
         return simpleDateFormat.format(new Date(System.currentTimeMillis()));
     }
 
+    public static MainActivity getInstance() {
+        return instance;
+    }
+
+    /**
+     * 跳需求大厅
+     */
+    public void selDemand() {
+        navigation.setSelectedItemId(R.id.main_demand_hall);
+    }
 }
