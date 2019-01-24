@@ -1,6 +1,8 @@
 package com.haiyin.gczb.home;
 
 import android.content.Intent;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.DividerItemDecoration;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.haiyin.gczb.MainActivity;
 import com.haiyin.gczb.home.adapter.HomeNewAdapter;
@@ -261,4 +264,5 @@ public class HomeFragment extends BaseFragment implements BaseView {
         });
 
     }
+
 }

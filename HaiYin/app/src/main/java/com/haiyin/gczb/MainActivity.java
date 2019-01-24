@@ -1,6 +1,7 @@
 package com.haiyin.gczb;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -149,8 +150,8 @@ public class MainActivity extends BaseActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         BottomNavigationViewHelper.disableShiftMode(navigation);
         navigation.setSelectedItemId(R.id.main_home);
-//        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-//        getAddress();
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        getAddress();
     }
 
 
@@ -161,8 +162,8 @@ public class MainActivity extends BaseActivity {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
             return;
         }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-//        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 
     }
 
@@ -264,4 +265,15 @@ public class MainActivity extends BaseActivity {
     public void selDemand() {
         navigation.setSelectedItemId(R.id.main_demand_hall);
     }
+
+    /**
+     * 跳首页
+     */
+    public void selMainhome() {
+        navigation.setSelectedItemId(R.id.main_home);
+    }
+
+
+
+
 }
