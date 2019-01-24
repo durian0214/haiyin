@@ -91,7 +91,7 @@ public class MyPagerProjectActivity extends BaseActivity implements BaseView {
                 } else if (bean.getProjectStatus() == 8) {
                     //查看发票
                     Bundle bundle = new Bundle();
-                    bundle.putString("id", "");
+                    bundle.putString("url", bean.getInvoiceFileCompany());
                     intentJump(mContext, CheckNotesActivity.class, bundle);
                 }
 

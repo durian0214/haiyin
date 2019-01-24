@@ -21,6 +21,7 @@ import com.haiyin.gczb.base.BaseActivity;
 import com.haiyin.gczb.base.BaseEntity;
 import com.haiyin.gczb.my.entity.UserEntity;
 import com.haiyin.gczb.my.presenter.UserPresenter;
+import com.haiyin.gczb.user.event.SalesDetailInfoEntity;
 import com.haiyin.gczb.user.presenter.GetDataPresenter;
 import com.haiyin.gczb.user.presenter.RegistPresenter;
 import com.haiyin.gczb.user.presenter.SalesPresenter;
@@ -99,10 +100,19 @@ public class SalesmanInformationActivity extends BaseActivity implements BaseVie
         String address = tvAddress.getText().toString();
         String code = tvCode.getText().toString();
         String bankName = tvBankName.getText().toString();
-//         imgIconUrl;
-//         imgUploadDocumentsPositiveUrl;
-//         imgUploadDocumentsBaclUrl;
-//        salesPresenter.salesModifyInfo();
+         if(name.isEmpty()||
+                 phone.isEmpty()||
+                 address.isEmpty()||
+                 code.isEmpty()||
+                 bankName.isEmpty()||
+                 imgIconUrl==null||
+                 imgUploadDocumentsPositiveUrl==null||
+                 imgUploadDocumentsBaclUrl==null){
+             MyUtils.showShort("请完善信息");
+        return;
+         }
+        salesPresenter.salesModifyInfo(phone,null,sp.getSelectedItemPosition(),imgIconUrl,name,address,
+                code,bankName,imgUploadDocumentsPositiveUrl,imgUploadDocumentsBaclUrl);
     }
 
     /**
@@ -116,14 +126,20 @@ public class SalesmanInformationActivity extends BaseActivity implements BaseVie
     @Override
     public void success(int code, Object data) {
         if(code == ApiConfig.SALES_DETAIL_INFO){
-//            UserEntity entity = (UserEntity) data;
-//            GlideUtil.loaderCornersImg(this,imgIcon,entity.getData().getHeadImg());
-//            edtName.setText(entity.getData().getCompanyName());
-//            edtContact.setText(entity.getData().getCompanyPhone());
-//            edtContactName.setText(entity.getData().getContactsName());
-//            edtContactPhone.setText(entity.getData().getContactsPhone());
-//            GlideUtil.loaderCornersImg(this,imgBusinessLicense,UploadHelper.getPriUrl(entity.getData().getBusinessLicensePic()));
-        }else if(code ==ApiConfig.SALES_MODIFY_INFO){
+            SalesDetailInfoEntity entity = (SalesDetailInfoEntity) data;
+            GlideUtil.loaderCornersImg(this,imgIcon,entity.getData().getHeadImg());
+            GlideUtil.loaderCornersImg(this,imgPositive,entity.getData().getCardFrontPic());
+            GlideUtil.loaderCornersImg(this,imgBack,entity.getData().getCardBackPic());
+
+
+            edtName.setText(entity.getData().getName());
+            tvPhone.setText(entity.getData().getMobile());
+            tvAddress.setText(entity.getData().getBackAddress());
+            tvBankName.setText(entity.getData().getBackName());
+            tvCode.setText(entity.getData().getCardNo());
+            sp.setSelection(entity.getData().getSalesPosition());
+
+      }else if(code ==ApiConfig.SALES_MODIFY_INFO){
             BaseEntity entity = (BaseEntity) data;
             MyUtils.showShort(entity.getEm());
             this.finish();

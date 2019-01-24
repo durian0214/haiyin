@@ -144,9 +144,37 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <!-- 搜索结果 -->
+        <!-- 修改手机号 -->
         <activity
-            android:name=".home.page.SearchResultsActivity"
+            android:name=".my.page.SalesmanChangePhoneActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 客户管理 -->
+        <activity
+            android:name=".my.page.CustomerManagementActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 客户列表 -->
+        <activity
+            android:name=".my.page.CustomerActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 客户信息 -->
+        <activity
+            android:name=".my.page.CustomerInfoActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 业务员修改信息 -->
+        <activity
+            android:name=".my.page.SalesmanSetActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"

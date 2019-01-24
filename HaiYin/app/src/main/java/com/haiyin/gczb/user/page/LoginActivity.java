@@ -72,7 +72,7 @@ public class LoginActivity extends BaseActivity implements BaseView {
         loginPresenter = new LoginPresenter(this);
         //企业
 //        edtAccount.setText("13000000001");
-//        edtPassword.setText("03930");
+//        edtPassword.setText("15831");
         //个体户
 //        edtAccount.setText("13000000003");
 //        edtPassword.setText("51835");
