@@ -62,7 +62,7 @@ import com.haiyin.gczb.utils.UserUtils;
  * 2018/12/20.
  */
 public class HomeFragment extends BaseFragment implements BaseView {
-    private CityPresenter cityPresenter;
+
     private HomeNewAdapter homeNewAdapter;
     private DemandHanllAdapter demandHanllAdapter;
 
@@ -129,7 +129,6 @@ public class HomeFragment extends BaseFragment implements BaseView {
 
     @Override
     protected void init(View view) {
-        cityPresenter = new CityPresenter(this);
         messagePresenter = new MessagePresenter(this);
         picsPresenter = new PicsPresenter(this);
         newsPresenter = new NewsPresenter(this);
@@ -191,7 +190,6 @@ public class HomeFragment extends BaseFragment implements BaseView {
         picsPresenter.getIcon();
         newsPresenter.getNewsList(1, 2);
         projectPresenter.getProjectList(Constant.cityId, 1, 3);
-        cityPresenter.getCity();
     }
 
 
@@ -241,8 +239,6 @@ public class HomeFragment extends BaseFragment implements BaseView {
             GetPicsEntity entity = (GetPicsEntity) data;
             IconAdapter iconAdapter = new IconAdapter(getActivity(), R.layout.item_home_gv, entity.getData());
             gv.setAdapter(iconAdapter);
-
-        }else if (code == ApiConfig.GET_CITY) {//城市
 
         }
     }

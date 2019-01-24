@@ -90,6 +90,9 @@ public class MyPagerProjectActivity extends BaseActivity implements BaseView {
                     intentJump(mContext, OrderDetailActivity.class, bundle);
                 } else if (bean.getProjectStatus() == 8) {
                     //查看发票
+                    Bundle bundle = new Bundle();
+                    bundle.putString("id", "");
+                    intentJump(mContext, CheckNotesActivity.class, bundle);
                 }
 
             }
