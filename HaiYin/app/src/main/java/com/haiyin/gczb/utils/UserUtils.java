@@ -1,6 +1,7 @@
 package com.haiyin.gczb.utils;
 
 import com.durian.lib.bus.RxBus;
+import com.haiyin.gczb.MainActivity;
 import com.haiyin.gczb.base.BaseApplication;
 import com.haiyin.gczb.user.event.LoginOutEvent;
 import com.haiyin.gczb.utils.var.SharedPreferencesVar;
@@ -52,7 +53,11 @@ public class UserUtils {
      * 退出登录
      */
     public static void outLogin() {
+
         RxBus.getInstance().send(new LoginOutEvent());
         SharedPreferencesUtils.clear(BaseApplication.getAppContext());
+        if (MainActivity.getInstance()!=null) {
+            MainActivity.getInstance().selMainhome();
+        }
     }
 }
