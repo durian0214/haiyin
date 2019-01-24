@@ -86,6 +86,7 @@ public class MyPagerPersonalProjectActivity extends BaseActivity implements Base
                     intentJump(mContext, OrderDetailActivity.class, bundle);
                 } else if (bean.getProjectStatus() == 8) {
                     //查看发票
+
                 }
             }
         });
