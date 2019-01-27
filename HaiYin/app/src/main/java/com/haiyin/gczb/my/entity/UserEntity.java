@@ -59,6 +59,15 @@ public class UserEntity extends BaseEntity {
         private String corpCardFront;
         private String companyId;
         private String cardNo;
+        private String finaName;
+
+        public String getFinaName() {
+            return finaName;
+        }
+
+        public void setFinaName(String finaName) {
+            this.finaName = finaName;
+        }
 
         public String getContactsPhone() {
             return contactsPhone;

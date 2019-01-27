@@ -15,6 +15,8 @@ import butterknife.OnClick;
  */
 public class ChooseUserTypeActivity extends BaseActivity {
     Bundle b ;
+    private String code ;
+    private String phone;
     @OnClick(R.id.rl_choose_user_type_company)
     public void toCompany(){
         b.putInt("roleType",1);
@@ -39,5 +41,6 @@ public class ChooseUserTypeActivity extends BaseActivity {
     @Override
     public void initView() {
         b = getIntent().getBundleExtra("bundle");
+
     }
 }

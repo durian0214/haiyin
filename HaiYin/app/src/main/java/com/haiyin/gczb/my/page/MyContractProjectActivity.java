@@ -70,6 +70,7 @@ public class MyContractProjectActivity extends BaseActivity implements BaseView 
 
         myContractPresenter = new MyContractPresenter(this);
         setTitle("我的合同");
+        rv.setLayoutManager(MyUtils.getVManager(this));
         rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         myContractProjectAdapter = new MyContractProjectAdapter(R.layout.item_demand_hall);
         rv.setAdapter(myContractProjectAdapter);

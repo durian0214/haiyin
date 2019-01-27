@@ -21,6 +21,13 @@ public class UserUtils {
     }
 
     /**
+     * userid
+     */
+    public static String getUserId() {
+        return SharedPreferencesUtils.get(BaseApplication.getAppContext(), SharedPreferencesVar.USER_ID, "").toString();
+    }
+
+    /**
      * 是否登录
      *
      * @return true  false
@@ -53,11 +60,21 @@ public class UserUtils {
      * 退出登录
      */
     public static void outLogin() {
-
-        RxBus.getInstance().send(new LoginOutEvent());
         SharedPreferencesUtils.clear(BaseApplication.getAppContext());
         if (MainActivity.getInstance()!=null) {
             MainActivity.getInstance().selMainhome();
         }
+        RxBus.getInstance().send(new LoginOutEvent());
+
+
+    }
+    /**
+     * token错误
+     */
+    public static void tokenerror() {
+        SharedPreferencesUtils.clear(BaseApplication.getAppContext());
+        RxBus.getInstance().send(new LoginOutEvent());
+
+
     }
 }

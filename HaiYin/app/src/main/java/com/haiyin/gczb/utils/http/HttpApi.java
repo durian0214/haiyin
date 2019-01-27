@@ -205,5 +205,26 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST("app/sales/companyProjects")
     Observable<ResponseBody> salescompanyProjects (@Field("data") String data);
+    //业务员协议上传
+    @FormUrlEncoded
+    @POST("app/sales/completeProject")
+    Observable<ResponseBody> salescompleteProject (@Field("data") String data);
+
+    //业务员客户发包金额
+    @FormUrlEncoded
+    @POST("app/sales/projectAmount")
+    Observable<ResponseBody> salesProjectAmount (@Field("data") String data);
+    //项目抢单
+    @FormUrlEncoded
+    @POST("app/company/signProject")
+    Observable<ResponseBody> signProject (@Field("data") String data);
+    //企业银行卡列表
+    @FormUrlEncoded
+    @POST("app/company/bankCards")
+    Observable<ResponseBody> bankCards (@Field("data") String data);
+    //企业银行卡添加
+    @FormUrlEncoded
+    @POST("app/company/addBankCard")
+    Observable<ResponseBody> addBankCard (@Field("data") String data);
 
 }

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.haiyin.gczb.MainActivity;
+import com.haiyin.gczb.demandHall.page.ManuallySignedActivity;
 import com.haiyin.gczb.home.adapter.HomeNewAdapter;
 import com.haiyin.gczb.home.adapter.IconAdapter;
 import com.haiyin.gczb.home.entity.GetCityEntity;
@@ -98,6 +99,7 @@ public class HomeFragment extends BaseFragment implements BaseView {
 
     @OnClick(R.id.tv_home_positioning)
     public void toPositioning() {
+
         Intent mIntent = new Intent(getActivity(), CityActivity.class);
         startActivity(mIntent);
 
@@ -265,4 +267,9 @@ public class HomeFragment extends BaseFragment implements BaseView {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        tvPositioning.setText(Constant.cityName);
+    }
 }

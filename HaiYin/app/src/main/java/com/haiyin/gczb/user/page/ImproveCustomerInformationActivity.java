@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -220,12 +221,12 @@ public class ImproveCustomerInformationActivity extends BaseActivity implements 
             spIndustry.setAdapter(adapter);
         } else if (code == ApiConfig.SALES_EDIT_COMPANY) {
             //完善成功
-            RegistEntity entity = (RegistEntity) data;
+            BaseEntity entity = (BaseEntity) data;
             MyUtils.showShort(entity.getEm());
             this.finish();
         }else if(code ==ApiConfig.SALES_COMPANY_DETAIL){
             SalesCompanyDetailEntity entity = (SalesCompanyDetailEntity) data;
-            GlideUtil.loaderCornersImg(this,imgIcon,UploadHelper.getPriUrl(entity.getData().getHeadImg()));
+            GlideUtil.loaderCornersImg(this,imgIcon,entity.getData().getHeadImg());
             edtName.setText(entity.getData().getCompanyName());
             edtContact.setText(entity.getData().getCompanyPhone());
             edtContactName.setText(entity.getData().getContactsName());
@@ -235,19 +236,19 @@ public class ImproveCustomerInformationActivity extends BaseActivity implements 
             edtCollectionName.setText(entity.getData().getFinaName());
             edtBankName.setText(entity.getData().getBankName());
             if(!entity.getData().getBusinessLicensePic().isEmpty()){
-                GlideUtil.loaderCornersImg(this,imgBusinessLicense,UploadHelper.getPriUrl(entity.getData().getBusinessLicensePic()));
+                GlideUtil.loaderCornersImg(this,imgBusinessLicense,UploadHelper.getInstance().getPriUrl(mContext,entity.getData().getBusinessLicensePic()));
             }
             if(!entity.getData().getCorpCardFront().isEmpty()){
-                GlideUtil.loaderCornersImg(this,imgUploadDocumentsPositive,UploadHelper.getPriUrl(entity.getData().getCorpCardFront()));
+                GlideUtil.loaderCornersImg(this,imgUploadDocumentsPositive,UploadHelper.getInstance().getPriUrl(mContext,entity.getData().getCorpCardFront()));
             }
             if(!entity.getData().getCorpCardBack().isEmpty()){
-                GlideUtil.loaderCornersImg(this,imgUploadDocumentsBacl,UploadHelper.getPriUrl(entity.getData().getCorpCardBack()));
+                GlideUtil.loaderCornersImg(this,imgUploadDocumentsBacl,UploadHelper.getInstance().getPriUrl(mContext,entity.getData().getCorpCardBack()));
             }
             if(!entity.getData().getFinaCardFront().isEmpty()){
-                GlideUtil.loaderCornersImg(this,imgCollectionUploadDocumentsPositive,UploadHelper.getPriUrl(entity.getData().getFinaCardFront()));
+                GlideUtil.loaderCornersImg(this,imgCollectionUploadDocumentsPositive,UploadHelper.getInstance().getPriUrl(mContext,entity.getData().getFinaCardFront()));
             }
             if(!entity.getData().getFinaCardBack().isEmpty()){
-                GlideUtil.loaderCornersImg(this,imgCollectionUploadDocumentsBck,UploadHelper.getPriUrl(entity.getData().getFinaCardBack()));
+                GlideUtil.loaderCornersImg(this,imgCollectionUploadDocumentsBck,UploadHelper.getInstance().getPriUrl(mContext,entity.getData().getFinaCardBack()));
             }
         }
     }
@@ -291,8 +292,12 @@ public class ImproveCustomerInformationActivity extends BaseActivity implements 
 
                 PopupUtil.getInstence().showCamera(this, new PopupUtil.OnSelectedListener() {
                     @Override
-                    public void OnSelected(View v, int position) {
-                        MyUtils.photoUtil(mContext, position, mTempPhotoPath);
+                    public void OnSelected(View v, final int position) {
+                        new Handler().post(new Runnable(){
+                            public void run(){
+                                MyUtils.photoUtil(mContext, position, mTempPhotoPath);
+                            }
+                        });
                     }
                 });
 
@@ -348,19 +353,19 @@ public class ImproveCustomerInformationActivity extends BaseActivity implements 
                                         @Override
                                         public void run() {
                                             if (position == 1) {
-                                                GlideUtil.loaderCornersImg(mContext, imgBusinessLicense, UploadHelper.getPriUrl(img_url));
+                                                GlideUtil.loaderCornersImg(mContext, imgBusinessLicense, UploadHelper.getInstance().getPriUrl(mContext,img_url));
                                                 imgBusinessLicenseUrl = img_url;
                                             } else if (position == 2) {
-                                                GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsPositive, UploadHelper.getPriUrl(img_url));
+                                                GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsPositive, UploadHelper.getInstance().getPriUrl(mContext,img_url));
                                                 imgUploadDocumentsPositiveUrl = img_url;
                                             } else if (position == 3) {
-                                                GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsBacl, UploadHelper.getPriUrl(img_url));
+                                                GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsBacl, UploadHelper.getInstance().getPriUrl(mContext,img_url));
                                                 imgUploadDocumentsBaclUrl = img_url;
                                             } else if (position == 4) {
-                                                GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsPositive, UploadHelper.getPriUrl(img_url));
+                                                GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsPositive, UploadHelper.getInstance().getPriUrl(mContext,img_url));
                                                 imgCollectionUploadDocumentsPositiveUrl = img_url;
                                             } else if (position == 5) {
-                                                GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsBck, UploadHelper.getPriUrl(img_url));
+                                                GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsBck, UploadHelper.getInstance().getPriUrl(mContext,img_url));
                                                 imgCollectionUploadDocumentsBckUrl = img_url;
                                             }
                                         }

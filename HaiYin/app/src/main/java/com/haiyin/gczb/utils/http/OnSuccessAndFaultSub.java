@@ -193,7 +193,7 @@ public class OnSuccessAndFaultSub extends DisposableObserver<ResponseBody> imple
                     //刷新token
                 } else if (402 == resultCode) {
                     //token错误
-                    UserUtils.outLogin();
+                    UserUtils.tokenerror();
                 }else if(403 == resultCode){
                     //手机号走注册流程
                     RxBus.getInstance().send(new RegisterUserEvent());

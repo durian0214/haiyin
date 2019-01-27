@@ -83,7 +83,6 @@ public class DemandHallFragment extends BaseFragment implements BaseView {
                 b.putString("id", bean.getProjectId());
                 mIntent.putExtra("bundle", b);
                 startActivity(mIntent);
-
             }
         });
         initRefreshLayout();

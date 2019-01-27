@@ -8,32 +8,28 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.durian.lib.base.BaseView;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseActivity;
 import com.haiyin.gczb.home.adapter.CityAdapter;
 import com.haiyin.gczb.home.adapter.SortAdapter;
-import com.haiyin.gczb.home.presenter.CityPresenter;
+import com.haiyin.gczb.utils.Constant;
 import com.haiyin.gczb.utils.view.city.CitySortModel;
 import com.haiyin.gczb.utils.view.city.EditTextWithDel;
 import com.haiyin.gczb.utils.view.city.PinyinComparator;
 import com.haiyin.gczb.utils.view.city.PinyinUtils;
 import com.haiyin.gczb.utils.view.city.SideBar;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Created
  * by durian
  * 2019/1/13.
  */
-public class CityActivity extends BaseActivity implements BaseView{
-    private CityPresenter cityPresenter;
+public class CityActivity extends BaseActivity{
     @Override
     protected int getLayoutId() {
         return R.layout.activity_city;
@@ -41,7 +37,6 @@ public class CityActivity extends BaseActivity implements BaseView{
 
     @Override
     public void initView() {
-        cityPresenter = new CityPresenter(this);
         mEtCityName = (EditTextWithDel) findViewById(R.id.et_search);
         sideBar = (SideBar) findViewById(R.id.sidrbar);
         dialog = (TextView) findViewById(R.id.dialog);
@@ -89,7 +84,15 @@ public class CityActivity extends BaseActivity implements BaseView{
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(getApplication(), ((CitySortModel) adapter.getItem(position-1)).getName(), Toast.LENGTH_SHORT).show();
+                Constant.cityName =  ((CitySortModel)  adapter.getItem(position-1)).getName();
+                for (int i = 0; i < Constant.listCity.size(); i++) {
+                    if (Constant.listCity.get(i).getName().contains(Constant.cityName)) {
+                        Constant.cityId = Constant.listCity.get(i).getCityId();
+                        CityActivity.this.finish();
+                        return;
+                    }
+                }
+//                Toast.makeText(getApplication(), ((CitySortModel) adapter.getItem(position-1)).getName(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -115,17 +118,15 @@ public class CityActivity extends BaseActivity implements BaseView{
 
     private void initDatas() {
         sideBar.setTextView(dialog);
-        cityPresenter.getCity();
     }
 
     private View initHeadView() {
         View headView = getLayoutInflater().inflate(R.layout.headview, null);
         GridView mGvCity = (GridView) headView.findViewById(R.id.gv_hot_city);
-        String[] datas = getResources().getStringArray(R.array.city);
         ArrayList<String> cityList = new ArrayList<>();
-        for (int i = 0; i < datas.length; i++) {
-            cityList.add(datas[i]);
-        }
+//        for (int i = 0; i <  Constant.listCity.size(); i++) {
+//            cityList.add(Constant.listCity.get(i).getName());
+//        }
         CityAdapter adapter = new CityAdapter(getApplicationContext(), R.layout.gridview_item, cityList);
         mGvCity.setAdapter(adapter);
         return headView;
@@ -176,13 +177,5 @@ public class CityActivity extends BaseActivity implements BaseView{
         return mSortList;
     }
 
-    @Override
-    public void success(int code, Object data) {
 
-    }
-
-    @Override
-    public void netError(String msg) {
-
-    }
 }

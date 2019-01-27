@@ -1,13 +1,19 @@
 package com.haiyin.gczb.my.page;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
+import android.view.View;
 
 import com.durian.lib.base.BaseView;
+import com.durian.lib.baserRecyclerViewAdapterHelper.BaseQuickAdapter;
 import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseActivity;
 import com.haiyin.gczb.my.adapter.CustomerProjectAdapter;
 import com.haiyin.gczb.my.entity.SalesCompanyProjectsEntity;
 import com.haiyin.gczb.my.presenter.CustomerPresenter;
+import com.haiyin.gczb.order.page.OrderDetailActivity;
+import com.haiyin.gczb.utils.Constant;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.view.MyRecyclerView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -24,10 +30,11 @@ import butterknife.BindView;
  */
 public class PushProjectActivity extends BaseActivity implements BaseView {
     CustomerPresenter customerPresenter;
-    @BindView(R.id.rv_customer_project)
+    @BindView(R.id.rv_push_project)
     MyRecyclerView rv;
     //：1=全部 2=待打款 3=待开票 4=已开票 5=待上传合同项目 6=合作合同项目
     int type;
+    String title;
     String id;
     CustomerProjectAdapter mAdapter;
     @BindView(R.id.srl)
@@ -85,18 +92,50 @@ public class PushProjectActivity extends BaseActivity implements BaseView {
 
     @Override
     protected int getLayoutId() {
-        return  R.layout.fragment_customer;
+        return  R.layout.activity_push_project;
     }
 
     @Override
     public void initView() {
+        title = getIntent().getBundleExtra("bundle").getString("title");
+        setTitle(title);
         type = getIntent().getBundleExtra("bundle").getInt("type");
         id = getIntent().getBundleExtra("bundle").getString("id");
         customerPresenter = new CustomerPresenter(this);
         rv.setLayoutManager(MyUtils.getVManager(this));
         rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        mAdapter = new CustomerProjectAdapter(R.layout.item_customer);
+        mAdapter = new CustomerProjectAdapter(R.layout.item_demand_hall);
         rv.setAdapter(mAdapter);
+        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                SalesCompanyProjectsEntity.DataBean bean = (SalesCompanyProjectsEntity.DataBean) adapter.getData().get(position);
+
+                if(Constant.userType ==5){
+                    //上传合同
+                    Intent mIntent = new Intent(mContext, PushProjectDetailActivity.class);
+                    Bundle b = new Bundle();
+                    b.putString("id", bean.getProjectId());
+                    mIntent.putExtra("bundle", b);
+                    startActivity(mIntent);
+                }else if(Constant.userType ==6){
+                    Intent mIntent = new Intent(mContext, OrderDetailActivity.class);
+                    Bundle b = new Bundle();
+                    b.putString("id", bean.getProjectId());
+                    mIntent.putExtra("bundle", b);
+                    startActivity(mIntent);
+                }else if(Constant.userType ==7){
+                    Intent mIntent = new Intent(mContext, OrderDetailActivity.class);
+                    Bundle b = new Bundle();
+                    b.putString("id", bean.getProjectId());
+                    mIntent.putExtra("bundle", b);
+                    startActivity(mIntent);
+                }
+
+
+
+            }
+        });
         initRefreshLayout();
         getData();
     }

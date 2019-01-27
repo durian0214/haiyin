@@ -6,13 +6,22 @@
     android:id="@+id/rl_base_title"
    >
 
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:background="@mipmap/back"
-            android:id="@+id/imgb_base_back"
+        <LinearLayout
+            android:layout_width="20dp"
             android:layout_margin="15dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="20dp"
+            android:id="@+id/ll_back"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:background="@mipmap/back"
+                android:scaleType="centerCrop"
+
+                android:id="@+id/imgb_base_back"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

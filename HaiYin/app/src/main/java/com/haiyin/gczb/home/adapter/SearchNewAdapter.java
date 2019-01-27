@@ -1,6 +1,6 @@
 package com.haiyin.gczb.home.adapter;
 
-import com.haiyin.gczb.home.entity.SearchResultsEntity;
+import com.haiyin.gczb.home.entity.SearchNewsResultsEntity;
 import com.durian.lib.baserRecyclerViewAdapterHelper.BaseQuickAdapter;
 import com.durian.lib.baserRecyclerViewAdapterHelper.BaseViewHolder;
 import com.durian.lib.glide.GlideUtil;
@@ -13,13 +13,13 @@ import com.haiyin.gczb.R;
  * by durian
  * 2019/1/3.
  */
-public class SearchNewAdapter extends BaseQuickAdapter<SearchResultsEntity.DataBean.NewsListBean, BaseViewHolder> {
+public class SearchNewAdapter extends BaseQuickAdapter<SearchNewsResultsEntity.DataBean, BaseViewHolder> {
     public SearchNewAdapter(int layoutResId) {
         super(layoutResId);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, SearchResultsEntity.DataBean.NewsListBean item) {
+    protected void convert(BaseViewHolder helper, SearchNewsResultsEntity.DataBean item) {
         RoundedImageView img =   helper.getView(R.id.img_item_home_news);
         GlideUtil.loaderCornersImg(mContext,img,item.getPic());
         helper.setText(R.id.tv_item_home_news_time,item.getCreateDate());

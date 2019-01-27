@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -171,8 +172,12 @@ public class SalesmanInformationActivity extends BaseActivity implements BaseVie
 
                 PopupUtil.getInstence().showCamera(this, new PopupUtil.OnSelectedListener() {
                     @Override
-                    public void OnSelected(View v, int position) {
-                        MyUtils.photoUtil(mContext, position, mTempPhotoPath);
+                    public void OnSelected(View v, final int position) {
+                        new Handler().post(new Runnable(){
+                            public void run(){
+                                MyUtils.photoUtil(mContext, position, mTempPhotoPath);
+                            }
+                        });
                     }
                 });
 
@@ -218,10 +223,10 @@ public class SalesmanInformationActivity extends BaseActivity implements BaseVie
                                         @Override
                                         public void run() {
                                            if (position == 1) {
-                                                GlideUtil.loaderCornersImg(mContext, imgPositive, UploadHelper.getPriUrl(img_url));
+                                                GlideUtil.loaderCornersImg(mContext, imgPositive, UploadHelper.getInstance().getPriUrl(mContext,img_url));
                                                 imgUploadDocumentsPositiveUrl = img_url;
                                             } else if (position == 2) {
-                                                GlideUtil.loaderCornersImg(mContext, imgBack, UploadHelper.getPriUrl(img_url));
+                                                GlideUtil.loaderCornersImg(mContext, imgBack, UploadHelper.getInstance().getPriUrl(mContext,img_url));
                                                 imgUploadDocumentsBaclUrl = img_url;
                                             }
                                         }

@@ -42,19 +42,22 @@ public class ObjectKeyUtils  {
     }
     //    框架合同图片	haiyin-private	客户端	project/frame/${userid}/${unix timestamp}${rand}.jpg
     public String getProjectFrame() {
-        return "project/frame/" + MyUtils.getNowTime() + MyUtils.getRandomnum() + ".jpg";
+        return "project/frame/"+UserUtils.getUserId()+"/" + MyUtils.getNowTime() + MyUtils.getRandomnum() + ".jpg";
     }
     //    订单合同图片	haiyin-private	客户端	project/contract/${userid}/${unix timestamp}${rand}.jpg
     public String getProjectContract() {
-        return "project/contract/" + MyUtils.getNowTime() + MyUtils.getRandomnum() + ".jpg";
+        return "project/contract/"+UserUtils.getUserId()+"/" + MyUtils.getNowTime() + MyUtils.getRandomnum() + ".jpg";
     }
     //    项目结算单图片	haiyin-private	客户端	project/settlement/${userid}/${unix timestamp}${rand}.jpg
     public String getProjectSettlement() {
-        return  "project/settlement/" + MyUtils.getNowTime() + MyUtils.getRandomnum() + ".jpg";
+        return  "project/settlement/" +UserUtils.getUserId()+"/"+ MyUtils.getNowTime() + MyUtils.getRandomnum() + ".jpg";
     }
     //    销售身份证正面照片	haiyin-private	客户端	sales/${unix timestamp}${rand}.jpg
     public String getSales() {
         return  "sales/" + MyUtils.getNowTime() + MyUtils.getRandomnum() + ".jpg";
     }
-
+//    手写签名图片	haiyin-private	客户端	signname/${userid}/${unix timestamp}${rand}.png
+public String getSignname() {
+    return  "signname/" +UserUtils.getUserId()+"/"+ MyUtils.getNowTime() + MyUtils.getRandomnum() + ".jpg";
+}
 }

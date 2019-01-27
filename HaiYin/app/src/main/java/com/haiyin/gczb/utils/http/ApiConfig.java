@@ -52,7 +52,12 @@ public class ApiConfig {
     public final static int SALES_MODIFY_INFO = 0xffffff30;
     public final static int SALES_DETAIL_INFO=0xffffff31 ;
     public final static int SALES_COMPANY_LIST = 0xffffff32 ;
-    public final static int SALES_COMPANY_DETAIL = 0xffffff32 ;
-    public final static int SALES_EDIT_COMPANY = 0xffffff32 ;
-    public final static int SALES_COMPANY_PROJECTS = 0xffffff32 ;
+    public final static int SALES_COMPANY_DETAIL = 0xffffff33 ;
+    public final static int SALES_EDIT_COMPANY = 0xffffff34 ;
+    public final static int SALES_COMPANY_PROJECTS = 0xffffff35 ;
+    public final static int SALES_COMPLETE_PROJECT = 0xffffff36 ;
+    public final static int SALES_PROJECT_AMOUNT = 0xffffff37 ;
+    public final static int SIGN_PROJECT = 0xffffff38 ;
+    public final static int BANK_CARDS = 0xffffff39 ;
+    public final static int ADD_BANK_CARD = 0xffffff40 ;
 }

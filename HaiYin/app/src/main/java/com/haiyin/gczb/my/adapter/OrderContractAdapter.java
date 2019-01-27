@@ -1,8 +1,13 @@
 package com.haiyin.gczb.my.adapter;
 
+import android.widget.ImageView;
+
+import com.durian.lib.glide.GlideUtil;
+import com.haiyin.gczb.R;
 import com.haiyin.gczb.my.entity.OrderContractEntity;
 import com.durian.lib.baserRecyclerViewAdapterHelper.BaseQuickAdapter;
 import com.durian.lib.baserRecyclerViewAdapterHelper.BaseViewHolder;
+import com.haiyin.gczb.utils.UploadHelper;
 
 
 /**
@@ -10,13 +15,14 @@ import com.durian.lib.baserRecyclerViewAdapterHelper.BaseViewHolder;
  * by durian
  * 2019/1/10.
  */
-public class OrderContractAdapter  extends BaseQuickAdapter<OrderContractEntity, BaseViewHolder> {
+public class OrderContractAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
     public OrderContractAdapter(int layoutResId) {
         super(layoutResId);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, OrderContractEntity item) {
-
+    protected void convert(BaseViewHolder helper, String item) {
+        ImageView img = helper.getView(R.id.img_item_agreement);
+        GlideUtil.loaderImg(mContext,img, UploadHelper.getInstance().getPriUrl(mContext,item));
     }
 }

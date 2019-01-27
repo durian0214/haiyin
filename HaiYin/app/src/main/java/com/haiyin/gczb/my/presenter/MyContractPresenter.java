@@ -94,7 +94,7 @@ public class MyContractPresenter extends BasePresenter<BaseView> {
 
     public void contractFiles(String projectId) {
         Map<String, Object> params = new HashMap<>();
-        params.put("projectId  ", projectId);
+        params.put("projectId", projectId);
         Observable<ResponseBody>
                 observable = HttpMethods.getInstance().getHttpApi().contractFiles(MyUtils.encryptString(params));
         DisposableObserver<ResponseBody> subscriber = new OnSuccessAndFaultSub(new OnSuccessAndFaultListener() {

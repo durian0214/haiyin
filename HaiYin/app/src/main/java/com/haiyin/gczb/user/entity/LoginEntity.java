@@ -11,7 +11,7 @@ import com.haiyin.gczb.base.BaseEntity;
 public class LoginEntity extends BaseEntity {
 
     /**
-     * data : {"name":"小明[名称，string]","mobile":"18310692518[联系电话，string]","headImg":"http://pub.oss.jiuniok.com/201901/dododoc1d0bdj9dn1v1a17ru178gl7t1f8ba/dododoc1d0bdj9dn1v1a17ru178gl7t1f8ba.png[头像，string]","memberPosition":"负责人[职位，string]","roleType":"业务员 [角色，string]","expires_in":"864000[token有效时间， int， 秒]","token":"09e1737eed0c61f52d35c30af1139af3[token,string]"}
+     * data : {"userId":"账号ID","name":"小明[名称，string]","mobile":"18310692518[联系电话，string]","headImg":"http://pub.oss.jiuniok.com/201901/dododoc1d0bdj9dn1v1a17ru178gl7t1f8ba/dododoc1d0bdj9dn1v1a17ru178gl7t1f8ba.png[头像，string]","memberPosition":"负责人[职位，string]","roleType":"业务员 [角色，string]","isPayCode":true,"expires_in":864000,"token":"09e1737eed0c61f52d35c30af1139af3[token,string]"}
      */
 
     private DataBean data;
@@ -26,22 +26,34 @@ public class LoginEntity extends BaseEntity {
 
     public static class DataBean {
         /**
+         * userId : 账号ID
          * name : 小明[名称，string]
          * mobile : 18310692518[联系电话，string]
          * headImg : http://pub.oss.jiuniok.com/201901/dododoc1d0bdj9dn1v1a17ru178gl7t1f8ba/dododoc1d0bdj9dn1v1a17ru178gl7t1f8ba.png[头像，string]
          * memberPosition : 负责人[职位，string]
          * roleType : 业务员 [角色，string]
-         * expires_in : 864000[token有效时间， int， 秒]
+         * isPayCode : true
+         * expires_in : 864000
          * token : 09e1737eed0c61f52d35c30af1139af3[token,string]
          */
 
+        private String userId;
         private String name;
         private String mobile;
         private String headImg;
-        private int memberPosition;
+        private String memberPosition;
         private int roleType;
-        private String expires_in;
+        private boolean isPayCode;
+        private int expires_in;
         private String token;
+
+        public String getUserId() {
+            return userId;
+        }
+
+        public void setUserId(String userId) {
+            this.userId = userId;
+        }
 
         public String getName() {
             return name;
@@ -67,11 +79,11 @@ public class LoginEntity extends BaseEntity {
             this.headImg = headImg;
         }
 
-        public int getMemberPosition() {
+        public String getMemberPosition() {
             return memberPosition;
         }
 
-        public void setMemberPosition(int memberPosition) {
+        public void setMemberPosition(String memberPosition) {
             this.memberPosition = memberPosition;
         }
 
@@ -83,11 +95,19 @@ public class LoginEntity extends BaseEntity {
             this.roleType = roleType;
         }
 
-        public String getExpires_in() {
+        public boolean isIsPayCode() {
+            return isPayCode;
+        }
+
+        public void setIsPayCode(boolean isPayCode) {
+            this.isPayCode = isPayCode;
+        }
+
+        public int getExpires_in() {
             return expires_in;
         }
 
-        public void setExpires_in(String expires_in) {
+        public void setExpires_in(int expires_in) {
             this.expires_in = expires_in;
         }
 

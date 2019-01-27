@@ -10,7 +10,7 @@ import com.durian.lib.baserRecyclerViewAdapterHelper.BaseQuickAdapter;
 import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseFragment;
 import com.haiyin.gczb.home.adapter.SearchNewAdapter;
-import com.haiyin.gczb.home.entity.SearchResultsEntity;
+import com.haiyin.gczb.home.entity.SearchNewsResultsEntity;
 import com.haiyin.gczb.home.page.NewsDetailActivity;
 import com.haiyin.gczb.home.presenter.SearchPresenter;
 import com.haiyin.gczb.utils.MyUtils;
@@ -59,7 +59,7 @@ public class NewsFragment extends BaseFragment implements BaseView {
         mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                SearchResultsEntity.DataBean.NewsListBean bean = (SearchResultsEntity.DataBean.NewsListBean) adapter.getData().get(position);
+                SearchNewsResultsEntity.DataBean bean = (SearchNewsResultsEntity.DataBean) adapter.getData().get(position);
                 Intent mIntent = new Intent(getActivity(), NewsDetailActivity.class);
                 Bundle b = new Bundle();
                 b.putString("id", bean.getNewsId());
@@ -99,18 +99,18 @@ public class NewsFragment extends BaseFragment implements BaseView {
     }
     @Override
     public void success(int code, Object data) {
-        SearchResultsEntity entity = (SearchResultsEntity) data;
+        SearchNewsResultsEntity entity = (SearchNewsResultsEntity) data;
         if (srl != null && srl.isRefreshing()) {
             srl.finishRefresh(200);
         }
         if (srl != null && srl.isLoading()) {
             srl.finishLoadmore(200);
         }
-        if (entity.getData().getNewsList().size()< pageNum) {
+        if (entity.getData().size()< pageNum) {
             //关闭加载更多
             srl.setLoadmoreFinished(true);
         }
-        mAdapter.addData(entity.getData().getNewsList());
+        mAdapter.addData(entity.getData());
     }
 
     @Override

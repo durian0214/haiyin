@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -139,8 +140,13 @@ public class PersonalInformationActivity extends BaseActivity implements BaseVie
 
                 PopupUtil.getInstence().showCamera(this, new PopupUtil.OnSelectedListener() {
                     @Override
-                    public void OnSelected(View v, int position) {
-                        MyUtils.photoUtil(mContext, position, mTempPhotoPath);
+                    public void OnSelected(View v, final int position) {
+                        new Handler().post(new Runnable(){
+                            public void run(){
+                                MyUtils.photoUtil(mContext, position, mTempPhotoPath);
+                            }
+                        });
+
                     }
                 });
                 mOnPictureSelectedListener = new OnPictureSelectedListener() {

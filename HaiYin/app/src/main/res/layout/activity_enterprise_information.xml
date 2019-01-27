@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:padding="15dp"
         android:text="企业用户信息"
+        android:id="@+id/tv_enterprise_information_title"
         android:textColor="@color/color_444444"
         android:textSize="@dimen/size_16sp" />
 
@@ -38,6 +39,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/rl_enterprise_information_salesman"
                 android:padding="15dp">
 
                 <TextView
@@ -63,6 +65,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:id="@+id/v_enterprise_information_salesman"
+
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:background="#F5F5F5" />
@@ -96,6 +100,7 @@
                     android:layout_height="30dp"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="5dp"
+                    android:scaleType="fitXY"
                     android:layout_toLeftOf="@id/img_enterprise_information_to"
                     app:riv_oval="true" />
             </RelativeLayout>
@@ -471,6 +476,8 @@
                         android:layout_width="match_parent"
                         android:id="@+id/img_enterprise_information_business_license"
                         android:layout_marginTop="10dp"
+                        android:scaleType="centerCrop"
+                        android:background="@mipmap/add_img_bg"
                         android:layout_below="@id/tv_enterprise_information_business_license_label"
                         android:layout_height="150dp" />
             </RelativeLayout>
@@ -495,6 +502,8 @@
                     android:layout_width="match_parent"
                     android:id="@+id/img_enterprise_information_upload_documents_positive"
                     android:layout_marginTop="10dp"
+                    android:scaleType="centerCrop"
+                    android:background="@mipmap/add_img_bg"
                     android:layout_below="@id/tv_enterprise_information_upload_documents_label"
                     android:layout_height="150dp" />
 
@@ -512,6 +521,8 @@
                     android:layout_width="match_parent"
                     android:id="@+id/img_enterprise_information_upload_documents_back"
                     android:layout_marginTop="10dp"
+                    android:scaleType="centerCrop"
+                    android:background="@mipmap/add_img_bg"
                     android:layout_below="@id/tv_enterprise_information_upload_documents_positive_label"
                     android:layout_height="150dp" />
 
@@ -546,6 +557,8 @@
                     android:layout_width="match_parent"
                     android:id="@+id/img_enterprise_information_collection_upload_documents_positive"
                     android:layout_marginTop="10dp"
+                    android:scaleType="centerCrop"
+                    android:background="@mipmap/add_img_bg"
                     android:layout_below="@id/tv_enterprise_information_collection_upload_documents_label"
                     android:layout_height="150dp" />
 
@@ -563,6 +576,8 @@
                     android:layout_width="match_parent"
                     android:id="@+id/img_enterprise_information_collection_upload_documents_back"
                     android:layout_marginTop="10dp"
+                    android:scaleType="centerCrop"
+                    android:background="@mipmap/add_img_bg"
                     android:layout_below="@id/tv_enterprise_information_collection_upload_documents_positive_label"
                     android:layout_height="150dp" />
 
@@ -572,6 +587,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:text="上传身份证照片反面"
+
                     android:layout_below="@id/img_enterprise_information_collection_upload_documents_back"
                     android:textColor="#999999"
                     android:textSize="@dimen/sp_12" />

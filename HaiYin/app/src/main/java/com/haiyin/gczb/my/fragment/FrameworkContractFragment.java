@@ -2,6 +2,7 @@ package com.haiyin.gczb.my.fragment;
 
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.haiyin.gczb.base.BaseFragment;
@@ -20,6 +21,8 @@ import com.haiyin.gczb.my.adapter.FrameworkContractAdapter;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.view.MyRecyclerView;
 
+import java.util.List;
+
 /**
  * Created
  * by durian
@@ -27,61 +30,37 @@ import com.haiyin.gczb.utils.view.MyRecyclerView;
  */
 public class FrameworkContractFragment extends BaseFragment {
     @BindView(R.id.rv_framework_contract)
-    MyRecyclerView rv;
+    RecyclerView rv;
 
-    int type;
-    @BindView(R.id.refreshLayout)
-    SmartRefreshLayout srl;
-    private int page = 1;
-    private int pageNum = 20;
+    List<String> lists;
     FrameworkContractAdapter mAdapter;
-    public static FrameworkContractFragment getInstance(int type) {
+    public static FrameworkContractFragment getInstance(List<String> lists) {
         FrameworkContractFragment fragment = new FrameworkContractFragment();
-        fragment.type = type;
+        fragment.lists = lists;
         return fragment;
     }
 
     @Override
     protected int setView() {
-        return R.layout.fragment_cumulative;
+        return R.layout.fragment_framework_contract;
     }
 
     @Override
     protected void init(View view) {
-        rv.setLayoutManager(MyUtils.getTableManager(getActivity(),2));
-
-        mAdapter = new FrameworkContractAdapter(R.layout.item_framework_contract);
+        rv.setLayoutManager(MyUtils.getVManager(getActivity()));
+        mAdapter = new FrameworkContractAdapter(R.layout.item_agreement);
         rv.setAdapter(mAdapter);
-        initRefreshLayout();
-        getData();
+        mAdapter.addData(lists);
     }
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-
+        getData();
     }
 
     private void getData() {
     }
-    private void initRefreshLayout() {
-        srl.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
-                page = 1;
-                srl.setLoadmoreFinished(false);
-                mAdapter.cleanRV();
-                getData();
 
-            }
-        });
-        srl.setOnLoadmoreListener(new OnLoadmoreListener() {
-            @Override
-            public void onLoadmore(final RefreshLayout refreshlayout) {
-                page++;
-                getData();
-            }
-        });
-    }
 
 
 }

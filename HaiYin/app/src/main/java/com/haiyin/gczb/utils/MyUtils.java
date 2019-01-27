@@ -142,7 +142,6 @@ public class MyUtils {
     public static void photoUtil(Activity context, int position, String mTempPhotoPath) {
         if (MyPermissions.isOpenWrite(context)) {
             if (MyPermissions.isOpenCamera(context)) {
-
                 if (position == 0) {
                     PopupUtil.getInstence().disPopup();
                     Intent takeIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

@@ -1,9 +1,14 @@
 package com.haiyin.gczb.my.page;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 
 import com.durian.lib.base.BaseView;
+import com.flyco.tablayout.SlidingTabLayout;
 import com.haiyin.gczb.base.BaseActivity;
+import com.haiyin.gczb.my.entity.ContractFilesEntity;
 import com.haiyin.gczb.my.fragment.ProjectStatementFragment;
 import com.haiyin.gczb.my.presenter.MyContractPresenter;
 import com.haiyin.gczb.order.entity.TabEntity;
@@ -21,6 +26,7 @@ import com.haiyin.gczb.my.fragment.FrameworkContractFragment;
 import com.haiyin.gczb.my.fragment.OrderContractFragment;
 import com.haiyin.gczb.my.fragment.ProjectStatementFragment;
 import com.haiyin.gczb.order.entity.TabEntity;
+import com.haiyin.gczb.utils.MyUtils;
 
 /**
  * Created
@@ -30,11 +36,11 @@ import com.haiyin.gczb.order.entity.TabEntity;
 public class ContractDetailActivity extends BaseActivity  implements BaseView{
     MyContractPresenter myContractPresenter;
     @BindView(R.id.ctl_my_contract)
-    CommonTabLayout ctl;
-
+    SlidingTabLayout ctl;
+    @BindView(R.id.vp_my_contract)
+    ViewPager vp;
     private ArrayList<Fragment> mFragments = new ArrayList<>();
     private final String[] mTitles = {"框架合同", "订单合同", "项目结算单"};
-    private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
 
     private String id;
     @Override
@@ -47,13 +53,6 @@ public class ContractDetailActivity extends BaseActivity  implements BaseView{
         myContractPresenter = new MyContractPresenter(this);
         id = getIntent().getBundleExtra("bundle").getString("id");
         setTitle("合同详情");
-        mFragments.add( FrameworkContractFragment.getInstance(1));
-        mFragments.add( OrderContractFragment.getInstance(1));
-        mFragments.add( ProjectStatementFragment.getInstance(1));
-        for (int i = 0; i < mTitles.length; i++) {
-            mTabEntities.add(new TabEntity(mTitles[i], 0, 0));
-        }
-        ctl .setTabData(mTabEntities, this, R.id.vp_cooperation_plan, mFragments);
         getData();
     }
     private void getData(){
@@ -62,11 +61,38 @@ public class ContractDetailActivity extends BaseActivity  implements BaseView{
 
     @Override
     public void success(int code, Object data) {
-
+        ContractFilesEntity entity = (ContractFilesEntity) data;
+        mFragments.add( FrameworkContractFragment.getInstance(entity.getData().getFrameFile()));
+        mFragments.add( OrderContractFragment.getInstance(entity.getData().getContractFile()));
+        mFragments.add( ProjectStatementFragment.getInstance(entity.getData().getContractFile()));
+        vp.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
+        ctl.setViewPager(vp, mTitles, this, mFragments);
+        vp.setCurrentItem(0);
     }
 
     @Override
     public void netError(String msg) {
+        MyUtils.showShort(msg);
+    }
 
+    private class MyPagerAdapter extends FragmentPagerAdapter {
+        public MyPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragments.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mTitles[position];
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragments.get(position);
+        }
     }
 }

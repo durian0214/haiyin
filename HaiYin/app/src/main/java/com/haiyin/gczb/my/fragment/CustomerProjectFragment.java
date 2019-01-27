@@ -7,9 +7,7 @@ import android.view.View;
 import com.durian.lib.base.BaseView;
 import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseFragment;
-import com.haiyin.gczb.my.adapter.CustomerAdapter;
 import com.haiyin.gczb.my.adapter.CustomerProjectAdapter;
-import com.haiyin.gczb.my.entity.SalesCompanyListEntity;
 import com.haiyin.gczb.my.entity.SalesCompanyProjectsEntity;
 import com.haiyin.gczb.my.presenter.CustomerPresenter;
 import com.haiyin.gczb.utils.MyUtils;
@@ -49,7 +47,7 @@ public class CustomerProjectFragment extends BaseFragment implements BaseView {
 
     @Override
     protected int setView() {
-        return R.layout.fragment_customer;
+        return R.layout.fragment_customer_project;
     }
 
     @Override
@@ -57,10 +55,9 @@ public class CustomerProjectFragment extends BaseFragment implements BaseView {
         customerPresenter = new CustomerPresenter(this);
         rv.setLayoutManager(MyUtils.getVManager(getActivity()));
         rv.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-        mAdapter = new CustomerProjectAdapter(R.layout.item_customer);
+        mAdapter = new CustomerProjectAdapter(R.layout.item_demand_hall);
         rv.setAdapter(mAdapter);
         initRefreshLayout();
-        getData();
     }
 
     @Override
@@ -91,6 +88,7 @@ public class CustomerProjectFragment extends BaseFragment implements BaseView {
             }
         });
     }
+
 
     @Override
     public void success(int code, Object data) {

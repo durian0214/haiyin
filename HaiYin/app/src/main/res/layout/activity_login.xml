@@ -79,6 +79,8 @@
                 android:drawableLeft="@mipmap/login_code"
                 android:gravity="center"
                 android:hint="请输入验证码"
+                android:inputType="number"
+                android:maxLength="5"
                 android:textColor="@color/color_444444"
                 android:textSize="@dimen/sp_14" />
         </RelativeLayout>

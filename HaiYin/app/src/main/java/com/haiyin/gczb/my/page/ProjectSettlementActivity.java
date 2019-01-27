@@ -32,7 +32,6 @@ public class ProjectSettlementActivity  extends BaseActivity implements BaseView
     SlidingTabLayout ctl;
     private ArrayList<Fragment> mFragments = new ArrayList<>();
     private final String[] mTitles = {"当月金额", "累计金额"};
-    private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
     @BindView(R.id.vp_cooperation_plan)
     ViewPager vp;
     private int type = 2;

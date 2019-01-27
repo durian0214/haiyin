@@ -62,7 +62,6 @@ public class DuringMonthFragment extends BaseFragment implements BaseView{
         rv.setAdapter(mAdapter);
 //        tvPrice.setText(Arith.div_text()+"元");
         initRefreshLayout();
-        getData();
     }
 
     @Override

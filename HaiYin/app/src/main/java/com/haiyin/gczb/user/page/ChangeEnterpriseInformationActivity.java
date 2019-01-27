@@ -5,12 +5,16 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.durian.lib.base.BaseView;
@@ -25,6 +29,7 @@ import com.haiyin.gczb.user.entity.IndustryEntity;
 import com.haiyin.gczb.user.entity.SalesEntity;
 import com.haiyin.gczb.user.presenter.GetDataPresenter;
 import com.haiyin.gczb.user.presenter.RegistPresenter;
+import com.haiyin.gczb.utils.Constant;
 import com.haiyin.gczb.utils.ImageDisposeUtil;
 import com.haiyin.gczb.utils.MyPermissions;
 import com.haiyin.gczb.utils.MyUtils;
@@ -53,9 +58,13 @@ import butterknife.OnClick;
  * 企业用户信息修改
  */
 public class ChangeEnterpriseInformationActivity extends BaseActivity implements BaseView {
-        UserPresenter userPresenter;
+    UserPresenter userPresenter;
     RegistPresenter registPresenter;
     GetDataPresenter getDataPresenter;
+
+    //title
+    @BindView(R.id.tv_enterprise_information_title)
+    TextView tvTitle;
     //头像
     @BindView(R.id.img_enterprise_information_icon)
     RoundedImageView imgIcon;
@@ -77,6 +86,10 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
     //业务员
     @BindView(R.id.sp_enterprise_information_salesman)
     Spinner spSalesman;
+    @BindView(R.id.rl_enterprise_information_salesman)
+    RelativeLayout rlSalesman;
+    @BindView(R.id.v_enterprise_information_salesman)
+    View vSalesman;
     //行业
     @BindView(R.id.sp_enterprise_information_industry)
     Spinner spIndustry;
@@ -150,9 +163,50 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
     }
 
 
-
     private List<SalesEntity.DataBean> salesList;
     private List<IndustryEntity.DataBean> industryList;
+     UserEntity entity;
+    // handler对象，用来接收消息~
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(android.os.Message msg) {  //这个是发送过来的消息
+            // 处理从子线程发送过来的消息
+            edtName.setText(entity.getData().getCompanyName());
+            edtContact.setText(entity.getData().getCompanyPhone());
+            edtContactName.setText(entity.getData().getContactsName());
+            edtContactPhone.setText(entity.getData().getContactsPhone());
+            spPosition.setSelection(entity.getData().getMemberPosition());
+            GlideUtil.loaderCornersImg(mContext, imgBusinessLicense, UploadHelper.getInstance().getPriUrl(mContext, entity.getData().getBusinessLicensePic()));
+            imgIconUrl = entity.getData().getHeadImg();
+            imgBusinessLicenseUrl = entity.getData().getBusinessLicensePic();
+            imgUploadDocumentsPositiveUrl = entity.getData().getCorpCardFront();
+            imgUploadDocumentsBaclUrl = entity.getData().getCorpCardBack();
+            imgCollectionUploadDocumentsPositiveUrl = entity.getData().getFinaCardFront();
+            imgCollectionUploadDocumentsBckUrl = entity.getData().getFinaCardBack();
+            GlideUtil.loaderCornersImg(mContext, imgIcon, imgIconUrl);
+            if(imgBusinessLicenseUrl!=null)
+            GlideUtil.loaderCornersImg(mContext, imgBusinessLicense, UploadHelper.getInstance().getPriUrl(mContext, imgBusinessLicenseUrl));
+            if(imgUploadDocumentsPositiveUrl!=null)
+            GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsPositive, UploadHelper.getInstance().getPriUrl(mContext, imgUploadDocumentsPositiveUrl));
+            if(imgUploadDocumentsBaclUrl!=null)
+            GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsBacl, UploadHelper.getInstance().getPriUrl(mContext, imgUploadDocumentsBaclUrl));
+            if(imgCollectionUploadDocumentsPositiveUrl!=null)
+            GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsPositive, UploadHelper.getInstance().getPriUrl(mContext, imgCollectionUploadDocumentsPositiveUrl));
+            if(imgCollectionUploadDocumentsBckUrl!=null)
+            GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsBck, UploadHelper.getInstance().getPriUrl(mContext, imgCollectionUploadDocumentsBckUrl));
+            A:for (int i = 0; i < industryList.size(); i++) {
+                if (industryList.get(i).getName().contains(entity.getData().getIndustryName())) {
+                    spIndustry.setSelection(i);
+                    break A ;
+                }
+            }
+            edtBankCode.setText(entity.getData().getCardNo());
+            edtBankName.setText(entity.getData().getBankName());
+            edtCollectionName.setText(entity.getData().getFinaName());
+            edtCollectionCodeid.setText(entity.getData().getIdCardNo());
+        }
+    };
+
 
     //提交
     @OnClick(R.id.btn_enterprise_information)
@@ -170,23 +224,23 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
         String bankName = edtBankName.getText().toString();
         String collectionCodeid = edtCollectionCodeid.getText().toString();
 
-        userPresenter.modifyInfo(
-                    imgIconUrl,
-                    contactName,
-                    spPosition.getSelectedItemPosition(),
-                    null,
-                    name,
-                    contact,
-                    null,
-                    imgBusinessLicenseUrl,
-                    collectionCodeid,
-                    imgUploadDocumentsPositiveUrl,
-                    imgUploadDocumentsBaclUrl,
-                    collectionName,
-                    bankCode,
-                    bankName,
-                    imgCollectionUploadDocumentsPositiveUrl,
-                    imgCollectionUploadDocumentsBckUrl);
+        userPresenter.modifyInfo(contactPhone,
+                imgIconUrl,
+                contactName,
+                spPosition.getSelectedItemPosition(),
+                null,
+                name,
+                contact,
+                null,
+                imgBusinessLicenseUrl,
+                collectionCodeid,
+                imgUploadDocumentsPositiveUrl,
+                imgUploadDocumentsBaclUrl,
+                collectionName,
+                bankCode,
+                bankName,
+                imgCollectionUploadDocumentsPositiveUrl,
+                imgCollectionUploadDocumentsBckUrl);
 
     }
 
@@ -224,16 +278,15 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
                     this, R.layout.item_sp,
                     dataList);
             spIndustry.setAdapter(adapter);
-        }else if(code ==ApiConfig.GET_DETAIL_INFO){
-            UserEntity entity = (UserEntity) data;
-            GlideUtil.loaderCornersImg(this,imgIcon,entity.getData().getHeadImg());
-            edtName.setText(entity.getData().getCompanyName());
-            edtContact.setText(entity.getData().getCompanyPhone());
-            edtContactName.setText(entity.getData().getContactsName());
-            edtContactPhone.setText(entity.getData().getContactsPhone());
-            GlideUtil.loaderCornersImg(this,imgBusinessLicense,UploadHelper.getPriUrl(entity.getData().getBusinessLicensePic()));
+        } else if (code == ApiConfig.GET_DETAIL_INFO) {
+           entity = (UserEntity) data;
+             Message message = Message.obtain();
+            handler.sendMessage(message);
 
-        }else if(code ==ApiConfig.MODIFY_INFO){
+
+
+
+        } else if (code == ApiConfig.MODIFY_INFO) {
             BaseEntity entity = (BaseEntity) data;
             MyUtils.showShort(entity.getEm());
             this.finish();
@@ -252,13 +305,24 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
 
     @Override
     public void initView() {
+        if(Constant.userType==1){
+            tvTitle.setText("企业用户信息");
+        }else if(Constant.userType==2){
+            tvTitle.setText("个体户用户信息");
+        }
         userPresenter = new UserPresenter(this);
         registPresenter = new RegistPresenter(this);
         getDataPresenter = new GetDataPresenter(this);
         setTitle("");
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this, R.layout.item_sp,
+                getResources().getStringArray(R.array.member));
+        spPosition.setAdapter(adapter);
         getDataPresenter.sales();
         getDataPresenter.industry();
         userPresenter.getDetailInfo();
+        vSalesman.setVisibility(View.GONE);
+        rlSalesman.setVisibility(View.GONE);
     }
 
     public void pic(final int position) {
@@ -269,8 +333,12 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
 
                 PopupUtil.getInstence().showCamera(this, new PopupUtil.OnSelectedListener() {
                     @Override
-                    public void OnSelected(View v, int position) {
-                        MyUtils.photoUtil(mContext, position, mTempPhotoPath);
+                    public void OnSelected(View v, final int position) {
+                        new Handler().post(new Runnable() {
+                            public void run() {
+                                MyUtils.photoUtil(mContext, position, mTempPhotoPath);
+                            }
+                        });
                     }
                 });
 
@@ -322,19 +390,19 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
                                         @Override
                                         public void run() {
                                             if (position == 1) {
-                                                GlideUtil.loaderImg(mContext, imgBusinessLicense, UploadHelper.getPriUrl(img_url));
+                                                GlideUtil.loaderImg(mContext, imgBusinessLicense, UploadHelper.getInstance().getPriUrl(mContext, img_url));
                                                 imgBusinessLicenseUrl = img_url;
                                             } else if (position == 2) {
-                                                GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsPositive, UploadHelper.getPriUrl(img_url));
+                                                GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsPositive, UploadHelper.getInstance().getPriUrl(mContext, img_url));
                                                 imgUploadDocumentsPositiveUrl = img_url;
                                             } else if (position == 3) {
-                                                GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsBacl, UploadHelper.getPriUrl(img_url));
+                                                GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsBacl, UploadHelper.getInstance().getPriUrl(mContext, img_url));
                                                 imgUploadDocumentsBaclUrl = img_url;
                                             } else if (position == 4) {
-                                                GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsPositive, UploadHelper.getPriUrl(img_url));
+                                                GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsPositive, UploadHelper.getInstance().getPriUrl(mContext, img_url));
                                                 imgCollectionUploadDocumentsPositiveUrl = img_url;
                                             } else if (position == 5) {
-                                                GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsBck, UploadHelper.getPriUrl(img_url));
+                                                GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsBck, UploadHelper.getInstance().getPriUrl(mContext, img_url));
                                                 imgCollectionUploadDocumentsBckUrl = img_url;
                                             }
                                         }

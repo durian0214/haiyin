@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -22,6 +23,8 @@ import butterknife.Unbinder;
 
 import com.haiyin.gczb.R;
 import com.haiyin.gczb.utils.MyPermissions;
+import com.haiyin.gczb.utils.MyUtils;
+
 import pub.devrel.easypermissions.EasyPermissions;
 
 /**
@@ -36,7 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
     RelativeLayout rlTitle;
     TextView tvRight;
     ImageButton imgBack;
-
+    LinearLayout llBack;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,14 +49,16 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
         setContentView(getLayoutId());
         tvTitle = findViewById(R.id.tv_base_title);
         imgBack = findViewById(R.id.imgb_base_back);
-        imgBack.setOnClickListener(new View.OnClickListener() {
+
+        llBack = findViewById(R.id.ll_back);
+        rlTitle = findViewById(R.id.rl_base_title);
+        tvRight = findViewById(R.id.tv_base_right);
+        llBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mContext.finish();
             }
         });
-        rlTitle = findViewById(R.id.rl_base_title);
-        tvRight = findViewById(R.id.tv_base_right);
         //绑定初始化ButterKnife
         mBinder= ButterKnife.bind(this);
         mContext =this;
@@ -102,6 +107,7 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
     @Override
     protected void onResume() {
         super.onResume();
+        ActivityManager.getActivityManager().popActivity(this);
 
     }
     /**
@@ -146,14 +152,20 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
         if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
             switch (requestCode) {
                 case MyPermissions.CAMERA_PERMISSIONS:
-//                    IHDUtils.showMessage("该功能需要在设置中打开相机权限");
+                    MyUtils.showShort("该功能需要在设置中打开相机权限");
                     break;
                 case MyPermissions.WRITE_PERMISSIONS:
-//                    IHDUtils.showMessage("该功能需要在设置中打开读写权限");
+                    MyUtils.showShort("该功能需要在设置中打开读写权限");
                     break;
                 default:
                     break;
             }
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ActivityManager.getActivityManager().pushActivity(this);
     }
 }

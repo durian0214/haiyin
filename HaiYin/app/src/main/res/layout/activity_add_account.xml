@@ -30,7 +30,6 @@
             android:background="@color/white"
             android:gravity="right"
             android:hint="请输入姓名"
-            android:inputType="number"
             android:lines="1"
             android:textColor="@color/color_444444"
             android:textSize="@dimen/size_14sp" />
@@ -67,6 +66,7 @@
             android:background="@color/white"
             android:gravity="right"
             android:hint="请输入手机号"
+            android:maxLength="11"
             android:inputType="number"
             android:lines="1"
             android:textColor="@color/color_444444"

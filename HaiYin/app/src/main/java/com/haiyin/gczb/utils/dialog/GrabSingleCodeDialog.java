@@ -55,6 +55,7 @@ public class GrabSingleCodeDialog {
             @Override
             public void onClick(View v) {
                 projectPresenter.signProjectCheck("1", projectId, view.getPassWord());
+                dialog.dismiss();
             }
         });
         dialog.show();

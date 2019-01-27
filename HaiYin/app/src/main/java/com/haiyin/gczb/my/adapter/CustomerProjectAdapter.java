@@ -24,25 +24,36 @@ public class CustomerProjectAdapter extends BaseQuickAdapter<SalesCompanyProject
 
     @Override
     protected void convert(BaseViewHolder helper, SalesCompanyProjectsEntity.DataBean item) {
-        helper.setText(R.id.tv_item_demand_hall_name,item.getTitle());
-        helper.setText(R.id.tv_item_demand_hall_price, Arith.div_text(item.getAmount(),100)+"元  ");
-        helper.setText(R.id.tv_item_demand_hall_time,"项目工期"+item.getDays()+"天");
-        helper.setText(R.id.tv_item_demand_hall_classification,item.getSummary());
-        helper.setText(R.id.tv_item_demand_hall_address,item.getCityName());
-        RelativeLayout rl =helper.getView(R.id.rl_item_demand_hall_status);
-        Button btn =helper.getView(R.id.btn_item_demand_hall_status);
+        helper.setText(R.id.tv_item_demand_hall_name, item.getTitle());
+        helper.setText(R.id.tv_item_demand_hall_price, Arith.div_text(item.getAmount(), 100) + "元  ");
+        helper.setText(R.id.tv_item_demand_hall_time, "项目工期" + item.getDays() + "天");
+        helper.setText(R.id.tv_item_demand_hall_classification, item.getSummary());
+        helper.setText(R.id.tv_item_demand_hall_address, item.getCityName());
+        RelativeLayout rl = helper.getView(R.id.rl_item_demand_hall_status);
+        Button btn = helper.getView(R.id.btn_item_demand_hall_status);
         TextView tv = helper.getView(R.id.tv_item_demand_hall_status);
-        btn.setVisibility(View.GONE);
-        tv.setVisibility(View.VISIBLE);
-        rl  .setVisibility(View.VISIBLE);
-        if(item.getProjectStatus()==4){
-            tv.setText("待打款");
-        }else if(item.getProjectStatus()==6){
-            tv.setText("待开票");
-        }else if(item.getProjectStatus()==8){
-            tv.setText("已完成");
-        }else if(item.getProjectStatus()==8){
 
+        if (item.getProjectStatus() == 4) {
+            btn.setVisibility(View.GONE);
+            tv.setVisibility(View.VISIBLE);
+            rl.setVisibility(View.VISIBLE);
+            tv.setText("待打款");
+        } else if (item.getProjectStatus() == 6) {
+
+            btn.setVisibility(View.GONE);
+            tv.setVisibility(View.VISIBLE);
+            rl.setVisibility(View.VISIBLE);
+            tv.setText("待开票");
+        } else if (item.getProjectStatus() == 8) {
+            btn.setVisibility(View.GONE);
+            tv.setVisibility(View.VISIBLE);
+            rl.setVisibility(View.VISIBLE);
+            tv.setText("已完成");
+        } else  if (item.getProjectStatus() == 1) {
+            //待上传
+            rl.setVisibility(View.GONE);
+        }else {
+            rl.setVisibility(View.GONE);
         }
         helper.addOnClickListener(R.id.ll_item_demand_hall);
     }

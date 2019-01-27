@@ -12,6 +12,7 @@ import com.haiyin.gczb.base.BaseActivity;
 import com.haiyin.gczb.my.adapter.CustomerListsAdapter;
 import com.haiyin.gczb.my.entity.SalesCompanyListEntity;
 import com.haiyin.gczb.my.presenter.CustomerPresenter;
+import com.haiyin.gczb.user.page.CustomerInformationActivity;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.view.MyRecyclerView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -38,7 +39,7 @@ public class CustomerListsActivity extends BaseActivity implements BaseView {
     SmartRefreshLayout srl;
     private int page = 1;
     private int pageNum = 20;
-
+    String title ;
 
     private void initRefreshLayout() {
         srl.setOnRefreshListener(new OnRefreshListener() {
@@ -90,7 +91,8 @@ public class CustomerListsActivity extends BaseActivity implements BaseView {
     @Override
     public void initView() {
         type = getIntent().getBundleExtra("bundle").getInt("type");
-        setTitle("公司众包列表");
+         title = getIntent().getBundleExtra("bundle").getString("title");
+        setTitle(title);
         customerPresenter = new CustomerPresenter(this);
         rv.setLayoutManager(MyUtils.getVManager(this));
         rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
@@ -111,11 +113,52 @@ public class CustomerListsActivity extends BaseActivity implements BaseView {
                     Bundle b = new Bundle();
                     b.putString("id", bean.getCompanyId());
                     b.putInt("type", 5);
+                    b.putString("title", title);
+                    mIntent.putExtra("bundle", b);
+                    startActivity(mIntent);
+                }else if(type==6){
+                    //待开票
+                    Intent mIntent = new Intent(mContext, PushProjectActivity.class);
+                    Bundle b = new Bundle();
+                    b.putString("id", bean.getCompanyId());
+                    b.putInt("type", 3);
+                    b.putString("title", title);
+                    mIntent.putExtra("bundle", b);
+                    startActivity(mIntent);
+                }else if(type==7){
+                    //已开票
+                    Intent mIntent = new Intent(mContext, PushProjectActivity.class);
+                    Bundle b = new Bundle();
+                    b.putString("id", bean.getCompanyId());
+                    b.putInt("type", 4);
+                    b.putString("title", title);
+                    mIntent.putExtra("bundle", b);
+                    startActivity(mIntent);
+                }else if(type==8){
+                    //合作合同
+                    Intent mIntent = new Intent(mContext, PushProjectActivity.class);
+                    Bundle b = new Bundle();
+                    b.putString("id", bean.getCompanyId());
+                    b.putInt("type", 6);
+                    b.putString("title", title);
+                    mIntent.putExtra("bundle", b);
+                    startActivity(mIntent);
+                }else if(type ==1){
+                        //客户列表
+                    Intent mIntent = new Intent(mContext, CustomerInformationActivity.class);
+                    Bundle b = new Bundle();
+                    b.putString("id", bean.getCompanyId());
                     mIntent.putExtra("bundle", b);
                     startActivity(mIntent);
                 }
-
-
+                else if(type ==9){
+                    //发包金额
+                    Intent mIntent = new Intent(mContext, SalesmanSendPackageActivity.class);
+                    Bundle b = new Bundle();
+                    b.putString("id", bean.getCompanyId());
+                    mIntent.putExtra("bundle", b);
+                    startActivity(mIntent);
+                }
             }
         });
         initRefreshLayout();

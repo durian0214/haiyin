@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -333,13 +334,12 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
                     this, R.layout.item_sp,
                     dataList);
             spIndustry.setAdapter(adapter);
-        }else if(code == ApiConfig.REGIST){
+        } else if (code == ApiConfig.REGIST) {
             //注册成功
             RegistEntity entity = (RegistEntity) data;
             MyUtils.showShort(entity.getEm());
             this.finish();
-        }
-        else if(code == ApiConfig.ADD_SUB_COMPANY){
+        } else if (code == ApiConfig.ADD_SUB_COMPANY) {
             //添加成功
             BaseEntity entity = (BaseEntity) data;
             MyUtils.showShort(entity.getEm());
@@ -368,7 +368,7 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
             phone = b.getString("phone");
             code = b.getString("code");
             roleType = b.getInt("roleType");
-            edtContact.setText(phone);
+            edtContactPhone.setText(phone);
             setTvRight("业务员帮忙填写", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -377,7 +377,6 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
             });
         } catch (NullPointerException e) {
             doType = 2;
-
         }
         setTitle("");
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
@@ -396,8 +395,12 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
 
                 PopupUtil.getInstence().showCamera(this, new PopupUtil.OnSelectedListener() {
                     @Override
-                    public void OnSelected(View v, int position) {
-                        MyUtils.photoUtil(mContext, position, mTempPhotoPath);
+                    public void OnSelected(View v, final int position) {
+                        new Handler().post(new Runnable() {
+                            public void run() {
+                                MyUtils.photoUtil(mContext, position, mTempPhotoPath);
+                            }
+                        });
                     }
                 });
 
@@ -453,19 +456,19 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
                                         @Override
                                         public void run() {
                                             if (position == 1) {
-                                                GlideUtil.loaderCornersImg(mContext, imgBusinessLicense, UploadHelper.getPriUrl(img_url));
+                                                GlideUtil.loaderCornersImg(mContext, imgBusinessLicense, UploadHelper.getInstance().getPriUrl(mContext, img_url));
                                                 imgBusinessLicenseUrl = img_url;
                                             } else if (position == 2) {
-                                                GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsPositive, UploadHelper.getPriUrl(img_url));
+                                                GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsPositive, UploadHelper.getInstance().getPriUrl(mContext, img_url));
                                                 imgUploadDocumentsPositiveUrl = img_url;
                                             } else if (position == 3) {
-                                                GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsBacl, UploadHelper.getPriUrl(img_url));
+                                                GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsBacl, UploadHelper.getInstance().getPriUrl(mContext, img_url));
                                                 imgUploadDocumentsBaclUrl = img_url;
                                             } else if (position == 4) {
-                                                GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsPositive, UploadHelper.getPriUrl(img_url));
+                                                GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsPositive, UploadHelper.getInstance().getPriUrl(mContext, img_url));
                                                 imgCollectionUploadDocumentsPositiveUrl = img_url;
                                             } else if (position == 5) {
-                                                GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsBck, UploadHelper.getPriUrl(img_url));
+                                                GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsBck, UploadHelper.getInstance().getPriUrl(mContext, img_url));
                                                 imgCollectionUploadDocumentsBckUrl = img_url;
                                             }
                                         }

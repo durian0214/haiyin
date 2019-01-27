@@ -69,6 +69,7 @@ public class IndividualMyContractProjectActivity extends BaseActivity implements
     public void initView() {
         individualPresenter = new IndividualPresenter(this);
         setTitle("我的合同");
+        rv.setLayoutManager(MyUtils.getVManager(this));
         rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         individualMyContractProjectAdapter = new IndividualMyContractProjectAdapter(R.layout.item_demand_hall);
         rv.setAdapter(individualMyContractProjectAdapter);
@@ -77,8 +78,10 @@ public class IndividualMyContractProjectActivity extends BaseActivity implements
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 EntityContractsEntity.DataBean bean = (EntityContractsEntity.DataBean) adapter.getData().get(position);
                 Bundle bundle = new Bundle();
-                bundle.putString("id", bean.getProjectId());
-                intentJump(mContext, ContractDetailActivity.class, bundle);
+                bundle.putString("frameFile", bean.getFrameFile());
+                bundle.putString("contractFile", bean.getContractFile());
+                bundle.putString("clearingFile", bean.getClearingFile());
+                intentJump(mContext, PdfContractDetailActivity.class, bundle);
             }
         });
         initRefreshLayout();

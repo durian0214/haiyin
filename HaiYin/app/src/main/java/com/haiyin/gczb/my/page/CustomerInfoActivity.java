@@ -24,6 +24,7 @@ public class CustomerInfoActivity extends BaseActivity {
     public void toDemandHall() {
         Bundle bundle = new Bundle();
         bundle.putInt("type",4);
+        bundle.putString("title","公司众包列表");
         intentJump(this,CustomerListsActivity.class,bundle);
     }
 
@@ -31,6 +32,7 @@ public class CustomerInfoActivity extends BaseActivity {
     public void toPush() {
         Bundle bundle = new Bundle();
         bundle.putInt("type",5);
+        bundle.putString("title","上传协议");
         intentJump(this,CustomerListsActivity.class,bundle);
     }
 

@@ -55,6 +55,7 @@ public class UserPresenter  extends BasePresenter<BaseView> {
     /**
      * 用户资料修改
      *
+     * @param mobile
      * @param headImg
      * @param name
      * @param memberPosition
@@ -72,12 +73,13 @@ public class UserPresenter  extends BasePresenter<BaseView> {
      * @param finaCardFront
      * @param finaCardBack
      */
-    public void modifyInfo(String headImg
+    public void modifyInfo(String mobile,String headImg
             , String name, int memberPosition, String salesId
             , String companyName, String companyPhone, String industryId
             , String businessLicensePic, String idCardNo, String corpCardFront, String corpCardBack, String finaName
             , String cardNo, String bankName, String finaCardFront, String finaCardBack) {
         Map<String, Object> params = new HashMap<>();
+        params.put("mobile", mobile);
         params.put("headImg", headImg);
         params.put("name", name);
         params.put("memberPosition", memberPosition);

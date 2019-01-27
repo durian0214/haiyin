@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -240,8 +241,11 @@ public class LaborCompanyActivity extends BaseActivity implements BaseView {
 
                 PopupUtil.getInstence().showCamera(this, new PopupUtil.OnSelectedListener() {
                     @Override
-                    public void OnSelected(View v, int position) {
-                        MyUtils.photoUtil(mContext, position, mTempPhotoPath);
+                    public void OnSelected(View v, final int position) { new Handler().post(new Runnable(){
+                        public void run(){
+                            MyUtils.photoUtil(mContext, position, mTempPhotoPath);
+                        }
+                    });
                     }
                 });
 
@@ -257,6 +261,8 @@ public class LaborCompanyActivity extends BaseActivity implements BaseView {
                         } else if (position == 2) {
                             objectKey = ObjectKeyUtils.getIntance().getProjectSettlement();
                         }
+
+                        MyUtils.showShort("我生成了");
                         UploadHelper.getInstance().upImagePri(mContext, new UploadHelper.OssUpCallback() {
                             @Override
                             public void successImg(final String img_url) {
@@ -326,8 +332,12 @@ public class LaborCompanyActivity extends BaseActivity implements BaseView {
 
                 PopupUtil.getInstence().showCamera(this, new PopupUtil.OnSelectedListener() {
                     @Override
-                    public void OnSelected(View v, int position) {
-                        MyUtils.photoUtil(mContext, position, mTempPhotoPath);
+                    public void OnSelected(View v, final int position) {
+                        new Handler().post(new Runnable(){
+                            public void run(){
+                                MyUtils.photoUtil(mContext, position, mTempPhotoPath);
+                            }
+                        });
                     }
                 });
 

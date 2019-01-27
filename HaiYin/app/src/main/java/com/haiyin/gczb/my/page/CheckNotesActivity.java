@@ -47,7 +47,7 @@ public class CheckNotesActivity extends BaseActivity {
     @Override
     public void initView() {
         setTitle("查看票据");
-        mImageUrl = UploadHelper.getPriUrl(getIntent().getBundleExtra("bundle").getString("url"));
+        mImageUrl = UploadHelper.getInstance().getPriUrl(this,getIntent().getBundleExtra("bundle").getString("url"));
         GlideUtil.loaderImg(this, ivChecknotesImg, mImageUrl);
 
     }

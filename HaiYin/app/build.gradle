@@ -67,12 +67,14 @@ dependencies {
     //OSS
     implementation 'com.aliyun.dpa:oss-android-sdk:+'
     implementation 'com.belerweb:pinyin4j:2.5.1'
-
-
-    implementation (name:'AuthSdk', ext:'aar')
+    implementation(name: 'AuthSdk', ext: 'aar')
     configurations {
         all*.exclude group: 'com.google.code.gson'
     }
+    implementation 'com.github.gcacace:signature-pad:1.2.0'
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+
+
 }
 repositories {
     mavenCentral()

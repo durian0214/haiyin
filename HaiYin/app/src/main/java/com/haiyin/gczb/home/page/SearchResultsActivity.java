@@ -8,19 +8,12 @@ import android.support.v4.view.ViewPager;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.haiyin.gczb.home.fragment.NewsFragment;
 import com.haiyin.gczb.home.fragment.ProjectFragment;
-import com.flyco.tablayout.CommonTabLayout;
-import com.flyco.tablayout.listener.CustomTabEntity;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseActivity;
-import com.haiyin.gczb.home.entity.SearchResultsEntity;
-import com.haiyin.gczb.home.fragment.NewsFragment;
-import com.haiyin.gczb.home.fragment.ProjectFragment;
-import com.haiyin.gczb.my.page.CooperationPlanActivity;
-import com.haiyin.gczb.order.entity.TabEntity;
 
 /**
  * Created

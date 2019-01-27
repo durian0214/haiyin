@@ -8,10 +8,11 @@
     <include layout="@layout/activity_base" />
 
     <!-- 切换的控件 -->
-    <com.flyco.tablayout.CommonTabLayout
+    <com.flyco.tablayout.SlidingTabLayout
         android:id="@+id/ctl_my_contract"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
         android:background="@color/white"
         app:tl_indicator_color="#00C1B6"
         app:tl_indicator_height="1dp"

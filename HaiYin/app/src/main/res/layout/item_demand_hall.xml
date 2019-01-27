@@ -5,7 +5,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:id="@+id/ll_item_demand_hall"
-    android:padding="20dp">
+    android:padding="15dp">
 
     <TextView
         android:id="@+id/tv_item_demand_hall_name"
@@ -18,7 +18,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -47,7 +47,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="10dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -96,7 +96,6 @@
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
-
             android:background="@drawable/shape_button"
             android:gravity="center"
             android:text="申请开票"
@@ -108,7 +107,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="申请开票"
             android:textColor="@color/color_00C1B6"

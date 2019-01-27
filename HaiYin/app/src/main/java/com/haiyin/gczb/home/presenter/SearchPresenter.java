@@ -1,7 +1,8 @@
 package com.haiyin.gczb.home.presenter;
 
 import com.alibaba.fastjson.JSON;
-import com.haiyin.gczb.home.entity.SearchResultsEntity;
+import com.haiyin.gczb.home.entity.SearchNewsResultsEntity;
+import com.haiyin.gczb.home.entity.SearchProjectResultsEntity;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.http.ApiConfig;
 import com.haiyin.gczb.utils.http.HttpMethods;
@@ -34,20 +35,26 @@ public class SearchPresenter extends BasePresenter<BaseView> {
      * @param pageNum
      * @param keywords
      */
-    public void toSearch(int type,int page ,int pageNum,String keywords) {
+    public void toSearch(final int type, int page , int pageNum, String keywords) {
         Map<String, Object> params = new HashMap<>();
         params.put("dataType", type);
         params.put("pageNo", page);
         params.put("pageSize", pageNum);
         params.put("keywords", keywords);
-        Observable<ResponseBody>
+        final Observable<ResponseBody>
                 observable = HttpMethods.getInstance().getHttpApi().toSearch(MyUtils.encryptString(params));
 
-        DisposableObserver<ResponseBody> subscriber = new OnSuccessAndFaultSub(new OnSuccessAndFaultListener() {
+        final DisposableObserver<ResponseBody> subscriber = new OnSuccessAndFaultSub(new OnSuccessAndFaultListener() {
             @Override
             public void onSuccess(String result) {
-                SearchResultsEntity entity = JSON.parseObject(result, SearchResultsEntity.class);
-                myView.success(ApiConfig.SEARCH, entity);
+                if(type==1){
+                    SearchNewsResultsEntity entity = JSON.parseObject(result, SearchNewsResultsEntity.class);
+                    myView.success(ApiConfig.SEARCH, entity);
+                }else if(type==2){
+                    SearchProjectResultsEntity entity = JSON.parseObject(result, SearchProjectResultsEntity.class);
+                    myView.success(ApiConfig.SEARCH, entity);
+                }
+
             }
 
             @Override

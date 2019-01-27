@@ -2,6 +2,7 @@ package com.haiyin.gczb;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -9,21 +10,32 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.durian.lib.base.BaseView;
+import com.haiyin.gczb.base.ActivityManager;
 import com.haiyin.gczb.base.BaseActivity;
 import com.haiyin.gczb.home.HomeFragment;
+import com.haiyin.gczb.home.entity.GetCityEntity;
+import com.haiyin.gczb.home.presenter.CityPresenter;
 import com.haiyin.gczb.my.MyFragment;
 import com.haiyin.gczb.order.OrderFragment;
 import com.haiyin.gczb.sendPackage.page.SendPackageActivity;
 import com.haiyin.gczb.user.page.LoginActivity;
+import com.haiyin.gczb.utils.Constant;
 import com.haiyin.gczb.utils.MyUtils;
+import com.haiyin.gczb.utils.UploadHelper;
+import com.haiyin.gczb.utils.http.ApiConfig;
 import com.haiyin.gczb.utils.view.BottomNavigationViewHelper;
 import com.durian.lib.bus.RxBus;
 
@@ -49,7 +61,7 @@ import com.haiyin.gczb.utils.view.BottomNavigationViewHelper;
 
 import io.reactivex.functions.Consumer;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements BaseView {
     private static MainActivity instance;
     private HomeFragment homeFragment;
     private MyFragment myFragment;
@@ -57,11 +69,16 @@ public class MainActivity extends BaseActivity {
     private OrderFragment orderFragment;
     @BindView(R.id.navigation_main)
     BottomNavigationView navigation;
+    private CityPresenter cityPresenter;
 
     @OnClick(R.id.imgb_main_add)
     public void add() {
         if (UserUtils.isLoginToLogin()) {
-            intentJump(this, SendPackageActivity.class, null);
+            if(Constant.userType==1) {
+                intentJump(this, SendPackageActivity.class, null);
+            }else {
+                MyUtils.showShort("您没有发包权限");
+            }
         }
     }
 
@@ -75,7 +92,12 @@ public class MainActivity extends BaseActivity {
                     return false;
                 }
             }
-
+            if(item.getItemId() == R.id.main_order){
+                if(Constant.userType==3||Constant.userType==4){
+                    MyUtils.showShort("您没有权限查看订单");
+                    return false;
+                }
+            }
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();//开启一个Fragment事务
             hideFragments(transaction);
             if (item.getItemId() == R.id.main_home) {
@@ -138,7 +160,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
-
+        cityPresenter = new CityPresenter(this);
         instance = this;
         isShowTitle(false);
         RxBus.getInstance().subscribe(LoginOutEvent.class, new Consumer<LoginOutEvent>() {
@@ -151,11 +173,19 @@ public class MainActivity extends BaseActivity {
         BottomNavigationViewHelper.disableShiftMode(navigation);
         navigation.setSelectedItemId(R.id.main_home);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String url =  UploadHelper.getInstance().getPriUrl(mContext, "12");
+
+            }
+        }).start();
         getAddress();
     }
 
 
     private void getAddress() {
+        cityPresenter.getCity();
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_DENIED) {
             return;
         }
@@ -274,6 +304,57 @@ public class MainActivity extends BaseActivity {
     }
 
 
+    @Override
+    public void success(int code, Object data) {
+        if (code == ApiConfig.GET_CITY) {
+            GetCityEntity entity = (GetCityEntity) data;
+            Constant.listCity = entity.getData();
+            for (int i = 0; i < Constant.listCity.size(); i++) {
+                if (entity.getData().get(i).getName().contains(Constant.cityName)) {
+                    Constant.cityId = entity.getData().get(i).getCityId();
+                    return;
+                }
+            }
+        }
+    }
 
+    @Override
+    public void netError(String msg) {
+        MyUtils.showShort(msg);
+    }
+
+    /*******************************
+     * 定义一个变量，来标识是否退出
+     */
+    private static boolean isExit = false;
+    /**
+     * 退出延时
+     */
+    static Handler mHandlers = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            isExit = false;
+        }
+    };
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (!isExit) {
+                isExit = true;
+                Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+                // 利用handler延迟发送更改状态信息
+                mHandlers.sendEmptyMessageDelayed(0, 2000);
+                return true;
+            } else {
+                /*不退出，最小化都后台，使用这个： moveTaskToBack(false);
+                 * finish(); System.exit(0);
+                 */
+                System.exit(0);
+            }
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
 }

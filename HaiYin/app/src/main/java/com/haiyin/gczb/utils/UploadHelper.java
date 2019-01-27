@@ -2,6 +2,7 @@ package com.haiyin.gczb.utils;
 
 
 import android.content.Context;
+import android.os.Handler;
 import android.util.Log;
 
 import com.alibaba.sdk.android.oss.ClientConfiguration;
@@ -16,6 +17,7 @@ import com.alibaba.sdk.android.oss.common.auth.OSSCredentialProvider;
 import com.alibaba.sdk.android.oss.model.OSSRequest;
 import com.alibaba.sdk.android.oss.model.OSSResult;
 import com.alibaba.sdk.android.oss.model.PutObjectRequest;
+import com.haiyin.gczb.base.BaseApplication;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,6 +29,7 @@ import java.util.Date;
  */
 public class UploadHelper {
     private static OSS oss;
+    private static OSS osspri;
 
 //    法人身份证正面照片	haiyin-private	客户端	company/corporation/${unix timestamp}${rand}.jpg
 //    法人身份证反面照片	haiyin-private	客户端	company/corporation/${unix timestamp}${rand}.jpg
@@ -123,7 +126,7 @@ public class UploadHelper {
 
         conf.setMaxErrorRetry(2);// 失败后最大重试次数，默认2次
 
-        oss = new OSSClient(context, P_ENDPOINT, credentialProvider);
+        osspri = new OSSClient(context, P_ENDPOINT, credentialProvider);
 
         if (simpleDateFormat == null) {
 
@@ -265,11 +268,12 @@ public class UploadHelper {
 
         });
 
-        oss.asyncPutObject(putObjectRequest, new OSSCompletedCallback() {
+        osspri.asyncPutObject(putObjectRequest, new OSSCompletedCallback() {
 
             @Override
             public void onSuccess(OSSRequest request, OSSResult result) {
                 Log.e("MyOSSUtils", "------getRequestId:" + result.getRequestId());
+                MyUtils.showShort("我成功了"+imgName);
                 ossUpCallback.successImg(pri_host + imgName);
 
 
@@ -277,7 +281,17 @@ public class UploadHelper {
 
             @Override
             public void onFailure(OSSRequest request, ClientException clientException, ServiceException serviceException) {
-                ossUpCallback.successImg(null);
+                MyUtils.showShort("UploadFailure");
+                if (clientException != null) {
+                    // 本地异常如网络异常等
+                    MyUtils.showShort("UploadFailure：表示向OSS发送请求或解析来自OSS的响应时发生错误。\n" +
+                            "  *例如，当网络不可用时，这个异常将被抛出");
+                    clientException.printStackTrace();
+                }
+                if (serviceException != null) {
+                    // 服务异常
+                    MyUtils.showShort("UploadFailure：表示在OSS服务端发生错误");
+                }
 
             }
 
@@ -291,14 +305,23 @@ public class UploadHelper {
      * @param objectKey
      * @return
      */
-    public static String getPriUrl(String objectKey) {
-        String s = objectKey.replace("http://pri.oss.jiuniok.com/", "");
+    public String getPriUrl(Context mContext, final String objectKey) {
         String url = "";
-        try {
-            url = oss.presignConstrainedObjectURL(PRI_BUCKETNAME, objectKey.replace("http://pri.oss.jiuniok.com/", ""), 30 * 60);
-        } catch (ClientException e) {
-            e.printStackTrace();
+        if(osspri==null){
+            getOssPri(mContext);
         }
+        if(objectKey!=null){
+            try {
+                String s = objectKey.replace("http://pri.oss.jiuniok.com/", "");
+                url = osspri.presignConstrainedObjectURL(PRI_BUCKETNAME, s, 30 * 60);
+            } catch (ClientException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+
+
         return url;
     }
 

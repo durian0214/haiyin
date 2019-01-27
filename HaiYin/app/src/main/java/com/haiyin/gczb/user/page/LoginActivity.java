@@ -49,6 +49,7 @@ public class LoginActivity extends BaseActivity implements BaseView {
         if (code == ApiConfig.LOGIN) {
             LoginEntity entity = (LoginEntity) data;
             SharedPreferencesUtils.put(this, SharedPreferencesVar.TOKEN, entity.getData().getToken());
+            SharedPreferencesUtils.put(this, SharedPreferencesVar.USER_ID, entity.getData().getUserId());
             int type = entity.getData().getRoleType();
             SharedPreferencesUtils.put(this, SharedPreferencesVar.userType,type);
             this.finish();
@@ -70,15 +71,7 @@ public class LoginActivity extends BaseActivity implements BaseView {
         isShowTitle(false);
         sendCodePresenter = new SendCodePresenter(this);
         loginPresenter = new LoginPresenter(this);
-        //企业
-//        edtAccount.setText("13000000001");
-//        edtPassword.setText("15831");
-        //个体户
-//        edtAccount.setText("13000000003");
-//        edtPassword.setText("51835");
-        //业务员
-        edtAccount.setText("18310692518");
-        edtPassword.setText("32477");
+
         RxBus.getInstance().subscribe(RegisterUserEvent.class, new Consumer<RegisterUserEvent>() {
             @Override
             public void accept(RegisterUserEvent event) {

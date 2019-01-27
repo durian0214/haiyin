@@ -11,7 +11,8 @@ import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseFragment;
 import com.haiyin.gczb.demandHall.page.DemandDetailActivity;
 import com.haiyin.gczb.home.adapter.SearchProjectAdapter;
-import com.haiyin.gczb.home.entity.SearchResultsEntity;
+import com.haiyin.gczb.home.entity.SearchNewsResultsEntity;
+import com.haiyin.gczb.home.entity.SearchProjectResultsEntity;
 import com.haiyin.gczb.home.presenter.SearchPresenter;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.view.MyRecyclerView;
@@ -59,7 +60,7 @@ public class ProjectFragment extends BaseFragment implements BaseView{
         mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                SearchResultsEntity.DataBean.ProjectListBean bean = (SearchResultsEntity.DataBean.ProjectListBean) adapter.getData().get(position);
+                SearchProjectResultsEntity.DataBean bean = (SearchProjectResultsEntity.DataBean) adapter.getData().get(position);
                 Intent mIntent = new Intent(getActivity(), DemandDetailActivity.class);
                 Bundle b = new Bundle();
                 b.putString("id", bean.getProjectId());
@@ -99,25 +100,22 @@ public class ProjectFragment extends BaseFragment implements BaseView{
     }
     @Override
     public void success(int code, Object data) {
-        SearchResultsEntity entity = (SearchResultsEntity) data;
+        SearchProjectResultsEntity entity = (SearchProjectResultsEntity) data;
         if (srl != null && srl.isRefreshing()) {
             srl.finishRefresh(200);
         }
         if (srl != null && srl.isLoading()) {
             srl.finishLoadmore(200);
         }
-        if (entity.getData().getProjectList().size()< pageNum) {
+        if (entity.getData().size()< pageNum) {
             //关闭加载更多
             srl.setLoadmoreFinished(true);
         }
-        mAdapter.addData(entity.getData().getProjectList());
+        mAdapter.addData(entity.getData());
     }
 
     @Override
     public void netError(String msg) {
         MyUtils.showShort(msg);
     }
-
-
-
 }

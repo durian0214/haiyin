@@ -54,7 +54,6 @@ public class CustomerFragment extends BaseFragment implements BaseView{
         mAdapter = new CustomerAdapter(R.layout.item_customer);
         rv.setAdapter(mAdapter);
         initRefreshLayout();
-        getData();
     }
 
     @Override

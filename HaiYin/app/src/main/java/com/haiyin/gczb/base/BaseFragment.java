@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.durian.lib.utils.LogUtil;
 import com.haiyin.gczb.utils.MyPermissions;
 import com.haiyin.gczb.utils.MyUtils;
 
@@ -92,22 +93,26 @@ public abstract class BaseFragment extends Fragment implements EasyPermissions.P
     @Override
     public void onStart() {
         super.onStart();
+        LogUtil.e("onStart");
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        LogUtil.e("onResume");
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        LogUtil.e("onPause");
     }
 
 
     @Override
     public void onStop() {
         super.onStop();
+        LogUtil.e("onStop");
     }
 
 

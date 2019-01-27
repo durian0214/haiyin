@@ -72,7 +72,7 @@ public class ImgsAdapter extends BaseAdapter {
                 removeFiles(position);
             }
         });
-        GlideUtil.loaderCornersImg(mContext,viewTag.mIcon, UploadHelper.getPriUrl(urls.get(position)));
+        GlideUtil.loaderCornersImg(mContext,viewTag.mIcon, UploadHelper.getInstance().getPriUrl(mContext,urls.get(position)));
         return convertView;
     }
 

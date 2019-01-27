@@ -8,6 +8,7 @@ import com.haiyin.gczb.my.entity.EnterpriseEntity;
 import com.haiyin.gczb.my.entity.SalesCompanyDetailEntity;
 import com.haiyin.gczb.my.entity.SalesCompanyListEntity;
 import com.haiyin.gczb.my.entity.SalesCompanyProjectsEntity;
+import com.haiyin.gczb.my.entity.SalesProjectAmountEntity;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.http.ApiConfig;
 import com.haiyin.gczb.utils.http.HttpMethods;
@@ -67,15 +68,15 @@ public class CustomerPresenter extends BasePresenter<BaseView> {
      *
      * @param pageNo
      * @param pageSize
-     * @param dataType 数据类型：1=全部 2=待打款 3=待开票 4=已开票 5=待上传合同项目 6=合作合同项目
+     * @param projectType 数据类型：1=全部 2=待打款 3=待开票 4=已开票 5=待上传合同项目 6=合作合同项目
      * @param companyId
      */
-    public void salescompanyProjects(int pageNo, int pageSize, String companyId,int dataType) {
+    public void salescompanyProjects(int pageNo, int pageSize, String companyId,int projectType) {
         Map<String, Object> params = new HashMap<>();
         params.put("pageNo", pageNo);
         params.put("pageSize", pageSize);
         params.put("companyId", companyId);
-        params.put("dataType", dataType);
+        params.put("projectType", projectType);
         Observable<ResponseBody>
                 observable = HttpMethods.getInstance().getHttpApi().salescompanyProjects(MyUtils.encryptString(params));
 
@@ -113,6 +114,78 @@ public class CustomerPresenter extends BasePresenter<BaseView> {
             public void onSuccess(String result) {
                 SalesCompanyDetailEntity entity = JSON.parseObject(result, SalesCompanyDetailEntity.class);
                 myView.success(ApiConfig.SALES_COMPANY_DETAIL, entity);
+            }
+
+            @Override
+            public void onFault(String errorMsg) {
+                //失败
+                myView.netError(errorMsg);
+            }
+        });
+        HttpMethods.getInstance().toSubscribe(observable, subscriber);
+    }
+
+    /**
+     * 业务员协议上传
+     * @param projectId
+     * @param frameFiles
+     * @param contractFiles
+     * @param clearingFiles
+     */
+    public void salescompleteProject(String projectId,
+                                     String frameFiles,
+                                     String contractFiles,
+                                     String clearingFiles) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("projectId", projectId);
+        params.put("frameFiles", frameFiles);
+        params.put("contractFiles", contractFiles);
+        params.put("clearingFiles", clearingFiles);
+
+        Observable<ResponseBody>
+                observable = HttpMethods.getInstance().getHttpApi().salescompleteProject(MyUtils.encryptString(params));
+
+        DisposableObserver<ResponseBody> subscriber = new OnSuccessAndFaultSub(new OnSuccessAndFaultListener() {
+            @Override
+            public void onSuccess(String result) {
+                SalesCompanyDetailEntity entity = JSON.parseObject(result, SalesCompanyDetailEntity.class);
+                myView.success(ApiConfig.SALES_COMPLETE_PROJECT, entity);
+            }
+
+            @Override
+            public void onFault(String errorMsg) {
+                //失败
+                myView.netError(errorMsg);
+            }
+        });
+        HttpMethods.getInstance().toSubscribe(observable, subscriber);
+    }
+
+    /**
+     * 业务员客户发包金额
+     * @param companyId
+     * @param pageNo
+     * @param pageSize
+     * @param dataType
+     */
+    public void salesProjectAmount(String companyId,
+                                     int pageNo,
+                                     int pageSize,
+                                     int dataType) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("companyId", companyId);
+        params.put("pageNo", pageNo);
+        params.put("pageSize", pageSize);
+        params.put("dataType", dataType);
+
+        Observable<ResponseBody>
+                observable = HttpMethods.getInstance().getHttpApi().salesProjectAmount(MyUtils.encryptString(params));
+
+        DisposableObserver<ResponseBody> subscriber = new OnSuccessAndFaultSub(new OnSuccessAndFaultListener() {
+            @Override
+            public void onSuccess(String result) {
+                SalesProjectAmountEntity entity = JSON.parseObject(result, SalesProjectAmountEntity.class);
+                myView.success(ApiConfig.SALES_PROJECT_AMOUNT, entity);
             }
 
             @Override
