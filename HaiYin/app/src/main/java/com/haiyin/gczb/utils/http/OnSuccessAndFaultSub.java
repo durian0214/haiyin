@@ -18,6 +18,7 @@ import javax.net.ssl.SSLHandshakeException;
 import com.haiyin.gczb.base.JsonEntity;
 import com.haiyin.gczb.user.event.LoginOutEvent;
 import com.haiyin.gczb.user.event.RegisterUserEvent;
+import com.haiyin.gczb.user.event.UpdataTokenEvent;
 import com.haiyin.gczb.utils.AESUtil;
 import com.haiyin.gczb.utils.UserUtils;
 import io.reactivex.observers.DisposableObserver;
@@ -191,6 +192,7 @@ public class OnSuccessAndFaultSub extends DisposableObserver<ResponseBody> imple
                 String errorMsg = jsonObject.getString("em");
                 if (401 == resultCode) {
                     //刷新token
+                    RxBus.getInstance().send(new UpdataTokenEvent());
                 } else if (402 == resultCode) {
                     //token错误
                     UserUtils.tokenerror();

@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.durian.lib.glide.GlideUtil;
 import com.haiyin.gczb.base.BaseActivity;
 import com.haiyin.gczb.demandHall.entity.DetectInfoEntity;
 import com.haiyin.gczb.demandHall.entity.GetBiztokenEntity;
@@ -16,6 +18,7 @@ import com.haiyin.gczb.demandHall.presenter.ProjectPresenter;
 import com.haiyin.gczb.utils.Arith;
 import com.haiyin.gczb.utils.Constant;
 import com.haiyin.gczb.utils.MyUtils;
+import com.haiyin.gczb.utils.UploadHelper;
 import com.haiyin.gczb.utils.dialog.GrabSingleCodeDialog;
 import com.haiyin.gczb.utils.http.ApiConfig;
 import com.durian.lib.base.BaseView;
@@ -61,6 +64,8 @@ public class DemandDetailActivity extends BaseActivity implements BaseView {
     TextView tvIndustryType;
     @BindView(R.id.tv_demand_detail_industry_address)
     TextView tvIndustryAddress;
+    @BindView(R.id.img_demeand_detail)
+    ImageView img;
     String id;
 
     //项目状态： 1 = 待完善,业务员可以完善信息, 2=待编辑,劳务 公司的由后台发布, 3=已发布, 可以抢单,
@@ -100,10 +105,18 @@ public class DemandDetailActivity extends BaseActivity implements BaseView {
             tvProjectAmount.setText("项目金额：￥" + Arith.div_text(entity.getData().getAmount(), 100));
             tvIndustryType.setText("行业类型：" + entity.getData().getIndustryName());
             tvIndustryAddress.setText("项目位置：" + entity.getData().getAddress());
-            status = entity.getData().getProjectStatus();
-            if (status == 3) {
+            final String str = entity.getData().getPic();
 
-            }
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    GlideUtil.loaderCornersImg(mContext, img, str);
+                }
+            });
+
+            status = entity.getData().getProjectStatus();
+//            if (status == 3) {
+//            }
         } else if (code == ApiConfig.SIGN_PROJECT_CHECK) {
             faceIdPresenter.getBiztoken(id);
         } else if (code == ApiConfig.GET_BIZTOKEN) {
@@ -119,10 +132,10 @@ public class DemandDetailActivity extends BaseActivity implements BaseView {
                 intentJump(this, ManuallySignedActivity.class, b);
             } else {
                 Bundle bundle = new Bundle();
-                bundle.putString("str",entity.getEm());
-                bundle.putInt("type",0);
-                intentJump(this,FaceRecognitionActivity.class,bundle);
-this.finish();
+                bundle.putString("str", entity.getEm());
+                bundle.putInt("type", 0);
+                intentJump(this, FaceRecognitionActivity.class, bundle);
+                this.finish();
             }
         }
 
@@ -150,12 +163,12 @@ this.finish();
 
     @Override
     public void initView() {
-        if (Constant.userType == 1) {
-            btnCode.setVisibility(View.GONE);
-            btnSingle.setVisibility(View.GONE);
-        } else {
+        if (Constant.userType == 2) {
             btnCode.setVisibility(View.VISIBLE);
             btnSingle.setVisibility(View.VISIBLE);
+        } else {
+            btnCode.setVisibility(View.GONE);
+            btnSingle.setVisibility(View.GONE);
         }
         projectPresenter = new ProjectPresenter(this);
         faceIdPresenter = new FaceIdPresenter(this);

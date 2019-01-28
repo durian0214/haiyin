@@ -1,6 +1,9 @@
 package com.haiyin.gczb.home.presenter;
 
+import android.content.Context;
+
 import com.alibaba.fastjson.JSON;
+import com.haiyin.gczb.base.ActivityManager;
 import com.haiyin.gczb.home.entity.GetCityEntity;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.http.ApiConfig;
@@ -43,7 +46,6 @@ public class CityPresenter extends BasePresenter<BaseView> {
                 GetCityEntity entity = JSON.parseObject(result, GetCityEntity.class);
                 myView.success(ApiConfig.GET_CITY, entity);
             }
-
             @Override
             public void onFault(String errorMsg) {
                 //失败

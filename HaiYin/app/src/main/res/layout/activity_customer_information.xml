@@ -158,7 +158,7 @@
                     android:gravity="right"
                     android:hint="请输入联系人姓名"
                     android:lines="1"
-
+                    android:singleLine="true"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />
             </RelativeLayout>
@@ -425,6 +425,7 @@
                         android:layout_width="match_parent"
                         android:id="@+id/img_customer_information_business_license"
                         android:layout_marginTop="10dp"
+                        android:scaleType="fitXY"
                         android:layout_below="@id/tv_customer_information_business_license_label"
                         android:layout_height="150dp" />
             </RelativeLayout>
@@ -449,6 +450,7 @@
                     android:layout_width="match_parent"
                     android:id="@+id/img_customer_information_upload_documents_positive"
                     android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
                     android:layout_below="@id/tv_customer_information_upload_documents_label"
                     android:layout_height="150dp" />
 
@@ -466,6 +468,7 @@
                     android:layout_width="match_parent"
                     android:id="@+id/img_customer_information_upload_documents_back"
                     android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
                     android:layout_below="@id/tv_customer_information_upload_documents_positive_label"
                     android:layout_height="150dp" />
 
@@ -475,6 +478,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:text="上传身份证照片反面"
+
                     android:layout_below="@id/img_customer_information_upload_documents_back"
                     android:textColor="#999999"
                     android:textSize="@dimen/sp_12" />
@@ -500,6 +504,8 @@
                     android:layout_width="match_parent"
                     android:id="@+id/img_customer_information_collection_upload_documents_positive"
                     android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+
                     android:layout_below="@id/tv_customer_information_collection_upload_documents_label"
                     android:layout_height="150dp" />
 
@@ -517,6 +523,7 @@
                     android:layout_width="match_parent"
                     android:id="@+id/img_customer_information_collection_upload_documents_back"
                     android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
                     android:layout_below="@id/tv_customer_information_collection_upload_documents_positive_label"
                     android:layout_height="150dp" />
 

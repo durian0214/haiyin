@@ -31,11 +31,16 @@ import com.haiyin.gczb.home.presenter.CityPresenter;
 import com.haiyin.gczb.my.MyFragment;
 import com.haiyin.gczb.order.OrderFragment;
 import com.haiyin.gczb.sendPackage.page.SendPackageActivity;
+import com.haiyin.gczb.user.event.RefreshTokenEntity;
+import com.haiyin.gczb.user.event.UpdataTokenEvent;
 import com.haiyin.gczb.user.page.LoginActivity;
+import com.haiyin.gczb.user.presenter.LoginPresenter;
 import com.haiyin.gczb.utils.Constant;
 import com.haiyin.gczb.utils.MyUtils;
+import com.haiyin.gczb.utils.SharedPreferencesUtils;
 import com.haiyin.gczb.utils.UploadHelper;
 import com.haiyin.gczb.utils.http.ApiConfig;
+import com.haiyin.gczb.utils.var.SharedPreferencesVar;
 import com.haiyin.gczb.utils.view.BottomNavigationViewHelper;
 import com.durian.lib.bus.RxBus;
 
@@ -62,6 +67,7 @@ import com.haiyin.gczb.utils.view.BottomNavigationViewHelper;
 import io.reactivex.functions.Consumer;
 
 public class MainActivity extends BaseActivity implements BaseView {
+    private LoginPresenter loginPresenter;
     private static MainActivity instance;
     private HomeFragment homeFragment;
     private MyFragment myFragment;
@@ -74,9 +80,9 @@ public class MainActivity extends BaseActivity implements BaseView {
     @OnClick(R.id.imgb_main_add)
     public void add() {
         if (UserUtils.isLoginToLogin()) {
-            if(Constant.userType==1) {
+            if (Constant.userType == 1) {
                 intentJump(this, SendPackageActivity.class, null);
-            }else {
+            } else {
                 MyUtils.showShort("您没有发包权限");
             }
         }
@@ -92,8 +98,8 @@ public class MainActivity extends BaseActivity implements BaseView {
                     return false;
                 }
             }
-            if(item.getItemId() == R.id.main_order){
-                if(Constant.userType==3||Constant.userType==4){
+            if (item.getItemId() == R.id.main_order) {
+                if (Constant.userType == 3 || Constant.userType == 4) {
                     MyUtils.showShort("您没有权限查看订单");
                     return false;
                 }
@@ -160,6 +166,7 @@ public class MainActivity extends BaseActivity implements BaseView {
 
     @Override
     public void initView() {
+        loginPresenter = new LoginPresenter(this);
         cityPresenter = new CityPresenter(this);
         instance = this;
         isShowTitle(false);
@@ -169,17 +176,23 @@ public class MainActivity extends BaseActivity implements BaseView {
                 intentJump(mContext, LoginActivity.class, null);
             }
         });
+        RxBus.getInstance().subscribe(UpdataTokenEvent.class, new Consumer<UpdataTokenEvent>() {
+            @Override
+            public void accept(UpdataTokenEvent inventoryEvent) {
+                loginPresenter.refreshToken();
+            }
+        });
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         BottomNavigationViewHelper.disableShiftMode(navigation);
         navigation.setSelectedItemId(R.id.main_home);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String url =  UploadHelper.getInstance().getPriUrl(mContext, "12");
-
-            }
-        }).start();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                String url =  UploadHelper.getInstance().getPriUrl(mContext, "12");
+//
+//            }
+//        }).start();
         getAddress();
     }
 
@@ -303,7 +316,6 @@ public class MainActivity extends BaseActivity implements BaseView {
         navigation.setSelectedItemId(R.id.main_home);
     }
 
-
     @Override
     public void success(int code, Object data) {
         if (code == ApiConfig.GET_CITY) {
@@ -315,6 +327,9 @@ public class MainActivity extends BaseActivity implements BaseView {
                     return;
                 }
             }
+        } else if (code == ApiConfig.REFRESH_TOKEN) {
+            RefreshTokenEntity entity = (RefreshTokenEntity) data;
+            SharedPreferencesUtils.put(this, SharedPreferencesVar.TOKEN, entity.getData().getToken());
         }
     }
 
@@ -337,6 +352,7 @@ public class MainActivity extends BaseActivity implements BaseView {
             isExit = false;
         }
     };
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {

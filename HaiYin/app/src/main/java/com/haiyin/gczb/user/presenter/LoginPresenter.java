@@ -2,6 +2,7 @@ package com.haiyin.gczb.user.presenter;
 
 import com.alibaba.fastjson.JSON;
 import com.haiyin.gczb.user.entity.LoginEntity;
+import com.haiyin.gczb.user.event.RefreshTokenEntity;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.http.ApiConfig;
 import com.haiyin.gczb.utils.http.HttpMethods;
@@ -43,6 +44,33 @@ public class LoginPresenter  extends BasePresenter<BaseView> {
             public void onSuccess(String result) {
                 LoginEntity entity = JSON.parseObject(result,LoginEntity.class);
                 myView.success(ApiConfig.LOGIN,entity);
+            }
+
+            @Override
+            public void onFault(String errorMsg) {
+                //失败
+                myView.netError(errorMsg);
+            }
+        });
+        HttpMethods.getInstance().toSubscribe(observable, subscriber);
+    }
+
+    /**
+     *刷新token
+     */
+    public void refreshToken() {
+        Map<String, Object> params = new HashMap<>();
+
+
+
+        Observable<ResponseBody>
+                observable = HttpMethods.getInstance().getHttpApi().refreshToken(MyUtils.encryptString(params));
+
+        DisposableObserver<ResponseBody> subscriber = new OnSuccessAndFaultSub(new OnSuccessAndFaultListener() {
+            @Override
+            public void onSuccess(String result) {
+                RefreshTokenEntity entity = JSON.parseObject(result,RefreshTokenEntity.class);
+                myView.success(ApiConfig.REFRESH_TOKEN,entity);
             }
 
             @Override

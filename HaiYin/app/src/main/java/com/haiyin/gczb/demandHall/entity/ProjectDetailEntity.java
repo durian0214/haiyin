@@ -10,8 +10,9 @@ import com.haiyin.gczb.base.BaseEntity;
  */
 public class ProjectDetailEntity extends BaseEntity {
 
+
     /**
-     * data : {"projectId":"1081490503305928704","pic":"图片地址","title":"标题","summary":"简介","amount":10000,"beginDate":"2019.01.05","endDate":"2019.01.25","industryName":"行业名称","address":"详细地址"}
+     * data : {"projectId":"1081490503305928704","pic":"图片地址","title":"标题","summary":"简介","amount":10000,"beginDate":"2019.01.05","endDate":"2019.01.25","industryName":"行业名称","address":"详细地址","projectStatus":1,"needType":2,"invoiceFileCompany":"公司发票","invoiceFileEntity":"团队发票","hasCode":true}
      */
 
     private DataBean data;
@@ -35,6 +36,11 @@ public class ProjectDetailEntity extends BaseEntity {
          * endDate : 2019.01.25
          * industryName : 行业名称
          * address : 详细地址
+         * projectStatus : 1
+         * needType : 2
+         * invoiceFileCompany : 公司发票
+         * invoiceFileEntity : 团队发票
+         * hasCode : true
          */
 
         private String projectId;
@@ -47,23 +53,10 @@ public class ProjectDetailEntity extends BaseEntity {
         private String industryName;
         private String address;
         private int projectStatus;
+        private int needType;
+        private String invoiceFileCompany;
+        private String invoiceFileEntity;
         private boolean hasCode;
-
-        public boolean isHasCode() {
-            return hasCode;
-        }
-
-        public void setHasCode(boolean hasCode) {
-            this.hasCode = hasCode;
-        }
-
-        public int getProjectStatus() {
-            return projectStatus;
-        }
-
-        public void setProjectStatus(int projectStatus) {
-            this.projectStatus = projectStatus;
-        }
 
         public String getProjectId() {
             return projectId;
@@ -135,6 +128,46 @@ public class ProjectDetailEntity extends BaseEntity {
 
         public void setAddress(String address) {
             this.address = address;
+        }
+
+        public int getProjectStatus() {
+            return projectStatus;
+        }
+
+        public void setProjectStatus(int projectStatus) {
+            this.projectStatus = projectStatus;
+        }
+
+        public int getNeedType() {
+            return needType;
+        }
+
+        public void setNeedType(int needType) {
+            this.needType = needType;
+        }
+
+        public String getInvoiceFileCompany() {
+            return invoiceFileCompany;
+        }
+
+        public void setInvoiceFileCompany(String invoiceFileCompany) {
+            this.invoiceFileCompany = invoiceFileCompany;
+        }
+
+        public String getInvoiceFileEntity() {
+            return invoiceFileEntity;
+        }
+
+        public void setInvoiceFileEntity(String invoiceFileEntity) {
+            this.invoiceFileEntity = invoiceFileEntity;
+        }
+
+        public boolean isHasCode() {
+            return hasCode;
+        }
+
+        public void setHasCode(boolean hasCode) {
+            this.hasCode = hasCode;
         }
     }
 }

@@ -61,7 +61,6 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
     UserPresenter userPresenter;
     RegistPresenter registPresenter;
     GetDataPresenter getDataPresenter;
-
     //title
     @BindView(R.id.tv_enterprise_information_title)
     TextView tvTitle;
@@ -165,7 +164,7 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
 
     private List<SalesEntity.DataBean> salesList;
     private List<IndustryEntity.DataBean> industryList;
-     UserEntity entity;
+    UserEntity entity;
     // handler对象，用来接收消息~
     private Handler handler = new Handler() {
         @Override
@@ -184,26 +183,91 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
             imgCollectionUploadDocumentsPositiveUrl = entity.getData().getFinaCardFront();
             imgCollectionUploadDocumentsBckUrl = entity.getData().getFinaCardBack();
             GlideUtil.loaderCornersImg(mContext, imgIcon, imgIconUrl);
-            if(imgBusinessLicenseUrl!=null)
-            GlideUtil.loaderCornersImg(mContext, imgBusinessLicense, UploadHelper.getInstance().getPriUrl(mContext, imgBusinessLicenseUrl));
-            if(imgUploadDocumentsPositiveUrl!=null)
-            GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsPositive, UploadHelper.getInstance().getPriUrl(mContext, imgUploadDocumentsPositiveUrl));
-            if(imgUploadDocumentsBaclUrl!=null)
-            GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsBacl, UploadHelper.getInstance().getPriUrl(mContext, imgUploadDocumentsBaclUrl));
-            if(imgCollectionUploadDocumentsPositiveUrl!=null)
-            GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsPositive, UploadHelper.getInstance().getPriUrl(mContext, imgCollectionUploadDocumentsPositiveUrl));
-            if(imgCollectionUploadDocumentsBckUrl!=null)
-            GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsBck, UploadHelper.getInstance().getPriUrl(mContext, imgCollectionUploadDocumentsBckUrl));
-            A:for (int i = 0; i < industryList.size(); i++) {
+            A:
+            for (int i = 0; i < industryList.size(); i++) {
                 if (industryList.get(i).getName().contains(entity.getData().getIndustryName())) {
                     spIndustry.setSelection(i);
-                    break A ;
+                    break A;
                 }
             }
             edtBankCode.setText(entity.getData().getCardNo());
             edtBankName.setText(entity.getData().getBankName());
             edtCollectionName.setText(entity.getData().getFinaName());
             edtCollectionCodeid.setText(entity.getData().getIdCardNo());
+
+
+            if (imgBusinessLicenseUrl != null) {
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        final String url = UploadHelper.getInstance().getPriUrl(mContext, imgBusinessLicenseUrl);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                GlideUtil.loaderCornersImg(mContext, imgBusinessLicense, url);
+                            }
+                        });
+                    }
+                }).start();
+            }
+            if (imgUploadDocumentsPositiveUrl != null) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        final String url = UploadHelper.getInstance().getPriUrl(mContext, imgUploadDocumentsPositiveUrl);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsPositive, url);
+                            }
+                        });
+                    }
+                }).start();
+            }
+            if (imgUploadDocumentsBaclUrl != null) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        final String url = UploadHelper.getInstance().getPriUrl(mContext, imgUploadDocumentsBaclUrl);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsBacl, url);
+                            }
+                        });
+                    }
+                }).start();
+            }
+            if (imgCollectionUploadDocumentsPositiveUrl != null) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        final String url = UploadHelper.getInstance().getPriUrl(mContext, imgCollectionUploadDocumentsPositiveUrl);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsPositive, url);
+                            }
+                        });
+                    }
+                }).start();
+            }
+            if (imgCollectionUploadDocumentsBckUrl != null) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        final String url = UploadHelper.getInstance().getPriUrl(mContext, imgCollectionUploadDocumentsBckUrl);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsBck, url);
+                            }
+                        });
+                    }
+                }).start();
+            }
+
         }
     };
 
@@ -279,16 +343,14 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
                     dataList);
             spIndustry.setAdapter(adapter);
         } else if (code == ApiConfig.GET_DETAIL_INFO) {
-           entity = (UserEntity) data;
-             Message message = Message.obtain();
+            entity = (UserEntity) data;
+            Message message = Message.obtain();
             handler.sendMessage(message);
-
-
 
 
         } else if (code == ApiConfig.MODIFY_INFO) {
             BaseEntity entity = (BaseEntity) data;
-            MyUtils.showShort(entity.getEm());
+            MyUtils.showShort("修改成功");
             this.finish();
         }
     }
@@ -305,9 +367,9 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
 
     @Override
     public void initView() {
-        if(Constant.userType==1){
+        if (Constant.userType == 1) {
             tvTitle.setText("企业用户信息");
-        }else if(Constant.userType==2){
+        } else if (Constant.userType == 2) {
             tvTitle.setText("个体户用户信息");
         }
         userPresenter = new UserPresenter(this);

@@ -116,149 +116,8 @@ public class OrderFragment extends BaseFragment implements BaseView {
     @Override
     protected void init(View view) {
         orderPresenter = new OrderPresenter(this);
-
-
-
         rv.setLayoutManager(MyUtils.getVManager(getActivity()));
         rv.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-
-        showData();
-        initRefreshLayout();
-    }
-
-    @Override
-    protected void initData(Bundle savedInstanceState) {
-        getData();
-    }
-
-    private void getData() {
-        if (Constant.userType == 1) {
-            orderPresenter.getOrderLists(type, page, pageNum);
-        } else if (Constant.userType == 2) {
-            myPagerPersonalProjectPresenter.entityProjects(page, pageNum, type);
-        }
-    }
-
-    private void cleanData() {
-        page = 1;
-        srl.setLoadmoreFinished(false);
-        if (mAdapter != null) {
-            mAdapter.cleanRV();
-        }
-        if (myPagerPersonalProjectAdapter != null) {
-            myPagerPersonalProjectAdapter.cleanRV();
-        }
-        getData();
-    }
-
-    private void initRefreshLayout() {
-        srl.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
-                cleanData();
-
-            }
-        });
-        srl.setOnLoadmoreListener(new OnLoadmoreListener() {
-            @Override
-            public void onLoadmore(final RefreshLayout refreshlayout) {
-                page++;
-                getData();
-            }
-        });
-    }
-
-    public void showData() {
-        if (userType == Constant.userType) {
-
-        } else {
-            if (Constant.userType == 1) {
-                ctlOrderStatus.setVisibility(View.GONE);
-                ctl.setVisibility(View.VISIBLE);
-                ctlProject.setVisibility(View.VISIBLE);
-                ctl.setCurrentTab(0);
-                type = 5;
-                mAdapter = new OrderAdapter(R.layout.item_demand_hall);
-                rv.setAdapter(mAdapter);
-                mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
-                    @Override
-                    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                        OrderListsEntity.DataBean bean = (OrderListsEntity.DataBean) adapter.getData().get(position);
-                        removePosition = position;
-                        if (view.getId() == R.id.ll_item_demand_hall) {
-                            Intent mIntent = new Intent(getActivity(), OrderDetailActivity.class);
-                            Bundle b = new Bundle();
-//                    b.putSerializable("data", bean);
-                            b.putString("id", bean.getProjectId());
-                            mIntent.putExtra("bundle", b);
-                            startActivity(mIntent);
-                        } else if (view.getId() == R.id.btn_item_demand_hall_status) {
-                            if (bean.getProjectStatus().equals("6")) {
-                                orderPresenter.applyInvoice(bean.getProjectId());
-                            } else if (bean.getProjectStatus().equals("8")) {
-                                Intent mIntent = new Intent(getActivity(), CheckNotesActivity.class);
-                                Bundle b = new Bundle();
-//                        b.putSerializable("data", bean);
-                                b.putString("url", bean.getInvoiceFileEntity());
-                                mIntent.putExtra("bundle", b);
-                                startActivity(mIntent);
-                            } else if (bean.getProjectStatus().equals("4")) {
-                                Intent mIntent = new Intent(getActivity(), UploadDocumentsActivity.class);
-                                Bundle b = new Bundle();
-                                b.putString("id", bean.getProjectId());
-                                mIntent.putExtra("bundle", b);
-                                startActivity(mIntent);
-                            }
-
-                        }
-
-
-                    }
-                });
-            } else if (Constant.userType == 2) {
-                ctlOrderStatus.setVisibility(View.VISIBLE);
-                ctl.setVisibility(View.GONE);
-                ctlProject.setVisibility(View.GONE);
-                type = 1;
-                myPagerPersonalProjectAdapter = new MyPagerPersonalProjectAdapter(R.layout.item_demand_hall);
-                rv.setAdapter(myPagerPersonalProjectAdapter);
-                myPagerPersonalProjectAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
-                    @Override
-                    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                        OrderListsEntity.DataBean bean = (OrderListsEntity.DataBean) adapter.getData().get(position);
-                        removePosition = position;
-                        if (view.getId() == R.id.ll_item_demand_hall) {
-                            Intent mIntent = new Intent(getActivity(), OrderDetailActivity.class);
-                            Bundle b = new Bundle();
-//                    b.putSerializable("data", bean);
-                            b.putString("id", bean.getProjectId());
-                            mIntent.putExtra("bundle", b);
-                            startActivity(mIntent);
-                        } else if (view.getId() == R.id.btn_item_demand_hall_status) {
-                            if (bean.getProjectStatus().equals("6")) {
-                                orderPresenter.applyInvoice(bean.getProjectId());
-                            } else if (bean.getProjectStatus().equals("8")) {
-                                Intent mIntent = new Intent(getActivity(), CheckNotesActivity.class);
-                                Bundle b = new Bundle();
-//                        b.putSerializable("data", bean);
-                                b.putString("url", bean.getInvoiceFileEntity());
-                                mIntent.putExtra("bundle", b);
-                                startActivity(mIntent);
-                            } else if (bean.getProjectStatus().equals("4")) {
-                                Intent mIntent = new Intent(getActivity(), UploadDocumentsActivity.class);
-                                Bundle b = new Bundle();
-                                b.putString("id", bean.getProjectId());
-                                mIntent.putExtra("bundle", b);
-                                startActivity(mIntent);
-                            }
-
-                        }
-
-
-                    }
-                });
-            }
-        }
         myPagerPersonalProjectPresenter = new MyPagerPersonalProjectPresenter(this);
         for (int i = 0; i < mTitles.length; i++) {
             mTabEntities.add(new TabEntity(mTitles[i], 0, 0));
@@ -331,6 +190,155 @@ public class OrderFragment extends BaseFragment implements BaseView {
 
             }
         });
+
+        initRefreshLayout();
+    }
+
+    @Override
+    protected void initData(Bundle savedInstanceState) {
+        showData();
+    }
+
+    private void getData() {
+        if (Constant.userType == 1) {
+            orderPresenter.getOrderLists(type, page, pageNum);
+        } else if (Constant.userType == 2) {
+            myPagerPersonalProjectPresenter.entityProjects(page, pageNum, type);
+        }
+    }
+
+    private void cleanData() {
+        page = 1;
+        srl.setLoadmoreFinished(false);
+        if (mAdapter != null) {
+            mAdapter.cleanRV();
+        }
+        if (myPagerPersonalProjectAdapter != null) {
+            myPagerPersonalProjectAdapter.cleanRV();
+        }
+        getData();
+    }
+
+    private void initRefreshLayout() {
+        srl.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                cleanData();
+
+            }
+        });
+        srl.setOnLoadmoreListener(new OnLoadmoreListener() {
+            @Override
+            public void onLoadmore(final RefreshLayout refreshlayout) {
+                page++;
+                getData();
+            }
+        });
+    }
+
+    public void showData() {
+        if (userType == Constant.userType) {
+
+        } else {
+            userType = Constant.userType;
+            if (Constant.userType == 1) {
+
+                ctlOrderStatus.setVisibility(View.GONE);
+                ctl.setVisibility(View.VISIBLE);
+                ctlProject.setVisibility(View.VISIBLE);
+                ctl.setCurrentTab(0);
+                type = 5;
+                mAdapter = new OrderAdapter(R.layout.item_demand_hall);
+                rv.setAdapter(mAdapter);
+                mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+                    @Override
+                    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                        OrderListsEntity.DataBean bean = (OrderListsEntity.DataBean) adapter.getData().get(position);
+                        removePosition = position;
+                        if (view.getId() == R.id.ll_item_demand_hall) {
+                            Intent mIntent = new Intent(getActivity(), OrderDetailActivity.class);
+                            Bundle b = new Bundle();
+//                    b.putSerializable("data", bean);
+                            b.putString("id", bean.getProjectId());
+                            mIntent.putExtra("bundle", b);
+                            startActivity(mIntent);
+                        } else if (view.getId() == R.id.btn_item_demand_hall_status) {
+                            if (bean.getProjectStatus().equals("6")) {
+                                orderPresenter.applyInvoice(bean.getProjectId());
+                            } else if (bean.getProjectStatus().equals("8")) {
+                                Intent mIntent = new Intent(getActivity(), CheckNotesActivity.class);
+                                Bundle b = new Bundle();
+//                        b.putSerializable("data", bean);
+                                b.putString("url", bean.getInvoiceFileEntity());
+                                mIntent.putExtra("bundle", b);
+                                startActivity(mIntent);
+                            } else if (bean.getProjectStatus().equals("4")) {
+                                Intent mIntent = new Intent(getActivity(), UploadDocumentsActivity.class);
+                                Bundle b = new Bundle();
+                                b.putString("id", bean.getProjectId());
+                                mIntent.putExtra("bundle", b);
+                                startActivity(mIntent);
+                            }
+
+                        }
+                    }
+                });
+            } else if (Constant.userType == 2) {
+                ctlOrderStatus.setVisibility(View.VISIBLE);
+                ctl.setVisibility(View.GONE);
+                ctlProject.setVisibility(View.GONE);
+                type = 1;
+                myPagerPersonalProjectAdapter = new MyPagerPersonalProjectAdapter(R.layout.item_demand_hall);
+                rv.setAdapter(myPagerPersonalProjectAdapter);
+                myPagerPersonalProjectAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+                    @Override
+                    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+
+                        MyPagerPersonalProjectEntity.DataBean bean = (MyPagerPersonalProjectEntity.DataBean) adapter.getData().get(position);
+                        removePosition = position;
+                        if (view.getId() == R.id.ll_item_demand_hall) {
+                            Intent mIntent = new Intent(getActivity(), OrderDetailActivity.class);
+                            Bundle b = new Bundle();
+//                          b.putSerializable("data", bean);
+                            b.putString("id", bean.getProjectId());
+                            mIntent.putExtra("bundle", b);
+                            startActivity(mIntent);
+                        } else if (view.getId() == R.id.btn_item_demand_hall_status) {
+                            if (bean.getProjectStatus() == 6) {
+                                orderPresenter.applyInvoice(bean.getProjectId());
+                            } else if (bean.getProjectStatus() == 8) {
+                                Intent mIntent = new Intent(getActivity(), CheckNotesActivity.class);
+                                Bundle b = new Bundle();
+//                        b.putSerializable("data", bean);
+                                b.putString("url", bean.getInvoiceFileEntity());
+                                mIntent.putExtra("bundle", b);
+                                startActivity(mIntent);
+                            } else if (bean.getProjectStatus() == 4) {
+                                Intent mIntent = new Intent(getActivity(), UploadDocumentsActivity.class);
+                                Bundle b = new Bundle();
+                                b.putString("id", bean.getProjectId());
+                                mIntent.putExtra("bundle", b);
+                                startActivity(mIntent);
+                            }
+
+                        }
+
+
+                    }
+                });
+            }
+            cleanData();
+        }
+
+
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            showData();
+        }
     }
 
 }

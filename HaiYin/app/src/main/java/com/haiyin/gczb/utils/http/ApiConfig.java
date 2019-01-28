@@ -60,4 +60,8 @@ public class ApiConfig {
     public final static int SIGN_PROJECT = 0xffffff38 ;
     public final static int BANK_CARDS = 0xffffff39 ;
     public final static int ADD_BANK_CARD = 0xffffff40 ;
+    public final static int ENTITY_ONLINE_PAYS = 0xffffff41 ;
+    public final static int ENTITY_OFFLINE_PAYS = 0xffffff42 ;
+    public final static int ENTITY_RECEIVED_PAYS = 0xffffff43 ;
+    public final static int REFRESH_TOKEN = 0xffffff44 ;
 }

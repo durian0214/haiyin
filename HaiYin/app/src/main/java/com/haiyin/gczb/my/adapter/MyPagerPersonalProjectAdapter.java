@@ -31,6 +31,7 @@ public class MyPagerPersonalProjectAdapter extends BaseQuickAdapter<MyPagerPerso
         helper.setText(R.id.tv_item_demand_hall_classification,item.getSummary());
         helper.setText(R.id.tv_item_demand_hall_address,item.getCityName());
         helper.addOnClickListener(R.id.btn_item_demand_hall_status);
+        helper.addOnClickListener(R.id.ll_item_demand_hall);
         RelativeLayout rl = helper.getView(R.id.rl_item_demand_hall_status);
         rl .setVisibility(View.VISIBLE);
 
@@ -38,19 +39,29 @@ public class MyPagerPersonalProjectAdapter extends BaseQuickAdapter<MyPagerPerso
         Button btn = helper.getView(R.id.btn_item_demand_hall_status);
         if(item.getProjectStatus()==6){
             //待开发票
-            btn.setText("申请开票");
-            btn.setVisibility(View.VISIBLE);
-            tv.setVisibility(View.GONE);
-
+            btn.setVisibility(View.GONE);
+            tv.setVisibility(View.VISIBLE);
+            tv.setText("待开票");
         }else if(item.getProjectStatus()==7){
             //申请开票中
             btn.setVisibility(View.GONE);
             tv.setVisibility(View.VISIBLE);
+            tv.setText("申请开票中");
         }else if(item.getProjectStatus()==8){
             //已开票完成
             btn.setText("查看发票");
             btn.setVisibility(View.VISIBLE);
             tv.setVisibility(View.GONE);
+        }else if(item.getProjectStatus()==4){
+            //待打款
+            btn.setVisibility(View.GONE);
+            tv.setVisibility(View.VISIBLE);
+            tv.setText("待打款");
+        }else if(item.getProjectStatus()==5){
+            //打款待审核,企业点击打款
+            btn.setVisibility(View.GONE);
+            tv.setVisibility(View.VISIBLE);
+            tv.setText("待审核");
         }
 
     }

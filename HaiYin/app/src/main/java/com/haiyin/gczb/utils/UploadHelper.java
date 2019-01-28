@@ -273,7 +273,6 @@ public class UploadHelper {
             @Override
             public void onSuccess(OSSRequest request, OSSResult result) {
                 Log.e("MyOSSUtils", "------getRequestId:" + result.getRequestId());
-                MyUtils.showShort("我成功了"+imgName);
                 ossUpCallback.successImg(pri_host + imgName);
 
 
@@ -281,16 +280,12 @@ public class UploadHelper {
 
             @Override
             public void onFailure(OSSRequest request, ClientException clientException, ServiceException serviceException) {
-                MyUtils.showShort("UploadFailure");
                 if (clientException != null) {
                     // 本地异常如网络异常等
-                    MyUtils.showShort("UploadFailure：表示向OSS发送请求或解析来自OSS的响应时发生错误。\n" +
-                            "  *例如，当网络不可用时，这个异常将被抛出");
                     clientException.printStackTrace();
                 }
                 if (serviceException != null) {
                     // 服务异常
-                    MyUtils.showShort("UploadFailure：表示在OSS服务端发生错误");
                 }
 
             }

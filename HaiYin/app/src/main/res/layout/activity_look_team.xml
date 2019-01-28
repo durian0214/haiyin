@@ -54,6 +54,7 @@
                     android:background="@color/white"
                     android:gravity="right"
                     android:hint="请输入项目名称"
+                    android:singleLine="true"
                     android:lines="1"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />
@@ -89,6 +90,7 @@
                     android:layout_toRightOf="@id/tv_look_team_detail_label"
                     android:background="@color/white"
                     android:gravity="right"
+                    android:singleLine="true"
                     android:hint="请输入项目描述"
                     android:lines="1"
                     android:textColor="@color/color_444444"
@@ -199,6 +201,7 @@
                     android:hint="请输入项目金额"
                     android:inputType="number"
                     android:lines="1"
+                    android:singleLine="true"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />
             </RelativeLayout>
@@ -306,6 +309,7 @@
                     android:gravity="right"
                     android:hint="请输入项目位置"
                     android:lines="1"
+                    android:singleLine="true"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />
             </RelativeLayout>

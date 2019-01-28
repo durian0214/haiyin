@@ -47,6 +47,7 @@ public class LoginActivity extends BaseActivity implements BaseView {
     @Override
     public void success(int code, Object data) {
         if (code == ApiConfig.LOGIN) {
+            MyUtils.showShort("登录成功");
             LoginEntity entity = (LoginEntity) data;
             SharedPreferencesUtils.put(this, SharedPreferencesVar.TOKEN, entity.getData().getToken());
             SharedPreferencesUtils.put(this, SharedPreferencesVar.USER_ID, entity.getData().getUserId());

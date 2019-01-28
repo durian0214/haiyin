@@ -282,9 +282,22 @@ public class MyFragment extends BaseFragment implements BaseView {
     }
 
     @Override
-    public void onResume() {
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            showUI();
+        }
+    }
 
+
+    @Override
+    public void onResume() {
         super.onResume();
+        showUI();
+    }
+
+
+    private void showUI() {
         if (UserUtils.isLogin()) {
 
             if (Constant.userType == 4) {
@@ -345,8 +358,8 @@ public class MyFragment extends BaseFragment implements BaseView {
                 llSetting.setVisibility(View.GONE);
             }
         }
-    }
 
+    }
 
     @Override
     public void netError(String msg) {

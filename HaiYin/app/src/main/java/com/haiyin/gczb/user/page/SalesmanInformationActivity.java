@@ -127,18 +127,42 @@ public class SalesmanInformationActivity extends BaseActivity implements BaseVie
     @Override
     public void success(int code, Object data) {
         if(code == ApiConfig.SALES_DETAIL_INFO){
-            SalesDetailInfoEntity entity = (SalesDetailInfoEntity) data;
-            GlideUtil.loaderCornersImg(this,imgIcon,entity.getData().getHeadImg());
-            GlideUtil.loaderCornersImg(this,imgPositive,entity.getData().getCardFrontPic());
-            GlideUtil.loaderCornersImg(this,imgBack,entity.getData().getCardBackPic());
 
-
+            final SalesDetailInfoEntity entity = (SalesDetailInfoEntity) data;
             edtName.setText(entity.getData().getName());
             tvPhone.setText(entity.getData().getMobile());
             tvAddress.setText(entity.getData().getBackAddress());
             tvBankName.setText(entity.getData().getBackName());
             tvCode.setText(entity.getData().getCardNo());
             sp.setSelection(entity.getData().getSalesPosition());
+            imgIconUrl = entity.getData().getHeadImg();
+            imgUploadDocumentsPositiveUrl = entity.getData().getCardFrontPic();
+            imgUploadDocumentsBaclUrl = entity.getData().getCardBackPic();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                  final String url =   UploadHelper.getInstance().getPriUrl(mContext,imgUploadDocumentsPositiveUrl);
+                  runOnUiThread(new Runnable() {
+                      @Override
+                      public void run() {
+                          GlideUtil.loaderCornersImg(mContext,imgPositive,url);
+                      }
+                  });
+                }
+            }).start();
+            GlideUtil.loaderCornersImg(this,imgIcon,imgIconUrl);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    final String url =   UploadHelper.getInstance().getPriUrl(mContext,imgUploadDocumentsBaclUrl);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            GlideUtil.loaderCornersImg(mContext,imgBack,url);
+                        }
+                    });
+                }
+            }).start();
 
       }else if(code ==ApiConfig.SALES_MODIFY_INFO){
             BaseEntity entity = (BaseEntity) data;

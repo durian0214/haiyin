@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.durian.lib.glide.GlideUtil;
@@ -54,9 +55,14 @@ import butterknife.OnClick;
  * 企业用户信息
  */
 public class EnterpriseInformationActivity extends BaseActivity implements BaseView {
+
+
     RegistPresenter registPresenter;
     GetDataPresenter getDataPresenter;
     EnterprisePresenter enterprisePresenter;
+    //label
+    @BindView(R.id.tv_enterprise_information_title)
+    TextView tvLabel;
     //头像
     @BindView(R.id.img_enterprise_information_icon)
     RoundedImageView imgIcon;
@@ -368,6 +374,11 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
             phone = b.getString("phone");
             code = b.getString("code");
             roleType = b.getInt("roleType");
+            if(roleType == 1){
+                tvLabel.setText("企业用户信息");
+            }else if(roleType ==2){
+                tvLabel.setText("个体户用户信息");
+            }
             edtContactPhone.setText(phone);
             setTvRight("业务员帮忙填写", new View.OnClickListener() {
                 @Override
@@ -406,87 +417,92 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
 
                 mOnPictureSelectedListener = new OnPictureSelectedListener() {
                     @Override
-                    public void onPictureSelected(Uri fileUri, Bitmap bitmap) {
+                    public void onPictureSelected(Uri fileUri, final Bitmap bitmap) {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                String  objectKey = "";
+                                if (position == 0) {
+                                    objectKey = ObjectKeyUtils.getIntance().getAvatars();
+                                } else if (position == 1) {
+                                    objectKey = ObjectKeyUtils.getIntance().getCompanysLicense();
+                                } else if (position == 2) {
+                                    objectKey = ObjectKeyUtils.getIntance().getCompanyCorporation();
+                                } else if (position == 3) {
+                                    objectKey = ObjectKeyUtils.getIntance().getCompanyCorporation();
+                                } else if (position == 4) {
+                                    objectKey = ObjectKeyUtils.getIntance().getCompanyPayee();
+                                } else if (position == 5) {
+                                    objectKey = ObjectKeyUtils.getIntance().getCompanyPayee();
+                                }
+                                if (position == 0) {
 
-                        String objectKey = "";
-                        if (position == 0) {
-                            objectKey = ObjectKeyUtils.getIntance().getAvatars();
-                        } else if (position == 1) {
-                            objectKey = ObjectKeyUtils.getIntance().getCompanysLicense();
-                        } else if (position == 2) {
-                            objectKey = ObjectKeyUtils.getIntance().getCompanyCorporation();
-                        } else if (position == 3) {
-                            objectKey = ObjectKeyUtils.getIntance().getCompanyCorporation();
-                        } else if (position == 4) {
-                            objectKey = ObjectKeyUtils.getIntance().getCompanyPayee();
-                        } else if (position == 5) {
-                            objectKey = ObjectKeyUtils.getIntance().getCompanyPayee();
-                        }
-                        if (position == 0) {
-
-                            UploadHelper.getInstance().upImagePub(mContext, new UploadHelper.OssUpCallback() {
-                                @Override
-                                public void successImg(final String img_url) {
-                                    runOnUiThread(new Runnable() {
+                                    UploadHelper.getInstance().upImagePub(mContext, new UploadHelper.OssUpCallback() {
                                         @Override
-                                        public void run() {
-                                            LogUtil.e(img_url);
-                                            GlideUtil.loaderCornersImg(mContext, imgIcon, img_url);
-                                            imgIconUrl = img_url;
+                                        public void successImg(final String img_url) {
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    LogUtil.e(img_url);
+                                                    GlideUtil.loaderCornersImg(mContext, imgIcon, img_url);
+                                                    imgIconUrl = img_url;
+                                                }
+                                            });
+
                                         }
-                                    });
 
-                                }
-
-                                @Override
-                                public void successVideo(String video_url) {
-
-                                }
-
-                                @Override
-                                public void inProgress(long progress, long zong) {
-
-                                }
-                            }, objectKey, ImageDisposeUtil.Bitmap2Bytes(bitmap));
-                        } else {
-                            UploadHelper.getInstance().upImagePri(mContext, new UploadHelper.OssUpCallback() {
-                                @Override
-                                public void successImg(final String img_url) {
-                                    runOnUiThread(new Runnable() {
                                         @Override
-                                        public void run() {
-                                            if (position == 1) {
-                                                GlideUtil.loaderCornersImg(mContext, imgBusinessLicense, UploadHelper.getInstance().getPriUrl(mContext, img_url));
-                                                imgBusinessLicenseUrl = img_url;
-                                            } else if (position == 2) {
-                                                GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsPositive, UploadHelper.getInstance().getPriUrl(mContext, img_url));
-                                                imgUploadDocumentsPositiveUrl = img_url;
-                                            } else if (position == 3) {
-                                                GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsBacl, UploadHelper.getInstance().getPriUrl(mContext, img_url));
-                                                imgUploadDocumentsBaclUrl = img_url;
-                                            } else if (position == 4) {
-                                                GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsPositive, UploadHelper.getInstance().getPriUrl(mContext, img_url));
-                                                imgCollectionUploadDocumentsPositiveUrl = img_url;
-                                            } else if (position == 5) {
-                                                GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsBck, UploadHelper.getInstance().getPriUrl(mContext, img_url));
-                                                imgCollectionUploadDocumentsBckUrl = img_url;
-                                            }
+                                        public void successVideo(String video_url) {
+
                                         }
-                                    });
 
+                                        @Override
+                                        public void inProgress(long progress, long zong) {
+
+                                        }
+                                    }, objectKey, ImageDisposeUtil.Bitmap2Bytes(bitmap));
+                                } else {
+                                    UploadHelper.getInstance().upImagePri(mContext, new UploadHelper.OssUpCallback() {
+                                        @Override
+                                        public void successImg(final String img_url) {
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    if (position == 1) {
+                                                        GlideUtil.loaderCornersImg(mContext, imgBusinessLicense, UploadHelper.getInstance().getPriUrl(mContext, img_url));
+                                                        imgBusinessLicenseUrl = img_url;
+                                                    } else if (position == 2) {
+                                                        GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsPositive, UploadHelper.getInstance().getPriUrl(mContext, img_url));
+                                                        imgUploadDocumentsPositiveUrl = img_url;
+                                                    } else if (position == 3) {
+                                                        GlideUtil.loaderCornersImg(mContext, imgUploadDocumentsBacl, UploadHelper.getInstance().getPriUrl(mContext, img_url));
+                                                        imgUploadDocumentsBaclUrl = img_url;
+                                                    } else if (position == 4) {
+                                                        GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsPositive, UploadHelper.getInstance().getPriUrl(mContext, img_url));
+                                                        imgCollectionUploadDocumentsPositiveUrl = img_url;
+                                                    } else if (position == 5) {
+                                                        GlideUtil.loaderCornersImg(mContext, imgCollectionUploadDocumentsBck, UploadHelper.getInstance().getPriUrl(mContext, img_url));
+                                                        imgCollectionUploadDocumentsBckUrl = img_url;
+                                                    }
+                                                }
+                                            });
+
+                                        }
+
+                                        @Override
+                                        public void successVideo(String video_url) {
+
+                                        }
+
+                                        @Override
+                                        public void inProgress(long progress, long zong) {
+
+                                        }
+                                    }, objectKey, ImageDisposeUtil.Bitmap2Bytes(bitmap));
                                 }
+                            }
+                        }).start();
 
-                                @Override
-                                public void successVideo(String video_url) {
-
-                                }
-
-                                @Override
-                                public void inProgress(long progress, long zong) {
-
-                                }
-                            }, objectKey, ImageDisposeUtil.Bitmap2Bytes(bitmap));
-                        }
 
 
                     }

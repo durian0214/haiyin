@@ -7,19 +7,12 @@
 
     <include layout="@layout/activity_base" />
 
-    <LinearLayout
+
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="上传凭证"
-            android:textColor="#999999"
-            android:textSize="@dimen/sp_12" />
-    </LinearLayout>
+        android:id="@+id/img_upload_documents"
+        android:scaleType="fitXY"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="10dp"

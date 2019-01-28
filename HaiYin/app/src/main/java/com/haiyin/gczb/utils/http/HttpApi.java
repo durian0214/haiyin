@@ -20,6 +20,10 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST("app/common/login")
     Observable<ResponseBody> doLogin(@Field("data") String data);
+    //刷新token
+    @FormUrlEncoded
+    @POST("app/common/refresh_token")
+    Observable<ResponseBody> refreshToken(@Field("data") String data);
     //消息未读数
     @FormUrlEncoded
     @POST("app/common/unreadMsgCount")
@@ -226,5 +230,14 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST("app/company/addBankCard")
     Observable<ResponseBody> addBankCard (@Field("data") String data);
+    //个体户线上支付记录
+    @FormUrlEncoded
+    @POST("app/company/entityOnlinePays")
+    Observable<ResponseBody> entityOnlinePays (@Field("data") String data);
+    //个体户线下支付记录
+    @FormUrlEncoded
+    @POST("app/company/entityOfflinePays")
+    Observable<ResponseBody> entityOfflinePays (@Field("data") String data);
+
 
 }

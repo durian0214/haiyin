@@ -78,6 +78,7 @@
                     android:background="@color/white"
                     android:gravity="right"
                     android:hint="请输入姓名"
+                    android:singleLine="true"
                     android:lines="1"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />
@@ -139,6 +140,7 @@
                     android:gravity="right"
                     android:hint="请输入现居住地址"
                     android:lines="1"
+                    android:singleLine="true"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />
             </RelativeLayout>
@@ -199,6 +201,7 @@
                     android:gravity="right"
                     android:hint="请输入银行卡号"
                     android:lines="1"
+                    android:singleLine="true"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />
             </RelativeLayout>
@@ -229,6 +232,7 @@
                     android:background="@color/white"
                     android:gravity="right"
                     android:hint="请输入开户行"
+                    android:singleLine="true"
                     android:lines="1"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />
@@ -253,6 +257,7 @@
                     android:id="@+id/img_salesman_information_upload_documents_positive"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
+                    android:scaleType="fitXY"
                     android:layout_below="@id/tv_salesman_information_upload_documents_label"
                     android:layout_marginTop="10dp" />
                 <TextView
@@ -268,6 +273,7 @@
                     android:id="@+id/img_salesman_information_upload_documents_back"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
+                    android:scaleType="fitXY"
                     android:layout_below="@id/tv_salesman_information_upload_documents_positive_label"
                     android:layout_marginTop="10dp" />
                 <TextView

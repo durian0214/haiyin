@@ -21,17 +21,20 @@ public class ChooseUserTypeActivity extends BaseActivity {
     public void toCompany(){
         b.putInt("roleType",1);
         intentJump(this,EnterpriseInformationActivity.class,b);
+        this.finish();
 
     }
     @OnClick(R.id.rl_choose_user_type_individual)
     public void toIndividual(){
         b.putInt("roleType",2);
         intentJump(this,EnterpriseInformationActivity.class,b);
+        this.finish();
     }
     @OnClick(R.id.rl_choose_user_type_personal)
     public void toPersonal(){
         b.putInt("roleType",3);
         intentJump(this,PersonalInformationActivity.class,b);
+        this.finish();
     }
     @Override
     protected int getLayoutId() {
