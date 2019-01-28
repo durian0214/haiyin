@@ -67,6 +67,7 @@ import com.haiyin.gczb.utils.UserUtils;
  */
 public class HomeFragment extends BaseFragment implements BaseView {
 
+    private static HomeFragment instance;
     private HomeNewAdapter homeNewAdapter;
     private DemandHanllAdapter demandHanllAdapter;
 
@@ -87,6 +88,8 @@ public class HomeFragment extends BaseFragment implements BaseView {
     private List<View> viewList = new ArrayList<>();
     @BindView(R.id.tv_home_positioning)
     TextView tvPositioning;
+    @BindView(R.id.tv_home_red)
+    TextView tvRed;
 
     @OnClick(R.id.imgb_home_message)
     public void toMessage() {
@@ -134,6 +137,7 @@ public class HomeFragment extends BaseFragment implements BaseView {
 
     @Override
     protected void init(View view) {
+        instance = this;
         messagePresenter = new MessagePresenter(this);
         picsPresenter = new PicsPresenter(this);
         newsPresenter = new NewsPresenter(this);
@@ -188,9 +192,6 @@ public class HomeFragment extends BaseFragment implements BaseView {
     }
 
     private void getData() {
-        if (UserUtils.isLogin()) {
-            messagePresenter.getMessageCount();
-        }
         picsPresenter.getPics(2);
         picsPresenter.getIcon();
         newsPresenter.getNewsList(1, 2);
@@ -203,6 +204,12 @@ public class HomeFragment extends BaseFragment implements BaseView {
         srl.finishRefresh(200);
         if (code == ApiConfig.MESSAGE_COUNT) {
             MessageCountEntity entity = (MessageCountEntity) data;
+            if (entity.getData().getTotalCount() != 0) {
+                tvRed.setVisibility(View.VISIBLE);
+            } else {
+                tvRed.setVisibility(View.GONE);
+            }
+//
         } else if (code == ApiConfig.GET_PICS) {
             GetPicsEntity entity = (GetPicsEntity) data;
             //banner
@@ -271,5 +278,31 @@ public class HomeFragment extends BaseFragment implements BaseView {
     public void onResume() {
         super.onResume();
         tvPositioning.setText(Constant.cityName);
+        isShowRed();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            if (UserUtils.isLogin()) {
+                isShowRed();
+            }else{
+                tvRed.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    /**
+     * 消息是否显示小红点
+     */
+    public void isShowRed() {
+        if (UserUtils.isLogin()) {
+            messagePresenter.getMessageCount();
+        }
+    }
+
+    public static HomeFragment getInstance() {
+        return instance;
     }
 }
