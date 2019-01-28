@@ -1,6 +1,10 @@
 package com.haiyin.gczb.user.page;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.haiyin.gczb.R;
@@ -33,15 +37,19 @@ public class LoginActivity extends BaseActivity implements BaseView {
     EditText edtAccount;
     @BindView(R.id.edt_login_password)
     EditText edtPassword;
+    @BindView(R.id.btn_login_send)
+    Button btnGetyzm;
 
     @OnClick(R.id.btn_login)
     public void toLogin() {
         loginPresenter.doLogin(edtAccount.getText().toString(), edtPassword.getText().toString());
     }
 
-    @OnClick(R.id.tv_login_send)
+    @OnClick(R.id.btn_login_send)
     public void sendCode() {
-        sendCodePresenter.sendCode(edtAccount.getText().toString(),1);
+        if(isvalidate()) {
+            sendCodePresenter.sendCode(edtAccount.getText().toString(), 1);
+        }
     }
 
     @Override
@@ -54,6 +62,8 @@ public class LoginActivity extends BaseActivity implements BaseView {
             int type = entity.getData().getRoleType();
             SharedPreferencesUtils.put(this, SharedPreferencesVar.userType,type);
             this.finish();
+        }if (code == ApiConfig.SEND_CODE) {
+            countDown();
         }
     }
 
@@ -86,5 +96,40 @@ public class LoginActivity extends BaseActivity implements BaseView {
         b.putString("phone",edtAccount.getText().toString());
         b.putString("code",edtPassword.getText().toString());
         intentJump(this,ChooseUserTypeActivity.class,b);
+    }
+
+
+    //倒计时
+    public void countDown() {
+        new CountDownTimer(60 * 1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                btnGetyzm.setText("重新发送(" + millisUntilFinished / 1000 + ")");
+                btnGetyzm.setEnabled(false);//按钮处于禁用状态
+                btnGetyzm.setClickable(false);//不能监听
+                btnGetyzm.setTextColor(ContextCompat.getColor(LoginActivity.this, R.color.color_444444));
+            }
+
+            @Override
+            public void onFinish() {
+                btnGetyzm.setTextColor(ContextCompat.getColor(LoginActivity.this, R.color.color_00C1B6));
+                btnGetyzm.setEnabled(true);
+                btnGetyzm.setClickable(true);
+                btnGetyzm.setText("获取验证码");
+            }
+        }.start();
+    }
+
+    //是否是手机号
+    private boolean isvalidate() {
+            if (TextUtils.isEmpty(edtAccount.getText().toString().trim())) {
+                MyUtils.showShort("请输入您的账号...");
+                return false;
+            }
+//            else if (!MyUtils.isMobileNO(edtAccount.getText().toString().trim())) {
+//                MyUtils.showShort("请输入正确的手机格式");
+//                return false;
+//            }
+        return true;
     }
 }
