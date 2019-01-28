@@ -57,7 +57,6 @@ public class CheckNotesActivity extends BaseActivity {
                     @Override
                     public void run() {
                         GlideUtil.loaderImg(mContext, ivChecknotesImg, mImageUrl);
-
                     }
                 });
             }

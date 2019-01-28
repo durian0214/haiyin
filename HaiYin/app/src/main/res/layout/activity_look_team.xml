@@ -25,6 +25,7 @@
                 android:layout_width="match_parent"
                 android:id="@+id/img_look_team"
                 android:layout_marginTop="10dp"
+                android:background="@mipmap/add_img_bg"
                 android:layout_height="150dp" />
             <View
                 android:layout_width="match_parent"

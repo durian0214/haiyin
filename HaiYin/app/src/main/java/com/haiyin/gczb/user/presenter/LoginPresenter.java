@@ -1,5 +1,7 @@
 package com.haiyin.gczb.user.presenter;
 
+import android.content.Context;
+
 import com.alibaba.fastjson.JSON;
 import com.haiyin.gczb.user.entity.LoginEntity;
 import com.haiyin.gczb.user.event.RefreshTokenEntity;
@@ -30,7 +32,7 @@ public class LoginPresenter  extends BasePresenter<BaseView> {
     }
 
 
-    public void doLogin(String mobile ,String code) {
+    public void doLogin(String mobile ,String code, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("mobile", mobile);
         params.put("code", code);
@@ -51,7 +53,7 @@ public class LoginPresenter  extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 

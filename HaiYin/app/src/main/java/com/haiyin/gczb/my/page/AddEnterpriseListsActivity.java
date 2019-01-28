@@ -8,11 +8,8 @@ import android.widget.LinearLayout;
 import com.durian.lib.base.BaseView;
 import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseActivity;
-import com.haiyin.gczb.my.adapter.AccountAdapter;
 import com.haiyin.gczb.my.adapter.EnterpriseAdapter;
-import com.haiyin.gczb.my.entity.AccountEntity;
 import com.haiyin.gczb.my.entity.EnterpriseEntity;
-import com.haiyin.gczb.my.presenter.AccountPresenter;
 import com.haiyin.gczb.my.presenter.EnterprisePresenter;
 import com.haiyin.gczb.user.page.EnterpriseInformationActivity;
 import com.haiyin.gczb.utils.MyUtils;
@@ -61,7 +58,6 @@ public class AddEnterpriseListsActivity   extends BaseActivity implements BaseVi
         mAdapter = new EnterpriseAdapter(R.layout.item_order_contract);
         rv.setAdapter(mAdapter);
         rv.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
-
         initRefreshLayout();
         getData();
     }

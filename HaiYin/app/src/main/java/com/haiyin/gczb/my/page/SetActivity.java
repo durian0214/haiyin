@@ -11,6 +11,7 @@ import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseActivity;
 import com.haiyin.gczb.my.entity.GetPayPwdStatusEntity;
 import com.haiyin.gczb.my.presenter.PayPasswordPresenter;
+import com.haiyin.gczb.utils.MyUtils;
 
 /**
  * Created
@@ -36,6 +37,10 @@ public class SetActivity extends BaseActivity implements BaseView{
         intentJump(this,ChangePayPasswordActivity.class,null);
     }
 
+    @OnClick(R.id.tv_my_version)
+    public void about() {
+        MyUtils.showShort(getString(R.string.version));
+    }
 
     @BindView(R.id.rl_set_pay_password)
     RelativeLayout rlSet;

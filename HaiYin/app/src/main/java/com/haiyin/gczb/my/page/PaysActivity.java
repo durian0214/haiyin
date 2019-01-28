@@ -12,6 +12,7 @@ import com.haiyin.gczb.base.BaseActivity;
 import com.haiyin.gczb.my.adapter.PaysAdapter;
 import com.haiyin.gczb.my.entity.PaysEntity;
 import com.haiyin.gczb.my.presenter.MyWalletPresenter;
+import com.haiyin.gczb.utils.Arith;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.http.ApiConfig;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -56,8 +57,7 @@ public class PaysActivity extends BaseActivity implements BaseView {
     @OnClick(R.id.btn_pay_record)
     public void to() {
         //提现
-
-
+        MyUtils.showShort("未开放");
     }
 
     int type; //1:线上 2：线下
@@ -69,6 +69,7 @@ public class PaysActivity extends BaseActivity implements BaseView {
 
     @Override
     public void initView() {
+
         myWalletPresenter = new MyWalletPresenter(this);
         type = getIntent().getBundleExtra("bundle").getInt("type");
         if (type == 1) {
@@ -104,6 +105,9 @@ public class PaysActivity extends BaseActivity implements BaseView {
 
         if(code == ApiConfig.ENTITY_ONLINE_PAYS){
             PaysEntity entity = (PaysEntity) data;
+            tvAmount.setText(Arith.div_text(((PaysEntity) data).getData().getTotalAmount(),100));
+            tvCarryAcount.setText(Arith.div_text(((PaysEntity) data).getData().getArrivalAmount(),100)+"元");
+            tvUncarryAcount.setText(Arith.div_text(((PaysEntity) data).getData().getUnArrivalAmount(),100)+"元");
             if (srl != null && srl.isRefreshing()) {
                 srl.finishRefresh(200);
             }
@@ -116,6 +120,9 @@ public class PaysActivity extends BaseActivity implements BaseView {
             }
             mAdapter.addData(entity.getData().getDataList());
         }else if(code == ApiConfig.ENTITY_OFFLINE_PAYS){
+            tvAmount.setText(Arith.div_text(((PaysEntity) data).getData().getTotalAmount(),100));
+            tvCarryAcount.setText(Arith.div_text(((PaysEntity) data).getData().getArrivalAmount(),100));
+            tvUncarryAcount.setText(Arith.div_text(((PaysEntity) data).getData().getUnArrivalAmount(),100));
             PaysEntity entity = (PaysEntity) data;
             if (srl != null && srl.isRefreshing()) {
                 srl.finishRefresh(200);
@@ -128,8 +135,6 @@ public class PaysActivity extends BaseActivity implements BaseView {
                 srl.setLoadmoreFinished(true);
             }
             mAdapter.addData(entity.getData().getDataList());
-        }else if(code ==ApiConfig.ENTITY_RECEIVED_PAYS){
-
         }
     }
 

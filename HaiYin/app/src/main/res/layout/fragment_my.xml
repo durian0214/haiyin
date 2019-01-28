@@ -55,13 +55,13 @@
                     android:textSize="@dimen/size_18sp" />
 
                 <TextView
+                    android:id="@+id/tv_my_position"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/shape_tv"
                     android:gravity="center"
                     android:paddingLeft="15dp"
-                    android:id="@+id/tv_my_position"
                     android:paddingRight="15dp"
                     android:text="职业经理人"
                     android:textColor="@color/color_00C1B6"
@@ -72,10 +72,9 @@
                 android:id="@+id/img_my_icon"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                app:riv_oval="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                />
+                app:riv_oval="true" />
         </RelativeLayout>
 
         <View
@@ -83,11 +82,13 @@
             android:layout_height="10dp"
             android:layout_marginTop="20dp"
             android:background="#F5F5F5" />
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="vertical"
             android:id="@+id/ll_my_message"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/tv_my_message"
                 android:layout_width="match_parent"
@@ -107,232 +108,272 @@
                 android:layout_marginLeft="15dp"
                 android:background="#E5E5E5" />
         </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/ll_my_wallet"
-        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv_my_wallet"
+        <LinearLayout
+            android:id="@+id/ll_my_wallet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/my_wallet"
-            android:drawablePadding="10dp"
-            android:drawableRight="@mipmap/to"
-            android:paddingBottom="20dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="20dp"
-            android:text="钱包" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="15dp"
-            android:background="#E5E5E5" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/ll_my_progress_query"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/tv_my_progress_query"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_my_wallet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/my_wallet"
+                android:drawablePadding="10dp"
+                android:drawableRight="@mipmap/to"
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="20dp"
+                android:text="钱包" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:background="#E5E5E5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_my_progress_query"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/my_progress_query"
-            android:drawablePadding="10dp"
-            android:drawableRight="@mipmap/to"
-            android:paddingBottom="20dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="20dp"
-            android:text="进度查询" />
+            android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="15dp"
-            android:background="#E5E5E5" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/ll_my_customer_management"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/tv_my_customer_management"
+            <TextView
+                android:id="@+id/tv_my_progress_query"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/my_progress_query"
+                android:drawablePadding="10dp"
+                android:drawableRight="@mipmap/to"
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="20dp"
+                android:text="进度查询" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:background="#E5E5E5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_my_customer_management"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/my_customer_management"
-            android:drawablePadding="10dp"
-            android:drawableRight="@mipmap/to"
-            android:paddingBottom="20dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="20dp"
-            android:text="客户管理" />
+            android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="15dp"
-            android:background="#E5E5E5" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/ll_my_contract"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/tv_my_contract"
+            <TextView
+                android:id="@+id/tv_my_customer_management"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/my_customer_management"
+                android:drawablePadding="10dp"
+                android:drawableRight="@mipmap/to"
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="20dp"
+                android:text="客户管理" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:background="#E5E5E5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_my_contract"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/my_contract"
-            android:drawablePadding="10dp"
-            android:drawableRight="@mipmap/to"
-            android:paddingBottom="20dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="20dp"
-            android:text="合同" />
+            android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="15dp"
-            android:background="#E5E5E5" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/ll_my_perfect_information"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/tv_my_perfect_information"
+            <TextView
+                android:id="@+id/tv_my_contract"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/my_contract"
+                android:drawablePadding="10dp"
+                android:drawableRight="@mipmap/to"
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="20dp"
+                android:text="合同" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:background="#E5E5E5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_my_perfect_information"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/my_perfect_information"
-            android:drawablePadding="10dp"
-            android:drawableRight="@mipmap/to"
-            android:paddingBottom="20dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="20dp"
-            android:text="完善个人资料" />
+            android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="15dp"
-            android:background="#E5E5E5" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/ll_my_pager"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/tv_my_pager"
+            <TextView
+                android:id="@+id/tv_my_perfect_information"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/my_perfect_information"
+                android:drawablePadding="10dp"
+                android:drawableRight="@mipmap/to"
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="20dp"
+                android:text="完善个人资料" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:background="#E5E5E5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_my_pager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/my_paper"
-            android:drawablePadding="10dp"
-            android:drawableRight="@mipmap/to"
-            android:paddingBottom="20dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="20dp"
-            android:text="票据" />
+            android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="15dp"
-            android:background="#E5E5E5" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tv_my_pager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/my_paper"
+                android:drawablePadding="10dp"
+                android:drawableRight="@mipmap/to"
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="20dp"
+                android:text="票据" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:background="#E5E5E5" />
+        </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
             android:background="#F5F5F5" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/ll_my_email"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/tv_my_email"
+
+        <LinearLayout
+            android:id="@+id/ll_my_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/my_email"
-            android:drawablePadding="10dp"
-            android:drawableRight="@mipmap/to"
-            android:paddingBottom="20dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="20dp"
-            android:text="服务信息" />
+            android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="15dp"
-            android:background="#E5E5E5" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/ll_my_add_enterprise"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/tv_my_add_enterprise"
+            <TextView
+                android:id="@+id/tv_my_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/my_email"
+                android:drawablePadding="10dp"
+                android:drawableRight="@mipmap/to"
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="20dp"
+                android:text="服务信息" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:background="#E5E5E5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_my_add_enterprise"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/my_add_enterprise"
-            android:drawablePadding="10dp"
-            android:drawableRight="@mipmap/to"
-            android:paddingBottom="20dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="20dp"
-            android:text="添加下级企业" />
+            android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="15dp"
-            android:background="#E5E5E5" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/ll_my_add_account"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/tv_my_add_account"
+            <TextView
+                android:id="@+id/tv_my_add_enterprise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/my_add_enterprise"
+                android:drawablePadding="10dp"
+                android:drawableRight="@mipmap/to"
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="20dp"
+                android:text="添加下级企业" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:background="#E5E5E5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_my_add_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/my_add_account"
-            android:drawablePadding="10dp"
-            android:drawableRight="@mipmap/to"
-            android:paddingBottom="20dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="20dp"
-            android:text="添加本部账号" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="#F5F5F5" />
-    </LinearLayout>
+            android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/ll_my_setting"
-        android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_my_add_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/my_add_account"
+                android:drawablePadding="10dp"
+                android:drawableRight="@mipmap/to"
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="20dp"
+                android:text="添加本部账号" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_my_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_my_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/my_setting"
+                android:drawablePadding="10dp"
+                android:drawableRight="@mipmap/to"
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="20dp"
+                android:text="设置" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5" />
+        </LinearLayout>
+
         <TextView
-            android:id="@+id/tv_my_setting"
+            android:id="@+id/tv_my_version"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@mipmap/my_setting"
@@ -342,20 +383,20 @@
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:paddingTop="20dp"
-            android:text="设置" />
+            android:text="关于我们" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
             android:background="#F5F5F5" />
-    </LinearLayout>
+
         <Button
+            android:id="@+id/btn_my_loginout"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_margin="15dp"
             android:background="@drawable/shape_button"
             android:gravity="center"
-            android:id="@+id/btn_my_loginout"
             android:text="退出登录"
             android:textColor="@color/white"
             android:textSize="@dimen/sp_14" />

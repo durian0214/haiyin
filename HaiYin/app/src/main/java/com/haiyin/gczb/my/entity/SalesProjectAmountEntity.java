@@ -31,14 +31,14 @@ public class SalesProjectAmountEntity extends BaseEntity {
          * dataList : [{"companyId":"1082681449276121088","title":"标题","amount":10000,"createDate":"2019.01.09"}]
          */
 
-        private int totalAmount;
+        private Double totalAmount;
         private List<DataListBean> dataList;
 
-        public int getTotalAmount() {
+        public Double getTotalAmount() {
             return totalAmount;
         }
 
-        public void setTotalAmount(int totalAmount) {
+        public void setTotalAmount(Double totalAmount) {
             this.totalAmount = totalAmount;
         }
 

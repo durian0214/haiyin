@@ -33,32 +33,32 @@ public class PaysEntity extends BaseEntity {
          * dataList : [{"projectId":"1081490503305928704","title":"标题","amount":10000,"createDate":"日期","isArrivaled":true}]
          */
 
-        private int totalAmount;
-        private int arrivalAmount;
-        private int unArrivalAmount;
+        private Double totalAmount;
+        private Double arrivalAmount;
+        private Double unArrivalAmount;
         private List<DataListBean> dataList;
 
-        public int getTotalAmount() {
+        public Double getTotalAmount() {
             return totalAmount;
         }
 
-        public void setTotalAmount(int totalAmount) {
+        public void setTotalAmount(Double totalAmount) {
             this.totalAmount = totalAmount;
         }
 
-        public int getArrivalAmount() {
+        public Double getArrivalAmount() {
             return arrivalAmount;
         }
 
-        public void setArrivalAmount(int arrivalAmount) {
+        public void setArrivalAmount(Double arrivalAmount) {
             this.arrivalAmount = arrivalAmount;
         }
 
-        public int getUnArrivalAmount() {
+        public Double getUnArrivalAmount() {
             return unArrivalAmount;
         }
 
-        public void setUnArrivalAmount(int unArrivalAmount) {
+        public void setUnArrivalAmount(Double unArrivalAmount) {
             this.unArrivalAmount = unArrivalAmount;
         }
 

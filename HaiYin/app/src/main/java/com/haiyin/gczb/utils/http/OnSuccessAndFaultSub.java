@@ -21,6 +21,7 @@ import com.haiyin.gczb.user.event.RegisterUserEvent;
 import com.haiyin.gczb.user.event.UpdataTokenEvent;
 import com.haiyin.gczb.utils.AESUtil;
 import com.haiyin.gczb.utils.UserUtils;
+
 import io.reactivex.observers.DisposableObserver;
 import okhttp3.ResponseBody;
 import retrofit2.HttpException;
@@ -175,12 +176,12 @@ public class OnSuccessAndFaultSub extends DisposableObserver<ResponseBody> imple
             int resultCode = jsonObject.getInt("ec");
             if (resultCode == 200) {
                 JsonEntity entity = JSON.parseObject(result, JsonEntity.class);
-                String data =jsonObject.getString("data");
-                if(!data.equals("null")){
+                String data = jsonObject.getString("data");
+                if (!data.equals("null")) {
                     String s = AESUtil.decrypt(jsonObject.getString("data"));
-                    try{
+                    try {
                         entity.setData(JSON.parse(s));
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         entity.setData(s);
                     }
 
@@ -196,12 +197,14 @@ public class OnSuccessAndFaultSub extends DisposableObserver<ResponseBody> imple
                 } else if (402 == resultCode) {
                     //token错误
                     UserUtils.tokenerror();
-                }else if(403 == resultCode){
+                } else if (403 == resultCode) {
                     //手机号走注册流程
                     RxBus.getInstance().send(new RegisterUserEvent());
+                }else{
+                    mOnSuccessAndFaultListener.onFault(errorMsg);
+                    Log.e("OnSuccessAndFaultSub", "errorMsg: " + errorMsg);
                 }
-                mOnSuccessAndFaultListener.onFault(errorMsg);
-                Log.e("OnSuccessAndFaultSub", "errorMsg: " + errorMsg);
+
             }
         } catch (Exception e) {
             e.printStackTrace();

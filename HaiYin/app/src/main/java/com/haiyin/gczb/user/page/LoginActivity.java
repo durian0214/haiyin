@@ -42,7 +42,7 @@ public class LoginActivity extends BaseActivity implements BaseView {
 
     @OnClick(R.id.btn_login)
     public void toLogin() {
-        loginPresenter.doLogin(edtAccount.getText().toString(), edtPassword.getText().toString());
+        loginPresenter.doLogin(edtAccount.getText().toString(), edtPassword.getText().toString(),mContext);
     }
 
     @OnClick(R.id.btn_login_send)

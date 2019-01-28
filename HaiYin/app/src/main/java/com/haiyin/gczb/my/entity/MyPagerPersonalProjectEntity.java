@@ -37,7 +37,7 @@ public class MyPagerPersonalProjectEntity extends BaseEntity {
         private String projectId;
         private String title;
         private String cityName;
-        private int amount;
+        private Double amount;
         private String summary;
         private int days;
         private String address;
@@ -68,11 +68,11 @@ public class MyPagerPersonalProjectEntity extends BaseEntity {
             this.cityName = cityName;
         }
 
-        public int getAmount() {
+        public Double getAmount() {
             return amount;
         }
 
-        public void setAmount(int amount) {
+        public void setAmount(Double amount) {
             this.amount = amount;
         }
 

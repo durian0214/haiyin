@@ -1,5 +1,7 @@
 package com.haiyin.gczb.user.presenter;
 
+import android.content.Context;
+
 import com.alibaba.fastjson.JSON;
 import com.haiyin.gczb.user.entity.SendCodeEntity;
 import com.haiyin.gczb.utils.MyUtils;
@@ -32,7 +34,7 @@ public class SendCodePresenter extends BasePresenter<BaseView> {
      * @param mobile
      * @param dataType 发送验证码类型：1=登录验证码 2=其他身份验证码
      */
-    public void sendCode(String mobile ,int dataType) {
+    public void sendCode(String mobile , int dataType) {
         Map<String, Object> params = new HashMap<>();
         params.put("mobile", mobile);
         params.put("dataType", dataType);

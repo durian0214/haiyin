@@ -47,7 +47,7 @@ public class ProjectDetailEntity extends BaseEntity {
         private String pic;
         private String title;
         private String summary;
-        private int amount;
+        private Double amount;
         private String beginDate;
         private String endDate;
         private String industryName;
@@ -90,11 +90,11 @@ public class ProjectDetailEntity extends BaseEntity {
             this.summary = summary;
         }
 
-        public int getAmount() {
+        public Double getAmount() {
             return amount;
         }
 
-        public void setAmount(int amount) {
+        public void setAmount(Double amount) {
             this.amount = amount;
         }
 

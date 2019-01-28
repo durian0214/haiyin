@@ -121,9 +121,9 @@ public class OrderDetailActivity extends BaseActivity implements BaseView {
                         public void onClick(View v) {
                             Intent mIntent = new Intent(mContext, CheckNotesActivity.class);
                             Bundle b = new Bundle();
-                            if (entity.getData().getNeedType() == 1) {
+                            if (Constant.userType== 1) {
                                 b.putString("url", entity.getData().getInvoiceFileCompany());
-                            } else {
+                            } else if(Constant.userType==2) {
                                 b.putString("url", entity.getData().getInvoiceFileEntity());
                             }
                             mIntent.putExtra("bundle", b);

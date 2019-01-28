@@ -18,6 +18,7 @@ import com.haiyin.gczb.my.page.CustomerManagementActivity;
 import com.haiyin.gczb.my.page.IndividualMyContractProjectActivity;
 import com.haiyin.gczb.my.page.MyContractActivity;
 import com.haiyin.gczb.my.page.MyPagerActivity;
+import com.haiyin.gczb.my.page.MyWalletActivity;
 import com.haiyin.gczb.my.page.ProgressQueryActivity;
 import com.haiyin.gczb.my.page.SalesmanSetActivity;
 import com.haiyin.gczb.my.page.ServiceInformationActivity;
@@ -84,6 +85,11 @@ public class MyFragment extends BaseFragment implements BaseView {
     public void toLoginOut() {
         UserUtils.outLogin();
     }
+    @OnClick(R.id.tv_my_version)
+    public void about() {
+        MyUtils.showShort(getString(R.string.version));
+    }
+
 
     @OnClick(R.id.imgb_my_set)
     public void toSet() {
@@ -163,8 +169,8 @@ public class MyFragment extends BaseFragment implements BaseView {
             return;
         }
         //钱包
-//        Intent mIntent = new Intent(getActivity(), MyBusinessActivity.class);
-//        startActivity(mIntent);
+        Intent mIntent = new Intent(getActivity(), MyWalletActivity.class);
+        startActivity(mIntent);
     }
 
     @OnClick(R.id.tv_my_pager)

@@ -1,9 +1,6 @@
 package com.haiyin.gczb;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -13,24 +10,24 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.durian.lib.base.BaseView;
-import com.haiyin.gczb.base.ActivityManager;
+import com.durian.lib.bus.RxBus;
 import com.haiyin.gczb.base.BaseActivity;
+import com.haiyin.gczb.demandHall.DemandHallFragment;
 import com.haiyin.gczb.home.HomeFragment;
 import com.haiyin.gczb.home.entity.GetCityEntity;
 import com.haiyin.gczb.home.presenter.CityPresenter;
 import com.haiyin.gczb.my.MyFragment;
 import com.haiyin.gczb.order.OrderFragment;
 import com.haiyin.gczb.sendPackage.page.SendPackageActivity;
+import com.haiyin.gczb.user.event.LoginOutEvent;
 import com.haiyin.gczb.user.event.RefreshTokenEntity;
 import com.haiyin.gczb.user.event.UpdataTokenEvent;
 import com.haiyin.gczb.user.page.LoginActivity;
@@ -38,11 +35,10 @@ import com.haiyin.gczb.user.presenter.LoginPresenter;
 import com.haiyin.gczb.utils.Constant;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.SharedPreferencesUtils;
-import com.haiyin.gczb.utils.UploadHelper;
+import com.haiyin.gczb.utils.UserUtils;
 import com.haiyin.gczb.utils.http.ApiConfig;
 import com.haiyin.gczb.utils.var.SharedPreferencesVar;
 import com.haiyin.gczb.utils.view.BottomNavigationViewHelper;
-import com.durian.lib.bus.RxBus;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -52,18 +48,6 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
-import com.haiyin.gczb.base.BaseActivity;
-import com.haiyin.gczb.demandHall.DemandHallFragment;
-import com.haiyin.gczb.home.HomeFragment;
-import com.haiyin.gczb.my.MyFragment;
-import com.haiyin.gczb.order.OrderFragment;
-import com.haiyin.gczb.user.event.LoginOutEvent;
-import com.haiyin.gczb.user.page.LoginActivity;
-import com.haiyin.gczb.utils.MyUtils;
-import com.haiyin.gczb.utils.UserUtils;
-import com.haiyin.gczb.utils.view.BottomNavigationViewHelper;
-
 import io.reactivex.functions.Consumer;
 
 public class MainActivity extends BaseActivity implements BaseView {
@@ -199,14 +183,14 @@ public class MainActivity extends BaseActivity implements BaseView {
 
     private void getAddress() {
         cityPresenter.getCity();
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_DENIED) {
-            return;
-        }
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
-            return;
-        }
-//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_DENIED) {
+//            return;
+//        }
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
+//            return;
+//        }
+////        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+//        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 
     }
 

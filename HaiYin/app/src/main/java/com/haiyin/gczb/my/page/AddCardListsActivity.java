@@ -36,16 +36,20 @@ public class AddCardListsActivity extends BaseActivity implements BaseView {
 
 
     CardPresenter cardPresenter;
-    @BindView(R.id.rv_add_account)
+    @BindView(R.id.rv_add_card)
     RecyclerView rv;
     private CardAdapter mAdapter;
     @BindView(R.id.srl)
     SmartRefreshLayout srl;
-    @BindView(R.id.ll_add_account_new)
+    @BindView(R.id.ll_add_card_new)
     LinearLayout ll;
-    @OnClick(R.id.btn_add_account)
+    @OnClick(R.id.btn_add_card)
     public void addAccount(){
-        intentJump(this,AddAccountActivity.class,null);
+        intentJump(this,AddCardActivity.class,null);
+    }
+    @OnClick(R.id.tv_add_card)
+    public void addAccounttv(){
+        intentJump(this,AddCardActivity.class,null);
     }
 
     @Override

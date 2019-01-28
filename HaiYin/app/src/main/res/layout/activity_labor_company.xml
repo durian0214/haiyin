@@ -26,6 +26,7 @@
                 android:id="@+id/img_labor_company"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
+                android:background="@mipmap/add_img_bg"
                 android:layout_marginTop="10dp" />
 
             <View

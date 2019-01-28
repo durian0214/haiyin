@@ -60,6 +60,7 @@ public class UserUtils {
      * 退出登录
      */
     public static void outLogin() {
+        Constant.userType=0;
         SharedPreferencesUtils.clear(BaseApplication.getAppContext());
         if (MainActivity.getInstance()!=null) {
             MainActivity.getInstance().selMainhome();

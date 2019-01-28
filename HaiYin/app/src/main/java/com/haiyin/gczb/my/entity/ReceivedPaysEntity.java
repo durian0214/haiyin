@@ -32,14 +32,14 @@ public class ReceivedPaysEntity extends BaseEntity {
          * dataList : [{"projectId":"1081490503305928704","title":"标题","amount":10000,"createDate":"日期"}]
          */
 
-        private String receivedAmount;
+        private Double receivedAmount;
         private List<DataListBean> dataList;
 
-        public String getReceivedAmount() {
+        public Double getReceivedAmount() {
             return receivedAmount;
         }
 
-        public void setReceivedAmount(String receivedAmount) {
+        public void setReceivedAmount(Double receivedAmount) {
             this.receivedAmount = receivedAmount;
         }
 

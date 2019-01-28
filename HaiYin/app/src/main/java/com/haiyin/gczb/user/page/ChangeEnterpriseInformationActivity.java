@@ -330,6 +330,8 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
                     this, R.layout.item_sp,
                     dataList);
             spSalesman.setAdapter(adapter);
+            getDataPresenter.industry();
+
         } else if (code == ApiConfig.INDUSTRY) {
             IndustryEntity entity = (IndustryEntity) data;
             industryList = entity.getData();
@@ -342,6 +344,7 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
                     this, R.layout.item_sp,
                     dataList);
             spIndustry.setAdapter(adapter);
+            userPresenter.getDetailInfo();
         } else if (code == ApiConfig.GET_DETAIL_INFO) {
             entity = (UserEntity) data;
             Message message = Message.obtain();
@@ -381,8 +384,7 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
                 getResources().getStringArray(R.array.member));
         spPosition.setAdapter(adapter);
         getDataPresenter.sales();
-        getDataPresenter.industry();
-        userPresenter.getDetailInfo();
+
         vSalesman.setVisibility(View.GONE);
         rlSalesman.setVisibility(View.GONE);
     }
