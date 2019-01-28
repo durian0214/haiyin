@@ -47,9 +47,7 @@ public class LoginActivity extends BaseActivity implements BaseView {
 
     @OnClick(R.id.btn_login_send)
     public void sendCode() {
-        if(isvalidate()) {
             sendCodePresenter.sendCode(edtAccount.getText().toString(), 1);
-        }
     }
 
     @Override
@@ -120,16 +118,5 @@ public class LoginActivity extends BaseActivity implements BaseView {
         }.start();
     }
 
-    //是否是手机号
-    private boolean isvalidate() {
-            if (TextUtils.isEmpty(edtAccount.getText().toString().trim())) {
-                MyUtils.showShort("请输入您的账号...");
-                return false;
-            }
-//            else if (!MyUtils.isMobileNO(edtAccount.getText().toString().trim())) {
-//                MyUtils.showShort("请输入正确的手机格式");
-//                return false;
-//            }
-        return true;
-    }
+
 }
