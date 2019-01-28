@@ -314,6 +314,8 @@ public class MainActivity extends BaseActivity implements BaseView {
      */
     public void selMainhome() {
         navigation.setSelectedItemId(R.id.main_home);
+        HomeFragment.getInstance().isShowRed();
+
     }
 
     @Override

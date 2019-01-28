@@ -27,27 +27,49 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:background="@color/white"
-                    android:padding="15dp">
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    >
 
                     <TextView
+                        android:id="@+id/tv_home_positioning"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="26dp"
                         android:layout_alignParentLeft="true"
+                        android:gravity="center"
+                        android:layout_centerVertical="true"
                         android:drawableLeft="@mipmap/positioning"
                         android:drawablePadding="5dp"
                         android:text="北京"
-                        android:id="@+id/tv_home_positioning"
                         android:textColor="@color/color_333333"
                         android:textSize="@dimen/size_12sp" />
 
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/imgb_home_message"
+                    <RelativeLayout
+                        android:layout_width="18dp"
+                        android:layout_height="26dp"
+                        android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
-                        android:background="@mipmap/message" />
+                        >
+
+                        <ImageButton
+                            android:id="@+id/imgb_home_message"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_centerInParent="true"
+                            android:background="@mipmap/message" />
+
+                        <TextView
+                            android:id="@+id/tv_home_red"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:layout_alignParentTop="true"
+                            android:visibility="gone"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/shape_shopcatnum" />
+                    </RelativeLayout>
                 </RelativeLayout>
 
                 <LinearLayout
@@ -57,6 +79,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_home_search"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
@@ -65,20 +88,19 @@
                         android:drawableLeft="@mipmap/search"
                         android:gravity="center"
                         android:hint="请输入要搜索的内容"
-                        android:id="@+id/tv_home_search"
                         android:padding="10dp" />
 
                     <com.durian.lib.banner.BannerView
                         android:id="@+id/banner_home"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
-                        android:layout_margin="15dp"
-                    />
+                        android:layout_margin="15dp" />
+
                     <com.haiyin.gczb.utils.view.MyGridView
                         android:id="@+id/gv_home"
                         android:layout_width="match_parent"
-                        android:numColumns="4"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:numColumns="4" />
                 </LinearLayout>
 
                 <RelativeLayout
@@ -89,15 +111,15 @@
                     android:padding="15dp">
 
                     <TextView
+                        android:id="@+id/tv_home_crowdsourcing_more"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/to"
+                        android:drawablePadding="5dp"
                         android:text="查看更多"
                         android:textColor="#6B7178"
-                        android:id="@+id/tv_home_crowdsourcing_more"
                         android:textSize="@dimen/size_10sp" />
 
                     <TextView
@@ -115,9 +137,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white"
-                    android:nestedScrollingEnabled="false"
                     android:descendantFocusability="blocksDescendants"
-                    android:focusableInTouchMode="false" />
+                    android:focusableInTouchMode="false"
+                    android:nestedScrollingEnabled="false" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -127,14 +149,14 @@
                     android:padding="15dp">
 
                     <TextView
+                        android:id="@+id/tv_home_news_more"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:drawablePadding="5dp"
                         android:drawableRight="@mipmap/to"
+                        android:drawablePadding="5dp"
                         android:text="查看更多"
-                        android:id="@+id/tv_home_news_more"
 
                         android:textColor="#6B7178"
                         android:textSize="@dimen/size_10sp" />
@@ -154,9 +176,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white"
-                    android:nestedScrollingEnabled="false"
                     android:descendantFocusability="blocksDescendants"
-                    android:focusableInTouchMode="false" />
+                    android:focusableInTouchMode="false"
+                    android:nestedScrollingEnabled="false" />
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
