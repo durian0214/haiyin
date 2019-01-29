@@ -75,9 +75,9 @@ public class CumulativeFragment extends BaseFragment implements BaseView{
 
     private void getData() {
         if(type==1){
-            progressQueryPresenter.projectCooperate(page,pageNum,2);
+            progressQueryPresenter.projectCooperate(page,pageNum,2,getActivity());
         }else if(type==2){
-            progressQueryPresenter.projectClearing(page,pageNum,2);
+            progressQueryPresenter.projectClearing(page,pageNum,2,getActivity());
         }
     }
     private void initRefreshLayout() {

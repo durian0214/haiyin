@@ -76,7 +76,7 @@ public class NewsFragment extends BaseFragment implements BaseView {
         getData();
     }
     private void getData() {
-        searchPresenter.toSearch(1,page,pageNum,str);
+        searchPresenter.toSearch(1,page,pageNum,str,getActivity());
     }
     private void initRefreshLayout() {
         srl.setOnRefreshListener(new OnRefreshListener() {

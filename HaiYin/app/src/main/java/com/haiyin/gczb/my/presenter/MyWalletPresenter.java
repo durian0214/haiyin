@@ -1,5 +1,7 @@
 package com.haiyin.gczb.my.presenter;
 
+import android.content.Context;
+
 import com.alibaba.fastjson.JSON;
 import com.durian.lib.base.BasePresenter;
 import com.durian.lib.base.BaseView;
@@ -35,7 +37,7 @@ public class MyWalletPresenter extends BasePresenter<BaseView> {
      * @param page
      * @param num
      */
-    public void entityOnlinePays(int page, int num) {
+    public void entityOnlinePays(int page, int num, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("pageNo", page);
         params.put("pageSize", num);
@@ -54,7 +56,7 @@ public class MyWalletPresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },  mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
     /**
@@ -62,7 +64,7 @@ public class MyWalletPresenter extends BasePresenter<BaseView> {
      * @param page
      * @param num
      */
-    public void entityOfflinePays(int page, int num) {
+    public void entityOfflinePays(int page, int num, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("pageNo", page);
         params.put("pageSize", num);
@@ -81,7 +83,7 @@ public class MyWalletPresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },  mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 
@@ -91,7 +93,7 @@ public class MyWalletPresenter extends BasePresenter<BaseView> {
      * @param pageSize
      * @param dataType 数据类型：1=当月 2=历史
      */
-    public void entityReceivedPays(int pageNo,int pageSize,int dataType) {
+    public void entityReceivedPays(int pageNo,int pageSize,int dataType, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("pageNo", pageNo);
         params.put("pageSize", pageSize);
@@ -110,7 +112,7 @@ public class MyWalletPresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },  mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 }

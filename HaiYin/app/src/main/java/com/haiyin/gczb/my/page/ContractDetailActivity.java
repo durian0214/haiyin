@@ -56,7 +56,7 @@ public class ContractDetailActivity extends BaseActivity  implements BaseView{
         getData();
     }
     private void getData(){
-        myContractPresenter.contractFiles(id);
+        myContractPresenter.contractFiles(id,mContext);
     }
 
     @Override

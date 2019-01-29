@@ -49,7 +49,7 @@ public class SetActivity extends BaseActivity implements BaseView{
     @Override
     public void initView() {
         payPasswordPresenter = new PayPasswordPresenter(this);
-        payPasswordPresenter.getPayPwdStatus();
+        payPasswordPresenter.getPayPwdStatus(mContext);
         setTitle("设置");
     }
 

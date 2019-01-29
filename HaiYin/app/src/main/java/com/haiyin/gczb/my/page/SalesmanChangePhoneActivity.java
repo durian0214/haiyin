@@ -37,7 +37,7 @@ public class SalesmanChangePhoneActivity extends BaseActivity implements BaseVie
             MyUtils.showShort("请输入手机号");
             return;
         }
-        sendCodePresenter.sendCode(phone, 2);
+        sendCodePresenter.sendCode(phone, 2,mContext);
     }
 
     @OnClick(R.id.btn_salesman_information_submit)
@@ -53,7 +53,7 @@ public class SalesmanChangePhoneActivity extends BaseActivity implements BaseVie
             return;
         }
         salesPresenter.salesModifyInfo(newPhone,code,0,null
-                ,null,null,null,null,null,null);
+                ,null,null,null,null,null,null,mContext);
     }
 
     @Override

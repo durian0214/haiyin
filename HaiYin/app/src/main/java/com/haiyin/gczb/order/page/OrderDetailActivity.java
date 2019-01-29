@@ -91,7 +91,7 @@ public class OrderDetailActivity extends BaseActivity implements BaseView {
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            orderPresenter.applyInvoice(entity.getData().getProjectId());
+                            orderPresenter.applyInvoice(entity.getData().getProjectId(),mContext);
                         }
                     });
                 } else if (entity.getData().getProjectStatus() == 5) {
@@ -214,7 +214,7 @@ public class OrderDetailActivity extends BaseActivity implements BaseView {
         setTitle("详情");
         btn.setVisibility(View.VISIBLE);
         String id = getIntent().getBundleExtra("bundle").getString("id");
-        projectPresenter.getProjectDetail(id);
+        projectPresenter.getProjectDetail(id,mContext);
 
 
     }

@@ -258,7 +258,7 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
                     null,
                     null,
                     null,
-                    null);
+                    null,mContext);
         } else {
             if (contactPhone.isEmpty() ||
                     imgIconUrl == null ||
@@ -301,7 +301,7 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
                     bankCode,
                     bankName,
                     imgCollectionUploadDocumentsPositiveUrl,
-                    imgCollectionUploadDocumentsBckUrl);
+                    imgCollectionUploadDocumentsBckUrl,mContext);
         }
 
     }
@@ -394,7 +394,7 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
                 this, R.layout.item_sp,
                 getResources().getStringArray(R.array.member));
         spPosition.setAdapter(adapter);
-        getDataPresenter.sales();
+        getDataPresenter.sales(mContext);
         getDataPresenter.industry();
     }
 

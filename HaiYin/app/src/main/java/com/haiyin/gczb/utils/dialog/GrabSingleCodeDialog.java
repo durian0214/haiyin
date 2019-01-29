@@ -44,7 +44,7 @@ public class GrabSingleCodeDialog {
         }
     }
 
-    public void showGrabSingleCodeDialog(Context context, final ProjectPresenter projectPresenter, final String projectId) {
+    public void showGrabSingleCodeDialog(final Context context, final ProjectPresenter projectPresenter, final String projectId) {
         dialog = new Dialog(context, R.style.myDialog);
         dialog.setContentView(R.layout.dialog_grab_single_code);
         dialog.setCancelable(true);//点击框外取消
@@ -54,7 +54,7 @@ public class GrabSingleCodeDialog {
         dialog.findViewById(R.id.btn_dialog).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                projectPresenter.signProjectCheck("1", projectId, view.getPassWord());
+                projectPresenter.signProjectCheck("1", projectId, view.getPassWord(),context);
                 dialog.dismiss();
             }
         });

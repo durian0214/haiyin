@@ -185,7 +185,7 @@ public class LaborCompanyActivity extends BaseActivity implements BaseView {
                 framFiles,
                 contractFiles,
                 clearingFiles,
-                companyName
+                companyName,mContext
         );
     }
 

@@ -1,5 +1,7 @@
 package com.haiyin.gczb.my.presenter;
 
+import android.content.Context;
+
 import com.alibaba.fastjson.JSON;
 import com.durian.lib.base.BasePresenter;
 import com.durian.lib.base.BaseView;
@@ -32,7 +34,7 @@ public class AccountPresenter  extends BasePresenter<BaseView> {
     /**
      *  企业本部账号列表
      */
-    public void accountList() {
+    public void accountList( Context mContext) {
         Map<String, Object> params = new HashMap<>();
 
         Observable<ResponseBody>
@@ -50,7 +52,7 @@ public class AccountPresenter  extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 
@@ -59,7 +61,7 @@ public class AccountPresenter  extends BasePresenter<BaseView> {
      * @param name
      * @param phone
      */
-    public void addAccount(String name,String phone) {
+    public void addAccount(String name,String phone, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("name",name);
         params.put("phone",phone);
@@ -78,7 +80,7 @@ public class AccountPresenter  extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 }

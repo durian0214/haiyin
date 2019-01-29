@@ -1,5 +1,7 @@
 package com.haiyin.gczb.home.presenter;
 
+import android.content.Context;
+
 import com.alibaba.fastjson.JSON;
 import com.haiyin.gczb.home.entity.MessageCountEntity;
 import com.haiyin.gczb.home.entity.MessageListsEntity;
@@ -32,7 +34,7 @@ public class MessagePresenter extends BasePresenter<BaseView> {
     /**
      * 获取未读消息列表
      */
-    public void getMessageCount() {
+    public void getMessageCount( Context mContext) {
         Map<String, Object> params = new HashMap<>();
 
         Observable<ResponseBody>
@@ -50,7 +52,7 @@ public class MessagePresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-    });
+    },mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 
@@ -60,7 +62,7 @@ public class MessagePresenter extends BasePresenter<BaseView> {
      * @param page
      * @param pageNum
      */
-    public void getMessageLists(int type,int page ,int pageNum) {
+    public void getMessageLists(int type,int page ,int pageNum, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("msgType",type);
         params.put("pageNo",page);
@@ -79,7 +81,7 @@ public class MessagePresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-    });
+    },mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 }

@@ -71,9 +71,9 @@ public class DuringMonthFragment extends BaseFragment implements BaseView{
 
     private void getData() {
         if(type==1){
-            progressQueryPresenter.projectCooperate(page,pageNum,1);
+            progressQueryPresenter.projectCooperate(page,pageNum,1,getActivity());
         }else if(type==2){
-            progressQueryPresenter.projectClearing(page,pageNum,1);
+            progressQueryPresenter.projectClearing(page,pageNum,1,getActivity());
         }
     }
     private void initRefreshLayout() {

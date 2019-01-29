@@ -1,5 +1,7 @@
 package com.haiyin.gczb.my.presenter;
 
+import android.content.Context;
+
 import com.alibaba.fastjson.JSON;
 import com.durian.lib.base.BasePresenter;
 import com.durian.lib.base.BaseView;
@@ -34,7 +36,7 @@ public class MyContractPresenter extends BasePresenter<BaseView> {
      * @param pageNo
      * @param pageSize
      */
-    public void getMyContractCompanys(int  pageNo,int pageSize) {
+    public void getMyContractCompanys(int  pageNo,int pageSize, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("pageNo  ", pageNo);
         params.put("pageSize", pageSize);
@@ -53,7 +55,7 @@ public class MyContractPresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },  mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 
@@ -64,7 +66,7 @@ public class MyContractPresenter extends BasePresenter<BaseView> {
      * @param companyId
      */
 
-    public void myContractProjects(int  pageNo,int pageSize,String companyId) {
+    public void myContractProjects(int  pageNo,int pageSize,String companyId, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("pageNo  ", pageNo);
         params.put("pageSize", pageSize);
@@ -83,7 +85,7 @@ public class MyContractPresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },  mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 
@@ -92,7 +94,7 @@ public class MyContractPresenter extends BasePresenter<BaseView> {
      * @param projectId
      */
 
-    public void contractFiles(String projectId) {
+    public void contractFiles(String projectId, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("projectId", projectId);
         Observable<ResponseBody>
@@ -109,7 +111,7 @@ public class MyContractPresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },  mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 }

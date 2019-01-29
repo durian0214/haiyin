@@ -65,7 +65,7 @@ public class AddAccountListsActivity extends BaseActivity implements BaseView {
     }
 
     private void getData() {
-        accountPresenter.accountList();
+        accountPresenter.accountList(mContext);
     }
 
     private void initRefreshLayout() {

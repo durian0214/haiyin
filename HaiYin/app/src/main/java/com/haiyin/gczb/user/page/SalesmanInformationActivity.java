@@ -113,7 +113,7 @@ public class SalesmanInformationActivity extends BaseActivity implements BaseVie
         return;
          }
         salesPresenter.salesModifyInfo(phone,null,sp.getSelectedItemPosition(),imgIconUrl,name,address,
-                code,bankName,imgUploadDocumentsPositiveUrl,imgUploadDocumentsBaclUrl);
+                code,bankName,imgUploadDocumentsPositiveUrl,imgUploadDocumentsBaclUrl,mContext);
     }
 
     /**
@@ -185,7 +185,7 @@ public class SalesmanInformationActivity extends BaseActivity implements BaseVie
     public void initView() {
         salesPresenter = new SalesPresenter(this);
         setTitle("个人信息");
-        salesPresenter.salesDetailInfo();
+        salesPresenter.salesDetailInfo(mContext);
     }
 
     public void pic(final int position) {

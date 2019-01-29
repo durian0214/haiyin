@@ -34,7 +34,7 @@ public class SendCodePresenter extends BasePresenter<BaseView> {
      * @param mobile
      * @param dataType 发送验证码类型：1=登录验证码 2=其他身份验证码
      */
-    public void sendCode(String mobile , int dataType) {
+    public void sendCode(String mobile , int dataType, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("mobile", mobile);
         params.put("dataType", dataType);
@@ -55,7 +55,7 @@ public class SendCodePresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },  mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 

@@ -43,7 +43,7 @@ public class OrderListsEntity extends BaseEntity {
         private int days;
         private String address;
         private String projectStatus;
-        private String invoiceFileEntity;
+        private String invoiceFileCompany;
 
         public String getProjectId() {
             return projectId;
@@ -109,12 +109,12 @@ public class OrderListsEntity extends BaseEntity {
             this.projectStatus = projectStatus;
         }
 
-        public String getInvoiceFileEntity() {
-            return invoiceFileEntity;
+        public String getInvoiceFileCompany() {
+            return invoiceFileCompany;
         }
 
-        public void setInvoiceFileEntity(String invoiceFileEntity) {
-            this.invoiceFileEntity = invoiceFileEntity;
+        public void setInvoiceFileCompany(String invoiceFileCompany) {
+            this.invoiceFileCompany = invoiceFileCompany;
         }
     }
 }

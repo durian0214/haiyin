@@ -82,7 +82,7 @@ public class MyContractActivity extends BaseActivity implements BaseView {
     }
 
     private void getData() {
-        myContractPresenter.getMyContractCompanys(page,pageNum);
+        myContractPresenter.getMyContractCompanys(page,pageNum,mContext);
     }
     private void initRefreshLayout() {
         srl.setOnRefreshListener(new OnRefreshListener() {

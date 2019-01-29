@@ -57,7 +57,7 @@ public class MessageListActivity extends BaseActivity implements BaseView {
     }
 
     private void getData() {
-        messagePresenter.getMessageLists(type,page,pageNum);
+        messagePresenter.getMessageLists(type,page,pageNum,mContext);
     }
 
     private void initRefreshLayout() {

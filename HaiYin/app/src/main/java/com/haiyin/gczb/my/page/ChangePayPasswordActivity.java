@@ -44,7 +44,7 @@ public class ChangePayPasswordActivity extends BaseActivity implements BaseView 
             MyUtils.showShort("请输入手机号");
             return;
         }
-        sendCodePresenter.sendCode(edtPhone.getText().toString(),2);
+        sendCodePresenter.sendCode(edtPhone.getText().toString(),2,mContext);
     }
 
     @OnClick(R.id.btn_change_pay_password_submit)
@@ -56,7 +56,7 @@ public class ChangePayPasswordActivity extends BaseActivity implements BaseView 
         payPasswordPresenter.modifyPayPwd(edtPhone.getText().toString(),
                 edtCode.getText().toString(),
                 edtNew.getText().toString(),
-                edtConfirm.getText().toString());
+                edtConfirm.getText().toString(),mContext);
     }
 
     @Override

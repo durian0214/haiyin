@@ -1,5 +1,7 @@
 package com.haiyin.gczb.sendPackage.presenter;
 
+import android.content.Context;
+
 import com.alibaba.fastjson.JSON;
 import com.durian.lib.base.BasePresenter;
 import com.durian.lib.base.BaseView;
@@ -64,7 +66,7 @@ public class SendPackagePresenter extends BasePresenter<BaseView> {
                                String frameFiles,
                                String contractFiles,
                                String clearingFiles,
-                            String labourCompany
+                            String labourCompany, Context mContext
 
     ) {
         Map<String, Object> params = new HashMap<>();
@@ -104,7 +106,7 @@ public class SendPackagePresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },  mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 }

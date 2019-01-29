@@ -1,5 +1,7 @@
 package com.haiyin.gczb.my.presenter;
 
+import android.content.Context;
+
 import com.alibaba.fastjson.JSON;
 import com.durian.lib.base.BasePresenter;
 import com.durian.lib.base.BaseView;
@@ -34,7 +36,7 @@ public class EnterprisePresenter extends BasePresenter<BaseView> {
     /**
      * 企业下级企业列表
      */
-    public void subCompanys() {
+    public void subCompanys(Context mContext) {
         Map<String, Object> params = new HashMap<>();
 
         Observable<ResponseBody>
@@ -52,7 +54,7 @@ public class EnterprisePresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },  mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 

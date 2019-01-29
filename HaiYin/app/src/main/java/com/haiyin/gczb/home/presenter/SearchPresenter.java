@@ -1,5 +1,7 @@
 package com.haiyin.gczb.home.presenter;
 
+import android.content.Context;
+
 import com.alibaba.fastjson.JSON;
 import com.haiyin.gczb.home.entity.SearchNewsResultsEntity;
 import com.haiyin.gczb.home.entity.SearchProjectResultsEntity;
@@ -35,7 +37,7 @@ public class SearchPresenter extends BasePresenter<BaseView> {
      * @param pageNum
      * @param keywords
      */
-    public void toSearch(final int type, int page , int pageNum, String keywords) {
+    public void toSearch(final int type, int page , int pageNum, String keywords, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("dataType", type);
         params.put("pageNo", page);
@@ -62,7 +64,7 @@ public class SearchPresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 

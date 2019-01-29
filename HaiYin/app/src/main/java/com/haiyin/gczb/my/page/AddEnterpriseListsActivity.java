@@ -63,7 +63,7 @@ public class AddEnterpriseListsActivity   extends BaseActivity implements BaseVi
     }
 
     private void getData() {
-        enterprisePresenter.subCompanys();
+        enterprisePresenter.subCompanys(mContext);
     }
 
     private void initRefreshLayout() {

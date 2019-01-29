@@ -1,5 +1,7 @@
 package com.haiyin.gczb.my.presenter;
 
+import android.content.Context;
+
 import com.alibaba.fastjson.JSON;
 import com.durian.lib.base.BasePresenter;
 import com.durian.lib.base.BaseView;
@@ -36,7 +38,7 @@ public class MyPagerPersonalProjectPresenter  extends BasePresenter<BaseView> {
      * @param pageSize
      * @param type  数据类型：1=全部 2=待打款 3=待开票 4=已开票
      */
-    public void entityProjects(int  pageNo,int pageSize ,int type) {
+    public void entityProjects(int  pageNo,int pageSize ,int type, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("pageNo  ", pageNo);
         params.put("pageSize", pageSize);
@@ -56,7 +58,7 @@ public class MyPagerPersonalProjectPresenter  extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },  mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 

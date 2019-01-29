@@ -62,7 +62,7 @@ public class CustomerFragment extends BaseFragment implements BaseView{
     }
 
     private void getData() {
-            customerPresenter.salescompanyList(page,pageNum,type);
+            customerPresenter.salescompanyList(page,pageNum,type,getActivity());
     }
     private void initRefreshLayout() {
         srl.setOnRefreshListener(new OnRefreshListener() {

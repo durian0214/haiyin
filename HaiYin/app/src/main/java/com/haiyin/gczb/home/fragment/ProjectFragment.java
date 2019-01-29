@@ -77,7 +77,7 @@ public class ProjectFragment extends BaseFragment implements BaseView{
         getData();
     }
     private void getData() {
-        searchPresenter.toSearch(2,page,pageNum,str);
+        searchPresenter.toSearch(2,page,pageNum,str,getActivity());
     }
     private void initRefreshLayout() {
         srl.setOnRefreshListener(new OnRefreshListener() {

@@ -69,7 +69,7 @@ public class NewsActivity extends BaseActivity implements BaseView {
     }
 
     private void getData() {
-        newsPresenter.getNewsList(page, pageNum);
+        newsPresenter.getNewsList(page, pageNum,mContext);
     }
 
     private void initRefreshLayout() {

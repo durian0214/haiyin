@@ -90,7 +90,7 @@ public class MyPagerEnterpriseActivity extends BaseActivity implements BaseView 
     }
 
     private void getData() {
-        myPagerEnterprisePresenter.invoiceCompanys(page, pageNum, type);
+        myPagerEnterprisePresenter.invoiceCompanys(page, pageNum, type,mContext);
     }
 
     private void initRefreshLayout() {

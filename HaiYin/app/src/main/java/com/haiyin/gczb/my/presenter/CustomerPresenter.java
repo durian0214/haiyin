@@ -1,5 +1,7 @@
 package com.haiyin.gczb.my.presenter;
 
+import android.content.Context;
+
 import com.alibaba.fastjson.JSON;
 import com.durian.lib.base.BasePresenter;
 import com.durian.lib.base.BaseView;
@@ -40,7 +42,7 @@ public class CustomerPresenter extends BasePresenter<BaseView> {
      * @param pageSize
      * @param dataType 数据类型：1=负责客户列表 2=待完善客户 3=已完善客户 4=公司众包客户列表 5=待上传合同协议客户列表 6=待开票客户列表 7= 已开票客户列表 8=订单合同客户列表(找公司合同)
      */
-    public void salescompanyList(int pageNo, int pageSize, int dataType) {
+    public void salescompanyList(int pageNo, int pageSize, int dataType, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("pageNo", pageNo);
         params.put("pageSize", pageSize);
@@ -60,7 +62,7 @@ public class CustomerPresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },  mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
     /**

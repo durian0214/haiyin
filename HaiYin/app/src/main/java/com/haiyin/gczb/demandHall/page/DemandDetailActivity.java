@@ -84,7 +84,7 @@ public class DemandDetailActivity extends BaseActivity implements BaseView {
     @OnClick(R.id.btn_demand_detail_grab_single)
     public void toGrabSingle() {
         //抢单
-        projectPresenter.signProjectCheck("2", id, null);
+        projectPresenter.signProjectCheck("2", id, null,mContext);
 
     }
 
@@ -118,7 +118,7 @@ public class DemandDetailActivity extends BaseActivity implements BaseView {
 //            if (status == 3) {
 //            }
         } else if (code == ApiConfig.SIGN_PROJECT_CHECK) {
-            faceIdPresenter.getBiztoken(id);
+            faceIdPresenter.getBiztoken(id,mContext);
         } else if (code == ApiConfig.GET_BIZTOKEN) {
             GetBiztokenEntity entity = (GetBiztokenEntity) data;
             token = entity.getData();
@@ -146,7 +146,7 @@ public class DemandDetailActivity extends BaseActivity implements BaseView {
         AuthSDKApi.startMainPage(this, configBuilder.build(), new IdentityCallback() {
             @Override
             public void onIdentityResult(Intent intent) {
-                faceIdPresenter.detectInfo(token);
+                faceIdPresenter.detectInfo(token,mContext);
             }
         });
     }
@@ -174,7 +174,7 @@ public class DemandDetailActivity extends BaseActivity implements BaseView {
         faceIdPresenter = new FaceIdPresenter(this);
         id = getIntent().getBundleExtra("bundle").getString("id");
         setTitle("详情");
-        projectPresenter.getProjectDetail(id);
+        projectPresenter.getProjectDetail(id,mContext);
         dialog = GrabSingleCodeDialog.getIntance();
     }
 

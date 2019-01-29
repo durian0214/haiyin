@@ -304,7 +304,7 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
                 bankCode,
                 bankName,
                 imgCollectionUploadDocumentsPositiveUrl,
-                imgCollectionUploadDocumentsBckUrl);
+                imgCollectionUploadDocumentsBckUrl,mContext);
 
     }
 
@@ -344,7 +344,7 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
                     this, R.layout.item_sp,
                     dataList);
             spIndustry.setAdapter(adapter);
-            userPresenter.getDetailInfo();
+            userPresenter.getDetailInfo(mContext);
         } else if (code == ApiConfig.GET_DETAIL_INFO) {
             entity = (UserEntity) data;
             Message message = Message.obtain();
@@ -383,7 +383,7 @@ public class ChangeEnterpriseInformationActivity extends BaseActivity implements
                 this, R.layout.item_sp,
                 getResources().getStringArray(R.array.member));
         spPosition.setAdapter(adapter);
-        getDataPresenter.sales();
+        getDataPresenter.sales(mContext);
 
         vSalesman.setVisibility(View.GONE);
         rlSalesman.setVisibility(View.GONE);

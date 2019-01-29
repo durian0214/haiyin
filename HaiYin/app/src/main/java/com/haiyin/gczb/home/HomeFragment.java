@@ -192,10 +192,10 @@ public class HomeFragment extends BaseFragment implements BaseView {
     }
 
     private void getData() {
-        picsPresenter.getPics(2);
-        picsPresenter.getIcon();
-        newsPresenter.getNewsList(1, 2);
-        projectPresenter.getProjectList(Constant.cityId, 1, 3);
+        picsPresenter.getPics(2,getActivity());
+        picsPresenter.getIcon(getActivity());
+        newsPresenter.getNewsList(1, 2,getActivity());
+        projectPresenter.getProjectList(Constant.cityId, 1, 3,getActivity());
     }
 
 
@@ -298,7 +298,7 @@ public class HomeFragment extends BaseFragment implements BaseView {
      */
     public void isShowRed() {
         if (UserUtils.isLogin()) {
-            messagePresenter.getMessageCount();
+            messagePresenter.getMessageCount(getActivity());
         }
     }
 

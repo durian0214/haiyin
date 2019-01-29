@@ -58,7 +58,7 @@ public class AddCardActivity extends BaseActivity implements BaseView {
             return;
         }
 
-        cardPresenter.addBankCard(cardTaxpayers, account, cardName, phone, bankName);
+        cardPresenter.addBankCard(cardTaxpayers, account, cardName, phone, bankName,mContext);
 
     }
 

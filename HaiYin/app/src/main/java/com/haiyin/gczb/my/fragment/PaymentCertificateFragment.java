@@ -66,7 +66,7 @@ public class PaymentCertificateFragment  extends BaseFragment implements BaseVie
     }
 
     private void getData() {
-            progressQueryPresenter.taxProofs(page, pageNum, type);
+            progressQueryPresenter.taxProofs(page, pageNum, type,getActivity());
     }
 
     private void initRefreshLayout() {

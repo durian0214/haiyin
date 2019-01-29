@@ -201,9 +201,9 @@ public class OrderFragment extends BaseFragment implements BaseView {
 
     private void getData() {
         if (Constant.userType == 1) {
-            orderPresenter.getOrderLists(type, page, pageNum);
+            orderPresenter.getOrderLists(type, page, pageNum,getActivity());
         } else if (Constant.userType == 2) {
-            myPagerPersonalProjectPresenter.entityProjects(page, pageNum, type);
+            myPagerPersonalProjectPresenter.entityProjects(page, pageNum, type,getActivity());
         }
     }
 
@@ -264,12 +264,12 @@ public class OrderFragment extends BaseFragment implements BaseView {
                             startActivity(mIntent);
                         } else if (view.getId() == R.id.btn_item_demand_hall_status) {
                             if (bean.getProjectStatus().equals("6")) {
-                                orderPresenter.applyInvoice(bean.getProjectId());
+                                orderPresenter.applyInvoice(bean.getProjectId(),getActivity());
                             } else if (bean.getProjectStatus().equals("8")) {
                                 Intent mIntent = new Intent(getActivity(), CheckNotesActivity.class);
                                 Bundle b = new Bundle();
 //                        b.putSerializable("data", bean);
-                                b.putString("url", bean.getInvoiceFileEntity());
+                                b.putString("url", bean.getInvoiceFileCompany());
                                 mIntent.putExtra("bundle", b);
                                 startActivity(mIntent);
                             } else if (bean.getProjectStatus().equals("4")) {
@@ -305,7 +305,7 @@ public class OrderFragment extends BaseFragment implements BaseView {
                             startActivity(mIntent);
                         } else if (view.getId() == R.id.btn_item_demand_hall_status) {
                             if (bean.getProjectStatus() == 6) {
-                                orderPresenter.applyInvoice(bean.getProjectId());
+                                orderPresenter.applyInvoice(bean.getProjectId(),getActivity());
                             } else if (bean.getProjectStatus() == 8) {
                                 Intent mIntent = new Intent(getActivity(), CheckNotesActivity.class);
                                 Bundle b = new Bundle();

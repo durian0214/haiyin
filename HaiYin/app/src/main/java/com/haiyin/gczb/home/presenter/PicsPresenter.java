@@ -1,5 +1,7 @@
 package com.haiyin.gczb.home.presenter;
 
+import android.content.Context;
+
 import com.alibaba.fastjson.JSON;
 import com.haiyin.gczb.home.entity.GetPicsEntity;
 import com.haiyin.gczb.utils.MyUtils;
@@ -33,7 +35,7 @@ public class PicsPresenter extends BasePresenter<BaseView> {
      *
      * @param picType 1=引导页, 2=首页banner, 3=首页icon图
      */
-    public void getPics(int picType) {
+    public void getPics(int picType, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("picType", picType);
         Observable<ResponseBody>
@@ -51,14 +53,14 @@ public class PicsPresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
     /**
      * 配置图片位置
      *
      */
-    public void getIcon() {
+    public void getIcon( Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("picType", 3);
         Observable<ResponseBody>
@@ -76,7 +78,7 @@ public class PicsPresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 

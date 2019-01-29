@@ -89,7 +89,7 @@ public class IndividualMyContractProjectActivity extends BaseActivity implements
     }
 
     private void getData() {
-        individualPresenter.entityContracts(page, pageNum);
+        individualPresenter.entityContracts(page, pageNum,mContext);
     }
 
     private void initRefreshLayout() {

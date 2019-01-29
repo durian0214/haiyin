@@ -1,5 +1,7 @@
 package com.haiyin.gczb.user.presenter;
 
+import android.content.Context;
+
 import com.alibaba.fastjson.JSON;
 import com.durian.lib.base.BasePresenter;
 import com.durian.lib.base.BaseView;
@@ -57,7 +59,7 @@ public class RegistPresenter extends BasePresenter<BaseView> {
             , @NonNull String name, @NonNull int memberPosition, @NonNull int roleType, String salesId
             , @NonNull boolean isSalesPerfect, String companyName, String companyPhone, String industryId
             , String businessLicensePic, String idCardNo, String corpCardFront, String corpCardBack, String finaName
-            , String cardNo, String bankName, String finaCardFront, String finaCardBack) {
+            , String cardNo, String bankName, String finaCardFront, String finaCardBack, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("mobile", mobile);
         params.put("code", code);
@@ -110,7 +112,7 @@ public class RegistPresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },  mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 

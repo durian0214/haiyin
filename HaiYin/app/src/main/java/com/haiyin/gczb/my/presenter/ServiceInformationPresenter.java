@@ -1,5 +1,7 @@
 package com.haiyin.gczb.my.presenter;
 
+import android.content.Context;
+
 import com.alibaba.fastjson.JSON;
 import com.durian.lib.base.BasePresenter;
 import com.durian.lib.base.BaseView;
@@ -35,7 +37,7 @@ public class ServiceInformationPresenter extends BasePresenter<BaseView> {
      * @param pageNo
      * @param pageSize
      */
-    public void companyList(int  pageNo,int pageSize) {
+    public void companyList(int  pageNo,int pageSize, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("pageNo  ", pageNo);
         params.put("pageSize", pageSize);
@@ -54,7 +56,7 @@ public class ServiceInformationPresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },  mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 

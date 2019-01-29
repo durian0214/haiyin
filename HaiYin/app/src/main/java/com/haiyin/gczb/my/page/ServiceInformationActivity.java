@@ -70,7 +70,7 @@ public class ServiceInformationActivity  extends BaseActivity implements BaseVie
     }
 
     private void getData() {
-        serviceInformationPresenter.companyList(page,pageNum);
+        serviceInformationPresenter.companyList(page,pageNum,mContext);
     }
     private void initRefreshLayout() {
         srl.setOnRefreshListener(new OnRefreshListener() {

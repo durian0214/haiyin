@@ -67,7 +67,7 @@ public class AddCardListsActivity extends BaseActivity implements BaseView {
     }
 
     private void getData() {
-        cardPresenter.bankCards();
+        cardPresenter.bankCards(mContext);
     }
 
     private void initRefreshLayout() {

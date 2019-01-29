@@ -35,7 +35,7 @@ public class AddAccountActivity extends BaseActivity implements BaseView {
             MyUtils.showShort("请完善资料");
             return;
         }
-        accountPresenter.addAccount(name, phone);
+        accountPresenter.addAccount(name, phone,mContext);
     }
 
     @Override

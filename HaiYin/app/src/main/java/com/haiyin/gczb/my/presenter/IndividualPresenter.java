@@ -1,10 +1,11 @@
 package com.haiyin.gczb.my.presenter;
 
+import android.content.Context;
+
 import com.alibaba.fastjson.JSON;
 import com.durian.lib.base.BasePresenter;
 import com.durian.lib.base.BaseView;
 import com.haiyin.gczb.my.entity.EntityContractsEntity;
-import com.haiyin.gczb.my.entity.MyPagerPersonalProjectEntity;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.http.ApiConfig;
 import com.haiyin.gczb.utils.http.HttpMethods;
@@ -34,7 +35,7 @@ public class IndividualPresenter   extends BasePresenter<BaseView> {
      * @param pageNo
      * @param pageSize
      */
-    public void entityContracts(int  pageNo,int pageSize ) {
+    public void entityContracts(int  pageNo,int pageSize , Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("pageNo  ", pageNo);
         params.put("pageSize", pageSize);
@@ -53,7 +54,7 @@ public class IndividualPresenter   extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },  mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 

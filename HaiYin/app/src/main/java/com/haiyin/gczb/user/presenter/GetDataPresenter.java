@@ -1,5 +1,7 @@
 package com.haiyin.gczb.user.presenter;
 
+import android.content.Context;
+
 import com.alibaba.fastjson.JSON;
 import com.durian.lib.base.BasePresenter;
 import com.durian.lib.base.BaseView;
@@ -31,7 +33,7 @@ public class GetDataPresenter   extends BasePresenter<BaseView> {
     /**
      * 业务员列表
      */
-    public void sales() {
+    public void sales(Context mContext) {
         Map<String, Object> params = new HashMap<>();
 
         Observable<ResponseBody>
@@ -49,7 +51,7 @@ public class GetDataPresenter   extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },  mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
     /**

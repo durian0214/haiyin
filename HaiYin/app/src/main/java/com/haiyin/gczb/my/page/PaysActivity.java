@@ -94,9 +94,9 @@ public class PaysActivity extends BaseActivity implements BaseView {
 
     private void getData() {
         if (type==1) {
-            myWalletPresenter.entityOnlinePays(page, pageNum);
+            myWalletPresenter.entityOnlinePays(page, pageNum,mContext);
         }else if(type ==2){
-            myWalletPresenter.entityOfflinePays(page, pageNum);
+            myWalletPresenter.entityOfflinePays(page, pageNum,mContext);
         }
     }
 

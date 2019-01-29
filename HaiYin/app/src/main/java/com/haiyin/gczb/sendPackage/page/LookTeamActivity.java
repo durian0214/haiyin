@@ -128,6 +128,7 @@ public class LookTeamActivity extends BaseActivity implements BaseView {
                 null,
                 null,
                 null
+                ,mContext
         );
     }
 

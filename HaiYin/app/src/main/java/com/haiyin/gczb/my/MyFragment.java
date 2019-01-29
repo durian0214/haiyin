@@ -308,10 +308,10 @@ public class MyFragment extends BaseFragment implements BaseView {
 
             if (Constant.userType == 4) {
                 salesPresenter = new SalesPresenter(this);
-                salesPresenter.salesDetailInfo();
+                salesPresenter.salesDetailInfo(getActivity());
             } else {
                 userPresenter = new UserPresenter(this);
-                userPresenter.getDetailInfo();
+                userPresenter.getDetailInfo(getActivity());
             }
             if (Constant.userType == 1) {
                 //企业用户

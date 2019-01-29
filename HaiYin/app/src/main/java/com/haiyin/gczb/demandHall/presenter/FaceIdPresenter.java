@@ -1,5 +1,7 @@
 package com.haiyin.gczb.demandHall.presenter;
 
+import android.content.Context;
+
 import com.alibaba.fastjson.JSON;
 import com.haiyin.gczb.demandHall.entity.DetectInfoEntity;
 import com.haiyin.gczb.demandHall.entity.GetBiztokenEntity;
@@ -34,7 +36,7 @@ public class FaceIdPresenter extends BasePresenter<BaseView> {
      *
      * @param projectId
      */
-    public void getBiztoken(String projectId) {
+    public void getBiztoken(String projectId, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("projectId", projectId);
 
@@ -53,7 +55,7 @@ public class FaceIdPresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 
@@ -62,7 +64,7 @@ public class FaceIdPresenter extends BasePresenter<BaseView> {
      *
      * @param bizToken
      */
-    public void detectInfo(String bizToken) {
+    public void detectInfo(String bizToken, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("bizToken", bizToken);
 
@@ -81,7 +83,7 @@ public class FaceIdPresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 
@@ -90,7 +92,7 @@ public class FaceIdPresenter extends BasePresenter<BaseView> {
      *
      * @param bizToken
      */
-    public void signProject(String bizToken, String projectId, String signNameUrl) {
+    public void signProject(String bizToken, String projectId, String signNameUrl, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("bizToken", bizToken);
         params.put("projectId", projectId);
@@ -111,7 +113,7 @@ public class FaceIdPresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 }

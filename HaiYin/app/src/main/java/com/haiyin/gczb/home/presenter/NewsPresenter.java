@@ -1,5 +1,7 @@
 package com.haiyin.gczb.home.presenter;
 
+import android.content.Context;
+
 import com.alibaba.fastjson.JSON;
 import com.haiyin.gczb.home.entity.NewsDetailEntity;
 import com.haiyin.gczb.home.entity.NewsListEntity;
@@ -33,7 +35,7 @@ public class NewsPresenter   extends BasePresenter<BaseView> {
      * @param page
      * @param pageNum
      */
-    public void getNewsList(int page ,int pageNum) {
+    public void getNewsList(int page ,int pageNum, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("pageNo",page);
         params.put("pageSize",pageNum);
@@ -52,7 +54,7 @@ public class NewsPresenter   extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 
@@ -60,7 +62,7 @@ public class NewsPresenter   extends BasePresenter<BaseView> {
      * 新闻详情
      * @param newsId
      */
-    public void getNewsDetail(String newsId) {
+    public void getNewsDetail(String newsId, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("newsId",newsId);
         Observable<ResponseBody>
@@ -77,7 +79,7 @@ public class NewsPresenter   extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 }

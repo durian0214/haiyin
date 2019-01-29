@@ -94,7 +94,7 @@ public class DemandHallFragment extends BaseFragment implements BaseView {
     }
 
     private void getData() {
-        projectPresenter.getProjectList(Constant.cityId, page, pageNum);
+        projectPresenter.getProjectList(Constant.cityId, page, pageNum,getActivity());
     }
 
     private void initRefreshLayout() {

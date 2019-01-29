@@ -97,7 +97,7 @@ public class MyPagerPersonalProjectActivity extends BaseActivity implements Base
     }
 
     private void getData() {
-        myPagerPersonalProjectPresenter.entityProjects(page, pageNum,type);
+        myPagerPersonalProjectPresenter.entityProjects(page, pageNum,type,mContext);
     }
 
     private void initRefreshLayout() {

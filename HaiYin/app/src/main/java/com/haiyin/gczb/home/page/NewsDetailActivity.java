@@ -53,6 +53,6 @@ public class NewsDetailActivity extends BaseActivity implements BaseView {
         setTitle("新闻详情");
         String id = getIntent().getBundleExtra("bundle").getString("id");
         newsPresenter = new NewsPresenter(this);
-        newsPresenter.getNewsDetail(id);
+        newsPresenter.getNewsDetail(id,mContext);
     }
 }

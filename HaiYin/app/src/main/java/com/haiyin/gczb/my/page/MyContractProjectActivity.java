@@ -88,7 +88,7 @@ public class MyContractProjectActivity extends BaseActivity implements BaseView 
     }
 
     private void getData() {
-        myContractPresenter.myContractProjects(page, pageNum, id);
+        myContractPresenter.myContractProjects(page, pageNum, id,mContext);
     }
 
     private void initRefreshLayout() {

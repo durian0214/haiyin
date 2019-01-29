@@ -1,5 +1,7 @@
 package com.haiyin.gczb.my.presenter;
 
+import android.content.Context;
+
 import com.alibaba.fastjson.JSON;
 import com.durian.lib.base.BasePresenter;
 import com.durian.lib.base.BaseView;
@@ -35,7 +37,7 @@ public class ProgressQueryPresenter  extends BasePresenter<BaseView> {
      * @param pageSize
      * @param dateType
      */
-    public void projectCooperate(int pageNo,int pageSize,int  dateType) {
+    public void projectCooperate(int pageNo,int pageSize,int  dateType, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("pageNo", pageNo);
         params.put("pageSize", pageSize);
@@ -55,7 +57,7 @@ public class ProgressQueryPresenter  extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },  mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 
@@ -65,7 +67,7 @@ public class ProgressQueryPresenter  extends BasePresenter<BaseView> {
      * @param pageSize
      * @param dateType
      */
-    public void projectClearing(int pageNo,int pageSize,int  dateType) {
+    public void projectClearing(int pageNo,int pageSize,int  dateType, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("pageNo", pageNo);
         params.put("pageSize", pageSize);
@@ -85,7 +87,7 @@ public class ProgressQueryPresenter  extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },  mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
     /**
@@ -94,7 +96,7 @@ public class ProgressQueryPresenter  extends BasePresenter<BaseView> {
      * @param pageSize
      * @param dateType
      */
-    public void taxProofs(int pageNo,int pageSize,int  dateType) {
+    public void taxProofs(int pageNo,int pageSize,int  dateType, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("pageNo", pageNo);
         params.put("pageSize", pageSize);
@@ -114,7 +116,7 @@ public class ProgressQueryPresenter  extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        });
+        },  mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 

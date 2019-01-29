@@ -33,7 +33,7 @@ public class SetPayPasswordActivity extends BaseActivity implements BaseView {
             MyUtils.showShort("请输入支付密码");
             return;
         }
-        payPasswordPresenter.setPayPwd(pswView.getPassWord());
+        payPasswordPresenter.setPayPwd(pswView.getPassWord(),mContext);
     }
 
     @Override

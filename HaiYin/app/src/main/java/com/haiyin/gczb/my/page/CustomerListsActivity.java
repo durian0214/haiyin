@@ -165,6 +165,6 @@ public class CustomerListsActivity extends BaseActivity implements BaseView {
         getData();
     }
     private void getData() {
-        customerPresenter.salescompanyList(page,pageNum,type);
+        customerPresenter.salescompanyList(page,pageNum,type,mContext);
     }
 }

@@ -95,7 +95,7 @@ public class PersonalInformationActivity extends BaseActivity implements BaseVie
                 null,
                 null,
                 null,
-                null);
+                null,mContext);
     }
 
     /**

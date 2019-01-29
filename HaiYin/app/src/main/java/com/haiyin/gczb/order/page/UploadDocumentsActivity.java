@@ -48,7 +48,7 @@ public class UploadDocumentsActivity extends BaseActivity implements BaseView {
     @OnClick(R.id.btn_upload_documents)
     public void toUpload() {
         if (url != null) {
-            orderPresenter.payFileSave(id, url);
+            orderPresenter.payFileSave(id, url,mContext);
         }
     }
 

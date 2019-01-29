@@ -41,7 +41,7 @@ public class ManuallySignedActivity extends BaseActivity implements BaseView{
             @Override
             public void successImg(final String img_url) {
                 url = img_url;
-                faceIdPresenter.signProject(token,id,url);
+                faceIdPresenter.signProject(token,id,url,mContext);
             }
 
             @Override
