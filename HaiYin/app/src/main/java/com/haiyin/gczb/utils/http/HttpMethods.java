@@ -1,13 +1,14 @@
 package com.haiyin.gczb.utils.http;
 
 import com.durian.lib.utils.LogUtil;
+import com.haiyin.gczb.base.BaseApplication;
+import com.haiyin.gczb.utils.Constant;
+import com.haiyin.gczb.utils.NetUtil;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import com.haiyin.gczb.base.BaseApplication;
-import com.haiyin.gczb.utils.NetUtil;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
@@ -42,7 +43,6 @@ public class HttpMethods {
      */
     private int RETRY_COUNT = 0;
     private OkHttpClient.Builder okHttpBuilder;
-
     //构造方法私有
     private HttpMethods() {
         //手动创建一个OkHttpClient并设置超时时间
@@ -66,8 +66,7 @@ public class HttpMethods {
                     int maxAge = 0;
                     // 有网络时 设置缓存超时时间0个小时
                     response.newBuilder()
-                            .header("Cache-Control", "public, max-age=" + maxAge)
-                            .removeHeader(CACHE_NAME)// 清除头信息，因为服务器如果不支持，会返回一些干扰信息，不清除下面无法生效
+                                                       .removeHeader(CACHE_NAME)// 清除头信息，因为服务器如果不支持，会返回一些干扰信息，不清除下面无法生效
                             .build();
                 } else {
                     // 无网络时，设置超时为4周
@@ -93,6 +92,7 @@ public class HttpMethods {
                 Request.Builder requestBuilder = originalRequest.newBuilder()
                         .addHeader("Accept-Encoding", "gzip")
                         .addHeader("Accept", "application/json")
+                        .header("User-Agent", "hyapp/Android/"+Constant.appVersionName+"/"+Constant.appVersionCode+"/"+ Constant.deviceBrand+"/"+Constant.deviceSysversion)
                         .addHeader("Content-Type", "application/json; charset=utf-8")
                         .method(originalRequest.method(), originalRequest.body());
 //                requestBuilder.addHeader("Authorization", "Bearer " + BaseConstant.TOKEN);//添加请求头信息，服务器进行token有效性验证

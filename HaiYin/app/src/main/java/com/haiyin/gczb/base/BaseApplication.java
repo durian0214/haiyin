@@ -6,12 +6,15 @@ import android.content.Context;
 import android.os.Build;
 import android.os.StrictMode;
 
+import com.durian.lib.utils.SystemUtil;
+import com.haiyin.gczb.R;
 import com.haiyin.gczb.utils.Constant;
 
 import java.util.ArrayList;
 
 import com.haiyin.gczb.utils.Constant;
 import com.haiyin.gczb.utils.UploadHelper;
+import com.haiyin.gczb.utils.UserUtils;
 
 public class BaseApplication extends Application {
     private static BaseApplication instance;
@@ -22,6 +25,10 @@ public class BaseApplication extends Application {
         super.onCreate();
         instance = this;
         Constant.screenWidth = this.getResources().getDisplayMetrics().widthPixels;
+        Constant.appVersionName = UserUtils.getVersionName(this);
+        Constant.appVersionCode = UserUtils.getVersionCode(this);
+        Constant.deviceBrand = SystemUtil.getDeviceBrand();
+        Constant.deviceSysversion = SystemUtil.getSystemVersion();
         // android 7.0系统解决拍照的问题
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());

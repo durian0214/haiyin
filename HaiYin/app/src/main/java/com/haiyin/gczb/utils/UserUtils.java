@@ -1,5 +1,9 @@
 package com.haiyin.gczb.utils;
 
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+
 import com.durian.lib.bus.RxBus;
 import com.haiyin.gczb.MainActivity;
 import com.haiyin.gczb.base.BaseApplication;
@@ -77,5 +81,38 @@ public class UserUtils {
         RxBus.getInstance().send(new LoginOutEvent());
 
 
+    }
+
+
+    /**
+     * 获取build  name
+     * @param mContext
+     * @return
+     */
+    public static final String getVersionName(Context mContext){
+        PackageManager manager =mContext.getPackageManager();
+        PackageInfo info = null;
+        try {
+            info = manager.getPackageInfo(mContext.getPackageName(),0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return info.versionName;
+    }
+
+    /**
+     * 获取build  code
+     * @param mContext
+     * @return
+     */
+    public static final int getVersionCode(Context mContext){
+        PackageManager manager =mContext.getPackageManager();
+        PackageInfo info = null;
+        try {
+            info = manager.getPackageInfo(mContext.getPackageName(),0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return info.versionCode;
     }
 }

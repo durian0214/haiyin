@@ -87,7 +87,7 @@ public class MyFragment extends BaseFragment implements BaseView {
     }
     @OnClick(R.id.tv_my_version)
     public void about() {
-        MyUtils.showShort(getString(R.string.version));
+        MyUtils.showShort(Constant.appVersionName);
     }
 
 
