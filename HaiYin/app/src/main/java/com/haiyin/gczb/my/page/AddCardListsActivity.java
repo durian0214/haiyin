@@ -1,5 +1,6 @@
 package com.haiyin.gczb.my.page;
 
+import android.content.Intent;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -45,11 +46,14 @@ public class AddCardListsActivity extends BaseActivity implements BaseView {
     LinearLayout ll;
     @OnClick(R.id.btn_add_card)
     public void addAccount(){
-        intentJump(this,AddCardActivity.class,null);
+        Intent intent = new Intent(this,AddCardActivity.class);
+        startActivityForResult(intent,100);
+
     }
     @OnClick(R.id.tv_add_card)
     public void addAccounttv(){
-        intentJump(this,AddCardActivity.class,null);
+        Intent intent = new Intent(this,AddCardActivity.class);
+        startActivityForResult(intent,100);
     }
 
     @Override
@@ -65,7 +69,14 @@ public class AddCardListsActivity extends BaseActivity implements BaseView {
         initRefreshLayout();
         getData();
     }
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==120){
+            mAdapter.cleanRV();
+            getData();
+        }
+    }
     private void getData() {
         cardPresenter.bankCards(mContext);
     }

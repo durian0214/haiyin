@@ -1,5 +1,6 @@
 package com.haiyin.gczb.my.page;
 
+import android.content.Intent;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -38,7 +39,8 @@ public class AddAccountListsActivity extends BaseActivity implements BaseView {
     LinearLayout ll;
     @OnClick(R.id.btn_add_account)
     public void addAccount(){
-        intentJump(this,AddAccountActivity.class,null);
+        Intent intent = new Intent(this,AddAccountActivity.class);
+        startActivityForResult(intent,100);
     }
     @Override
     protected int getLayoutId() {
@@ -50,7 +52,8 @@ public class AddAccountListsActivity extends BaseActivity implements BaseView {
         setTvRight("添加", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intentJump(mContext,AddAccountActivity.class,null);
+                Intent intent = new Intent(mContext,AddAccountActivity.class);
+                startActivityForResult(intent,100);
             }
         });
         accountPresenter = new AccountPresenter(this);
@@ -62,6 +65,16 @@ public class AddAccountListsActivity extends BaseActivity implements BaseView {
 
         initRefreshLayout();
         getData();
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==120){
+            mAdapter.cleanRV();
+            getData();
+        }
     }
 
     private void getData() {

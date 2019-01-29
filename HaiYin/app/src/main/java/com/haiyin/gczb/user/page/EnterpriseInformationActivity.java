@@ -349,6 +349,7 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
             //添加成功
             BaseEntity entity = (BaseEntity) data;
             MyUtils.showShort(entity.getEm());
+            setResult(120);
             this.finish();
         }
     }

@@ -41,7 +41,8 @@ public class AddAccountActivity extends BaseActivity implements BaseView {
     @Override
     public void success(int code, Object data) {
         BaseEntity entity = (BaseEntity) data;
-        MyUtils.showShort(entity.getEm());
+        MyUtils.showShort("添加成功");
+            setResult(120);
         this.finish();
     }
 
