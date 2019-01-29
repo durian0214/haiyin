@@ -55,7 +55,7 @@ public class FaceIdPresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        },mContext);
+        }, mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 
@@ -83,7 +83,7 @@ public class FaceIdPresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        },mContext);
+        }, mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 
@@ -113,7 +113,7 @@ public class FaceIdPresenter extends BasePresenter<BaseView> {
                 //失败
                 myView.netError(errorMsg);
             }
-        },mContext);
+        }, mContext);
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 }
