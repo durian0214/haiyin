@@ -1,5 +1,5 @@
 <resources>
-    <string name="version">v1.0.2</string>
+    <string name="version">v1.0.3</string>
     <string name="app_name">海因</string>
     <string name="title_home">首页</string>
     <string name="title_demand_hall">需求大厅</string>

@@ -37,10 +37,6 @@ public class SetActivity extends BaseActivity implements BaseView{
         intentJump(this,ChangePayPasswordActivity.class,null);
     }
 
-    @OnClick(R.id.tv_my_version)
-    public void about() {
-        MyUtils.showShort(getString(R.string.version));
-    }
 
     @BindView(R.id.rl_set_pay_password)
     RelativeLayout rlSet;
