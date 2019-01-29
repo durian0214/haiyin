@@ -30,7 +30,6 @@
             android:background="@color/white"
             android:gravity="right"
             android:hint="请输入公司名称"
-            android:inputType="number"
             android:singleLine="true"
             android:lines="1"
             android:textColor="@color/color_444444"
@@ -106,7 +105,6 @@
             android:gravity="right"
             android:hint="请输入开户行地址"
             android:singleLine="true"
-            android:inputType="number"
             android:lines="1"
             android:textColor="@color/color_444444"
             android:textSize="@dimen/size_14sp" />
@@ -210,9 +208,7 @@
             android:layout_toRightOf="@id/tv_add_card_bank_name_label"
             android:background="@color/white"
             android:gravity="right"
-            android:hint="请输入开户行名称"
             android:singleLine="true"
-            android:inputType="number"
             android:lines="1"
             android:textColor="@color/color_444444"
             android:textSize="@dimen/size_14sp" />
