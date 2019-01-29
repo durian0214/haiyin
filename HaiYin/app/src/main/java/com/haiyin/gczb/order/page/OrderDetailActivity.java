@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.durian.lib.base.BaseView;
@@ -53,6 +54,8 @@ public class OrderDetailActivity extends BaseActivity implements BaseView {
     TextView tvAddress;
     @BindView(R.id.btn_order_detail)
     Button btn;
+    @BindView(R.id.ll_order_detail_code)
+    LinearLayout llCode;
     @BindView(R.id.tv_order_detail_status)
     TextView tvStatus;
 
@@ -180,7 +183,12 @@ public class OrderDetailActivity extends BaseActivity implements BaseView {
             tvEndTime.setText("完工时间:" + entity.getData().getEndDate());
             tvAmount.setText("项目金额:" + Arith.div_text(entity.getData().getAmount(), 100));
             tvType.setText("行业类型:" + entity.getData().getIndustryName());
-            tvCode.setText("生成编码:");
+            if(entity.getData().isIsSelfCompany()){
+                llCode.setVisibility(View.VISIBLE);
+                tvCode.setText("生成编码:"+entity.getData().getCodeNo());
+            }else {
+                llCode.setVisibility(View.GONE);
+            }
             tvAddress.setText("项目位置:" + entity.getData().getAddress());
             GlideUtil.loaderImg(this, img, entity.getData().getPic());
         }else if(ApiConfig.APPLY_INVOICE ==code){

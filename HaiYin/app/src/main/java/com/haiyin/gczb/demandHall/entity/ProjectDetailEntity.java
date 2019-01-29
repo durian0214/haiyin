@@ -10,9 +10,8 @@ import com.haiyin.gczb.base.BaseEntity;
  */
 public class ProjectDetailEntity extends BaseEntity {
 
-
     /**
-     * data : {"projectId":"1081490503305928704","pic":"图片地址","title":"标题","summary":"简介","amount":10000,"beginDate":"2019.01.05","endDate":"2019.01.25","industryName":"行业名称","address":"详细地址","projectStatus":1,"needType":2,"invoiceFileCompany":"公司发票","invoiceFileEntity":"团队发票","hasCode":true}
+     * data : {"projectId":"1081490503305928704","pic":"图片地址","title":"标题","summary":"简介","amount":10000,"beginDate":"2019.01.05","endDate":"2019.01.25","industryName":"行业名称","address":"详细地址","projectStatus":1,"needType":2,"invoiceFileCompany":"公司发票","invoiceFileEntity":"团队发票","hasCode":true,"isSelfCompany":true,"codeNo":"123456[自己公司发布的项目时,下发项目发布编码，供展示]"}
      */
 
     private DataBean data;
@@ -41,6 +40,8 @@ public class ProjectDetailEntity extends BaseEntity {
          * invoiceFileCompany : 公司发票
          * invoiceFileEntity : 团队发票
          * hasCode : true
+         * isSelfCompany : true
+         * codeNo : 123456[自己公司发布的项目时,下发项目发布编码，供展示]
          */
 
         private String projectId;
@@ -57,6 +58,8 @@ public class ProjectDetailEntity extends BaseEntity {
         private String invoiceFileCompany;
         private String invoiceFileEntity;
         private boolean hasCode;
+        private boolean isSelfCompany;
+        private String codeNo;
 
         public String getProjectId() {
             return projectId;
@@ -168,6 +171,22 @@ public class ProjectDetailEntity extends BaseEntity {
 
         public void setHasCode(boolean hasCode) {
             this.hasCode = hasCode;
+        }
+
+        public boolean isIsSelfCompany() {
+            return isSelfCompany;
+        }
+
+        public void setIsSelfCompany(boolean isSelfCompany) {
+            this.isSelfCompany = isSelfCompany;
+        }
+
+        public String getCodeNo() {
+            return codeNo;
+        }
+
+        public void setCodeNo(String codeNo) {
+            this.codeNo = codeNo;
         }
     }
 }

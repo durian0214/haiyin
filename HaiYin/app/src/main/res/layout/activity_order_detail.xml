@@ -132,20 +132,27 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:background="#F5F5F5" />
-            <TextView
-                android:id="@+id/tv_order_detail_code"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="15dp"
-                android:text="生成编码：EG3545"
-                android:textColor="@color/color_444444"
-                android:textSize="@dimen/sp_14" />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="#F5F5F5" />
+                android:id="@+id/ll_order_detail_code"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tv_order_detail_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:text="生成编码：EG3545"
+                    android:textColor="@color/color_444444"
+                    android:textSize="@dimen/sp_14" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="#F5F5F5" />
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/tv_order_detail_industry_address"
                 android:layout_width="match_parent"
