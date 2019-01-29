@@ -84,7 +84,7 @@ public class ImageDisposeUtil {
      */
     public static byte[] Bitmap2Bytes(Bitmap bm){
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        bm.compress(Bitmap.CompressFormat.JPEG, 80, baos);
         return baos.toByteArray();
     }
     /**

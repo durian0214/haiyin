@@ -138,7 +138,6 @@ public class CropActivity extends BaseActivity {
                 outputStream = getContentResolver().openOutputStream(mOutputUri);
                 croppedBitmap.compress(Bitmap.CompressFormat.JPEG, 85, outputStream);
                 croppedBitmap.recycle();
-
                 setResultUri(mOutputUri, mGestureCropImageView.getTargetAspectRatio());
                 finish();
             } else {
