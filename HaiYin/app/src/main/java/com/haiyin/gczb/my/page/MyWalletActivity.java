@@ -29,7 +29,7 @@ public class MyWalletActivity extends BaseActivity {
 
     @OnClick(R.id.rl_my_wallet_collection_information)
     public void toCollectionInformation() {
-
+        intentJump(this, CollectionInformationActivity.class, null);
     }
 
     @Override

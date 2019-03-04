@@ -21,9 +21,7 @@ import butterknife.OnClick;
  */
 public class AddCardActivity extends BaseActivity implements BaseView {
     CardPresenter cardPresenter;
-    //公司名称
-    @BindView(R.id.edt_add_card_name)
-    EditText edtName;
+
     //纳税人识别号
     @BindView(R.id.edt_add_card_taxpayers)
     EditText edtCardTaxpayers;
@@ -42,19 +40,27 @@ public class AddCardActivity extends BaseActivity implements BaseView {
 
     @OnClick(R.id.btn_add_card)
     public void add() {
-        String name = edtName.getText().toString();
         String cardTaxpayers = edtCardTaxpayers.getText().toString();
         String cardName = edtCardName.getText().toString();
         String phone = edtPhone.getText().toString();
         String account = edtAccount.getText().toString();
         String bankName = edtBankName.getText().toString();
-        if (name.isEmpty() ||
-                cardTaxpayers.isEmpty() ||
-                cardName.isEmpty() ||
-                phone.isEmpty() ||
-                account.isEmpty() ||
-                bankName.isEmpty()) {
-            MyUtils.showShort("请完善信息");
+
+
+        if (cardName.isEmpty() ) {
+            MyUtils.showShort("请输入开户行地址");
+            return;
+        } if (cardTaxpayers.isEmpty() ) {
+            MyUtils.showShort("请输入纳税人识别号");
+            return;
+        } if (phone.isEmpty() ) {
+            MyUtils.showShort("请输入电话");
+            return;
+        } if (account.isEmpty() ) {
+            MyUtils.showShort("请输入开户行账号");
+            return;
+        }if (bankName.isEmpty() ) {
+            MyUtils.showShort("请输入开户行名称");
             return;
         }
 

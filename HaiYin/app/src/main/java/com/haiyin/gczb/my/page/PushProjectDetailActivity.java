@@ -116,11 +116,19 @@ public class PushProjectDetailActivity extends BaseActivity implements BaseView 
             clearingFiles = sb.toString();
         }
         if (framFiles == null
-                || contractFiles == null
-                || clearingFiles == null) {
-            MyUtils.showShort("完善信息");
+             ) {
+            MyUtils.showShort("请上传框架合同");
+            return;
+        }  if (contractFiles == null
+             ) {
+            MyUtils.showShort("请上传订单合同");
+            return;
+        }  if (clearingFiles == null
+             ) {
+            MyUtils.showShort("请上传项目结算");
             return;
         }
+
         customerPresenter.salescompleteProject(id, framFiles, contractFiles, clearingFiles);
     }
 

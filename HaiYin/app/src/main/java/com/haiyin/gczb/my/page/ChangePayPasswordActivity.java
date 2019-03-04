@@ -7,12 +7,16 @@ import com.haiyin.gczb.base.BaseActivity;
 import com.haiyin.gczb.my.presenter.PayPasswordPresenter;
 import com.haiyin.gczb.user.page.SubmitSucceedActivity;
 import com.haiyin.gczb.user.presenter.SendCodePresenter;
+import com.haiyin.gczb.utils.Constant;
 import com.haiyin.gczb.utils.MyUtils;
+import com.haiyin.gczb.utils.SharedPreferencesUtils;
+import com.haiyin.gczb.utils.UserUtils;
 import com.haiyin.gczb.utils.http.ApiConfig;
 import com.durian.lib.base.BaseView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
 import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseActivity;
 import com.haiyin.gczb.my.presenter.PayPasswordPresenter;
@@ -20,6 +24,7 @@ import com.haiyin.gczb.user.page.SubmitSucceedActivity;
 import com.haiyin.gczb.user.presenter.SendCodePresenter;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.http.ApiConfig;
+import com.haiyin.gczb.utils.var.SharedPreferencesVar;
 
 /**
  * Created
@@ -38,36 +43,36 @@ public class ChangePayPasswordActivity extends BaseActivity implements BaseView 
     @BindView(R.id.edt_change_pay_password_confirm)
     EditText edtConfirm;
 
-    @OnClick(R.id.edt_change_pay_password_phone)
+    @OnClick(R.id.btn_change_pay_password_send_code)
     public void toSend() {
-        if(edtPhone.getText().toString().length()!=11){
+        if (edtPhone.getText().toString().length() != 11) {
             MyUtils.showShort("请输入手机号");
             return;
         }
-        sendCodePresenter.sendCode(edtPhone.getText().toString(),2,mContext);
+        sendCodePresenter.sendCode(edtPhone.getText().toString(), 2, mContext);
     }
 
     @OnClick(R.id.btn_change_pay_password_submit)
     public void toSubmit() {
-        if(edtPhone.getText().toString().length()!=11){
+        if (edtPhone.getText().toString().length() != 11) {
             MyUtils.showShort("请输入手机号");
             return;
         }
         payPasswordPresenter.modifyPayPwd(edtPhone.getText().toString(),
                 edtCode.getText().toString(),
                 edtNew.getText().toString(),
-                edtConfirm.getText().toString(),mContext);
+                edtConfirm.getText().toString(), mContext);
     }
 
     @Override
     public void success(int code, Object data) {
-        if(code == ApiConfig.SEND_CODE){
+        if (code == ApiConfig.SEND_CODE) {
             MyUtils.showShort("短信已发送");
-        }else if(code==ApiConfig.MODIFY_PAY_PWD){
+        } else if (code == ApiConfig.MODIFY_PAY_PWD) {
             Bundle bundle = new Bundle();
-            bundle.putString("title","修改交易密码");
-            bundle.putString("context","密码修改成功");
-            intentJump(this,SubmitSucceedActivity.class,bundle);
+            bundle.putString("title", "修改交易密码");
+            bundle.putString("context", "密码修改成功");
+            intentJump(this, SubmitSucceedActivity.class, bundle);
             this.finish();
         }
     }
@@ -85,6 +90,7 @@ public class ChangePayPasswordActivity extends BaseActivity implements BaseView 
     @Override
     public void initView() {
         setTitle("修改交易密码");
+        edtPhone.setText(UserUtils.getMobile());
         payPasswordPresenter = new PayPasswordPresenter(this);
         sendCodePresenter = new SendCodePresenter(this);
     }

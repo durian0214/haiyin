@@ -23,10 +23,10 @@ public class DemandHanllAdapter extends BaseQuickAdapter<ProjectListEntity.DataB
     @Override
     protected void convert(BaseViewHolder helper, ProjectListEntity.DataBean item) {
         helper.setText(R.id.tv_item_demand_hall_name,item.getTitle());
-        helper.setText(R.id.tv_item_demand_hall_price, Arith.div_text(item.getAmount(),100)+"元  ");
+        helper.setText(R.id.tv_item_demand_hall_price, item.getAmount()+"元  ");
         helper.setText(R.id.tv_item_demand_hall_time,"项目工期"+item.getDays()+"天");
         helper.setText(R.id.tv_item_demand_hall_classification,item.getSummary());
-        helper.setText(R.id.tv_item_demand_hall_address,item.getCityName());
+        helper.setText(R.id.tv_item_demand_hall_address,item.getAddress());
         helper.addOnClickListener(R.id.ll_item_demand_hall);
         helper.getView(R.id.rl_item_demand_hall_status).setVisibility(View.GONE);
     }

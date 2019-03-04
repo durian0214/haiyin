@@ -193,13 +193,13 @@ public class OnSuccessAndFaultSub extends DisposableObserver<ResponseBody> imple
                 String errorMsg = jsonObject.getString("em");
                 if (401 == resultCode) {
                     //刷新token
-                    RxBus.getInstance().send(new UpdataTokenEvent());
+                    RxBus.getInstance().post(new UpdataTokenEvent());
                 } else if (402 == resultCode) {
                     //token错误
                     UserUtils.tokenerror();
                 } else if (403 == resultCode) {
                     //手机号走注册流程
-                    RxBus.getInstance().send(new RegisterUserEvent());
+                    RxBus.getInstance().post(new RegisterUserEvent());
                 }else{
                     mOnSuccessAndFaultListener.onFault(errorMsg);
                     Log.e("OnSuccessAndFaultSub", "errorMsg: " + errorMsg);

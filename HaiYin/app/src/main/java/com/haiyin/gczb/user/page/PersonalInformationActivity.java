@@ -124,7 +124,7 @@ public class PersonalInformationActivity extends BaseActivity implements BaseVie
     @Override
     public void initView() {
         registPresenter = new RegistPresenter(this);
-        setTitle("用户信息");
+        setTitle("个人用户");
         Bundle b = getIntent().getBundleExtra("bundle");
         phone = b.getString("phone");
         code = b.getString("code");

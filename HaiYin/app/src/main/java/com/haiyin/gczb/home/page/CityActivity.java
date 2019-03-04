@@ -8,11 +8,13 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseActivity;
 import com.haiyin.gczb.home.adapter.CityAdapter;
 import com.haiyin.gczb.home.adapter.SortAdapter;
+import com.haiyin.gczb.home.entity.GetCityEntity;
 import com.haiyin.gczb.utils.Constant;
 import com.haiyin.gczb.utils.view.city.CitySortModel;
 import com.haiyin.gczb.utils.view.city.EditTextWithDel;
@@ -29,7 +31,7 @@ import java.util.List;
  * by durian
  * 2019/1/13.
  */
-public class CityActivity extends BaseActivity{
+public class CityActivity extends BaseActivity {
     @Override
     protected int getLayoutId() {
         return R.layout.activity_city;
@@ -37,6 +39,7 @@ public class CityActivity extends BaseActivity{
 
     @Override
     public void initView() {
+        setTitle("城市列表");
         mEtCityName = (EditTextWithDel) findViewById(R.id.et_search);
         sideBar = (SideBar) findViewById(R.id.sidrbar);
         dialog = (TextView) findViewById(R.id.dialog);
@@ -47,7 +50,6 @@ public class CityActivity extends BaseActivity{
     }
 
 
-
     private ListView sortListView;
     private SideBar sideBar;
     private TextView dialog;
@@ -56,9 +58,8 @@ public class CityActivity extends BaseActivity{
     private List<CitySortModel> SourceDateList;
 
 
-
     private void setAdapter() {
-        SourceDateList = filledData(getResources().getStringArray(R.array.provinces));
+        SourceDateList = filledData(Constant.listCity);
         Collections.sort(SourceDateList, new PinyinComparator());
         adapter = new SortAdapter(this, SourceDateList);
         sortListView.addHeaderView(initHeadView());
@@ -84,15 +85,17 @@ public class CityActivity extends BaseActivity{
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Constant.cityName =  ((CitySortModel)  adapter.getItem(position-1)).getName();
+                Constant.cityName = ((CitySortModel) adapter.getItem(position - 1)).getName();
                 for (int i = 0; i < Constant.listCity.size(); i++) {
                     if (Constant.listCity.get(i).getName().contains(Constant.cityName)) {
-                        Constant.cityId = Constant.listCity.get(i).getCityId();
+                        GetCityEntity.DataBean entity = Constant.listCity.get(i);
+                        Constant.cityId = entity.getCityId();
+//                Toast.makeText(getApplication(), ((CitySortModel) adapter.getItem(position-1)).getName(), Toast.LENGTH_SHORT).show();
                         CityActivity.this.finish();
                         return;
                     }
                 }
-//                Toast.makeText(getApplication(), ((CitySortModel) adapter.getItem(position-1)).getName(), Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -155,14 +158,14 @@ public class CityActivity extends BaseActivity{
         adapter.updateListView(mSortList);
     }
 
-    private List<CitySortModel> filledData(String[] date) {
+    private List<CitySortModel> filledData(List<GetCityEntity.DataBean> data) {
         List<CitySortModel> mSortList = new ArrayList<>();
         ArrayList<String> indexString = new ArrayList<>();
 
-        for (int i = 0; i < date.length; i++) {
+        for (int i = 0; i < data.size(); i++) {
             CitySortModel sortModel = new CitySortModel();
-            sortModel.setName(date[i]);
-            String pinyin = PinyinUtils.getPingYin(date[i]);
+            sortModel.setName(data.get(i).getName());
+            String pinyin = PinyinUtils.getPingYin(data.get(i).getName());
             String sortString = pinyin.substring(0, 1).toUpperCase();
             if (sortString.matches("[A-Z]")) {
                 sortModel.setSortLetters(sortString.toUpperCase());

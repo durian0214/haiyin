@@ -35,13 +35,13 @@ public class HttpMethods {
     public static String BASE_URL = ApiConfig.BASE_URL;
     private static final int DEFAULT_CONNECT_TIMEOUT = 30;
     private static final int DEFAULT_WRITE_TIMEOUT = 30;
-    private static final int DEFAULT_READ_TIMEOUT = 30;
+    private static final int DEFAULT_READ_TIMEOUT = 300;
     private Retrofit retrofit;
     private HttpApi httpApi;
     /**
      * 请求失败重连次数
      */
-    private int RETRY_COUNT = 0;
+    private int RETRY_COUNT = 3;
     private OkHttpClient.Builder okHttpBuilder;
     //构造方法私有
     private HttpMethods() {

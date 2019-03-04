@@ -5,40 +5,77 @@
     android:orientation="vertical">
 
     <include layout="@layout/activity_base" />
-
-
-    <RelativeLayout
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:padding="15dp">
+        android:id="@+id/rl_base_title"
+        >
 
-        <EditText
-            android:id="@+id/edt_search"
+        <LinearLayout
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/ll_search_back"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:background="@mipmap/back"
+                android:scaleType="centerCrop"
+                android:id="@+id/imgb_base_back"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
-            android:layout_toLeftOf="@id/tv_search"
-            android:background="@drawable/shape_edt"
-            android:drawableLeft="@mipmap/search"
-            android:gravity="left"
-            android:singleLine="true"
-
-            android:hint="请输入要搜索的内容"
-            android:lines="1"
-            android:padding="10dp"
-            android:textColor="@color/color_444444"
-            android:textSize="@dimen/sp_14" />
-
-        <TextView
-            android:id="@+id/tv_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:background="@color/white"
+            android:id="@+id/rl_search"
             android:layout_centerVertical="true"
-            android:text="搜索" />
+            android:layout_toRightOf="@id/ll_search_back"
+            android:paddingRight="15dp">
+
+            <EditText
+                android:id="@+id/edt_search"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@id/tv_search"
+                android:background="@drawable/shape_edt"
+                android:drawableLeft="@mipmap/search"
+                android:gravity="left"
+                android:singleLine="true"
+                android:hint="请输入要搜索的内容"
+
+                android:lines="1"
+                android:padding="10dp"
+                android:textColor="@color/color_444444"
+                android:textSize="@dimen/sp_14" />
+
+            <TextView
+                android:id="@+id/tv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_00C1B6"
+                android:layout_alignParentRight="true"
+
+                android:layout_centerVertical="true"
+                android:text="搜索" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/rl_search"
+            android:layout_marginTop="15dp"
+            android:background="#F0F1F4"/>
 
     </RelativeLayout>
+
+
 
 
     <com.haiyin.gczb.utils.view.MyRecyclerView

@@ -12,16 +12,13 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:text="企业用户信息"
-        android:id="@+id/tv_enterprise_information_title"
-        android:textColor="@color/color_444444"
-        android:textSize="@dimen/size_16sp" />
+        android:text="您可点击右上角按钮，业务员帮忙填写"
+        android:textColor="#FF651B"
+        android:background="#F5F5F5"
+        android:padding="5dp"
+        android:gravity="center"
+        android:layout_below="@id/tv_enterprise_information_salesman_label"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="#F5F5F5" />
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -47,8 +44,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:text="选择我的业务员"
+                    android:text="我的业务员*"
+
                     android:textColor="@color/color_666666"
                     android:textSize="@dimen/size_14sp" />
                 <Spinner
@@ -61,7 +58,7 @@
                     android:background="@color/white"
                     android:layout_alignParentRight="true"
                     />
-            </RelativeLayout>
+                  </RelativeLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -82,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="头像"
+                    android:text="头像*"
                     android:textColor="@color/color_666666"
                     android:textSize="@dimen/size_14sp" />
 
@@ -122,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="公司名称"
+                    android:text="公司名称*"
                     android:textColor="@color/color_666666"
                     android:textSize="@dimen/size_14sp" />
 
@@ -159,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="公司联系方式"
+                    android:text="公司联系方式*"
                     android:textColor="@color/color_666666"
                     android:textSize="@dimen/size_14sp" />
 
@@ -198,7 +195,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="联系人姓名"
+                    android:text="联系人姓名*"
                     android:textColor="@color/color_666666"
                     android:textSize="@dimen/size_14sp" />
 
@@ -212,6 +209,7 @@
                     android:hint="请输入联系人姓名"
                     android:lines="1"
                     android:singleLine="true"
+                    android:maxLength="5"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />
             </RelativeLayout>
@@ -235,7 +233,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="联系人电话"
+                    android:text="联系人电话*"
                     android:textColor="@color/color_666666"
                     android:textSize="@dimen/size_14sp" />
 
@@ -272,7 +270,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:hint="职位"
+                    android:text="职位*"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />
 
@@ -308,7 +306,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="行业"
+                    android:text="行业*"
                     android:textColor="@color/color_666666"
                     android:textSize="@dimen/size_14sp" />
                 <Spinner
@@ -352,6 +350,7 @@
                     android:gravity="right"
                     android:hint="请输入收款人姓名"
                     android:lines="1"
+                    android:maxLength="5"
                     android:singleLine="true"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />

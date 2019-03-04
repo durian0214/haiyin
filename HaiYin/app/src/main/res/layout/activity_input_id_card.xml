@@ -29,9 +29,11 @@
             android:layout_toRightOf="@id/tv_enterprise_information_position_label"
             android:background="@color/white"
             android:gravity="right"
+
             android:hint="请输入姓名"
             android:lines="1"
             android:singleLine="true"
+            android:maxLength="5"
             android:textColor="@color/color_444444"
             android:textSize="@dimen/size_14sp" />
     </RelativeLayout>

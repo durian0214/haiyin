@@ -11,10 +11,12 @@ import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseActivity;
 import com.haiyin.gczb.my.adapter.CustomerProjectAdapter;
 import com.haiyin.gczb.my.entity.SalesCompanyProjectsEntity;
+import com.haiyin.gczb.my.entity.SalesContractFilesEntity;
 import com.haiyin.gczb.my.presenter.CustomerPresenter;
 import com.haiyin.gczb.order.page.OrderDetailActivity;
 import com.haiyin.gczb.utils.Constant;
 import com.haiyin.gczb.utils.MyUtils;
+import com.haiyin.gczb.utils.http.ApiConfig;
 import com.haiyin.gczb.utils.view.MyRecyclerView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -70,19 +72,20 @@ public class PushProjectActivity extends BaseActivity implements BaseView {
 
     @Override
     public void success(int code, Object data) {
-
-        SalesCompanyProjectsEntity entity = (SalesCompanyProjectsEntity) data;
-        if (srl != null && srl.isRefreshing()) {
-            srl.finishRefresh(200);
+        if (code== ApiConfig.SALES_COMPANY_PROJECTS) {
+            SalesCompanyProjectsEntity entity = (SalesCompanyProjectsEntity) data;
+            if (srl != null && srl.isRefreshing()) {
+                srl.finishRefresh(200);
+            }
+            if (srl != null && srl.isLoading()) {
+                srl.finishLoadmore(200);
+            }
+            if (entity.getData().size() < pageNum) {
+                //关闭加载更多
+                srl.setLoadmoreFinished(true);
+            }
+            mAdapter.addData(entity.getData());
         }
-        if (srl != null && srl.isLoading()) {
-            srl.finishLoadmore(200);
-        }
-        if (entity.getData().size() < pageNum) {
-            //关闭加载更多
-            srl.setLoadmoreFinished(true);
-        }
-        mAdapter.addData(entity.getData());
     }
 
     @Override
@@ -111,20 +114,27 @@ public class PushProjectActivity extends BaseActivity implements BaseView {
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 SalesCompanyProjectsEntity.DataBean bean = (SalesCompanyProjectsEntity.DataBean) adapter.getData().get(position);
 
-                if(Constant.userType ==5){
+
+                if(type ==5){
                     //上传合同
                     Intent mIntent = new Intent(mContext, PushProjectDetailActivity.class);
                     Bundle b = new Bundle();
                     b.putString("id", bean.getProjectId());
                     mIntent.putExtra("bundle", b);
                     startActivity(mIntent);
-                }else if(Constant.userType ==6){
-                    Intent mIntent = new Intent(mContext, OrderDetailActivity.class);
-                    Bundle b = new Bundle();
-                    b.putString("id", bean.getProjectId());
-                    mIntent.putExtra("bundle", b);
-                    startActivity(mIntent);
-                }else if(Constant.userType ==7){
+                }else if(type ==6){
+                    if(Constant.userType==4){
+                        Bundle bundle = new Bundle();
+                        bundle.putString("id", bean.getProjectId());
+                        intentJump(mContext, ContractDetailActivity.class, bundle);
+                    }else {
+                        Intent mIntent = new Intent(mContext, OrderDetailActivity.class);
+                        Bundle b = new Bundle();
+                        b.putString("id", bean.getProjectId());
+                        mIntent.putExtra("bundle", b);
+                        startActivity(mIntent);
+                    }
+                }else if(type==7){
                     Intent mIntent = new Intent(mContext, OrderDetailActivity.class);
                     Bundle b = new Bundle();
                     b.putString("id", bean.getProjectId());

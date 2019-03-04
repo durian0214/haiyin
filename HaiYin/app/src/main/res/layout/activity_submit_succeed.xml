@@ -33,7 +33,7 @@
         android:background="@drawable/shape_button"
         android:gravity="center"
         android:id="@+id/btn_submit_succceed"
-        android:text="返回客户列表"
+        android:text="返回上一级"
         android:textColor="@color/white"
         android:textSize="@dimen/sp_14"
         />

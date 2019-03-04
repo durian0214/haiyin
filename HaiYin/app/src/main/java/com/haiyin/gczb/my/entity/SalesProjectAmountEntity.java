@@ -2,6 +2,7 @@ package com.haiyin.gczb.my.entity;
 
 import com.haiyin.gczb.base.BaseEntity;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -31,14 +32,14 @@ public class SalesProjectAmountEntity extends BaseEntity {
          * dataList : [{"companyId":"1082681449276121088","title":"标题","amount":10000,"createDate":"2019.01.09"}]
          */
 
-        private Double totalAmount;
+        private String totalAmount;
         private List<DataListBean> dataList;
 
-        public Double getTotalAmount() {
+        public String getTotalAmount() {
             return totalAmount;
         }
 
-        public void setTotalAmount(Double totalAmount) {
+        public void setTotalAmount(String totalAmount) {
             this.totalAmount = totalAmount;
         }
 
@@ -60,7 +61,7 @@ public class SalesProjectAmountEntity extends BaseEntity {
 
             private String companyId;
             private String title;
-            private double amount;
+            private String amount;
             private String createDate;
 
             public String getCompanyId() {
@@ -79,11 +80,11 @@ public class SalesProjectAmountEntity extends BaseEntity {
                 this.title = title;
             }
 
-            public double getAmount() {
+            public String getAmount() {
                 return amount;
             }
 
-            public void setAmount(double amount) {
+            public void setAmount(String amount) {
                 this.amount = amount;
             }
 

@@ -23,7 +23,7 @@ public class SearchProjectAdapter extends BaseQuickAdapter<SearchProjectResultsE
     @Override
     protected void convert(BaseViewHolder helper, SearchProjectResultsEntity.DataBean item) {
         helper.setText(R.id.tv_item_demand_hall_name,item.getTitle());
-        helper.setText(R.id.tv_item_demand_hall_price, Arith.div_text(item.getAmount(),100)+"元  ");
+        helper.setText(R.id.tv_item_demand_hall_price, item.getAmount()+"元  ");
         helper.setText(R.id.tv_item_demand_hall_time,"项目工期"+item.getDays()+"天");
         helper.setText(R.id.tv_item_demand_hall_classification,item.getSummary());
         helper.setText(R.id.tv_item_demand_hall_address,item.getCityName());

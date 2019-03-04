@@ -1,8 +1,12 @@
 package com.haiyin.gczb.my.page;
 
+import android.content.Intent;
+
 import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseActivity;
+import com.haiyin.gczb.user.page.ChangeEnterpriseInformationActivity;
 import com.haiyin.gczb.user.page.SalesmanInformationActivity;
+import com.haiyin.gczb.utils.Constant;
 
 import butterknife.OnClick;
 
@@ -22,7 +26,20 @@ public class SalesmanSetActivity  extends BaseActivity  {
     }
     @OnClick(R.id.rl_salesman_set_change_info)
     public void toChangeInfo(){
-        intentJump(this,SalesmanInformationActivity.class,null);
+        if (Constant.userType == 1) {
+            intentJump(this,ChangeEnterpriseInformationActivity.class,null);
+
+        } else if (Constant.userType == 2) {
+
+            intentJump(this,ChangeEnterpriseInformationActivity.class,null);
+        } else if (Constant.userType == 3) {
+
+        } else if (Constant.userType == 4) {
+
+            intentJump(this,SalesmanInformationActivity.class,null);
+
+        }
+
     }
 
 

@@ -11,6 +11,8 @@ public class SharedPreferencesVar {
     public static final String FIRST_LOGIN = "firstLogin";
     //token
     public static final String TOKEN = "token";
+    //mobile
+    public static final String MOBILE = "mobile";
     //userid
     public static final String USER_ID = "user_id";
     //data

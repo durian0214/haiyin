@@ -93,7 +93,7 @@ public class ManuallySignedActivity extends BaseActivity implements BaseView {
         SignProjectEntity entity = (SignProjectEntity) data;
         if (entity.getData() == null) {
             Bundle bundle = new Bundle();
-            bundle.putString("str", entity.getEm());
+            bundle.putString("str","人脸识别成功 恭喜抢单成功");
             bundle.putInt("type", 0);
             intentJump(this, FaceRecognitionActivity.class, bundle);
         } else {

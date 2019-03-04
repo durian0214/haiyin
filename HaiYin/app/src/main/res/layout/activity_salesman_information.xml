@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:hint="头像"
+                    android:text="头像"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />
 
@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:hint="姓名"
+                    android:text="姓名"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />
                 <EditText
@@ -79,7 +79,9 @@
                     android:gravity="right"
                     android:hint="请输入姓名"
                     android:singleLine="true"
+                    android:maxLength="5"
                     android:lines="1"
+
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />
             </RelativeLayout>
@@ -99,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:hint="联系人电话"
+                    android:text="联系人电话"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />
                 <TextView
@@ -128,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:hint="现居住地址"
+                    android:text="现居住地址"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />
                 <EditText
@@ -160,7 +162,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:hint="职位"
+                    android:text="职位"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />
                 <Spinner
@@ -189,7 +191,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:hint="银行卡号"
+                    android:text="银行卡号"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />
                 <EditText
@@ -221,7 +223,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:hint="开户行"
+                    android:text="开户行"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />
                 <EditText

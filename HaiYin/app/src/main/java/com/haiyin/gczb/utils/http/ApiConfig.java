@@ -64,4 +64,6 @@ public class ApiConfig {
     public final static int ENTITY_OFFLINE_PAYS = 0xffffff42 ;
     public final static int ENTITY_RECEIVED_PAYS = 0xffffff43 ;
     public final static int REFRESH_TOKEN = 0xffffff44 ;
+    public final static int APP_UPDATE = 0xffffff45 ;
+    public final static int SALES_CONTRACT_FILES = 0xffffff46 ;
 }

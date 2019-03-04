@@ -3,6 +3,7 @@ package com.haiyin.gczb.my.page;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.durian.lib.base.BaseView;
 import com.durian.lib.baserRecyclerViewAdapterHelper.BaseQuickAdapter;
@@ -37,6 +38,8 @@ public class IndividualMyContractProjectActivity extends BaseActivity implements
     SmartRefreshLayout srl;
     private int page = 1;
     private int pageNum = 20;
+    @BindView(R.id.ll_no_data)
+    LinearLayout llNoData;
 
 
     @Override
@@ -53,6 +56,11 @@ public class IndividualMyContractProjectActivity extends BaseActivity implements
             srl.setLoadmoreFinished(true);
         }
         individualMyContractProjectAdapter.addData(entity.getData());
+        if (individualMyContractProjectAdapter.getData().size()==0){
+            llNoData.setVisibility(View.VISIBLE);
+        }else{
+            llNoData.setVisibility(View.GONE);
+        }
     }
 
     @Override

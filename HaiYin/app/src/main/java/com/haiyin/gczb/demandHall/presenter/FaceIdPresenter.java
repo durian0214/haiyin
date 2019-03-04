@@ -39,6 +39,10 @@ public class FaceIdPresenter extends BasePresenter<BaseView> {
     public void getBiztoken(String projectId, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("projectId", projectId);
+        //1=云智慧眼 2=实人认证
+        params.put("bizType", 2);
+
+
 
         Observable<ResponseBody>
                 observable = HttpMethods.getInstance().getHttpApi().getBiztoken(MyUtils.encryptString(params));
@@ -67,7 +71,8 @@ public class FaceIdPresenter extends BasePresenter<BaseView> {
     public void detectInfo(String bizToken, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("bizToken", bizToken);
-
+        //1=云智慧眼 2=实人认证
+        params.put("bizType", 2);
         Observable<ResponseBody>
                 observable = HttpMethods.getInstance().getHttpApi().detectInfo(MyUtils.encryptString(params));
 

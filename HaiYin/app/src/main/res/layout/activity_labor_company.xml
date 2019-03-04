@@ -190,7 +190,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="项目金额"
+                    android:text="项目金额*"
                     android:textColor="@color/color_666666"
                     android:textSize="@dimen/size_14sp" />
 
@@ -263,7 +263,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="行业"
+                    android:text="行业*"
                     android:textColor="@color/color_666666"
                     android:textSize="@dimen/size_14sp" />
 
@@ -350,56 +350,56 @@
                     android:textSize="@dimen/size_14sp" />
             </RelativeLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#F5F5F5"
-                android:gravity="center"
-                android:padding="7dp"
-                android:text="如已有熟人接活，请输入抢单编码，避免订单被他人抢走"
-                android:textColor="@color/color_00C1B6"
-                android:textSize="@dimen/sp_12" />
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="#F5F5F5"-->
+                <!--android:gravity="center"-->
+                <!--android:padding="7dp"-->
+                <!--android:text="如已有熟人接活，请输入抢单编码，避免订单被他人抢走"-->
+                <!--android:textColor="@color/color_00C1B6"-->
+                <!--android:textSize="@dimen/sp_12" />-->
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="15dp">
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:padding="15dp">-->
 
-                <TextView
-                    android:id="@+id/tv_labor_company_code_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:text="生成编码"
-                    android:textColor="@color/color_666666"
-                    android:textSize="@dimen/size_14sp" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_labor_company_code_label"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentLeft="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:text="生成编码"-->
+                    <!--android:textColor="@color/color_666666"-->
+                    <!--android:textSize="@dimen/size_14sp" />-->
 
-                <Button
-                    android:id="@+id/btn_labor_company_code"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@null"
-                    android:text="生成效验码"
-                    android:textColor="@color/color_00C1B6"
-                    android:textSize="@dimen/sp_14" />
+                <!--<Button-->
+                    <!--android:id="@+id/btn_labor_company_code"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="30dp"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:background="@null"-->
+                    <!--android:text="生成效验码"-->
+                    <!--android:textColor="@color/color_00C1B6"-->
+                    <!--android:textSize="@dimen/sp_14" />-->
 
-                <TextView
-                    android:id="@+id/tv_labor_company_code"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/btn_labor_company_code"
-                    android:layout_toRightOf="@id/tv_labor_company_code_label"
-                    android:background="@color/white"
-                    android:gravity="right"
-                    android:hint="请输入编码"
-                    android:lines="1"
-                    android:textColor="@color/color_444444"
-                    android:textSize="@dimen/size_14sp" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_labor_company_code"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_toLeftOf="@id/btn_labor_company_code"-->
+                    <!--android:layout_toRightOf="@id/tv_labor_company_code_label"-->
+                    <!--android:background="@color/white"-->
+                    <!--android:gravity="right"-->
+                    <!--android:hint="请输入编码"-->
+                    <!--android:lines="1"-->
+                    <!--android:textColor="@color/color_444444"-->
+                    <!--android:textSize="@dimen/size_14sp" />-->
+            <!--</RelativeLayout>-->
 
             <View
                 android:layout_width="match_parent"

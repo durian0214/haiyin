@@ -101,7 +101,10 @@ public class SalesmanInformationActivity extends BaseActivity implements BaseVie
         String address = tvAddress.getText().toString();
         String code = tvCode.getText().toString();
         String bankName = tvBankName.getText().toString();
-         if(name.isEmpty()||
+
+
+
+        if(name.isEmpty()||
                  phone.isEmpty()||
                  address.isEmpty()||
                  code.isEmpty()||
@@ -166,7 +169,7 @@ public class SalesmanInformationActivity extends BaseActivity implements BaseVie
 
       }else if(code ==ApiConfig.SALES_MODIFY_INFO){
             BaseEntity entity = (BaseEntity) data;
-            MyUtils.showShort(entity.getEm());
+            MyUtils.showShort("修改成功");
             this.finish();
         }
     }

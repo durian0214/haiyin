@@ -14,17 +14,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.haiyin.gczb.R;
 import com.haiyin.gczb.utils.MyPermissions;
+import com.haiyin.gczb.utils.MyUtils;
 
 import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-
-import com.haiyin.gczb.R;
-import com.haiyin.gczb.utils.MyPermissions;
-import com.haiyin.gczb.utils.MyUtils;
-
 import pub.devrel.easypermissions.EasyPermissions;
 
 /**
@@ -62,6 +59,7 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
         //绑定初始化ButterKnife
         mBinder= ButterKnife.bind(this);
         mContext =this;
+
         initView();
     }
 
@@ -167,5 +165,10 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
     protected void onPause() {
         super.onPause();
         ActivityManager.getActivityManager().pushActivity(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

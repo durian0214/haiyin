@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refreshLayout"
@@ -12,13 +12,50 @@
         app:srlDisableContentWhenRefresh="true"
         app:srlEnableHeaderTranslationContent="false">
 
-    <com.haiyin.gczb.utils.view.MyRecyclerView
-       android:layout_width="match_parent"
-       android:background="@color/white"
-        android:descendantFocusability="blocksDescendants"
-        android:focusableInTouchMode="false"
-        android:nestedScrollingEnabled="false"
-       android:id="@+id/rv_fragment_news"
-       android:layout_height="match_parent"/>
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nsv_category_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_color"
+            android:clipToPadding="false"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ll_no_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="20dp"
+                        android:background="@mipmap/no_data" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="亲，很抱歉暂时没有内容哦！"
+                        android:textColor="@color/color_666666" />
+                </LinearLayout>
+
+                <com.haiyin.gczb.utils.view.MyRecyclerView
+                    android:id="@+id/rv_fragment_news"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:descendantFocusability="blocksDescendants"
+                    android:focusableInTouchMode="false"
+                    android:nestedScrollingEnabled="false" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>

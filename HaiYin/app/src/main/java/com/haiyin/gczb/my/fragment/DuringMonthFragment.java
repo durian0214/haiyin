@@ -60,6 +60,7 @@ public class DuringMonthFragment extends BaseFragment implements BaseView{
         rv.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         mAdapter = new DuringMonthAdapter(R.layout.item_during_month);
         rv.setAdapter(mAdapter);
+        tvTitle.setText("当月发包金额");
 //        tvPrice.setText(Arith.div_text()+"元");
         initRefreshLayout();
     }
@@ -100,7 +101,7 @@ public class DuringMonthFragment extends BaseFragment implements BaseView{
     public void success(int code, Object data) {
 
         ProjectCooperateEntity entity = (ProjectCooperateEntity) data;
-        tvPrice.setText(Arith.div_text(entity.getData().getTotalAmount(),100)+"元");
+        tvPrice.setText(entity.getData().getTotalAmount()+"元");
         if (srl != null && srl.isRefreshing()) {
             srl.finishRefresh(200);
         }

@@ -23,7 +23,7 @@ public class CumulativeAdapter  extends BaseQuickAdapter<ProjectCooperateEntity.
     protected void convert(BaseViewHolder helper, ProjectCooperateEntity.DataBean.DataListBean item) {
         helper.setText(R.id.tv_item_payment_detail_name,item.getTitle());
         helper.setText(R.id.tv_item_payment_detail_price,item.getCreateDate());
-        helper.setText(R.id.tv_item_payment_detail_type,"+"+ Arith.div_text(item.getAmount(),100));
+        helper.setText(R.id.tv_item_payment_detail_type,"+"+ item.getAmount());
 
     }
 }

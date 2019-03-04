@@ -3,6 +3,7 @@ package com.haiyin.gczb.my.page;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.durian.lib.base.BaseView;
 import com.durian.lib.baserRecyclerViewAdapterHelper.BaseQuickAdapter;
@@ -32,6 +33,8 @@ public class MyPagerEnterpriseActivity extends BaseActivity implements BaseView 
     MyPagerEnterpriseAdapter myPagerEnterpriseAdapter;
     @BindView(R.id.srl)
     SmartRefreshLayout srl;
+    @BindView(R.id.ll_no_data)
+    LinearLayout llNoData;
     private int page = 1;
     private int pageNum = 20;
     // 1=未开票 2=已开票
@@ -52,6 +55,11 @@ public class MyPagerEnterpriseActivity extends BaseActivity implements BaseView 
             srl.setLoadmoreFinished(true);
         }
         myPagerEnterpriseAdapter.addData(entity.getData());
+        if (myPagerEnterpriseAdapter.getData().size()==0){
+            llNoData.setVisibility(View.VISIBLE);
+        }else{
+            llNoData.setVisibility(View.GONE);
+        }
     }
 
     @Override

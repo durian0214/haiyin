@@ -3,6 +3,7 @@ package com.haiyin.gczb.my.page;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.durian.lib.base.BaseView;
 import com.durian.lib.baserRecyclerViewAdapterHelper.BaseQuickAdapter;
@@ -36,9 +37,12 @@ public class MyPagerPersonalProjectActivity extends BaseActivity implements Base
     MyPagerPersonalProjectAdapter myPagerPersonalProjectAdapter;
     @BindView(R.id.srl)
     SmartRefreshLayout srl;
+    @BindView(R.id.ll_no_data)
+    LinearLayout llNoData;
     private int page = 1;
     private int pageNum = 20;
     private int type;
+
     @Override
     public void success(int code, Object data) {
         MyPagerPersonalProjectEntity entity = (MyPagerPersonalProjectEntity) data;
@@ -53,6 +57,11 @@ public class MyPagerPersonalProjectActivity extends BaseActivity implements Base
             srl.setLoadmoreFinished(true);
         }
         myPagerPersonalProjectAdapter.addData(entity.getData());
+        if (myPagerPersonalProjectAdapter.getData().size()==0){
+            llNoData.setVisibility(View.VISIBLE);
+        }else{
+            llNoData.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -68,7 +77,7 @@ public class MyPagerPersonalProjectActivity extends BaseActivity implements Base
     @Override
     public void initView() {
         type = getIntent().getBundleExtra("bundle").getInt("type");
-       String title = getIntent().getBundleExtra("bundle").getString("title");
+        String title = getIntent().getBundleExtra("bundle").getString("title");
         myPagerPersonalProjectPresenter = new MyPagerPersonalProjectPresenter(this);
         setTitle(title);
         rv.setLayoutManager(MyUtils.getVManager(this));
@@ -97,7 +106,7 @@ public class MyPagerPersonalProjectActivity extends BaseActivity implements Base
     }
 
     private void getData() {
-        myPagerPersonalProjectPresenter.entityProjects(page, pageNum,type,mContext);
+        myPagerPersonalProjectPresenter.entityProjects(page, pageNum, type, mContext);
     }
 
     private void initRefreshLayout() {

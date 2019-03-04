@@ -11,6 +11,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="160dp"
+        android:background="@mipmap/add_img_bg"
         android:id="@+id/img_upload_documents"
         android:scaleType="fitXY"/>
     <View

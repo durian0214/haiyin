@@ -188,7 +188,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="项目金额"
+                    android:text="项目金额*"
                     android:textColor="@color/color_666666"
                     android:textSize="@dimen/size_14sp"  />
 
@@ -227,7 +227,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="行业"
+                    android:text="行业*"
                     android:textColor="@color/color_666666"
                     android:textSize="@dimen/size_14sp" />
                 <Spinner
@@ -319,7 +319,7 @@
                 android:layout_height="wrap_content"
                 android:padding="7dp"
                 android:gravity="center"
-                android:text="如已有熟人接活，请输入抢单编码，避免订单被他人抢走"
+                android:text="如已有熟人接活，请输入熟人手机号，避免订单被他人抢走"
                 android:textSize="@dimen/sp_12"
                 android:textColor="@color/color_00C1B6"
                 android:background="#F5F5F5" />
@@ -335,29 +335,21 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="生成编码"
+                    android:text="熟人手机号"
                     android:textColor="@color/color_666666"
                     android:textSize="@dimen/size_14sp" />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_centerVertical="true"
-                    android:text="生成效验码"
-                    android:layout_alignParentRight="true"
-                    android:id="@+id/btn_look_team_code"
-                    android:background="@null"
-                    android:textColor="@color/color_00C1B6"
-                    android:textSize="@dimen/sp_14"/>
-                <TextView
-                    android:id="@+id/tv_look_team_code"
+
+                <EditText
+                    android:id="@+id/edt_look_team_code"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/tv_look_team_code_label"
                     android:background="@color/white"
-                    android:layout_toLeftOf="@id/btn_look_team_code"
                     android:gravity="right"
+                    android:maxLength="11"
+                    android:inputType="number"
                     android:layout_centerVertical="true"
-                    android:hint="请输入编码"
+                    android:hint="输入熟人手机号"
                     android:lines="1"
                     android:textColor="@color/color_444444"
                     android:textSize="@dimen/size_14sp" />

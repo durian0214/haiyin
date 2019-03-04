@@ -19,7 +19,30 @@
             android:layout_height="match_parent"
             android:background="@color/bg_color"
             android:fillViewport="true">
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/ll_no_data"
+                android:visibility="gone"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/no_data"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="亲，很抱歉暂时没有内容哦！"
+                    android:textColor="@color/color_666666"
+                    android:layout_gravity="center_horizontal"/>
+            </LinearLayout>
         <com.haiyin.gczb.utils.view.MyRecyclerView
             android:layout_width="match_parent"
             android:background="@color/white"
@@ -28,6 +51,7 @@
             android:nestedScrollingEnabled="false"
             android:id="@+id/rv_my_pager_personal_project"
             android:layout_height="match_parent"/>
+            </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>

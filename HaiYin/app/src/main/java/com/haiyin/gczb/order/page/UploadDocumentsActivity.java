@@ -49,12 +49,13 @@ public class UploadDocumentsActivity extends BaseActivity implements BaseView {
     public void toUpload() {
         if (url != null) {
             orderPresenter.payFileSave(id, url,mContext);
+        }else {
+            MyUtils.showShort("请上传凭证");
         }
     }
 
     @OnClick(R.id.img_upload_documents)
     public void toPic() {
-
         pic();
     }
 
@@ -64,8 +65,6 @@ public class UploadDocumentsActivity extends BaseActivity implements BaseView {
     @Override
     public void success(int code, Object data) {
         if (code == ApiConfig.PAY_FILE_SAVE) {
-
-
             this.finish();
         }
 

@@ -24,7 +24,7 @@ public class MyPagerActivity extends BaseActivity {
             b.putString("title","待开票");
             intentJump(this,MyPagerEnterpriseActivity.class,b);
         }else if(Constant.userType==2){
-            b.putInt("type" ,1);
+            b.putInt("type" ,3);
             b.putString("title","待开票");
             intentJump(this,MyPagerPersonalProjectActivity.class,b);
         }else if(Constant.userType==4){
@@ -44,7 +44,7 @@ public class MyPagerActivity extends BaseActivity {
             b.putString("title","已开票");
             intentJump(this,MyPagerEnterpriseActivity.class,b);
         }else if(Constant.userType==2){
-            b.putInt("type" ,2);
+            b.putInt("type" ,4);
             b.putString("title","已开票");
             intentJump(this,MyPagerPersonalProjectActivity.class,b);
         }else if(Constant.userType==4){

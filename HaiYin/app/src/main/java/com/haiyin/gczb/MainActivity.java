@@ -1,17 +1,24 @@
 package com.haiyin.gczb;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -19,6 +26,7 @@ import android.widget.Toast;
 
 import com.durian.lib.base.BaseView;
 import com.durian.lib.bus.RxBus;
+import com.durian.lib.utils.LogUtil;
 import com.haiyin.gczb.base.BaseActivity;
 import com.haiyin.gczb.demandHall.DemandHallFragment;
 import com.haiyin.gczb.home.HomeFragment;
@@ -27,12 +35,15 @@ import com.haiyin.gczb.home.presenter.CityPresenter;
 import com.haiyin.gczb.my.MyFragment;
 import com.haiyin.gczb.order.OrderFragment;
 import com.haiyin.gczb.sendPackage.page.SendPackageActivity;
+import com.haiyin.gczb.user.entity.GetVersionEntity;
 import com.haiyin.gczb.user.event.LoginOutEvent;
 import com.haiyin.gczb.user.event.RefreshTokenEntity;
 import com.haiyin.gczb.user.event.UpdataTokenEvent;
 import com.haiyin.gczb.user.page.LoginActivity;
+import com.haiyin.gczb.user.presenter.GetVersionPresenter;
 import com.haiyin.gczb.user.presenter.LoginPresenter;
 import com.haiyin.gczb.utils.Constant;
+import com.haiyin.gczb.utils.DownloadService;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.SharedPreferencesUtils;
 import com.haiyin.gczb.utils.UserUtils;
@@ -52,6 +63,7 @@ import io.reactivex.functions.Consumer;
 
 public class MainActivity extends BaseActivity implements BaseView {
     private LoginPresenter loginPresenter;
+
     private static MainActivity instance;
     private HomeFragment homeFragment;
     private MyFragment myFragment;
@@ -123,7 +135,6 @@ public class MainActivity extends BaseActivity implements BaseView {
             return true;
         }
     };
-
     /**
      * 显示之前隐藏所有fragment
      *
@@ -138,10 +149,7 @@ public class MainActivity extends BaseActivity implements BaseView {
             transaction.hide(demandHallFragment);
         if (orderFragment != null)
             transaction.hide(orderFragment);
-
-
     }
-
 
     @Override
     protected int getLayoutId() {
@@ -154,18 +162,22 @@ public class MainActivity extends BaseActivity implements BaseView {
         cityPresenter = new CityPresenter(this);
         instance = this;
         isShowTitle(false);
-        RxBus.getInstance().subscribe(LoginOutEvent.class, new Consumer<LoginOutEvent>() {
+        RxBus.getInstance().toObservable(this, LoginOutEvent.class).subscribe(new Consumer<LoginOutEvent>() {
             @Override
-            public void accept(LoginOutEvent inventoryEvent) {
+            public void accept(LoginOutEvent msgEvent) throws Exception {
+                //处理事件
                 intentJump(mContext, LoginActivity.class, null);
             }
         });
-        RxBus.getInstance().subscribe(UpdataTokenEvent.class, new Consumer<UpdataTokenEvent>() {
+        RxBus.getInstance().toObservable(this, UpdataTokenEvent.class).subscribe(new Consumer<UpdataTokenEvent>() {
             @Override
-            public void accept(UpdataTokenEvent inventoryEvent) {
+            public void accept(UpdataTokenEvent event) throws Exception {
+                //处理事件
                 loginPresenter.refreshToken();
             }
         });
+
+
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         BottomNavigationViewHelper.disableShiftMode(navigation);
         navigation.setSelectedItemId(R.id.main_home);
@@ -182,6 +194,7 @@ public class MainActivity extends BaseActivity implements BaseView {
 
 
     private void getAddress() {
+
         cityPresenter.getCity();
 //        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_DENIED) {
 //            return;
@@ -299,7 +312,6 @@ public class MainActivity extends BaseActivity implements BaseView {
     public void selMainhome() {
         navigation.setSelectedItemId(R.id.main_home);
         HomeFragment.getInstance().isShowRed();
-
     }
 
     @Override
@@ -359,4 +371,40 @@ public class MainActivity extends BaseActivity implements BaseView {
         return super.onKeyDown(keyCode, event);
     }
 
+    private boolean isBindService;
+
+
+    public void bindService(String apkUrl, String apkName) {
+        Intent intent = new Intent(this, DownloadService.class);
+        intent.putExtra(DownloadService.BUNDLE_KEY_DOWNLOAD_URL, apkUrl);
+        intent.putExtra(DownloadService.BUNDLE_KEY_DOWNLOAD_APK_NAME, apkName);
+        isBindService = bindService(intent, conn, BIND_AUTO_CREATE);
+    }
+
+    private ServiceConnection conn = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            DownloadService.DownloadBinder binder = (DownloadService.DownloadBinder) service;
+            DownloadService downloadService = binder.getService();
+
+            //接口回调，下载进度
+            downloadService.setOnProgressListener(new DownloadService.OnProgressListener() {
+                @Override
+                public void onProgress(float fraction) {
+                    LogUtil.i("下载进度：" + (int) (fraction * 100));
+                    //判断是否真的下载完成进行安装了，以及是否注册绑定过服务
+                    if (fraction == DownloadService.UNBIND_SERVICE && isBindService) {
+                        unbindService(conn);
+                        isBindService = false;
+                    }
+                }
+            });
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
 }

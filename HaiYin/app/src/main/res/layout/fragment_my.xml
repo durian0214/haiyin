@@ -382,12 +382,14 @@
             android:paddingBottom="20dp"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
+            android:visibility="gone"
             android:paddingTop="20dp"
             android:text="关于我们" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
+            android:visibility="gone"
             android:background="#F5F5F5" />
 
         <Button

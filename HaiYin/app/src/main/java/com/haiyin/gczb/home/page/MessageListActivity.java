@@ -2,6 +2,8 @@ package com.haiyin.gczb.home.page;
 
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.durian.lib.base.BaseView;
 import com.haiyin.gczb.R;
@@ -34,6 +36,8 @@ public class MessageListActivity extends BaseActivity implements BaseView {
     // 1=系统消息, 2=钱包消息, 3=任务消息
     private int type = 0;
     MessagePresenter messagePresenter;
+    @BindView(R.id.ll_no_data)
+    LinearLayout llNoData;
 
     @Override
     protected int getLayoutId() {
@@ -94,6 +98,11 @@ public class MessageListActivity extends BaseActivity implements BaseView {
             srl.setLoadmoreFinished(true);
         }
         mAdapter.addData(entity.getData());
+        if (mAdapter.getData().size()==0){
+            llNoData.setVisibility(View.VISIBLE);
+        }else{
+            llNoData.setVisibility(View.GONE);
+        }
     }
 
     @Override

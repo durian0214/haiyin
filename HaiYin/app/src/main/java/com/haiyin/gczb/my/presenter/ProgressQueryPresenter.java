@@ -41,7 +41,7 @@ public class ProgressQueryPresenter  extends BasePresenter<BaseView> {
         Map<String, Object> params = new HashMap<>();
         params.put("pageNo", pageNo);
         params.put("pageSize", pageSize);
-        params.put("dateType", dateType);
+            params.put("dataType", dateType);
         Observable<ResponseBody>
                 observable = HttpMethods.getInstance().getHttpApi().projectCooperate(MyUtils.encryptString(params));
 

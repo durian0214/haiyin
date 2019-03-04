@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.durian.lib.base.BaseView;
 import com.durian.lib.baserRecyclerViewAdapterHelper.BaseQuickAdapter;
@@ -34,6 +35,8 @@ public class ProjectFragment extends BaseFragment implements BaseView{
     MyRecyclerView rv;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout srl;
+    @BindView(R.id.ll_no_data)
+    LinearLayout llNoData;
     SearchProjectAdapter mAdapter;
     String str ;
     private int page = 1;
@@ -112,6 +115,11 @@ public class ProjectFragment extends BaseFragment implements BaseView{
             srl.setLoadmoreFinished(true);
         }
         mAdapter.addData(entity.getData());
+        if (mAdapter.getData().size()==0){
+            llNoData.setVisibility(View.VISIBLE);
+        }else{
+            llNoData.setVisibility(View.GONE);
+        }
     }
 
     @Override

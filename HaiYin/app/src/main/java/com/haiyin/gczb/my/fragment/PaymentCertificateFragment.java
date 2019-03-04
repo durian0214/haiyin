@@ -3,6 +3,7 @@ package com.haiyin.gczb.my.fragment;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.durian.lib.base.BaseView;
@@ -36,6 +37,8 @@ public class PaymentCertificateFragment  extends BaseFragment implements BaseVie
     PaymentCertificateAdapter mAdapter;
     @BindView(R.id.srl)
     SmartRefreshLayout srl;
+    @BindView(R.id.ll_no_data)
+    LinearLayout llNoData;
     private int page = 1;
     private int pageNum = 20;
 
@@ -103,6 +106,11 @@ public class PaymentCertificateFragment  extends BaseFragment implements BaseVie
             srl.setLoadmoreFinished(true);
         }
         mAdapter.addData(entity.getData());
+        if (mAdapter.getData().size()==0){
+            llNoData.setVisibility(View.VISIBLE);
+        }else{
+            llNoData.setVisibility(View.GONE);
+        }
     }
 
     @Override

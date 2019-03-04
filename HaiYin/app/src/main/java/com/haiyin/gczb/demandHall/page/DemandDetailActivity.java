@@ -1,14 +1,15 @@
 package com.haiyin.gczb.demandHall.page;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.security.rp.RPSDK;
+import com.durian.lib.base.BaseView;
 import com.durian.lib.glide.GlideUtil;
+import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseActivity;
 import com.haiyin.gczb.demandHall.entity.DetectInfoEntity;
 import com.haiyin.gczb.demandHall.entity.GetBiztokenEntity;
@@ -18,27 +19,11 @@ import com.haiyin.gczb.demandHall.presenter.ProjectPresenter;
 import com.haiyin.gczb.utils.Arith;
 import com.haiyin.gczb.utils.Constant;
 import com.haiyin.gczb.utils.MyUtils;
-import com.haiyin.gczb.utils.UploadHelper;
 import com.haiyin.gczb.utils.dialog.GrabSingleCodeDialog;
 import com.haiyin.gczb.utils.http.ApiConfig;
-import com.durian.lib.base.BaseView;
-import com.tencent.authsdk.AuthConfig;
-import com.tencent.authsdk.AuthSDKApi;
-import com.tencent.authsdk.IDCardInfo;
-import com.tencent.authsdk.callback.IdentityCallback;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
-import com.haiyin.gczb.R;
-import com.haiyin.gczb.base.BaseActivity;
-import com.haiyin.gczb.demandHall.entity.GetBiztokenEntity;
-import com.haiyin.gczb.demandHall.entity.ProjectDetailEntity;
-import com.haiyin.gczb.demandHall.presenter.FaceIdPresenter;
-import com.haiyin.gczb.demandHall.presenter.ProjectPresenter;
-import com.haiyin.gczb.utils.MyUtils;
-import com.haiyin.gczb.utils.dialog.GrabSingleCodeDialog;
-import com.haiyin.gczb.utils.http.ApiConfig;
 
 /**
  * Created
@@ -102,7 +87,7 @@ public class DemandDetailActivity extends BaseActivity implements BaseView {
             tvDescribe.setText("项目描述：" + entity.getData().getSummary());
             tvStartTime.setText("开工时间：" + entity.getData().getBeginDate());
             tvEndTime.setText("完工时间：" + entity.getData().getEndDate());
-            tvProjectAmount.setText("项目金额：￥" + Arith.div_text(entity.getData().getAmount(), 100));
+            tvProjectAmount.setText("项目金额：￥" +entity.getData().getAmount());
             tvIndustryType.setText("行业类型：" + entity.getData().getIndustryName());
             tvIndustryAddress.setText("项目位置：" + entity.getData().getAddress());
             final String str = entity.getData().getPic();
@@ -130,6 +115,7 @@ public class DemandDetailActivity extends BaseActivity implements BaseView {
                 b.putString("token", token);
                 b.putString("id", id);
                 intentJump(this, ManuallySignedActivity.class, b);
+                this.finish();
             } else {
                 Bundle bundle = new Bundle();
                 bundle.putString("str", entity.getEm());
@@ -142,13 +128,35 @@ public class DemandDetailActivity extends BaseActivity implements BaseView {
     }
 
     private void toFace(String bizToken) {
-        AuthConfig.Builder configBuilder = new AuthConfig.Builder(bizToken, R.class.getPackage().getName());
-        AuthSDKApi.startMainPage(this, configBuilder.build(), new IdentityCallback() {
-            @Override
-            public void onIdentityResult(Intent intent) {
-                faceIdPresenter.detectInfo(token,mContext);
-            }
-        });
+//        AuthConfig.Builder configBuilder = new AuthConfig.Builder(bizToken, R.class.getPackage().getName());
+//        AuthSDKApi.startMainPage(this, configBuilder.build(), new IdentityCallback() {
+//            @Override
+//            public void onIdentityResult(Intent intent) {
+//                faceIdPresenter.detectInfo(token,mContext);
+//            }
+//        });
+        RPSDK.start(bizToken, this,
+                new RPSDK.RPCompletedListener() {
+                    @Override
+                    public void onAuditResult(RPSDK.AUDIT audit, String s, String s1) {
+                        if(audit == RPSDK.AUDIT.AUDIT_PASS) { //认证通过
+                            faceIdPresenter.detectInfo(token,mContext);
+                        }
+                        else if(audit == RPSDK.AUDIT.AUDIT_FAIL) { //认证不通过
+                            MyUtils.showShort("认证不通过");
+                        }
+                        else if(audit == RPSDK.AUDIT.AUDIT_IN_AUDIT) { //认证中，通常不会出现，只有在认证审核系统内部出现超时，未在限定时间内返回认证结果时出现。此时提示用户系统处理中，稍后查看认证结果即可。
+
+                        }
+                        else if(audit == RPSDK.AUDIT.AUDIT_NOT) { //未认证，用户取消
+                            MyUtils.showShort("未认证，用户取消");
+                        }
+                        else if(audit == RPSDK.AUDIT.AUDIT_EXCEPTION){ //系统异常
+                            MyUtils.showShort("系统异常");
+                        }
+                    }
+
+                });
     }
 
     @Override
@@ -164,7 +172,7 @@ public class DemandDetailActivity extends BaseActivity implements BaseView {
     @Override
     public void initView() {
         if (Constant.userType == 2) {
-            btnCode.setVisibility(View.VISIBLE);
+            btnCode.setVisibility(View.GONE);
             btnSingle.setVisibility(View.VISIBLE);
         } else {
             btnCode.setVisibility(View.GONE);

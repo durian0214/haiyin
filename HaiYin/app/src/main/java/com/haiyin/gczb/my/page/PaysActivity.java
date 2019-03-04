@@ -105,9 +105,9 @@ public class PaysActivity extends BaseActivity implements BaseView {
 
         if(code == ApiConfig.ENTITY_ONLINE_PAYS){
             PaysEntity entity = (PaysEntity) data;
-            tvAmount.setText(Arith.div_text(((PaysEntity) data).getData().getTotalAmount(),100));
-            tvCarryAcount.setText(Arith.div_text(((PaysEntity) data).getData().getArrivalAmount(),100)+"元");
-            tvUncarryAcount.setText(Arith.div_text(((PaysEntity) data).getData().getUnArrivalAmount(),100)+"元");
+            tvAmount.setText(((PaysEntity) data).getData().getTotalAmount());
+            tvCarryAcount.setText(((PaysEntity) data).getData().getArrivalAmount()+"元");
+            tvUncarryAcount.setText(((PaysEntity) data).getData().getUnArrivalAmount()+"元");
             if (srl != null && srl.isRefreshing()) {
                 srl.finishRefresh(200);
             }
@@ -120,9 +120,9 @@ public class PaysActivity extends BaseActivity implements BaseView {
             }
             mAdapter.addData(entity.getData().getDataList());
         }else if(code == ApiConfig.ENTITY_OFFLINE_PAYS){
-            tvAmount.setText(Arith.div_text(((PaysEntity) data).getData().getTotalAmount(),100));
-            tvCarryAcount.setText(Arith.div_text(((PaysEntity) data).getData().getArrivalAmount(),100));
-            tvUncarryAcount.setText(Arith.div_text(((PaysEntity) data).getData().getUnArrivalAmount(),100));
+            tvAmount.setText(((PaysEntity) data).getData().getTotalAmount());
+            tvCarryAcount.setText(((PaysEntity) data).getData().getArrivalAmount());
+            tvUncarryAcount.setText(((PaysEntity) data).getData().getUnArrivalAmount());
             PaysEntity entity = (PaysEntity) data;
             if (srl != null && srl.isRefreshing()) {
                 srl.finishRefresh(200);

@@ -48,12 +48,12 @@ public class IconAdapter extends ArrayAdapter<GetPicsEntity.DataBean> {
         layout.findViewById(R.id.rl_item_home_gv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mIntent = new Intent(mContext,WebActivity.class);
-                Bundle b = new Bundle();
-                b.putString("title",lists.get(position).getTilte());
-                b.putString("url",lists.get(position).getUrlPath());
-                mIntent.putExtra("bundle",b);
-                mContext.startActivity(mIntent);
+//                Intent mIntent = new Intent(mContext,WebActivity.class);
+//                Bundle b = new Bundle();
+//                b.putString("title",lists.get(position).getTilte());
+//                b.putString("url",lists.get(position).getUrlPath());
+//                mIntent.putExtra("bundle",b);
+//                mContext.startActivity(mIntent);
             }
         });
         return layout;

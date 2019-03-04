@@ -2,15 +2,15 @@ package com.haiyin.gczb.my.entity;
 
 import com.haiyin.gczb.base.BaseEntity;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
  * Created
  * by durian
- * 2019/1/28.
+ * 2019/2/24.
  */
-
-public class ReceivedPaysEntity extends BaseEntity {
+public class CollectionInformationEntity extends BaseEntity {
 
     /**
      * data : {"receivedAmount":"累积金额","dataList":[{"projectId":"1081490503305928704","title":"标题","amount":10000,"createDate":"日期"}]}
@@ -32,14 +32,14 @@ public class ReceivedPaysEntity extends BaseEntity {
          * dataList : [{"projectId":"1081490503305928704","title":"标题","amount":10000,"createDate":"日期"}]
          */
 
-        private Double receivedAmount;
+        private String receivedAmount;
         private List<DataListBean> dataList;
 
-        public Double getReceivedAmount() {
+        public String getReceivedAmount() {
             return receivedAmount;
         }
 
-        public void setReceivedAmount(Double receivedAmount) {
+        public void setReceivedAmount(String receivedAmount) {
             this.receivedAmount = receivedAmount;
         }
 
@@ -61,7 +61,7 @@ public class ReceivedPaysEntity extends BaseEntity {
 
             private String projectId;
             private String title;
-            private int amount;
+            private String amount;
             private String createDate;
 
             public String getProjectId() {
@@ -80,11 +80,11 @@ public class ReceivedPaysEntity extends BaseEntity {
                 this.title = title;
             }
 
-            public int getAmount() {
+            public String getAmount() {
                 return amount;
             }
 
-            public void setAmount(int amount) {
+            public void setAmount(String amount) {
                 this.amount = amount;
             }
 
@@ -98,4 +98,3 @@ public class ReceivedPaysEntity extends BaseEntity {
         }
     }
 }
-

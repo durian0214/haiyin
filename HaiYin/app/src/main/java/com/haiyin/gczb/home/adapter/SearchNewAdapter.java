@@ -22,7 +22,9 @@ public class SearchNewAdapter extends BaseQuickAdapter<SearchNewsResultsEntity.D
     protected void convert(BaseViewHolder helper, SearchNewsResultsEntity.DataBean item) {
         RoundedImageView img =   helper.getView(R.id.img_item_home_news);
         GlideUtil.loaderCornersImg(mContext,img,item.getPic());
-        helper.setText(R.id.tv_item_home_news_time,item.getCreateDate());
+        helper.setText(R.id.tv_item_home_news_title,item.getTitle());
         helper.setText(R.id.tv_item_home_news_context,item.getSummary());
+        helper.setText(R.id.tv_item_home_news_time,item.getCreateDate());
+        helper.addOnClickListener(R.id.rl_home_news);
     }
 }

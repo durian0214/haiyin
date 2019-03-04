@@ -76,17 +76,17 @@ public class LookTeamActivity extends BaseActivity implements BaseView {
     Spinner spPay;
     @BindView(R.id.edt_look_team_address)
     EditText edtAddress;
-    @BindView(R.id.tv_look_team_code)
-    TextView tvCode;
+    @BindView(R.id.edt_look_team_code)
+    EditText edtCode;
     @BindView(R.id.cb_look_team)
     CheckBox cb;
     String imgUrl;
     private List<IndustryEntity.DataBean> industryList;
 
-    @OnClick(R.id.btn_look_team_code)
-    public void getCode() {
-        tvCode.setText(MyUtils.getNumLargeLetter());
-    }
+//    @OnClick(R.id.btn_look_team_code)
+//    public void getCode() {
+//        tvCode.setText(MyUtils.getNumLargeLetter());
+//    }
 
     @OnClick(R.id.btn_look_team)
     public void send() {
@@ -96,19 +96,28 @@ public class LookTeamActivity extends BaseActivity implements BaseView {
         String endTime = tvEndTime.getText().toString();
         String price = edtPrice.getText().toString();
         String address = edtAddress.getText().toString();
-        String code = tvCode.getText().toString();
-        if (title.isEmpty() || summary.isEmpty()
-                || beginTime.isEmpty()
-                || endTime.isEmpty()
-                || price.isEmpty()
-                || address.isEmpty()
-                || imgUrl == null) {
-            MyUtils.showShort("完善信息");
+        String code = edtCode.getText().toString();
+        if ( price.isEmpty()
+                ) {
+            MyUtils.showShort("请输入金额");
             return;
         }
+        if ( spIndustry.getSelectedItemPosition()==0
+                ) {
+            MyUtils.showShort("请选择行业");
+            return;
+        }
+//        if (title.isEmpty()
+//                || beginTime.isEmpty()
+//                || endTime.isEmpty()
+//                || price.isEmpty()
+//                || address.isEmpty()) {
+//            MyUtils.showShort("完善信息");
+//            return;
+//        }
 
         if (!cb.isChecked()) {
-            MyUtils.showShort("同意协议");
+            MyUtils.showShort("是否同意协议");
             return;
         }
         sendPackagePresenter.publishProject(2,
@@ -272,6 +281,8 @@ public class LookTeamActivity extends BaseActivity implements BaseView {
                 this, R.layout.item_sp,
                 dataList);
         spPay.setAdapter(adapter);
+        tvStartTime.setText(MyUtils.getTimeTo1());
+        tvEndTime.setText(MyUtils.getTimeTo30());
         setTitle("找团队");
         getDataPresenter.industry();
     }

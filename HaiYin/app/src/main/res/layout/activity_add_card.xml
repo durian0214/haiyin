@@ -7,42 +7,6 @@
 
     <include layout="@layout/activity_base" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp">
-
-        <TextView
-            android:id="@+id/tv_add_card_name_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:hint="公司名称"
-            android:textColor="@color/color_444444"
-            android:textSize="@dimen/size_14sp" />
-
-        <EditText
-            android:id="@+id/edt_add_card_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/tv_add_card_name_label"
-            android:background="@color/white"
-            android:gravity="right"
-            android:hint="请输入公司名称"
-            android:singleLine="true"
-            android:lines="1"
-            android:textColor="@color/color_444444"
-            android:textSize="@dimen/size_14sp" />
-    </RelativeLayout>
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:background="#E5E5E5" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -67,9 +31,9 @@
             android:background="@color/white"
             android:gravity="right"
             android:hint="请输入纳税人识别号"
-            android:inputType="number"
             android:singleLine="true"
             android:lines="1"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:textColor="@color/color_444444"
             android:textSize="@dimen/size_14sp" />
     </RelativeLayout>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.durian.lib.base.BaseView;
 import com.durian.lib.baserRecyclerViewAdapterHelper.BaseQuickAdapter;
@@ -35,6 +36,8 @@ public class DemandHallFragment extends BaseFragment implements BaseView {
     MyRecyclerView rv;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout srl;
+    @BindView(R.id.ll_no_data)
+    LinearLayout llNoData;
     private int page = 1;
     private int pageNum = 20;
 
@@ -53,6 +56,11 @@ public class DemandHallFragment extends BaseFragment implements BaseView {
             srl.setLoadmoreFinished(true);
         }
         mAdapter.addData(entity.getData());
+        if (mAdapter.getData().size()==0){
+            llNoData.setVisibility(View.VISIBLE);
+        }else{
+            llNoData.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -90,7 +98,7 @@ public class DemandHallFragment extends BaseFragment implements BaseView {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        getData();
+//        getData();
     }
 
     private void getData() {
@@ -115,5 +123,23 @@ public class DemandHallFragment extends BaseFragment implements BaseView {
                 getData();
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mAdapter.cleanRV();
+        page=1;
+        getData();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            mAdapter.cleanRV();
+            page=1;
+            getData();
+        }
     }
 }

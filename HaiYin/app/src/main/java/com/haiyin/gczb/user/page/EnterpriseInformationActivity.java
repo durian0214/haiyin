@@ -31,6 +31,7 @@ import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.ObjectKeyUtils;
 import com.haiyin.gczb.utils.UploadHelper;
 import com.haiyin.gczb.utils.dialog.PopupUtil;
+import com.haiyin.gczb.utils.dialog.PromptDialog;
 import com.haiyin.gczb.utils.http.ApiConfig;
 import com.haiyin.gczb.utils.pic.CropActivity;
 import com.haiyin.gczb.utils.pic.OnPictureSelectedListener;
@@ -60,9 +61,7 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
     RegistPresenter registPresenter;
     GetDataPresenter getDataPresenter;
     EnterprisePresenter enterprisePresenter;
-    //label
-    @BindView(R.id.tv_enterprise_information_title)
-    TextView tvLabel;
+
     //头像
     @BindView(R.id.img_enterprise_information_icon)
     RoundedImageView imgIcon;
@@ -113,6 +112,7 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
     @BindView(R.id.img_enterprise_information_collection_upload_documents_back)
     RoundedImageView imgCollectionUploadDocumentsBck;
 
+    int postion;
     String imgIconUrl;
     String imgBusinessLicenseUrl;
     String imgUploadDocumentsPositiveUrl;
@@ -179,27 +179,62 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
             String bankCode = edtBankCode.getText().toString();
             String bankName = edtBankName.getText().toString();
             String collectionCodeid = edtCollectionCodeid.getText().toString();
-            if (contactPhone.isEmpty() ||
-                    imgIconUrl == null ||
-                    contactName.isEmpty() ||
-                    spPosition.getSelectedItemPosition() == 0 ||
-                    spSalesman.getSelectedItemPosition() == 0 ||
-                    name.isEmpty() ||
-                    contact.isEmpty() ||
-                    spIndustry.getSelectedItemPosition() == 0 ||
-                    imgBusinessLicenseUrl == null ||
-                    collectionCodeid.isEmpty() ||
-                    imgUploadDocumentsPositiveUrl == null ||
-                    imgUploadDocumentsBaclUrl == null ||
-                    collectionName.isEmpty() ||
-                    bankCode.isEmpty() ||
-                    bankName.isEmpty() ||
-                    imgCollectionUploadDocumentsPositiveUrl == null ||
-                    imgCollectionUploadDocumentsBckUrl == null
-                    ) {
-                MyUtils.showShort("请完善资料");
+            if (contactPhone.isEmpty()) {
+                MyUtils.showShort("请输入联系人电话");
                 return;
             }
+            if (imgIconUrl == null) {
+                MyUtils.showShort("请选择头像");
+                return;
+            }
+            if (contactName.isEmpty()) {
+                MyUtils.showShort("请输入联系人姓名");
+                return;
+            }
+            if (spPosition.getSelectedItemPosition() == 0) {
+                MyUtils.showShort("请选择职位");
+                return;
+            }
+            if (spSalesman.getSelectedItemPosition() == 0) {
+                MyUtils.showShort("请选择业务员");
+                return;
+            }
+            if (name.isEmpty()) {
+                MyUtils.showShort("请输入公司名称");
+                return;
+            }
+            if (contact.isEmpty()) {
+                MyUtils.showShort("请输入公司联系方式");
+                return;
+            }
+            if (spIndustry.getSelectedItemPosition() == 0) {
+                MyUtils.showShort("请选择行业");
+                return;
+            }
+            if (imgBusinessLicenseUrl == null ||
+                    imgUploadDocumentsPositiveUrl == null ||
+                    imgUploadDocumentsBaclUrl == null || imgCollectionUploadDocumentsPositiveUrl == null ||
+                    imgCollectionUploadDocumentsBckUrl == null) {
+                MyUtils.showShort("请上传图片");
+                return;
+            }
+            if (collectionCodeid.isEmpty()) {
+                MyUtils.showShort("请输入收款人身份证号");
+                return;
+            }
+            if (collectionName.isEmpty()) {
+                MyUtils.showShort("请输入收款人姓名");
+                return;
+            }
+            if (bankCode.isEmpty()) {
+                MyUtils.showShort("请输入银行卡号");
+                return;
+            }
+            if (bankName.isEmpty()) {
+                MyUtils.showShort("请输入银行名称");
+                return;
+            }
+
             enterprisePresenter.addSubCompany(contactPhone,
                     imgIconUrl,
                     contactName,
@@ -221,7 +256,10 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
 
     }
 
+    boolean b;
+
     public void sendData(boolean type) {
+        b = type;
         String name = edtName.getText().toString();
         String contact = edtContact.getText().toString();
         String contactName = edtContactName.getText().toString();
@@ -231,22 +269,51 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
         String bankName = edtBankName.getText().toString();
         String collectionCodeid = edtCollectionCodeid.getText().toString();
         if (type) {
-            if (contactPhone.isEmpty() ||
-                    imgIconUrl == null ||
-                    contactName.isEmpty() ||
-                    spPosition.getSelectedItemPosition() == 0 ||
-                    spSalesman.getSelectedItemPosition() == 0) {
-                MyUtils.showShort("请完善资料");
+
+            if (contactPhone.isEmpty()) {
+                MyUtils.showShort("请输入联系人电话");
                 return;
             }
+            if (imgIconUrl == null) {
+                MyUtils.showShort("请选择头像");
+                return;
+            }
+            if (contactName.isEmpty()) {
+                MyUtils.showShort("请输入联系人姓名");
+                return;
+            }
+            if (spPosition.getSelectedItemPosition() == 0) {
+                MyUtils.showShort("请选择职位");
+                return;
+            }
+            if (spSalesman.getSelectedItemPosition() == 0) {
+                MyUtils.showShort("请选择业务员");
+                return;
+            }
+            if (name.isEmpty()) {
+                MyUtils.showShort("请输入公司名称");
+                return;
+            }
+            if (contact.isEmpty()) {
+                MyUtils.showShort("请输入公司联系方式");
+                return;
+            }
+            if (spIndustry.getSelectedItemPosition() == 0) {
+                MyUtils.showShort("请选择行业");
+                return;
+            }
+
             registPresenter.regist(contactPhone,
                     code,
                     imgIconUrl,
                     contactName,
                     spPosition.getSelectedItemPosition(),
                     roleType,
-                    salesList.get(spSalesman.getSelectedItemPosition()).getSalesId(),
+                    salesList.get(spSalesman.getSelectedItemPosition() - 1).getSalesId(),
                     type,
+                    name,
+                    contact,
+                    industryList.get(spIndustry.getSelectedItemPosition() - 1).getIndustryId(),
                     null,
                     null,
                     null,
@@ -255,32 +322,64 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
                     null,
                     null,
                     null,
-                    null,
-                    null,
-                    null,
-                    null,mContext);
+                    null, mContext);
         } else {
-            if (contactPhone.isEmpty() ||
-                    imgIconUrl == null ||
-                    contactName.isEmpty() ||
-                    spPosition.getSelectedItemPosition() == 0 ||
-                    spSalesman.getSelectedItemPosition() == 0 ||
-                    name.isEmpty() ||
-                    contact.isEmpty() ||
-                    spIndustry.getSelectedItemPosition() == 0 ||
-                    imgBusinessLicenseUrl == null ||
-                    collectionCodeid.isEmpty() ||
-                    imgUploadDocumentsPositiveUrl == null ||
-                    imgUploadDocumentsBaclUrl == null ||
-                    collectionName.isEmpty() ||
-                    bankCode.isEmpty() ||
-                    bankName.isEmpty() ||
-                    imgCollectionUploadDocumentsPositiveUrl == null ||
-                    imgCollectionUploadDocumentsBckUrl == null
-                    ) {
-                MyUtils.showShort("请完善资料");
+            if (contactPhone.isEmpty()) {
+                MyUtils.showShort("请输入联系人电话");
                 return;
             }
+            if (imgIconUrl == null) {
+                MyUtils.showShort("请选择头像");
+                return;
+            }
+            if (contactName.isEmpty()) {
+                MyUtils.showShort("请输入联系人姓名");
+                return;
+            }
+            if (spPosition.getSelectedItemPosition() == 0) {
+                MyUtils.showShort("请选择职位");
+                return;
+            }
+            if (spSalesman.getSelectedItemPosition() == 0) {
+                MyUtils.showShort("请选择业务员");
+                return;
+            }
+            if (name.isEmpty()) {
+                MyUtils.showShort("请输入公司名称");
+                return;
+            }
+            if (contact.isEmpty()) {
+                MyUtils.showShort("请输入公司联系方式");
+                return;
+            }
+            if (spIndustry.getSelectedItemPosition() == 0) {
+                MyUtils.showShort("请选择行业");
+                return;
+            }
+            if (imgBusinessLicenseUrl == null ||
+                    imgUploadDocumentsPositiveUrl == null ||
+                    imgUploadDocumentsBaclUrl == null || imgCollectionUploadDocumentsPositiveUrl == null ||
+                    imgCollectionUploadDocumentsBckUrl == null) {
+                MyUtils.showShort("请上传图片");
+                return;
+            }
+            if (collectionCodeid.isEmpty()) {
+                MyUtils.showShort("请输入收款人身份证号");
+                return;
+            }
+            if (collectionName.isEmpty()) {
+                MyUtils.showShort("请输入收款人姓名");
+                return;
+            }
+            if (bankCode.isEmpty()) {
+                MyUtils.showShort("请输入银行卡号");
+                return;
+            }
+            if (bankName.isEmpty()) {
+                MyUtils.showShort("请输入银行名称");
+                return;
+            }
+
 
             registPresenter.regist(contactPhone,
                     code,
@@ -301,7 +400,7 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
                     bankCode,
                     bankName,
                     imgCollectionUploadDocumentsPositiveUrl,
-                    imgCollectionUploadDocumentsBckUrl,mContext);
+                    imgCollectionUploadDocumentsBckUrl, mContext);
         }
 
     }
@@ -341,14 +440,37 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
                     dataList);
             spIndustry.setAdapter(adapter);
         } else if (code == ApiConfig.REGIST) {
-            //注册成功
             RegistEntity entity = (RegistEntity) data;
-            MyUtils.showShort(entity.getEm());
-            this.finish();
+            //注册成功
+            if (b) {
+                PromptDialog.getIntance().showPromptDialog(mContext, "已帮您通知了业务员",
+                        "业务员将在第一时间帮您填写资料您也可以拨打电话联系您的业务员", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Bundle bundle = new Bundle();
+                                bundle.putString("title", "");
+                                bundle.putString("context", "审核通过后会在系统消息给您发送通过消息\n" +
+                                        "\n" +
+                                        "请耐心等待");
+                                intentJump(mContext, SubmitSucceedActivity.class, bundle);
+                                mContext.finish();
+                            }
+                        });
+            } else {
+                Bundle bundle = new Bundle();
+                bundle.putString("title", "");
+                bundle.putString("context", "审核通过后会在系统消息给您发送通过消息\n" +
+                        "\n" +
+                        "请耐心等待");
+                intentJump(this, SubmitSucceedActivity.class, bundle);
+                this.finish();
+            }
+
+
         } else if (code == ApiConfig.ADD_SUB_COMPANY) {
             //添加成功
             BaseEntity entity = (BaseEntity) data;
-            MyUtils.showShort(entity.getEm());
+            MyUtils.showShort("添加成功");
             setResult(120);
             this.finish();
         }
@@ -375,10 +497,10 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
             phone = b.getString("phone");
             code = b.getString("code");
             roleType = b.getInt("roleType");
-            if(roleType == 1){
-                tvLabel.setText("企业用户信息");
-            }else if(roleType ==2){
-                tvLabel.setText("个体户用户信息");
+            if (roleType == 1) {
+               setTitle("企业用户");
+            } else if (roleType == 2) {
+                setTitle("个体户用户");
             }
             edtContactPhone.setText(phone);
             setTvRight("业务员帮忙填写", new View.OnClickListener() {
@@ -400,6 +522,7 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
     }
 
     public void pic(final int position) {
+        postion =position;
         if (MyPermissions.isOpenWrite(this)) {
             if (MyPermissions.isOpenCamera(this)) {
                 final String imgName = "cropImage" + MyUtils.getNowTime() + ".jpeg";
@@ -422,7 +545,7 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                String  objectKey = "";
+                                String objectKey = "";
                                 if (position == 0) {
                                     objectKey = ObjectKeyUtils.getIntance().getAvatars();
                                 } else if (position == 1) {
@@ -505,7 +628,6 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
                         }).start();
 
 
-
                     }
                 };
             } else {
@@ -586,11 +708,19 @@ public class EnterpriseInformationActivity extends BaseActivity implements BaseV
      * @param uri
      */
     public void startCropActivity(Uri uri) {
-        UCrop.of(uri, mDestinationUri)
-                .withAspectRatio(1, 1)
-                .withMaxResultSize(512, 512)
-                .withTargetActivity(CropActivity.class)
-                .start(this);
+        if(postion ==1){
+            UCrop.of(uri, mDestinationUri)
+                    .withMaxResultSize(10000, 10000)
+                    .withTargetActivity(CropActivity.class)
+                    .start(this);
+        }else {
+            UCrop.of(uri, mDestinationUri)
+                    .withAspectRatio(1, 1)
+                    .withMaxResultSize(512, 512)
+                    .withTargetActivity(CropActivity.class)
+                    .start(this);
+        }
+
     }
 
     /**

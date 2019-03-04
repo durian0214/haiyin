@@ -22,7 +22,10 @@ import com.haiyin.gczb.utils.view.MyRecyclerView;
 public class SearchActivity extends BaseActivity {
     @BindView(R.id.edt_search)
     EditText edt;
-
+    @OnClick(R.id.ll_search_back)
+    public void tofinish(){
+        this.finish();
+    }
     @OnClick(R.id.tv_search)
     public void toSearch() {
         String str = edt.getText().toString();
@@ -46,7 +49,6 @@ public class SearchActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        setTitle("搜索");
-
+        isShowTitle(false);
     }
 }

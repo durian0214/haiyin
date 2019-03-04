@@ -79,8 +79,8 @@ public class LaborCompanyActivity extends BaseActivity implements BaseView {
     Spinner spPay;
     @BindView(R.id.edt_labor_company_address)
     EditText edtAddress;
-    @BindView(R.id.tv_labor_company_code)
-    TextView tvCode;
+//    @BindView(R.id.tv_labor_company_code)
+//    TextView tvCode;
     @BindView(R.id.gl_labor_company_framework_contract)
     MyGridView gvFrameworkContract;
     @BindView(R.id.gl_labor_company_order_contract)
@@ -99,10 +99,10 @@ public class LaborCompanyActivity extends BaseActivity implements BaseView {
     String imgUrl;
     private List<IndustryEntity.DataBean> industryList;
 
-    @OnClick(R.id.btn_labor_company_code)
-    public void getCode() {
-        tvCode.setText(MyUtils.getNumLargeLetter());
-    }
+//    @OnClick(R.id.btn_labor_company_code)
+//    public void getCode() {
+//        tvCode.setText(MyUtils.getNumLargeLetter());
+//    }
 
     @OnClick(R.id.btn_labor_company)
     public void send() {
@@ -116,27 +116,36 @@ public class LaborCompanyActivity extends BaseActivity implements BaseView {
         String endTime = tvEndTime.getText().toString();
         String price = edtPrice.getText().toString();
         String address = edtAddress.getText().toString();
-        String code = tvCode.getText().toString();
+//        String code = tvCode.getText().toString();
         String framFiles = null;
         String contractFiles = null;
         String clearingFiles = null;
         String companyName =edtCompanyName.getText().toString();
-        if (title.isEmpty() || summary.isEmpty()
-                || beginTime.isEmpty()
-                || endTime.isEmpty()
-                || price.isEmpty()
-                || address.isEmpty()
-                || imgUrl == null
-                ||companyName.isEmpty()) {
-            MyUtils.showShort("完善信息");
+
+        if ( price.isEmpty()
+               ) {
+            MyUtils.showShort("请输入金额");
+            return;
+        }  if ( spIndustry.getSelectedItemPosition()==0
+               ) {
+            MyUtils.showShort("请选择行业");
             return;
         }
+//        if (title.isEmpty()
+//                || beginTime.isEmpty()
+//                || endTime.isEmpty()
+//                || price.isEmpty()
+//                || address.isEmpty()
+//                ||companyName.isEmpty()) {
+//            MyUtils.showShort("完善信息");
+//            return;
+//        }
         if (!b) {
             if (framworkContractUrls.size() != 0) {
                 StringBuffer sb = new StringBuffer();
                 for (int i = 0; i < framworkContractUrls.size(); i++) {
                     sb.append(framworkContractUrls.get(i));
-                    if (framworkContractUrls.size() != i-1) {
+                    if (framworkContractUrls.size() != i - 1) {
                         sb.append(",");
                     }
                 }
@@ -146,7 +155,7 @@ public class LaborCompanyActivity extends BaseActivity implements BaseView {
                 StringBuffer sb = new StringBuffer();
                 for (int i = 0; i < orderContractUrls.size(); i++) {
                     sb.append(orderContractUrls.get(i));
-                    if (orderContractUrls.size() != i-1) {
+                    if (orderContractUrls.size() != i - 1) {
                         sb.append(",");
                     }
                 }
@@ -156,18 +165,13 @@ public class LaborCompanyActivity extends BaseActivity implements BaseView {
                 StringBuffer sb = new StringBuffer();
                 for (int i = 0; i < projectSettlementUrls.size(); i++) {
                     sb.append(projectSettlementUrls.get(i));
-                    if (projectSettlementUrls.size() != i-1) {
+                    if (projectSettlementUrls.size() != i - 1) {
                         sb.append(",");
                     }
                 }
                 clearingFiles = sb.toString();
             }
-            if (framFiles == null
-                    || contractFiles == null
-                    || clearingFiles == null) {
-                MyUtils.showShort("完善信息");
-                return;
-            }
+
         }
         sendPackagePresenter.publishProject(1,
                 imgUrl,
@@ -180,7 +184,7 @@ public class LaborCompanyActivity extends BaseActivity implements BaseView {
                 , spPay.getSelectedItemPosition(),
                 Constant.cityName,
                 address,
-                code,
+                null,
                 b,
                 framFiles,
                 contractFiles,
@@ -431,6 +435,10 @@ public class LaborCompanyActivity extends BaseActivity implements BaseView {
         gvFrameworkContract.setAdapter(framworkContractAdapter);
         gvOrderContract.setAdapter(orderContractAdapter);
         gvProjectSettlement.setAdapter(projectSettlementAdapter);
+
+
+        tvStartTime.setText(MyUtils.getTimeTo1());
+        tvEndTime.setText(MyUtils.getTimeTo30());
         setTitle("劳务公司");
         getDataPresenter.industry();
     }

@@ -2,6 +2,8 @@ package com.haiyin.gczb.demandHall.entity;
 
 import com.haiyin.gczb.base.BaseEntity;
 
+import java.math.BigDecimal;
+
 
 /**
  * Created
@@ -48,7 +50,7 @@ public class ProjectDetailEntity extends BaseEntity {
         private String pic;
         private String title;
         private String summary;
-        private Double amount;
+        private String amount;
         private String beginDate;
         private String endDate;
         private String industryName;
@@ -93,11 +95,11 @@ public class ProjectDetailEntity extends BaseEntity {
             this.summary = summary;
         }
 
-        public Double getAmount() {
+        public String getAmount() {
             return amount;
         }
 
-        public void setAmount(Double amount) {
+        public void setAmount(String amount) {
             this.amount = amount;
         }
 

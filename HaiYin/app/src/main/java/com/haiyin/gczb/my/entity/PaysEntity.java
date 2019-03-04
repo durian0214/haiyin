@@ -2,6 +2,7 @@ package com.haiyin.gczb.my.entity;
 
 import com.haiyin.gczb.base.BaseEntity;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -33,32 +34,32 @@ public class PaysEntity extends BaseEntity {
          * dataList : [{"projectId":"1081490503305928704","title":"标题","amount":10000,"createDate":"日期","isArrivaled":true}]
          */
 
-        private Double totalAmount;
-        private Double arrivalAmount;
-        private Double unArrivalAmount;
+        private String totalAmount;
+        private String arrivalAmount;
+        private String unArrivalAmount;
         private List<DataListBean> dataList;
 
-        public Double getTotalAmount() {
+        public String getTotalAmount() {
             return totalAmount;
         }
 
-        public void setTotalAmount(Double totalAmount) {
+        public void setTotalAmount(String totalAmount) {
             this.totalAmount = totalAmount;
         }
 
-        public Double getArrivalAmount() {
+        public String getArrivalAmount() {
             return arrivalAmount;
         }
 
-        public void setArrivalAmount(Double arrivalAmount) {
+        public void setArrivalAmount(String arrivalAmount) {
             this.arrivalAmount = arrivalAmount;
         }
 
-        public Double getUnArrivalAmount() {
+        public String getUnArrivalAmount() {
             return unArrivalAmount;
         }
 
-        public void setUnArrivalAmount(Double unArrivalAmount) {
+        public void setUnArrivalAmount(String unArrivalAmount) {
             this.unArrivalAmount = unArrivalAmount;
         }
 
@@ -81,7 +82,7 @@ public class PaysEntity extends BaseEntity {
 
             private String projectId;
             private String title;
-            private int amount;
+            private String amount;
             private String createDate;
             private boolean isArrivaled;
 
@@ -101,11 +102,11 @@ public class PaysEntity extends BaseEntity {
                 this.title = title;
             }
 
-            public int getAmount() {
+            public String getAmount() {
                 return amount;
             }
 
-            public void setAmount(int amount) {
+            public void setAmount(String amount) {
                 this.amount = amount;
             }
 

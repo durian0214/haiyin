@@ -1,36 +1,45 @@
 package com.haiyin.gczb.home;
 
 import android.content.Intent;
-import android.location.Geocoder;
-import android.location.Location;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.widget.DividerItemDecoration;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.haiyin.gczb.MainActivity;
-import com.haiyin.gczb.demandHall.page.ManuallySignedActivity;
-import com.haiyin.gczb.home.adapter.HomeNewAdapter;
-import com.haiyin.gczb.home.adapter.IconAdapter;
-import com.haiyin.gczb.home.entity.GetCityEntity;
-import com.haiyin.gczb.home.page.CityActivity;
-import com.haiyin.gczb.home.page.NewsActivity;
-import com.haiyin.gczb.home.page.NewsDetailActivity;
-import com.haiyin.gczb.home.presenter.CityPresenter;
-import com.haiyin.gczb.utils.Constant;
-import com.haiyin.gczb.utils.MyUtils;
-import com.haiyin.gczb.utils.http.ApiConfig;
-import com.haiyin.gczb.utils.view.MyGridView;
-import com.haiyin.gczb.utils.view.MyRecyclerView;
 import com.durian.lib.banner.BannerView;
 import com.durian.lib.base.BaseView;
 import com.durian.lib.baserRecyclerViewAdapterHelper.BaseQuickAdapter;
 import com.durian.lib.glide.GlideUtil;
+import com.haiyin.gczb.MainActivity;
+import com.haiyin.gczb.R;
+import com.haiyin.gczb.base.BaseFragment;
+import com.haiyin.gczb.demandHall.adapter.DemandHanllAdapter;
+import com.haiyin.gczb.demandHall.entity.ProjectListEntity;
+import com.haiyin.gczb.demandHall.page.DemandDetailActivity;
+import com.haiyin.gczb.demandHall.presenter.ProjectPresenter;
+import com.haiyin.gczb.home.adapter.HomeNewAdapter;
+import com.haiyin.gczb.home.adapter.IconAdapter;
+import com.haiyin.gczb.home.entity.GetPicsEntity;
+import com.haiyin.gczb.home.entity.MessageCountEntity;
+import com.haiyin.gczb.home.entity.NewsListEntity;
+import com.haiyin.gczb.home.page.CityActivity;
+import com.haiyin.gczb.home.page.MessageActivity;
+import com.haiyin.gczb.home.page.NewsActivity;
+import com.haiyin.gczb.home.page.NewsDetailActivity;
+import com.haiyin.gczb.home.page.SearchActivity;
+import com.haiyin.gczb.home.page.WebActivity;
+import com.haiyin.gczb.home.presenter.MessagePresenter;
+import com.haiyin.gczb.home.presenter.NewsPresenter;
+import com.haiyin.gczb.home.presenter.PicsPresenter;
+import com.haiyin.gczb.utils.Constant;
+import com.haiyin.gczb.utils.MyUtils;
+import com.haiyin.gczb.utils.UserUtils;
+import com.haiyin.gczb.utils.http.ApiConfig;
+import com.haiyin.gczb.utils.view.MyGridView;
+import com.haiyin.gczb.utils.view.MyRecyclerView;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -41,23 +50,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
-import com.haiyin.gczb.R;
-import com.haiyin.gczb.base.BaseFragment;
-import com.haiyin.gczb.demandHall.adapter.DemandHanllAdapter;
-import com.haiyin.gczb.demandHall.entity.ProjectListEntity;
-import com.haiyin.gczb.demandHall.page.DemandDetailActivity;
-import com.haiyin.gczb.demandHall.presenter.ProjectPresenter;
-import com.haiyin.gczb.home.entity.GetPicsEntity;
-import com.haiyin.gczb.home.entity.MessageCountEntity;
-import com.haiyin.gczb.home.entity.NewsListEntity;
-import com.haiyin.gczb.home.page.MessageActivity;
-import com.haiyin.gczb.home.page.SearchActivity;
-import com.haiyin.gczb.home.page.WebActivity;
-import com.haiyin.gczb.home.presenter.MessagePresenter;
-import com.haiyin.gczb.home.presenter.NewsPresenter;
-import com.haiyin.gczb.home.presenter.PicsPresenter;
-import com.haiyin.gczb.utils.UserUtils;
 
 
 /**
@@ -90,6 +82,8 @@ public class HomeFragment extends BaseFragment implements BaseView {
     TextView tvPositioning;
     @BindView(R.id.tv_home_red)
     TextView tvRed;
+    @BindView(R.id.tv_home_name)
+    TextView tvName;
 
     @OnClick(R.id.imgb_home_message)
     public void toMessage() {
@@ -188,7 +182,7 @@ public class HomeFragment extends BaseFragment implements BaseView {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        getData();
+//        getData();
     }
 
     private void getData() {
@@ -218,8 +212,8 @@ public class HomeFragment extends BaseFragment implements BaseView {
                 image.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 //设置显示格式
                 image.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                image.setCornerRadius(10);
-                GlideUtil.loaderImg(getActivity(), image, entity.getData().get(i).getPicPath());
+                image.setCornerRadius(20);
+                GlideUtil.loaderCornersImg(getActivity(), image, entity.getData().get(i).getPicPath());
                 final String url = entity.getData().get(i).getUrlPath();
                 final String name = entity.getData().get(i).getTilte();
                 image.setOnClickListener(new View.OnClickListener() {
@@ -237,7 +231,7 @@ public class HomeFragment extends BaseFragment implements BaseView {
             }
 
             LinearLayout.LayoutParams linearParams = (LinearLayout.LayoutParams) banner.getLayoutParams(); //取控件textView当前的布局参数 linearParams.height = 20;// 控件的高强制设成20
-            linearParams.height = (int) (Constant.screenWidth / 2.5);
+            linearParams.height = (int) (Constant.screenWidth /3);
             banner.setLayoutParams(linearParams);
             banner.setViewList(viewList);
             banner.startLoop(true);
@@ -285,21 +279,37 @@ public class HomeFragment extends BaseFragment implements BaseView {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (!hidden) {
-            if (UserUtils.isLogin()) {
-                isShowRed();
-            }else{
-                tvRed.setVisibility(View.GONE);
-            }
+            isShowRed();
         }
     }
+
 
     /**
      * 消息是否显示小红点
      */
     public void isShowRed() {
         if (UserUtils.isLogin()) {
+
+
             messagePresenter.getMessageCount(getActivity());
         }
+        //1=企业用户, 2=个体用户, 3=个人用户,4=业务员
+        if(Constant.userType==1){
+            tvName.setText("企业用户");
+        }else if(Constant.userType==2){
+            tvName.setText("个体用户");
+        }else if(Constant.userType==3){
+            tvName.setText("个人用户");
+        }else if(Constant.userType==4){
+            tvName.setText("业务员");
+        }else {
+            tvName.setText("");
+            tvRed.setVisibility(View.GONE);
+        }
+        homeNewAdapter.cleanRV();
+        demandHanllAdapter.cleanRV();
+        viewList.clear();
+        getData();
     }
 
     public static HomeFragment getInstance() {

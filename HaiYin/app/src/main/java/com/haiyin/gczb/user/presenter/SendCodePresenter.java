@@ -46,7 +46,6 @@ public class SendCodePresenter extends BasePresenter<BaseView> {
             @Override
             public void onSuccess(String result) {
                 SendCodeEntity entity = JSON.parseObject(result,SendCodeEntity.class);
-                MyUtils.showShort(entity.getEm());
                myView.success(ApiConfig.SEND_CODE,entity);
             }
 

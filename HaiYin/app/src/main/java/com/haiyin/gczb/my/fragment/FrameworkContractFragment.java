@@ -47,6 +47,7 @@ public class FrameworkContractFragment extends BaseFragment {
 
     @Override
     protected void init(View view) {
+
         rv.setLayoutManager(MyUtils.getVManager(getActivity()));
         mAdapter = new FrameworkContractAdapter(R.layout.item_agreement);
         rv.setAdapter(mAdapter);

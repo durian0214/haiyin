@@ -105,6 +105,7 @@ public class ImproveCustomerInformationActivity extends BaseActivity implements 
     @BindView(R.id.img_improve_customer_information_collection_upload_documents_back)
     RoundedImageView imgCollectionUploadDocumentsBck;
 
+    int postion;
     String imgIconUrl;
     String imgBusinessLicenseUrl;
     String imgUploadDocumentsPositiveUrl;
@@ -157,26 +158,59 @@ public class ImproveCustomerInformationActivity extends BaseActivity implements 
         String bankCode = edtBankCode.getText().toString();
         String bankName = edtBankName.getText().toString();
         String collectionCodeid = edtCollectionCodeid.getText().toString();
-        if (contactPhone.isEmpty() ||
-                imgIconUrl == null ||
-                contactName.isEmpty() ||
-                spPosition.getSelectedItemPosition() == 0 ||
-                name.isEmpty() ||
-                contact.isEmpty() ||
-                spIndustry.getSelectedItemPosition() == 0 ||
-                imgBusinessLicenseUrl == null ||
-                collectionCodeid.isEmpty() ||
-                imgUploadDocumentsPositiveUrl == null ||
-                imgUploadDocumentsBaclUrl == null ||
-                collectionName.isEmpty() ||
-                bankCode.isEmpty() ||
-                bankName.isEmpty() ||
-                imgCollectionUploadDocumentsPositiveUrl == null ||
-                imgCollectionUploadDocumentsBckUrl == null
-                ) {
-            MyUtils.showShort("请完善资料");
+        if (contactPhone.isEmpty()) {
+            MyUtils.showShort("请输入联系人电话");
             return;
         }
+        if (imgIconUrl == null) {
+            MyUtils.showShort("请选择头像");
+            return;
+        }
+        if (contactName.isEmpty()) {
+            MyUtils.showShort("请输入联系人姓名");
+            return;
+        }
+        if (spPosition.getSelectedItemPosition() == 0) {
+            MyUtils.showShort("请选择职位");
+            return;
+        }
+
+        if (name.isEmpty()) {
+            MyUtils.showShort("请输入公司名称");
+            return;
+        }
+        if (contact.isEmpty()) {
+            MyUtils.showShort("请输入公司联系方式");
+            return;
+        }
+        if (spIndustry.getSelectedItemPosition() == 0) {
+            MyUtils.showShort("请选择行业");
+            return;
+        }
+        if (imgBusinessLicenseUrl == null ||
+                imgUploadDocumentsPositiveUrl == null ||
+                imgUploadDocumentsBaclUrl == null || imgCollectionUploadDocumentsPositiveUrl == null ||
+                imgCollectionUploadDocumentsBckUrl == null) {
+            MyUtils.showShort("请上传图片");
+            return;
+        }
+        if (collectionCodeid.isEmpty()) {
+            MyUtils.showShort("请输入收款人身份证号");
+            return;
+        }
+        if (collectionName.isEmpty()) {
+            MyUtils.showShort("请输入收款人姓名");
+            return;
+        }
+        if (bankCode.isEmpty()) {
+            MyUtils.showShort("请输入银行卡号");
+            return;
+        }
+        if (bankName.isEmpty()) {
+            MyUtils.showShort("请输入银行名称");
+            return;
+        }
+
         customerPresenter.saleseditCompany(id,contactPhone,
                 imgIconUrl,
                 contactName,
@@ -222,7 +256,7 @@ public class ImproveCustomerInformationActivity extends BaseActivity implements 
         } else if (code == ApiConfig.SALES_EDIT_COMPANY) {
             //完善成功
             BaseEntity entity = (BaseEntity) data;
-            MyUtils.showShort(entity.getEm());
+            MyUtils.showShort("完善成功");
             this.finish();
         }else if(code ==ApiConfig.SALES_COMPANY_DETAIL){
             SalesCompanyDetailEntity entity = (SalesCompanyDetailEntity) data;
@@ -285,6 +319,7 @@ public class ImproveCustomerInformationActivity extends BaseActivity implements 
     }
 
     public void pic(final int position) {
+        postion =position;
         if (MyPermissions.isOpenWrite(this)) {
             if (MyPermissions.isOpenCamera(this)) {
                 final String imgName = "cropImage" + MyUtils.getNowTime() + ".jpeg";
@@ -466,11 +501,19 @@ public class ImproveCustomerInformationActivity extends BaseActivity implements 
      * @param uri
      */
     public void startCropActivity(Uri uri) {
-        UCrop.of(uri, mDestinationUri)
-                .withAspectRatio(1, 1)
-                .withMaxResultSize(512, 512)
-                .withTargetActivity(CropActivity.class)
-                .start(this);
+        if(postion ==1){
+            UCrop.of(uri, mDestinationUri)
+                    .withMaxResultSize(10000, 10000)
+                    .withTargetActivity(CropActivity.class)
+                    .start(this);
+        }else {
+            UCrop.of(uri, mDestinationUri)
+                    .withAspectRatio(1, 1)
+                    .withMaxResultSize(512, 512)
+                    .withTargetActivity(CropActivity.class)
+                    .start(this);
+        }
+
     }
 
     /**

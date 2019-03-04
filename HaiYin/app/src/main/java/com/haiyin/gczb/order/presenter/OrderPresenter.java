@@ -31,16 +31,19 @@ public class OrderPresenter extends BasePresenter<BaseView> {
     }
 
     /**
-     *企业订单列表
-     * @param type ：1=全部订单 2=待打款订单 3=待开票订单 4=已完成订单 5=本月项目 6=历史项目
+     * 企业订单列表
+     * @param isCurMonth  1=是本月 2=非本月订单
+     * @param projectType  1=待接单 2=待打款订单 3=待开票订单 4=已完成订单
      * @param page
      * @param pageNum
+     * @param mContext
      */
-    public void getOrderLists(int type ,int page,int pageNum, Context mContext) {
+    public void getOrderLists(int isCurMonth ,int projectType,int page,int pageNum, Context mContext) {
         Map<String, Object> params = new HashMap<>();
         params.put("pageNo", page);
         params.put("pageSize", pageNum);
-        params.put("projectType", type);
+        params.put("isCurMonth", isCurMonth);
+        params.put("projectType", projectType);
 
         Observable<ResponseBody>
                 observable = HttpMethods.getInstance().getHttpApi().getOrder(MyUtils.encryptString(params));
@@ -49,7 +52,7 @@ public class OrderPresenter extends BasePresenter<BaseView> {
             @Override
             public void onSuccess(String result) {
                 OrderListsEntity entity = JSON.parseObject(result,OrderListsEntity.class);
-                MyUtils.showShort(entity.getEm());
+
                 myView.success(ApiConfig.ORDER_LISTS,entity);
             }
 
@@ -78,7 +81,6 @@ public class OrderPresenter extends BasePresenter<BaseView> {
             @Override
             public void onSuccess(String result) {
                 BaseEntity entity = JSON.parseObject(result,BaseEntity.class);
-                MyUtils.showShort(entity.getEm());
                 myView.success(ApiConfig.APPLY_INVOICE,entity);
             }
 
@@ -109,7 +111,6 @@ public class OrderPresenter extends BasePresenter<BaseView> {
             @Override
             public void onSuccess(String result) {
                 BaseEntity entity = JSON.parseObject(result,BaseEntity.class);
-                MyUtils.showShort(entity.getEm());
                 myView.success(ApiConfig.PAY_FILE_SAVE,entity);
             }
 

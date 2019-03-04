@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.durian.lib.base.BaseView;
 import com.durian.lib.baserRecyclerViewAdapterHelper.BaseQuickAdapter;
 import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseFragment;
 import com.haiyin.gczb.home.adapter.SearchNewAdapter;
+import com.haiyin.gczb.home.entity.NewsListEntity;
 import com.haiyin.gczb.home.entity.SearchNewsResultsEntity;
 import com.haiyin.gczb.home.page.NewsDetailActivity;
 import com.haiyin.gczb.home.presenter.SearchPresenter;
@@ -33,6 +35,8 @@ public class NewsFragment extends BaseFragment implements BaseView {
     MyRecyclerView rv;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout srl;
+    @BindView(R.id.ll_no_data)
+    LinearLayout llNoData;
     SearchNewAdapter mAdapter;
     String str ;
     private int page = 1;
@@ -68,6 +72,7 @@ public class NewsFragment extends BaseFragment implements BaseView {
 
             }
         });
+
         initRefreshLayout();
     }
 
@@ -111,6 +116,11 @@ public class NewsFragment extends BaseFragment implements BaseView {
             srl.setLoadmoreFinished(true);
         }
         mAdapter.addData(entity.getData());
+        if (mAdapter.getData().size()==0){
+            llNoData.setVisibility(View.VISIBLE);
+        }else{
+            llNoData.setVisibility(View.GONE);
+        }
     }
 
     @Override

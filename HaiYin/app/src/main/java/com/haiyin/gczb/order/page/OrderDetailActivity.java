@@ -61,7 +61,7 @@ public class OrderDetailActivity extends BaseActivity implements BaseView {
 
     @Override
     public void success(int code, Object data) {
-        if(ApiConfig.PROJECT_DETAIL ==code){
+        if (ApiConfig.PROJECT_DETAIL == code) {
             final ProjectDetailEntity entity = (ProjectDetailEntity) data;
             if (Constant.userType == 1) {
                 if (entity.getData().getProjectStatus() == 8) {
@@ -91,7 +91,7 @@ public class OrderDetailActivity extends BaseActivity implements BaseView {
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            orderPresenter.applyInvoice(entity.getData().getProjectId(),mContext);
+                            orderPresenter.applyInvoice(entity.getData().getProjectId(), mContext);
                         }
                     });
                 } else if (entity.getData().getProjectStatus() == 5) {
@@ -124,9 +124,9 @@ public class OrderDetailActivity extends BaseActivity implements BaseView {
                         public void onClick(View v) {
                             Intent mIntent = new Intent(mContext, CheckNotesActivity.class);
                             Bundle b = new Bundle();
-                            if (Constant.userType== 1) {
+                            if (Constant.userType == 1) {
                                 b.putString("url", entity.getData().getInvoiceFileCompany());
-                            } else if(Constant.userType==2) {
+                            } else if (Constant.userType == 2) {
                                 b.putString("url", entity.getData().getInvoiceFileEntity());
                             }
                             mIntent.putExtra("bundle", b);
@@ -181,17 +181,17 @@ public class OrderDetailActivity extends BaseActivity implements BaseView {
             tvDescribe.setText("项目描述:" + entity.getData().getSummary());
             tvStartTime.setText("开工时间:" + entity.getData().getBeginDate());
             tvEndTime.setText("完工时间:" + entity.getData().getEndDate());
-            tvAmount.setText("项目金额:" + Arith.div_text(entity.getData().getAmount(), 100));
+            tvAmount.setText("项目金额:" + entity.getData().getAmount());
             tvType.setText("行业类型:" + entity.getData().getIndustryName());
-            if(entity.getData().isIsSelfCompany()){
+            if (entity.getData().isIsSelfCompany()) {
                 llCode.setVisibility(View.VISIBLE);
-                tvCode.setText("生成编码:"+entity.getData().getCodeNo());
-            }else {
+                tvCode.setText("熟人手机号:" + entity.getData().getCodeNo());
+            } else {
                 llCode.setVisibility(View.GONE);
             }
             tvAddress.setText("项目位置:" + entity.getData().getAddress());
             GlideUtil.loaderImg(this, img, entity.getData().getPic());
-        }else if(ApiConfig.APPLY_INVOICE ==code){
+        } else if (ApiConfig.APPLY_INVOICE == code) {
             MyUtils.showShort("申请成功");
             this.finish();
         }
@@ -214,7 +214,7 @@ public class OrderDetailActivity extends BaseActivity implements BaseView {
         setTitle("详情");
         btn.setVisibility(View.VISIBLE);
         String id = getIntent().getBundleExtra("bundle").getString("id");
-        projectPresenter.getProjectDetail(id,mContext);
+        projectPresenter.getProjectDetail(id, mContext);
 
 
     }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.durian.lib.base.BaseView;
 import com.durian.lib.baserRecyclerViewAdapterHelper.BaseQuickAdapter;
@@ -53,8 +54,10 @@ public class OrderFragment extends BaseFragment implements BaseView {
     CommonTabLayout ctlProject;
     @BindView(R.id.ctl_order_status)
     CommonTabLayout ctlOrderStatus;
-    private final String[] mTitles = {"全部订单", "成交订单"};
-    private final String[] mTitlesProject = {"本月项目", "历史项目"};
+    @BindView(R.id.ll_no_data)
+    LinearLayout llNoData;
+    private final String[] mTitles = {"当月订单", "全部订单"};
+    private final String[] mTitlesProject = {"待接单", "待打款", "待开票", "已完成"};
     private final String[] mTitlesOrderStatus = {"全部订单", "待打款", "待开票", "已完成"};
     @BindView(R.id.rv_order)
     MyRecyclerView rv;
@@ -64,8 +67,12 @@ public class OrderFragment extends BaseFragment implements BaseView {
     SmartRefreshLayout srl;
     private int page = 1;
     private int pageNum = 20;
-    //1=全部订单 2=待打款订单 3=待开票订单 4=已完成订单 5=本月项目 6=历史项目
-    private int type = 5;
+    //企业 1=是本月 2=非本月订单
+    //个体  1=是本月 2=非本月订单
+    private int type = 0;
+    //1=待接单 2=待打款订单 3=待开票订单 4=已完成订单
+    private int orderType = 0;
+
     private int userType = 0;
     private int removePosition;
 
@@ -84,6 +91,11 @@ public class OrderFragment extends BaseFragment implements BaseView {
                 srl.setLoadmoreFinished(true);
             }
             mAdapter.addData(entity.getData());
+            if (mAdapter.getData().size()==0){
+                llNoData.setVisibility(View.VISIBLE);
+            }else{
+                llNoData.setVisibility(View.GONE);
+            }
         } else if (code == ApiConfig.APPLY_INVOICE) {
             mAdapter.remove(removePosition);
         } else if (code == ApiConfig.ENTITY_PROJECTS) {
@@ -99,6 +111,11 @@ public class OrderFragment extends BaseFragment implements BaseView {
                 srl.setLoadmoreFinished(true);
             }
             myPagerPersonalProjectAdapter.addData(entity.getData());
+            if (myPagerPersonalProjectAdapter.getData().size()==0){
+                llNoData.setVisibility(View.VISIBLE);
+            }else{
+                llNoData.setVisibility(View.GONE);
+            }
         }
 
     }
@@ -135,17 +152,10 @@ public class OrderFragment extends BaseFragment implements BaseView {
         ctl.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
-                if (position == 0) {
-                    ctlOrderStatus.setVisibility(View.GONE);
-                    ctlProject.setVisibility(View.VISIBLE);
-                    ctlProject.setCurrentTab(0);
-                    type = 5;
-                } else {
-                    ctlOrderStatus.setVisibility(View.VISIBLE);
-                    ctlProject.setVisibility(View.GONE);
-                    ctlProject.setCurrentTab(1);
-                    type = 1;
-                }
+                type = position+1;
+                orderType = 1;
+
+                ctlProject.setCurrentTab(0);
                 cleanData();
             }
 
@@ -157,11 +167,7 @@ public class OrderFragment extends BaseFragment implements BaseView {
         ctlProject.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
-                if (position == 0) {
-                    type = 5;
-                } else if (position == 1) {
-                    type = 6;
-                }
+                orderType = position+1;
                 cleanData();
             }
 
@@ -201,9 +207,9 @@ public class OrderFragment extends BaseFragment implements BaseView {
 
     private void getData() {
         if (Constant.userType == 1) {
-            orderPresenter.getOrderLists(type, page, pageNum,getActivity());
+            orderPresenter.getOrderLists(type,orderType, page, pageNum, getActivity());
         } else if (Constant.userType == 2) {
-            myPagerPersonalProjectPresenter.entityProjects(page, pageNum, type,getActivity());
+            myPagerPersonalProjectPresenter.entityProjects(page, pageNum, type, getActivity());
         }
     }
 
@@ -247,7 +253,9 @@ public class OrderFragment extends BaseFragment implements BaseView {
                 ctl.setVisibility(View.VISIBLE);
                 ctlProject.setVisibility(View.VISIBLE);
                 ctl.setCurrentTab(0);
-                type = 5;
+                type = 1;
+                orderType = 1;
+
                 mAdapter = new OrderAdapter(R.layout.item_demand_hall);
                 rv.setAdapter(mAdapter);
                 mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
@@ -264,7 +272,7 @@ public class OrderFragment extends BaseFragment implements BaseView {
                             startActivity(mIntent);
                         } else if (view.getId() == R.id.btn_item_demand_hall_status) {
                             if (bean.getProjectStatus().equals("6")) {
-                                orderPresenter.applyInvoice(bean.getProjectId(),getActivity());
+                                orderPresenter.applyInvoice(bean.getProjectId(), getActivity());
                             } else if (bean.getProjectStatus().equals("8")) {
                                 Intent mIntent = new Intent(getActivity(), CheckNotesActivity.class);
                                 Bundle b = new Bundle();
@@ -305,7 +313,7 @@ public class OrderFragment extends BaseFragment implements BaseView {
                             startActivity(mIntent);
                         } else if (view.getId() == R.id.btn_item_demand_hall_status) {
                             if (bean.getProjectStatus() == 6) {
-                                orderPresenter.applyInvoice(bean.getProjectId(),getActivity());
+                                orderPresenter.applyInvoice(bean.getProjectId(), getActivity());
                             } else if (bean.getProjectStatus() == 8) {
                                 Intent mIntent = new Intent(getActivity(), CheckNotesActivity.class);
                                 Bundle b = new Bundle();

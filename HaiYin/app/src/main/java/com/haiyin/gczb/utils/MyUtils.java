@@ -14,8 +14,12 @@ import com.haiyin.gczb.base.BaseApplication;
 import com.haiyin.gczb.utils.dialog.PopupUtil;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Map;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -102,6 +106,38 @@ public class MyUtils {
         Date curDate = new Date(System.currentTimeMillis());//获取当前时间
 
         return curDate.getTime();
+
+    }
+    /**
+     * 获取推迟一天日期
+     *
+     * @return
+     */
+    public static String getTimeTo1() {
+        Date curDate = new Date(System.currentTimeMillis());//获取当前时间
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(curDate);
+        calendar.add(calendar.DATE,1);//把日期往后增加一天.整数往后推,负数往前移动
+        curDate=calendar.getTime(); //这个时间就是日期往后推一天的结果
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd");
+        String dateString = formatter.format(curDate);
+        return dateString;
+
+    }
+    /**
+     * 获取推迟30天日期
+     *
+     * @return
+     */
+    public static String getTimeTo30() {
+        Date curDate = new Date(System.currentTimeMillis());//获取当前时间
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(curDate);
+        calendar.add(calendar.DATE,30);//把日期往后增加一天.整数往后推,负数往前移动
+        curDate=calendar.getTime(); //这个时间就是日期往后推一天的结果
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd");
+        String dateString = formatter.format(curDate);
+        return dateString;
 
     }
 
@@ -196,6 +232,26 @@ public class MyUtils {
         Pattern p = Pattern.compile("[1]\\d{10}");
         Matcher m = p.matcher(mobiles);
         return m.matches();
+    }
+
+    /**
+     * 读取文件
+     * @param mContext
+     * @param fileName
+     * @return
+     */
+    public static String readTxt(Context mContext,String fileName) {
+        String result = "";
+        try {
+            InputStream is = mContext.getAssets().open(fileName);
+            int lenght = is.available();
+            byte[] buffer = new byte[lenght];
+            is.read(buffer);
+            result = new String(buffer, "utf8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 }

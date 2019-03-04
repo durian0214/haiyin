@@ -16,24 +16,26 @@ import com.haiyin.gczb.utils.var.SharedPreferencesVar;
  * 2019/1/10.
  */
 public class UserUtils {
-
     /**
      * 用户token
      */
     public static String getToken() {
         return SharedPreferencesUtils.get(BaseApplication.getAppContext(), SharedPreferencesVar.TOKEN, "").toString();
     }
-
+    /**
+     * 用户MOBILE
+     */
+    public static String getMobile() {
+        return SharedPreferencesUtils.get(BaseApplication.getAppContext(), SharedPreferencesVar.MOBILE, "").toString();
+    }
     /**
      * userid
      */
     public static String getUserId() {
         return SharedPreferencesUtils.get(BaseApplication.getAppContext(), SharedPreferencesVar.USER_ID, "").toString();
     }
-
     /**
      * 是否登录
-     *
      * @return true  false
      */
     public static boolean isLogin() {
@@ -52,7 +54,7 @@ public class UserUtils {
      */
     public static boolean isLoginToLogin() {
         if (SharedPreferencesUtils.get(BaseApplication.getAppContext(), SharedPreferencesVar.TOKEN, "").toString().isEmpty()) {
-            RxBus.getInstance().send(new LoginOutEvent());
+            RxBus.getInstance().post(new LoginOutEvent());
             return false;
         }
         Constant.userType = (int) SharedPreferencesUtils.get(BaseApplication.getAppContext(), SharedPreferencesVar.userType, 0);
@@ -64,21 +66,22 @@ public class UserUtils {
      * 退出登录
      */
     public static void outLogin() {
-        Constant.userType=0;
+        Constant.userType = 0;
         SharedPreferencesUtils.clear(BaseApplication.getAppContext());
-        if (MainActivity.getInstance()!=null) {
+        if (MainActivity.getInstance() != null) {
             MainActivity.getInstance().selMainhome();
         }
-        RxBus.getInstance().send(new LoginOutEvent());
+        RxBus.getInstance().post(new LoginOutEvent());
 
 
     }
+
     /**
      * token错误
      */
     public static void tokenerror() {
         SharedPreferencesUtils.clear(BaseApplication.getAppContext());
-        RxBus.getInstance().send(new LoginOutEvent());
+        RxBus.getInstance().post(new LoginOutEvent());
 
 
     }
@@ -86,14 +89,15 @@ public class UserUtils {
 
     /**
      * 获取build  name
+     *
      * @param mContext
      * @return
      */
-    public static final String getVersionName(Context mContext){
-        PackageManager manager =mContext.getPackageManager();
+    public static final String getVersionName(Context mContext) {
+        PackageManager manager = mContext.getPackageManager();
         PackageInfo info = null;
         try {
-            info = manager.getPackageInfo(mContext.getPackageName(),0);
+            info = manager.getPackageInfo(mContext.getPackageName(), 0);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -102,14 +106,15 @@ public class UserUtils {
 
     /**
      * 获取build  code
+     *
      * @param mContext
      * @return
      */
-    public static final int getVersionCode(Context mContext){
-        PackageManager manager =mContext.getPackageManager();
+    public static final int getVersionCode(Context mContext) {
+        PackageManager manager = mContext.getPackageManager();
         PackageInfo info = null;
         try {
-            info = manager.getPackageInfo(mContext.getPackageName(),0);
+            info = manager.getPackageInfo(mContext.getPackageName(), 0);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }

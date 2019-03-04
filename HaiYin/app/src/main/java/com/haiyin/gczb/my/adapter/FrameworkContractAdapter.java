@@ -24,6 +24,7 @@ public class FrameworkContractAdapter extends BaseQuickAdapter<String, BaseViewH
 
     @Override
     protected void convert(BaseViewHolder helper, String item) {
+
         ImageView img = helper.getView(R.id.img_item_agreement);
         GlideUtil.loaderImg(mContext,img, UploadHelper.getInstance().getPriUrl(mContext,item));
     }

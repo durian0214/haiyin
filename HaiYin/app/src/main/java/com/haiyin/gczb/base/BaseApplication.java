@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Build;
 import android.os.StrictMode;
 
+import com.alibaba.security.rp.RPSDK;
 import com.durian.lib.utils.SystemUtil;
 import com.haiyin.gczb.R;
 import com.haiyin.gczb.utils.Constant;
@@ -37,8 +38,12 @@ public class BaseApplication extends Application {
             StrictMode.VmPolicy.Builder b = new StrictMode.VmPolicy.Builder();
             StrictMode.setVmPolicy(b.build());
         }
+        initRPSDK();
     }
 
+    private void initRPSDK(){
+        RPSDK.initialize(this);
+    }
 
     public static Context getAppContext() {
         return instance;

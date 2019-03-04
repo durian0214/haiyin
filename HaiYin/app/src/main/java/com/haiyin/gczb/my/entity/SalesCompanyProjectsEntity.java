@@ -2,6 +2,7 @@ package com.haiyin.gczb.my.entity;
 
 import com.haiyin.gczb.base.BaseEntity;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -36,7 +37,7 @@ public class SalesCompanyProjectsEntity extends BaseEntity {
         private String projectId;
         private String title;
         private String cityName;
-        private Double amount;
+        private String amount;
         private String summary;
         private int days;
         private String address;
@@ -66,11 +67,11 @@ public class SalesCompanyProjectsEntity extends BaseEntity {
             this.cityName = cityName;
         }
 
-        public Double getAmount() {
+        public String getAmount() {
             return amount;
         }
 
-        public void setAmount(Double amount) {
+        public void setAmount(String amount) {
             this.amount = amount;
         }
 

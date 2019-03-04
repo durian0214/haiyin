@@ -103,7 +103,7 @@ public class SalemanSendPackageFragment extends BaseFragment implements BaseView
     public void success(int code, Object data) {
 
         SalesProjectAmountEntity entity = (SalesProjectAmountEntity) data;
-        tvPrice.setText(Arith.div_text(entity.getData().getTotalAmount(),100)+"元");
+        tvPrice.setText(entity.getData().getTotalAmount()+"元");
         if (srl != null && srl.isRefreshing()) {
             srl.finishRefresh(200);
         }

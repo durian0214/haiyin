@@ -13,10 +13,11 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.support.FILE_PROVIDER_PATHS" />
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <uses-feature android:name="android.hardware.camera" />
     <!--相机权限-->
     <uses-permission android:name="android.permission.CAMERA" />
@@ -27,17 +28,16 @@
         tools:ignore="ProtectedPermissions" />
     <!--活体识别-->
     <!-- 使用音视频录制的权限 -->
-    <uses-permission android:name="android.permission.RECORD_VIDEO" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <!--<uses-permission android:name="android.permission.RECORD_VIDEO" />-->
+    <!--<uses-permission android:name="android.permission.RECORD_AUDIO" />-->
+    <!--<uses-feature android:name="android.hardware.camera" />-->
+    <!--<uses-feature android:name="android.hardware.camera.autofocus" />-->
     <!-- 监听来电 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
     <!--定位-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
 
     <application
         android:name=".base.BaseApplication"
@@ -46,7 +46,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon,android:allowBackup">
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.haiyin.gczb.fileprovider"
@@ -57,10 +58,10 @@
                 android:resource="@xml/file_paths" />
         </provider>
         <activity
-            android:name=".MainActivity"
+            android:name=".welcome.page.WelcomeActivity"
             android:label="@string/app_name"
             android:launchMode="standard"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme.NoActionBarOne">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -68,7 +69,13 @@
             </intent-filter>
         </activity>
 
-
+        <!-- 欢迎 -->
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 需求详情 -->
         <activity
             android:name=".demandHall.page.DemandDetailActivity"
@@ -146,6 +153,13 @@
         <!-- 城市选择 -->
         <activity
             android:name=".home.page.CityActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 注册协议 -->
+        <activity
+            android:name=".user.page.AgreementActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
@@ -261,7 +275,7 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-        android:windowSoftInputMode="adjustPan|stateHidden" />
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 查看票据 -->
         <activity
             android:name=".my.page.CheckNotesActivity"
@@ -349,6 +363,13 @@
         <!-- 修改交易密码 -->
         <activity
             android:name=".my.page.ChangePayPasswordActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 收款记录 -->
+        <activity
+            android:name=".my.page.CollectionInformationActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
@@ -475,7 +496,7 @@
         <!-- 登录 -->
         <activity
             android:name=".user.page.LoginActivity"
-            android:launchMode="singleTask"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
@@ -507,6 +528,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 引导 -->
+        <activity
+            android:name=".welcome.page.GuideActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
         <!-- web-->
         <activity
             android:name=".home.page.WebActivity"
@@ -531,51 +560,52 @@
 
 
         <!-- 活体识别-->
-        <activity
-            android:name="com.tencent.authsdk.activity.MainSdkActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/SDKAppTheme"></activity>
-        <activity
-            android:name="com.tencent.authsdk.activity.IdcardOcrActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SDKAppTheme" />
-        <activity
-            android:name="com.tencent.authsdk.activity.IdcardOcrResultActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SDKAppTheme" />
-        <activity
-            android:name="com.tencent.authsdk.activity.CameraActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SDKAppTheme" />
-        <activity
-            android:name="com.tencent.authsdk.activity.AlbumActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SDKAppTheme" />
-        <activity
-            android:name="com.tencent.authsdk.activity.CropImageActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SDKAppTheme"></activity>
-        <activity
-            android:name="com.tencent.authsdk.activity.IdentityDetectActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SDKAppTheme" />
-        <activity
-            android:name="com.tencent.authsdk.activity.RecordActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SDKAppTheme" />
-        <activity
-            android:name="com.tencent.authsdk.activity.LiveDetectActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SDKAppTheme" />
-        <activity
-            android:name="com.tencent.authsdk.activity.DetectResultActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SDKAppTheme" />
-        <activity
-            android:name="com.tencent.authsdk.activity.PhoneVerityActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SDKAppTheme" />
-
+        <!--
+       <activity
+           android:name="com.tencent.authsdk.activity.MainSdkActivity"
+           android:launchMode="singleTask"
+           android:screenOrientation="portrait"
+           android:theme="@style/SDKAppTheme"></activity>
+       <activity
+           android:name="com.tencent.authsdk.activity.IdcardOcrActivity"
+           android:screenOrientation="portrait"
+           android:theme="@style/SDKAppTheme" />
+       <activity
+           android:name="com.tencent.authsdk.activity.IdcardOcrResultActivity"
+           android:screenOrientation="portrait"
+           android:theme="@style/SDKAppTheme" />
+       <activity
+           android:name="com.tencent.authsdk.activity.CameraActivity"
+           android:screenOrientation="portrait"
+           android:theme="@style/SDKAppTheme" />
+       <activity
+           android:name="com.tencent.authsdk.activity.AlbumActivity"
+           android:screenOrientation="portrait"
+           android:theme="@style/SDKAppTheme" />
+       <activity
+           android:name="com.tencent.authsdk.activity.CropImageActivity"
+           android:screenOrientation="portrait"
+           android:theme="@style/SDKAppTheme"></activity>
+       <activity
+           android:name="com.tencent.authsdk.activity.IdentityDetectActivity"
+           android:screenOrientation="portrait"
+           android:theme="@style/SDKAppTheme" />
+       <activity
+           android:name="com.tencent.authsdk.activity.RecordActivity"
+           android:screenOrientation="portrait"
+           android:theme="@style/SDKAppTheme" />
+       <activity
+           android:name="com.tencent.authsdk.activity.LiveDetectActivity"
+           android:screenOrientation="portrait"
+           android:theme="@style/SDKAppTheme" />
+       <activity
+           android:name="com.tencent.authsdk.activity.DetectResultActivity"
+           android:screenOrientation="portrait"
+           android:theme="@style/SDKAppTheme" />
+       <activity
+           android:name="com.tencent.authsdk.activity.PhoneVerityActivity"
+           android:screenOrientation="portrait"
+           android:theme="@style/SDKAppTheme" />
+       -->
     </application>
 </manifest>

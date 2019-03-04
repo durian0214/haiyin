@@ -31,8 +31,12 @@ public class AddAccountActivity extends BaseActivity implements BaseView {
     public void add() {
         String name = edtName.getText().toString();
         String phone = edtPhone.getText().toString();
-        if (name.isEmpty() || phone.isEmpty()) {
-            MyUtils.showShort("请完善资料");
+        if (name.isEmpty() ) {
+            MyUtils.showShort("请输入姓名");
+            return;
+        }
+        if (phone.isEmpty() ) {
+            MyUtils.showShort("请输入手机号");
             return;
         }
         accountPresenter.addAccount(name, phone,mContext);

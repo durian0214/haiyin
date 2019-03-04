@@ -201,6 +201,10 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST("app/sales/companyDetail")
     Observable<ResponseBody> salescompanyDetail (@Field("data") String data);
+    //业务员客户协议
+    @FormUrlEncoded
+    @POST("app/sales/contractFiles")
+    Observable<ResponseBody> salesContractFiles (@Field("data") String data);
     //业务员客户信息完善
     @FormUrlEncoded
     @POST("app/sales/editCompany")
@@ -238,6 +242,10 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST("app/company/entityOfflinePays")
     Observable<ResponseBody> entityOfflinePays (@Field("data") String data);
+    //App版本更新
+    @FormUrlEncoded
+    @POST("app/common/app_update")
+    Observable<ResponseBody> appUpdate (@Field("data") String data);
 
 
 }

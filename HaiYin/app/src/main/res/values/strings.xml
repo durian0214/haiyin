@@ -4,7 +4,7 @@
     <string name="title_home">首页</string>
     <string name="title_demand_hall">需求大厅</string>
     <string name="title_order">订单</string>
-    <string name="title_my">我的</string>
+    <string name="title_my">个人中心</string>
 
     <!--权限-->
     <string name="rationale_camera">该功能需要访问您的相机</string>

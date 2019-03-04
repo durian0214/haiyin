@@ -229,8 +229,13 @@ public class UploadHelper {
 
             @Override
             public void onFailure(OSSRequest request, ClientException clientException, ServiceException serviceException) {
-                ossUpCallback.successImg(null);
-
+                if (clientException != null) {
+                    // 本地异常如网络异常等
+                    clientException.printStackTrace();
+                }
+                if (serviceException != null) {
+                    // 服务异常
+                }
             }
 
         });

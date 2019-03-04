@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tl="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include layout="@layout/activity_base" />
+
+<!-- 切换的控件 -->
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/ctl_collection_information"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/white"
+        app:tl_indicator_color="#00C1B6"
+        app:tl_indicator_height="1dp"
+        app:tl_textSelectColor="#00C1B6"
+        app:tl_textUnselectColor="#999999"
+        tl:tl_iconVisible="false"
+        app:tl_indicator_width="20dp"
+        tl:tl_textsize="16sp" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_collection_information"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

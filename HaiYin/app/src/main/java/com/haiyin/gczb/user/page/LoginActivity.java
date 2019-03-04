@@ -1,11 +1,18 @@
 package com.haiyin.gczb.user.page;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.RadioButton;
 
 import com.haiyin.gczb.R;
 import com.haiyin.gczb.base.BaseActivity;
@@ -40,15 +47,43 @@ public class LoginActivity extends BaseActivity implements BaseView {
     @BindView(R.id.btn_login_send)
     Button btnGetyzm;
 
+    @BindView(R.id.rb_login_agreement)
+    RadioButton radio;
+
+    String phone ;
+    String code ;
+    @OnClick(R.id.imgb_login)
+    public void toPhone() {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        Uri data = Uri.parse("tel:" + "400 014 1112");
+        intent.setData(data);
+        startActivity(intent);
+
+    }
+
+    @OnClick(R.id.tv_login_agreement)
+    public void toAgreement() {
+        intentJump(mContext, AgreementActivity.class, null);
+
+    }
+
+
     @OnClick(R.id.btn_login)
     public void toLogin() {
-        loginPresenter.doLogin(edtAccount.getText().toString(), edtPassword.getText().toString(),mContext);
-    }
+        if(radio.isChecked()){
+            phone =edtAccount.getText().toString();
+            code = edtPassword.getText().toString();
+            loginPresenter.doLogin(phone,code, mContext);
+        }else {
+            MyUtils.showShort("是否同意协议");
+            return;
+        }
+          }
 
     @OnClick(R.id.btn_login_send)
     public void sendCode() {
 
-            sendCodePresenter.sendCode(edtAccount.getText().toString(), 1,mContext);
+        sendCodePresenter.sendCode(edtAccount.getText().toString(), 1, mContext);
 
     }
 
@@ -58,11 +93,13 @@ public class LoginActivity extends BaseActivity implements BaseView {
             MyUtils.showShort("登录成功");
             LoginEntity entity = (LoginEntity) data;
             SharedPreferencesUtils.put(this, SharedPreferencesVar.TOKEN, entity.getData().getToken());
+            SharedPreferencesUtils.put(this, SharedPreferencesVar.MOBILE, entity.getData().getMobile());
             SharedPreferencesUtils.put(this, SharedPreferencesVar.USER_ID, entity.getData().getUserId());
             int type = entity.getData().getRoleType();
-            SharedPreferencesUtils.put(this, SharedPreferencesVar.userType,type);
+            SharedPreferencesUtils.put(this, SharedPreferencesVar.userType, type);
             this.finish();
-        }if (code == ApiConfig.SEND_CODE) {
+        }
+        if (code == ApiConfig.SEND_CODE) {
             countDown();
         }
     }
@@ -82,20 +119,22 @@ public class LoginActivity extends BaseActivity implements BaseView {
         isShowTitle(false);
         sendCodePresenter = new SendCodePresenter(this);
         loginPresenter = new LoginPresenter(this);
-
-        RxBus.getInstance().subscribe(RegisterUserEvent.class, new Consumer<RegisterUserEvent>() {
+        RxBus.getInstance().toObservable(this,RegisterUserEvent.class).subscribe(new Consumer<RegisterUserEvent>() {
             @Override
-            public void accept(RegisterUserEvent event) {
+            public void accept(RegisterUserEvent msgEvent) throws Exception {
+                //处理事件
                 toChooseUserType();
             }
         });
+
+
     }
 
-    private void toChooseUserType(){
-        Bundle b  = new Bundle();
-        b.putString("phone",edtAccount.getText().toString());
-        b.putString("code",edtPassword.getText().toString());
-        intentJump(this,ChooseUserTypeActivity.class,b);
+    private void toChooseUserType() {
+        Bundle b = new Bundle();
+        b.putString("phone",phone);
+        b.putString("code", code);
+        intentJump(this, ChooseUserTypeActivity.class, b);
     }
 
 
@@ -119,6 +158,7 @@ public class LoginActivity extends BaseActivity implements BaseView {
             }
         }.start();
     }
+
 
 
 }

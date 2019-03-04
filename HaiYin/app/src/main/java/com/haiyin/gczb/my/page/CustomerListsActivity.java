@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.durian.lib.base.BaseView;
 import com.durian.lib.baserRecyclerViewAdapterHelper.BaseQuickAdapter;
@@ -37,6 +38,8 @@ public class CustomerListsActivity extends BaseActivity implements BaseView {
     CustomerListsAdapter mAdapter;
     @BindView(R.id.srl)
     SmartRefreshLayout srl;
+    @BindView(R.id.ll_no_data)
+    LinearLayout llNoData;
     private int page = 1;
     private int pageNum = 20;
     String title ;
@@ -76,6 +79,12 @@ public class CustomerListsActivity extends BaseActivity implements BaseView {
             srl.setLoadmoreFinished(true);
         }
         mAdapter.addData(entity.getData());
+        mAdapter.addData(entity.getData());
+        if (mAdapter.getData().size()==0){
+            llNoData.setVisibility(View.VISIBLE);
+        }else{
+            llNoData.setVisibility(View.GONE);
+        }
     }
 
     @Override

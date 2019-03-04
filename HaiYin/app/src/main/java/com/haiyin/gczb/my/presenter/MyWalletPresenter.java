@@ -5,10 +5,8 @@ import android.content.Context;
 import com.alibaba.fastjson.JSON;
 import com.durian.lib.base.BasePresenter;
 import com.durian.lib.base.BaseView;
-import com.haiyin.gczb.base.BaseEntity;
-import com.haiyin.gczb.my.entity.CardsEntity;
+import com.haiyin.gczb.my.entity.CollectionInformationEntity;
 import com.haiyin.gczb.my.entity.PaysEntity;
-import com.haiyin.gczb.my.entity.ReceivedPaysEntity;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.http.ApiConfig;
 import com.haiyin.gczb.utils.http.HttpMethods;
@@ -104,7 +102,7 @@ public class MyWalletPresenter extends BasePresenter<BaseView> {
         DisposableObserver<ResponseBody> subscriber = new OnSuccessAndFaultSub(new OnSuccessAndFaultListener() {
             @Override
             public void onSuccess(String result) {
-                ReceivedPaysEntity entity = JSON.parseObject(result, ReceivedPaysEntity.class);
+                CollectionInformationEntity entity = JSON.parseObject(result, CollectionInformationEntity.class);
                 myView.success(ApiConfig.ENTITY_RECEIVED_PAYS, entity);
             }
             @Override

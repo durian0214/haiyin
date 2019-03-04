@@ -10,6 +10,7 @@ import com.haiyin.gczb.my.entity.EnterpriseEntity;
 import com.haiyin.gczb.my.entity.SalesCompanyDetailEntity;
 import com.haiyin.gczb.my.entity.SalesCompanyListEntity;
 import com.haiyin.gczb.my.entity.SalesCompanyProjectsEntity;
+import com.haiyin.gczb.my.entity.SalesContractFilesEntity;
 import com.haiyin.gczb.my.entity.SalesProjectAmountEntity;
 import com.haiyin.gczb.utils.MyUtils;
 import com.haiyin.gczb.utils.http.ApiConfig;
@@ -116,6 +117,33 @@ public class CustomerPresenter extends BasePresenter<BaseView> {
             public void onSuccess(String result) {
                 SalesCompanyDetailEntity entity = JSON.parseObject(result, SalesCompanyDetailEntity.class);
                 myView.success(ApiConfig.SALES_COMPANY_DETAIL, entity);
+            }
+
+            @Override
+            public void onFault(String errorMsg) {
+                //失败
+                myView.netError(errorMsg);
+            }
+        });
+        HttpMethods.getInstance().toSubscribe(observable, subscriber);
+    }
+    /**
+     * 业务员客户协议
+     * @param projectId
+     */
+
+    public void salesContractFiles(String projectId) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("projectId", projectId);
+
+        Observable<ResponseBody>
+                observable = HttpMethods.getInstance().getHttpApi().salesContractFiles(MyUtils.encryptString(params));
+
+        DisposableObserver<ResponseBody> subscriber = new OnSuccessAndFaultSub(new OnSuccessAndFaultListener() {
+            @Override
+            public void onSuccess(String result) {
+                SalesContractFilesEntity entity = JSON.parseObject(result, SalesContractFilesEntity.class);
+                myView.success(ApiConfig.SALES_CONTRACT_FILES, entity);
             }
 
             @Override

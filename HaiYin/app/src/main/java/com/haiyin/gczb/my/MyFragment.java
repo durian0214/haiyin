@@ -85,6 +85,7 @@ public class MyFragment extends BaseFragment implements BaseView {
     public void toLoginOut() {
         UserUtils.outLogin();
     }
+
     @OnClick(R.id.tv_my_version)
     public void about() {
         MyUtils.showShort(Constant.appVersionName);
@@ -93,17 +94,13 @@ public class MyFragment extends BaseFragment implements BaseView {
 
     @OnClick(R.id.imgb_my_set)
     public void toSet() {
-        if (Constant.userType == 1) {
-            Intent mIntent = new Intent(getActivity(), ChangeEnterpriseInformationActivity.class);
-            startActivity(mIntent);
-        } else if (Constant.userType == 2) {
-            Intent mIntent = new Intent(getActivity(), ChangeEnterpriseInformationActivity.class);
-            startActivity(mIntent);
-        } else if (Constant.userType == 3) {
+        if (Constant.userType == 3) {
 
-        } else if (Constant.userType == 4) {
-            Intent mIntent = new Intent(getActivity(), SalesmanInformationActivity.class);
+        } else  {
+            Intent mIntent = new Intent(getActivity(), SalesmanSetActivity.class);
             startActivity(mIntent);
+//            Intent mIntent = new Intent(getActivity(), SalesmanInformationActivity.class);
+//            startActivity(mIntent);
 
         }
 
@@ -115,14 +112,9 @@ public class MyFragment extends BaseFragment implements BaseView {
             return;
         }
         //设置
-        if (Constant.userType == 4) {
-            Intent mIntent = new Intent(getActivity(), SalesmanSetActivity.class);
-            startActivity(mIntent);
 
-        } else {
             Intent mIntent = new Intent(getActivity(), SetActivity.class);
             startActivity(mIntent);
-        }
     }
 
     @OnClick(R.id.tv_my_message)
@@ -256,34 +248,48 @@ public class MyFragment extends BaseFragment implements BaseView {
     @Override
     public void success(int code, Object data) {
         if (code == ApiConfig.GET_DETAIL_INFO) {
-            UserEntity entity = (UserEntity) data;
-            tvName.setText("负责人姓名：" + entity.getData().getContactsName());
-            //1=法人, 2=负责人, 3=财务, 4=人事
-            if (entity.getData().getMemberPosition() == 1) {
-                tvPosition.setText("法人");
-            } else if (entity.getData().getMemberPosition() == 2) {
-                tvPosition.setText("负责人");
-            } else if (entity.getData().getMemberPosition() == 3) {
-                tvPosition.setText("财务");
-            } else if (entity.getData().getMemberPosition() == 4) {
-                tvPosition.setText("人事");
-            }
-            tvTitle.setText(entity.getData().getCompanyName());
-            GlideUtil.loaderCornersImg(getActivity(), imgIcon, entity.getData().getHeadImg());
+            final UserEntity entity = (UserEntity) data;
+
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    tvName.setText("" + entity.getData().getContactsName());
+                    //1=法人, 2=负责人, 3=财务, 4=人事
+                    if (entity.getData().getMemberPosition() == 1) {
+                        tvPosition.setText("法人");
+                    } else if (entity.getData().getMemberPosition() == 2) {
+                        tvPosition.setText("负责人");
+                    } else if (entity.getData().getMemberPosition() == 3) {
+                        tvPosition.setText("财务");
+                    } else if (entity.getData().getMemberPosition() == 4) {
+                        tvPosition.setText("人事");
+                    }
+                    tvTitle.setText(entity.getData().getCompanyName());
+                    GlideUtil.loaderCornersImg(getActivity(), imgIcon, entity.getData().getHeadImg());
+
+                }
+            });
         } else if (code == ApiConfig.SALES_DETAIL_INFO) {
-            SalesDetailInfoEntity entity = (SalesDetailInfoEntity) data;
-            tvName.setText("负责人姓名：" + entity.getData().getName());
-            //业务员职位：1=总监, 2=经理, 3=主管
-            if (entity.getData().getSalesPosition() == 1) {
-                tvPosition.setText("总监");
-            } else if (entity.getData().getSalesPosition() == 2) {
-                tvPosition.setText("经理");
-            } else if (entity.getData().getSalesPosition() == 3) {
-                tvPosition.setText("主管");
-            }
-            tvTitle.setText(entity.getData().getMobile());
-            GlideUtil.loaderCornersImg(getActivity(), imgIcon, entity.getData().getHeadImg());
-        }
+            final SalesDetailInfoEntity entity = (SalesDetailInfoEntity) data;
+
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    tvName.setText("" + entity.getData().getName());
+                    //业务员职位：1=总监, 2=经理, 3=主管
+                    if (entity.getData().getSalesPosition() == 1) {
+                        tvPosition.setText("总监");
+                    } else if (entity.getData().getSalesPosition() == 2) {
+                        tvPosition.setText("经理");
+                    } else if (entity.getData().getSalesPosition() == 3) {
+                        tvPosition.setText("主管");
+                    }
+                    tvTitle.setText(entity.getData().getMobile());
+                    GlideUtil.loaderCornersImg(getActivity(), imgIcon, entity.getData().getHeadImg());
+
+                }
+            });
+           }
 
     }
 
